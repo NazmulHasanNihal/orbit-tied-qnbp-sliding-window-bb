@@ -12,7 +12,7 @@ from ldpc import BpDecoder, BpOsdDecoder
 
 from src.circuits.bivariate_bicycle import BivariateBicycleCode
 from src.data.dem_graph import DemGraph
-from src.decoder.baselines import MinSumDecoder, DecodeResult
+from src.decoder.baselines import MinSumDecoder, DecodeResult, RelayBPDecoder
 from src.decoder.qnbp import OrbitTiedQNBP
 from src.decoder.integer_reference import IntegerQNBP
 from src.experiments.trainer import QnbpTrainer
@@ -259,5 +259,36 @@ def train_and_eval_qnbp(
         **ci,
         "mean_iterations": float(np.mean(iterations_taken)),
         "convergence_rate": converged_shots / max(1, n_shots),
+        "raw_outcomes": outcomes,
+    }
+
+
+def evaluate_relay_bp_decoder(
+    decoder: RelayBPDecoder,
+    syndromes: np.ndarray,
+    true_observables: np.ndarray,
+) -> Dict[str, Any]:
+    """Evaluates a RelayBPDecoder on paired test shots."""
+    n_shots = len(syndromes)
+    logical_errors = 0
+    iterations_list = []
+    converged_count = 0
+    outcomes = np.zeros(n_shots, dtype=np.uint8)
+
+    for i in range(n_shots):
+        res = decoder.decode(syndromes[i])
+        iterations_list.append(res.iterations)
+        if res.converged:
+            converged_count += 1
+
+        is_error = int(np.any(res.predicted_observables != true_observables[i]))
+        outcomes[i] = is_error
+        logical_errors += is_error
+
+    ci = format_ci_metric(logical_errors, n_shots)
+    return {
+        **ci,
+        "mean_iterations": float(np.mean(iterations_list)),
+        "convergence_rate": converged_count / max(1, n_shots),
         "raw_outcomes": outcomes,
     }

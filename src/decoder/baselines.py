@@ -191,3 +191,86 @@ class MinSumDecoder:
         )
         return bool(np.all(syndrome_pred == syndrome))
 
+
+class RelayBPDecoder:
+    """Relay Belief Propagation decoder (Müller et al., IBM Quantum).
+
+    Iteratively restarts belief propagation across multiple relay stages,
+    damping posterior beliefs into the next stage's priors to escape cycles.
+
+    Attributes:
+        graph: DemGraph representing the DEM bipartite Tanner graph.
+        num_relays: Number of relay stages (default: 3).
+        iters_per_relay: BP iterations per relay stage (default: 10).
+        alpha: Min-sum scaling factor (default: 0.75).
+        relay_gamma: Soft posterior memory damping factor in (0, 1) (default: 0.5).
+    """
+
+    def __init__(
+        self,
+        graph: DemGraph,
+        num_relays: int = 3,
+        iters_per_relay: int = 10,
+        alpha: Union[float, List[float]] = 0.75,
+        relay_gamma: float = 0.5,
+    ) -> None:
+        self.graph = graph
+        self.num_relays = num_relays
+        self.iters_per_relay = iters_per_relay
+        self.relay_gamma = relay_gamma
+        self.base_decoder = MinSumDecoder(
+            graph=graph,
+            max_iter=iters_per_relay,
+            alpha=alpha,
+            gamma=0.0,
+        )
+
+    def decode(self, syndrome: NDArray[np.uint8]) -> DecodeResult:
+        """Decodes an observed binary detector syndrome vector s via Relay-BP.
+
+        Args:
+            syndrome: 1D binary array of length num_detectors.
+
+        Returns:
+            DecodeResult containing convergence status, total iterations,
+            corrections, predicted logical observables, and posterior LLRs.
+        """
+        orig_priors = self.graph.priors.cpu().numpy().copy()
+        current_priors = orig_priors.copy()
+        total_iters = 0
+        last_result: Optional[DecodeResult] = None
+
+        for relay in range(self.num_relays):
+            self.base_decoder.priors = current_priors.copy()
+            res = self.base_decoder.decode(syndrome)
+            total_iters += res.iterations
+            last_result = res
+
+            if res.converged:
+                self.base_decoder.priors = orig_priors
+                return DecodeResult(
+                    converged=True,
+                    iterations=total_iters,
+                    corrections=res.corrections,
+                    predicted_observables=res.predicted_observables,
+                    final_llrs=res.final_llrs,
+                )
+
+            # Damped relay update for next stage
+            current_priors = (
+                (1.0 - self.relay_gamma) * orig_priors
+                + self.relay_gamma * res.final_llrs
+            )
+
+        # Restore original priors
+        self.base_decoder.priors = orig_priors
+
+        assert last_result is not None
+        return DecodeResult(
+            converged=last_result.converged,
+            iterations=total_iters,
+            corrections=last_result.corrections,
+            predicted_observables=last_result.predicted_observables,
+            final_llrs=last_result.final_llrs,
+        )
+

@@ -54,3 +54,15 @@ def test_code_144_gross_code_size_check():
     assert dem.num_observables == 12
     assert dem.num_errors == 67752
 
+
+def test_code_72_biased_noise_generation():
+    """Verify that asymmetric Pauli noise with bias eta correctly compiles to DEM."""
+    code = BivariateBicycleCode.code_72_12_6()
+    circuit = code.build_stim_circuit(rounds=3, error_rate=0.003, bias=10.0)
+    dem = circuit.detector_error_model(decompose_errors=False, approximate_disjoint_errors=True)
+
+    assert dem.num_detectors == 216
+    assert dem.num_observables == 12
+    assert dem.num_errors > 0
+
+

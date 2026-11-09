@@ -139,6 +139,7 @@ class BivariateBicycleCode:
         self,
         rounds: int,
         error_rate: float = 0.0,
+        bias: Optional[float] = None,
     ) -> stim.Circuit:
         """Constructs the depth-7 syndrome measurement Stim circuit.
 
@@ -150,7 +151,10 @@ class BivariateBicycleCode:
 
         Args:
             rounds: Number of syndrome extraction rounds Nc.
-            error_rate: Physical depolarizing noise rate p.
+            error_rate: Physical noise rate p.
+            bias: Pauli Z noise bias eta = p_z / (p_x + p_y). If None or <= 0.5,
+                standard symmetric depolarizing noise is applied. If > 0.5,
+                asymmetric Pauli channel noise is applied.
 
         Returns:
             A complete, annotated stim.Circuit ready for DEM extraction.
@@ -161,18 +165,18 @@ class BivariateBicycleCode:
         # Initialize data qubits to |0> and Z ancillas to |0>
         c.append("R", list(range(g, 3 * g)))
         if error_rate > 0:
-            c.append("X_ERROR", list(range(g, 3 * g)), error_rate)
+            self._apply_single_qubit_noise(c, list(range(g, 3 * g)), error_rate, bias, "X_ERROR")
         c.append("R", list(range(3 * g, 4 * g)))
         if error_rate > 0:
-            c.append("X_ERROR", list(range(3 * g, 4 * g)), error_rate)
+            self._apply_single_qubit_noise(c, list(range(3 * g, 4 * g)), error_rate, bias, "X_ERROR")
         c.append("TICK")
 
         for r in range(rounds):
-            self._append_syndrome_round(c, r, error_rate)
+            self._append_syndrome_round(c, r, error_rate, bias)
 
         # Terminal measurement on data qubits in Z-basis
         if error_rate > 0:
-            c.append("X_ERROR", list(range(g, 3 * g)), error_rate)
+            self._apply_single_qubit_noise(c, list(range(g, 3 * g)), error_rate, bias, "X_ERROR")
         c.append("M", list(range(g, 3 * g)))
 
         # Append terminal detectors comparing final data parities to last Z-ancilla
@@ -184,7 +188,7 @@ class BivariateBicycleCode:
         return c
 
     def _append_syndrome_round(
-        self, c: stim.Circuit, r: int, p: float
+        self, c: stim.Circuit, r: int, p: float, bias: Optional[float] = None
     ) -> None:
         """Appends one round of the depth-7 CNOT syndrome extraction schedule."""
         g = self.group_order
@@ -193,47 +197,47 @@ class BivariateBicycleCode:
         # Round 1: InitX q(X), CNOT q(R, A1_T) -> q(Z)
         c.append("RX", list(range(0, g)))
         if p > 0:
-            c.append("Z_ERROR", list(range(0, g)), p)
+            self._apply_single_qubit_noise(c, list(range(0, g)), p, bias, "Z_ERROR")
         t_r1 = [item for i in range(g) for item in (2 * g + int(p_tab["A1_T"][i]), 3 * g + i)]
-        self._apply_cnot_layer(c, t_r1, p)
+        self._apply_cnot_layer(c, t_r1, p, bias)
 
         # Round 2: CNOT q(X) -> q(L, A2), CNOT q(R, A3_T) -> q(Z)
         t_r2 = []
         for i in range(g):
             t_r2.extend([i, g + int(p_tab["A2"][i]), 2 * g + int(p_tab["A3_T"][i]), 3 * g + i])
-        self._apply_cnot_layer(c, t_r2, p)
+        self._apply_cnot_layer(c, t_r2, p, bias)
 
         # Round 3: CNOT q(X) -> q(R, B2), CNOT q(L, B1_T) -> q(Z)
         t_r3 = []
         for i in range(g):
             t_r3.extend([i, 2 * g + int(p_tab["B2"][i]), g + int(p_tab["B1_T"][i]), 3 * g + i])
-        self._apply_cnot_layer(c, t_r3, p)
+        self._apply_cnot_layer(c, t_r3, p, bias)
 
         # Round 4: CNOT q(X) -> q(R, B1), CNOT q(L, B2_T) -> q(Z)
         t_r4 = []
         for i in range(g):
             t_r4.extend([i, 2 * g + int(p_tab["B1"][i]), g + int(p_tab["B2_T"][i]), 3 * g + i])
-        self._apply_cnot_layer(c, t_r4, p)
+        self._apply_cnot_layer(c, t_r4, p, bias)
 
         # Round 5: CNOT q(X) -> q(R, B3), CNOT q(L, B3_T) -> q(Z)
         t_r5 = []
         for i in range(g):
             t_r5.extend([i, 2 * g + int(p_tab["B3"][i]), g + int(p_tab["B3_T"][i]), 3 * g + i])
-        self._apply_cnot_layer(c, t_r5, p)
+        self._apply_cnot_layer(c, t_r5, p, bias)
 
         # Round 6: CNOT q(X) -> q(L, A1), CNOT q(R, A2_T) -> q(Z)
         t_r6 = []
         for i in range(g):
             t_r6.extend([i, g + int(p_tab["A1"][i]), 2 * g + int(p_tab["A2_T"][i]), 3 * g + i])
-        self._apply_cnot_layer(c, t_r6, p)
+        self._apply_cnot_layer(c, t_r6, p, bias)
 
         # Round 7: CNOT q(X) -> q(L, A3)
         t_r7 = [item for i in range(g) for item in (i, g + int(p_tab["A3"][i]))]
-        self._apply_cnot_layer(c, t_r7, p)
+        self._apply_cnot_layer(c, t_r7, p, bias)
 
         # Measure Z ancillas & Record detectors
         if p > 0:
-            c.append("X_ERROR", list(range(3 * g, 4 * g)), p)
+            self._apply_single_qubit_noise(c, list(range(3 * g, 4 * g)), p, bias, "X_ERROR")
         c.append("M", list(range(3 * g, 4 * g)))
         for i in range(g):
             rec = -(g - i)
@@ -243,22 +247,63 @@ class BivariateBicycleCode:
 
         # Round 8: Measure X ancillas & Reset Z ancillas
         if p > 0:
-            c.append("Z_ERROR", list(range(0, g)), p)
+            self._apply_single_qubit_noise(c, list(range(0, g)), p, bias, "Z_ERROR")
         c.append("MX", list(range(0, g)))
         c.append("R", list(range(3 * g, 4 * g)))
         if p > 0:
-            c.append("X_ERROR", list(range(3 * g, 4 * g)), p)
+            self._apply_single_qubit_noise(c, list(range(3 * g, 4 * g)), p, bias, "X_ERROR")
         for i in range(g):
             rec = -(g - i)
             if r > 0:
                 c.append("DETECTOR", [stim.target_rec(rec), stim.target_rec(rec - 2 * g)])
         c.append("TICK")
 
-    def _apply_cnot_layer(self, c: stim.Circuit, targets: List[int], p: float) -> None:
-        """Appends a CNOT layer followed by depolarizing noise and a TICK."""
+    def _apply_single_qubit_noise(
+        self,
+        c: stim.Circuit,
+        targets: List[int],
+        p: float,
+        bias: Optional[float] = None,
+        default_error: str = "DEPOLARIZE1",
+    ) -> None:
+        """Appends single-qubit noise, optionally biased towards Pauli Z."""
+        if p <= 0:
+            return
+        if bias is not None and bias > 0.5:
+            pz = (p * bias) / (bias + 1.0)
+            px = (p / (bias + 1.0)) / 2.0
+            py = px
+            c.append("PAULI_CHANNEL_1", targets, [px, py, pz])
+        else:
+            if default_error == "DEPOLARIZE1":
+                c.append("DEPOLARIZE1", targets, p)
+            else:
+                c.append(default_error, targets, p)
+
+    def _apply_cnot_layer(
+        self,
+        c: stim.Circuit,
+        targets: List[int],
+        p: float,
+        bias: Optional[float] = None,
+    ) -> None:
+        """Appends a CNOT layer followed by depolarizing or biased noise and a TICK."""
         c.append("CX", targets)
         if p > 0:
-            c.append("DEPOLARIZE2", targets, p)
+            if bias is not None and bias > 0.5:
+                pz_pair = (p * bias) / (bias + 1.0) / 3.0
+                p_other = (p / (bias + 1.0)) / 12.0
+                # PAULI_CHANNEL_2 15 probabilities:
+                # IX, IY, IZ, XI, XX, XY, XZ, YI, YX, YY, YZ, ZI, ZX, ZY, ZZ
+                probs = [
+                    p_other, p_other, pz_pair,
+                    p_other, p_other, p_other, p_other,
+                    p_other, p_other, p_other, p_other,
+                    pz_pair, p_other, p_other, pz_pair,
+                ]
+                c.append("PAULI_CHANNEL_2", targets, probs)
+            else:
+                c.append("DEPOLARIZE2", targets, p)
         c.append("TICK")
 
     def _append_terminal_detectors(self, c: stim.Circuit) -> None:
