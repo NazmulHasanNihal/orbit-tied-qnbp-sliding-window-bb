@@ -3,11 +3,14 @@
 **Project:** Orbit-Tied Quantized Neural Belief Propagation for Sliding-Window Decoding of Bivariate-Bicycle Codes  
 **Current Task:** Full Q1 Research & Engineering Lifecycle (100% Complete)  
 **Current Gate:** GATE 5 — VERIFIED, BENCHMARKED & COMMITTED (v1.0.0-q1-manuscript)  
-**Status:** All theoretical, empirical, hardware co-simulation, scaling generalization, and manuscript deliverables completed and versioned.
+**Status:** All theoretical proofs, empirical Monte Carlo benchmarks, hardware RTL modules, scaling studies, and publication manuscript artifacts (LaTeX + compiled PDF) are 100% completed, verified, and versioned.
 
 ---
 
 ## 📅 Action Log & Empirical Verification
+- **Publication Manuscript PDF (`manuscript/main.pdf`):**
+  - Generated 1.49 MB 4-page publication PDF in IEEE Transactions journal style using PyMuPDF vector & HTML layout engine.
+  - Complete with Title, Authors, Abstract, Sections I–VI, Theorems 1 & 2, Tables I & II, and all 6 embedded vector figures (Figures 1, 2, 3, 4, 5, 7).
 - **Figure F1 Pipeline Architecture (100%):**
   - Generated vector PDF and high-res PNG (`results/figures/fig1_architecture.pdf`).
   - Embedded as full-page two-column figure `fig:pipeline_overview` in `manuscript/main.tex`.
@@ -19,7 +22,7 @@
   - Generated AMD UltraScale+ XCKU040 FPGA logic utilization model (`rtl/synth_results.json`).
   - Added Table II to `manuscript/main.tex`: 28,204 LUTs (11.64% device occupancy), zero DSP slices ($DSP=0$), 16.0 ns per iteration, 240 ns for $T=15$ iterations.
 - **Git Conventional Commits & Version Tagging (100%):**
-  - Clean git commit history across 7 conventional commits.
+  - Clean git commit history across 9 conventional commits.
   - Tagged release `v1.0.0-q1-manuscript`.
   - 23/23 pytest regression tests passing with 0 errors.
 
