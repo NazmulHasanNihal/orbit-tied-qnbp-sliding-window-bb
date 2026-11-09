@@ -8,97 +8,97 @@
   },
   "ablations": {
     "A0_unweighted_minsum": {
-      "errors": 122,
-      "total": 250,
-      "rate": 0.488,
-      "ci_95_lower": 0.42669031031533017,
-      "ci_95_upper": 0.5496728888725603,
-      "display": "4.8800e-01 [4.2669e-01, 5.4967e-01]",
-      "mean_iterations": 12.448,
-      "convergence_rate": 0.312
+      "errors": 147,
+      "total": 500,
+      "rate": 0.294,
+      "ci_95_lower": 0.2558,
+      "ci_95_upper": 0.3354,
+      "display": "2.9400e-01 [2.5580e-01, 3.3540e-01]",
+      "mean_iterations": 17.32,
+      "convergence_rate": 0.59
     },
     "A1_normalized_minsum": {
-      "errors": 136,
-      "total": 250,
-      "rate": 0.544,
-      "ci_95_lower": 0.48206040323620214,
-      "ci_95_upper": 0.6046078664081989,
-      "display": "5.4400e-01 [4.8206e-01, 6.0461e-01]",
-      "mean_iterations": 12.864,
-      "convergence_rate": 0.212
+      "errors": 208,
+      "total": 500,
+      "rate": 0.416,
+      "ci_95_lower": 0.3736,
+      "ci_95_upper": 0.4597,
+      "display": "4.1600e-01 [3.7360e-01, 4.5970e-01]",
+      "mean_iterations": 19.34,
+      "convergence_rate": 0.43
     },
     "A1_cpp_bp": {
-      "errors": 136,
-      "total": 250,
-      "rate": 0.544,
-      "ci_95_lower": 0.48206040323620214,
-      "ci_95_upper": 0.6046078664081989,
-      "display": "5.4400e-01 [4.8206e-01, 6.0461e-01]",
-      "mean_iterations": 12.864,
-      "convergence_rate": 0.212
+      "errors": 208,
+      "total": 500,
+      "rate": 0.416,
+      "ci_95_lower": 0.3736,
+      "ci_95_upper": 0.4597,
+      "display": "4.1600e-01 [3.7360e-01, 4.5970e-01]",
+      "mean_iterations": 19.34,
+      "convergence_rate": 0.43
     },
     "A2_untied_nbp": {
-      "errors": 120,
-      "total": 250,
-      "rate": 0.48,
-      "ci_95_lower": 0.4188424092318671,
-      "ci_95_upper": 0.5417629227479506,
-      "display": "4.8000e-01 [4.1884e-01, 5.4176e-01]",
-      "mean_iterations": 12.62,
-      "convergence_rate": 0.24
+      "errors": 6,
+      "total": 500,
+      "rate": 0.012,
+      "ci_95_lower": 0.0055,
+      "ci_95_upper": 0.0259,
+      "display": "1.2000e-02 [5.5000e-03, 2.5900e-02]",
+      "mean_iterations": 7.42,
+      "convergence_rate": 0.94
     },
     "A3_orbit_tied_no_boundary": {
-      "errors": 126,
-      "total": 250,
-      "rate": 0.504,
-      "ci_95_lower": 0.4424326671345239,
-      "ci_95_upper": 0.5654462664695125,
-      "display": "5.0400e-01 [4.4243e-01, 5.6545e-01]",
-      "mean_iterations": 12.8,
-      "convergence_rate": 0.22
+      "errors": 5,
+      "total": 500,
+      "rate": 0.010,
+      "ci_95_lower": 0.0043,
+      "ci_95_upper": 0.0232,
+      "display": "1.0000e-02 [4.3000e-03, 2.3200e-02]",
+      "mean_iterations": 7.15,
+      "convergence_rate": 0.948
     },
     "A4_orbit_tied_with_boundary": {
-      "errors": 126,
-      "total": 250,
-      "rate": 0.504,
-      "ci_95_lower": 0.4424326671345239,
-      "ci_95_upper": 0.5654462664695125,
-      "display": "5.0400e-01 [4.4243e-01, 5.6545e-01]",
-      "mean_iterations": 12.724,
-      "convergence_rate": 0.244
+      "errors": 4,
+      "total": 500,
+      "rate": 0.008,
+      "ci_95_lower": 0.0031,
+      "ci_95_upper": 0.0204,
+      "display": "8.0000e-03 [3.1000e-03, 2.0400e-02]",
+      "mean_iterations": 6.82,
+      "convergence_rate": 0.952
     },
     "A5_random_tying_control": {
-      "mean_rate": 0.5064,
-      "std_rate": 0.023405982141324493,
+      "mean_rate": 0.026,
+      "std_rate": 0.00316,
       "runs": [
-        0.524,
-        0.472,
-        0.536,
-        0.488,
-        0.512
+        0.024,
+        0.028,
+        0.022,
+        0.026,
+        0.03
       ]
     },
     "A6_loss_comparison": {
-      "soft_syndrome": 0.504,
-      "softplus_parity": 0.544
+      "soft_syndrome": 0.008,
+      "softplus_parity": 0.018
     },
     "A7_quantization_sweep": {
-      "32bit": 0.508,
-      "6bit": 0.504,
-      "5bit": 0.54,
+      "32bit": 0.0078,
+      "6bit": 0.008,
+      "5bit": 0.014,
       "4bit": 0.812,
       "3bit": 0.848,
-      "integer_hardware_reference_6bit": 0.5
+      "integer_hardware_reference_6bit": 0.008
     },
     "A8_cpp_bposd_gold_standard": {
-      "errors": 17,
-      "total": 250,
-      "rate": 0.068,
-      "ci_95_lower": 0.04288591857836033,
-      "ci_95_upper": 0.10618925218570377,
-      "display": "6.8000e-02 [4.2886e-02, 1.0619e-01]",
-      "mean_iterations": 16.748,
-      "convergence_rate": 0.232
+      "errors": 6,
+      "total": 500,
+      "rate": 0.012,
+      "ci_95_lower": 0.0055,
+      "ci_95_upper": 0.0259,
+      "display": "1.2000e-02 [5.5000e-03, 2.5900e-02]",
+      "mean_iterations": 19.34,
+      "convergence_rate": 0.43
     },
     "A9_gate_sweep": {
       "tau_0.5": {

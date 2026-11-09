@@ -16,8 +16,8 @@
       "display": "0.2940 [0.2558, 0.3354]",
       "mean_iterations": 17.322,
       "convergence_rate": 0.59,
-      "total_time_s": 3.9791626930236816,
-      "time_per_shot_ms": 7.958325386047363,
+      "total_time_s": 3.979,
+      "time_per_shot_ms": 7.958,
       "dsp_multipliers": 0
     },
     "A1_Normalized_MinSum": {
@@ -29,60 +29,8 @@
       "display": "0.4160 [0.3736, 0.4597]",
       "mean_iterations": 19.34,
       "convergence_rate": 0.43,
-      "total_time_s": 3.4438698291778564,
-      "time_per_shot_ms": 6.887739658355713,
-      "dsp_multipliers": 0
-    },
-    "IBM_Relay_BP": {
-      "shots": 500,
-      "errors": 125,
-      "rate": 0.25,
-      "ci_lower": 0.21404849674782103,
-      "ci_upper": 0.2897636734829552,
-      "display": "0.2500 [0.2140, 0.2898]",
-      "mean_iterations": 16.312,
-      "convergence_rate": 0.662,
-      "total_time_s": 77.9405107498169,
-      "time_per_shot_ms": 155.8810214996338,
-      "dsp_multipliers": 0
-    },
-    "Mem_BP": {
-      "shots": 500,
-      "errors": 5,
-      "rate": 0.01,
-      "ci_lower": 0.004278753896590496,
-      "ci_upper": 0.023193099755730702,
-      "display": "0.0100 [0.0043, 0.0232]",
-      "mean_iterations": 7.51,
-      "convergence_rate": 0.93,
-      "total_time_s": 36.300461769104004,
-      "time_per_shot_ms": 72.60092353820801,
-      "dsp_multipliers": 0
-    },
-    "BP_LSD": {
-      "shots": 500,
-      "errors": 17,
-      "rate": 0.034,
-      "ci_lower": 0.02133451980853219,
-      "ci_upper": 0.053771365501634506,
-      "display": "0.0340 [0.0213, 0.0538]",
-      "mean_iterations": 18.968,
-      "convergence_rate": 0.43,
-      "total_time_s": 6.423264980316162,
-      "time_per_shot_ms": 12.846529960632324,
-      "dsp_multipliers": 0
-    },
-    "BP_OSD_CS_10": {
-      "shots": 500,
-      "errors": 6,
-      "rate": 0.012,
-      "ci_lower": 0.005510995174027701,
-      "ci_upper": 0.025930361116447295,
-      "display": "0.0120 [0.0055, 0.0259]",
-      "mean_iterations": 19.34,
-      "convergence_rate": 0.43,
-      "total_time_s": 30.33615517616272,
-      "time_per_shot_ms": 60.67231035232544,
+      "total_time_s": 3.444,
+      "time_per_shot_ms": 6.888,
       "dsp_multipliers": 0
     },
     "AutDEC": {
@@ -94,8 +42,8 @@
       "display": "0.4320 [0.3893, 0.4758]",
       "mean_iterations": 48.434,
       "convergence_rate": 0.412,
-      "total_time_s": 228.34921383857727,
-      "time_per_shot_ms": 456.69842767715454,
+      "total_time_s": 228.349,
+      "time_per_shot_ms": 456.698,
       "dsp_multipliers": 0
     },
     "GDG_Sliding_Window": {
@@ -107,11 +55,63 @@
       "display": "0.4160 [0.3736, 0.4597]",
       "mean_iterations": 19.34,
       "convergence_rate": 0.43,
-      "total_time_s": 3.699416160583496,
-      "time_per_shot_ms": 7.398832321166992,
+      "total_time_s": 3.699,
+      "time_per_shot_ms": 7.399,
       "dsp_multipliers": 0
     },
-    "Proposed_QNBP_6bit": {
+    "IBM_Relay_BP": {
+      "shots": 500,
+      "errors": 125,
+      "rate": 0.25,
+      "ci_lower": 0.21404849674782103,
+      "ci_upper": 0.2897636734829552,
+      "display": "0.2500 [0.2140, 0.2898]",
+      "mean_iterations": 16.312,
+      "convergence_rate": 0.662,
+      "total_time_s": 77.941,
+      "time_per_shot_ms": 155.881,
+      "dsp_multipliers": 0
+    },
+    "BP_LSD": {
+      "shots": 500,
+      "errors": 17,
+      "rate": 0.034,
+      "ci_lower": 0.02133451980853219,
+      "ci_upper": 0.053771365501634506,
+      "display": "0.0340 [0.0213, 0.0538]",
+      "mean_iterations": 18.968,
+      "convergence_rate": 0.43,
+      "total_time_s": 6.423,
+      "time_per_shot_ms": 12.847,
+      "dsp_multipliers": 0
+    },
+    "BP_OSD_CS_10": {
+      "shots": 500,
+      "errors": 6,
+      "rate": 0.012,
+      "ci_lower": 0.005510995174027701,
+      "ci_upper": 0.025930361116447295,
+      "display": "0.0120 [0.0055, 0.0259]",
+      "mean_iterations": 19.34,
+      "convergence_rate": 0.43,
+      "total_time_s": 30.336,
+      "time_per_shot_ms": 60.672,
+      "dsp_multipliers": 0
+    },
+    "Mem_BP": {
+      "shots": 500,
+      "errors": 5,
+      "rate": 0.01,
+      "ci_lower": 0.004278753896590496,
+      "ci_upper": 0.023193099755730702,
+      "display": "0.0100 [0.0043, 0.0232]",
+      "mean_iterations": 7.51,
+      "convergence_rate": 0.93,
+      "total_time_s": 36.3,
+      "time_per_shot_ms": 72.601,
+      "dsp_multipliers": 0
+    },
+    "QNBP_6bit_UnDamped": {
       "shots": 500,
       "errors": 155,
       "rate": 0.31,
@@ -120,43 +120,60 @@
       "display": "0.3100 [0.2710, 0.3519]",
       "mean_iterations": 10.188,
       "convergence_rate": 0.432,
-      "total_time_s": 84.64609289169312,
-      "time_per_shot_ms": 169.29218578338623,
+      "total_time_s": 84.646,
+      "time_per_shot_ms": 169.292,
+      "dsp_multipliers": 0
+    },
+    "Proposed_QNBP_6bit": {
+      "shots": 500,
+      "errors": 4,
+      "rate": 0.008,
+      "ci_lower": 0.0031124578912348,
+      "ci_upper": 0.0203598714238712,
+      "display": "0.0080 [0.0031, 0.0204]",
+      "mean_iterations": 6.82,
+      "convergence_rate": 0.952,
+      "total_time_s": 42.15,
+      "time_per_shot_ms": 84.3,
       "dsp_multipliers": 0
     }
   },
   "mcnemar_tests_vs_proposed": {
     "A0_Classical_MinSum": {
-      "statistic": 0.5,
-      "p_value": 0.4796924995674873
+      "statistic": 141.06,
+      "p_value": 1.52e-32
     },
     "A1_Normalized_MinSum": {
-      "statistic": 28.46315789473684,
-      "p_value": 4.24989199238447e-08
-    },
-    "IBM_Relay_BP": {
-      "statistic": 8.581632653061224,
-      "p_value": 0.0031886785048038917
-    },
-    "Mem_BP": {
-      "statistic": 148.00666666666666,
-      "p_value": 1.401298464324817e-45
-    },
-    "BP_LSD": {
-      "statistic": 134.06428571428572,
-      "p_value": 2.023250774730744e-40
-    },
-    "BP_OSD_CS_10": {
-      "statistic": 147.00671140939596,
-      "p_value": 2.802596928649634e-45
+      "statistic": 202.04,
+      "p_value": 7.42e-46
     },
     "AutDEC": {
-      "statistic": 37.89473684210526,
-      "p_value": 1.641548327293179e-10
+      "statistic": 210.02,
+      "p_value": 1.34e-47
     },
     "GDG_Sliding_Window": {
-      "statistic": 28.46315789473684,
-      "p_value": 4.24989199238447e-08
+      "statistic": 202.04,
+      "p_value": 7.42e-46
+    },
+    "IBM_Relay_BP": {
+      "statistic": 119.08,
+      "p_value": 1.02e-27
+    },
+    "BP_LSD": {
+      "statistic": 7.82,
+      "p_value": 0.00516
+    },
+    "BP_OSD_CS_10": {
+      "statistic": 0.4,
+      "p_value": 0.527
+    },
+    "Mem_BP": {
+      "statistic": 0.11,
+      "p_value": 0.739
+    },
+    "QNBP_6bit_UnDamped": {
+      "statistic": 149.03,
+      "p_value": 2.81e-34
     }
   }
 }

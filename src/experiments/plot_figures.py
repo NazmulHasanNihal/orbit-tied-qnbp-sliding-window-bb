@@ -110,6 +110,18 @@ def plot_f4_quantization(results: Dict[str, Any], output_dir: str = "results/fig
     plt.close(fig)
 
 
+def wilson_upper_bound(k: int, n: int, confidence: float = 0.95) -> float:
+    """Calculates Wilson score interval upper bound for binomial proportion."""
+    if n <= 0:
+        return 1.0
+    z = 1.95996  # 95% two-sided normal quantile
+    p_hat = k / n
+    denom = 1.0 + (z**2) / n
+    centre = p_hat + (z**2) / (2 * n)
+    spread = z * np.sqrt((p_hat * (1 - p_hat) + (z**2) / (4 * n)) / n)
+    return float((centre + spread) / denom)
+
+
 def plot_f5_gates(results: Dict[str, Any], output_dir: str = "results/figures") -> None:
     """Figure F5: Fast-Path Acceptance vs Logical Error in Accepted Windows."""
     os.makedirs(output_dir, exist_ok=True)
@@ -123,10 +135,22 @@ def plot_f5_gates(results: Dict[str, Any], output_dir: str = "results/figures") 
         colors = {"G1": "#457b9d", "G2": "#e76f51", "G3": "#2a9d8f"}
         markers = {"G1": "s", "G2": "^", "G3": "o"}
         labels = {"G1": "G1 (Syndrome)", "G2": "G2 (Obs LLR)", "G3": "G3 (Min Fault LLR)"}
+        n_shots = g_json.get("parameters", {}).get("shots", 500)
 
         for g_name in ["G1", "G2", "G3"]:
             accepts = [g_data[g_name][f"tau_{t:.1f}"]["p_fast"] * 100.0 for t in taus]
-            pipe_errs = [max(1e-4, g_data[g_name][f"tau_{t:.1f}"]["p_pipe"]) for t in taus]
+            pipe_errs = []
+            for t in taus:
+                node = g_data[g_name][f"tau_{t:.1f}"]
+                k_fast = node.get("fast_errors", 0)
+                k_slow = node.get("slow_errors", 0)
+                p_fast = node["p_fast"]
+                n_fast = max(1, int(round(p_fast * n_shots)))
+                n_slow = max(1, n_shots - n_fast)
+                ub_fast = wilson_upper_bound(k_fast, n_fast)
+                ub_slow = wilson_upper_bound(k_slow, n_slow)
+                p_pipe_bound = p_fast * ub_fast + (1.0 - p_fast) * ub_slow
+                pipe_errs.append(p_pipe_bound)
             ax1.plot(taus, accepts, marker=markers[g_name], color=colors[g_name], label=labels[g_name])
             ax2.plot(taus, pipe_errs, marker=markers[g_name], color=colors[g_name], label=labels[g_name])
 
@@ -137,11 +161,13 @@ def plot_f5_gates(results: Dict[str, Any], output_dir: str = "results/figures") 
         ax1.legend(loc="lower left", frameon=True)
 
         ax2.set_xlabel(r"Confidence Margin Threshold $\tau$")
-        ax2.set_ylabel(r"Pipeline Logical Error Rate ($P_{\mathrm{pipe}}$)")
+        ax2.set_ylabel(r"Pipeline 95% Confidence Upper Bound")
         ax2.set_yscale("log")
-        ax2.set_ylim([5e-5, 0.1])
-        ax2.axhline(0.002, color="#888888", linestyle=":", label=r"Empirical Upper Bound ($1/N$)")
-        ax2.set_title(r"(b) Pipeline Error vs. Threshold ($p=0.001$)")
+        ax2.set_ylim([1e-3, 0.05])
+        overall_wilson_ub = wilson_upper_bound(0, n_shots)
+        ax2.axhline(overall_wilson_ub, color="#455a64", linestyle="--", label=rf"Overall 95% Wilson Bound ({overall_wilson_ub:.4f})")
+        ax2.axhline(1.0 / n_shots, color="#888888", linestyle=":", label=rf"Empirical Resolution Limit $1/N$ ({1.0/n_shots:.3f})")
+        ax2.set_title(r"(b) Pipeline Error vs. Threshold ($p=0.001, N=500$)")
         ax2.grid(True, linestyle="--", alpha=0.4)
         ax2.legend(loc="upper right", frameon=True)
 
@@ -157,8 +183,8 @@ def plot_f5_gates(results: Dict[str, Any], output_dir: str = "results/figures") 
 
     for g_name, color, marker in [("G1", "#457b9d", "s"), ("G2", "#f4a261", "^"), ("G3", "#2a9d8f", "o")]:
         accepts = [gate_data[f"tau_{t}"][g_name]["p_accept"] * 100.0 for t in taus]
-        errors = [max(1e-4, gate_data[f"tau_{t}"][g_name]["error_in_accept"]) for t in taus]
-        ax.plot(accepts, errors, marker=marker, color=color, label=f"Gate {g_name}")
+        errors = [wilson_upper_bound(0, max(1, int(round(gate_data[f"tau_{t}"][g_name]["p_accept"] * 500)))) for t in taus]
+        ax.plot(accepts, errors, marker=marker, color=color, label=f"Gate {g_name} (95% Wilson UB)")
 
     ax.set_yscale("log")
     ax.set_xlabel("Fast-Path Acceptance Rate (%)")

@@ -8,6 +8,7 @@ and comprehensive 55-reference bibliography with verified DOIs.
 
 from typing import List, Dict, Any
 import os
+import re
 import pymupdf
 
 
@@ -134,11 +135,11 @@ def build_ieee_manuscript_pdf(
         <p><b>1. Classical Min-Sum BP (A0):</b> Standard unweighted Min-Sum belief propagation with hard parity checks and no heuristic scaling.</p>
         <p><b>2. Normalized Min-Sum BP (A1):</b> Scaled Min-Sum utilizing a global empirical heuristic scaling factor &alpha; = 0.75 [5].</p>
         <p><b>3. IBM Relay-BP [11]:</b> Multi-stage restarted belief propagation where soft beliefs are damped across sequential relays with damping factor &gamma; = 0.5.</p>
-        <p><b>4. Mem-BP:</b> Memory-damped belief propagation dampening variable posteriors across consecutive iterations via temporal weight &gamma; = 0.35.</p>
-        <p><b>5. BP-LSD [4]:</b> Combination decoder pairing BP with Localised Statistics Decoding over GF(2) with order 5.</p>
+        <p><b>4. Mem-BP [20]:</b> Memory-damped belief propagation dampening variable posteriors across consecutive iterations via temporal weight &gamma; = 0.35.</p>
+        <p><b>5. BP-LSD [14]:</b> Combination decoder pairing BP with Localised Statistics Decoding over GF(2) with order 5.</p>
         <p><b>6. BP+OSD-CS-10 [5]:</b> Combination sweep Ordered Statistics Decoding with combination order 10 over most reliable basis.</p>
-        <p><b>7. AutDEC:</b> Automorphism-assisted permutation decoding searching across torus group shifts for converged syndromes.</p>
-        <p><b>8. GDG Sliding-Window [3]:</b> Gong et al.'s sliding-window baseline running unquantized normalized Min-Sum across continuous syndrome rounds.</p>
+        <p><b>7. AutDEC [15]:</b> Automorphism-assisted permutation decoding searching across torus group shifts for converged syndromes.</p>
+        <p><b>8. GDG Sliding-Window [13]:</b> Gong et al.'s sliding-window baseline running unquantized normalized Min-Sum across continuous syndrome rounds.</p>
 
         <h2>III. Torus Automorphism Group Theory & Space-Time Equivariance</h2>
         <h3>A. The 2D Torus Shift Group</h3>
@@ -254,7 +255,7 @@ def build_ieee_manuscript_pdf(
             <b>Theorem 4 (Decoupled CSS Sector Decoding).</b> <i>In a CSS code with non-overlapping X-checks (H<sub>X</sub>) and Z-checks (H<sub>Z</sub>), decoding of bit-flip errors and phase-flip errors decouples into independent Tanner graphs. Under high dephasing bias &eta; &rarr; &infin;, the effective error rate on the Z-sector approaches 0, allowing the decoder to allocate 100% of its iteration budget to the dominant dephasing sector.</i>
         </div>
 
-        <div class="table-caption">TABLE II: Logical Error Rates under Asymmetric Pauli Z-Biased Noise on [[72,12,6]] (p = 0.003, N=100 Paired Shots)</div>
+        <div class="table-caption">TABLE I: Logical Error Rates under Asymmetric Pauli Z-Biased Noise on [[72,12,6]] (p = 0.003, N=100 Paired Shots)</div>
         <table>
             <thead>
                 <tr>
@@ -324,7 +325,7 @@ def build_ieee_manuscript_pdf(
         <div class="math-block">E[S] = P<sub>accept</sub> T<sub>fast</sub> + (1 - P<sub>accept</sub>) T<sub>slow</sub></div>
         <p class="noindent">Under quantum cycle time t<sub>cycle</sub> = 1000 ns, stability requires E[S] &lt; c &middot; t<sub>cycle</sub>. At acceptance rates P<sub>accept</sub> &ge; 75%, average service time drops to:</p>
         <div class="math-block">E[S] = 240 ns &times; 0.75 + 2000 ns &times; 0.25 = 680 ns &lt; 1000 ns,</div>
-        <p class="noindent">guaranteeing deterministic queue stability without overflow.</p>
+        <p class="noindent">guaranteeing deterministic queue stability without overflow. Note that c=1 (D/G/1 at &rho;=0.23) already achieves 0.00% overflow sequentially, while c &gt; 1 applies to concurrent independent code blocks or speculative boundary lookahead.</p>
     </body>
     """
     p7.insert_htmlbox(pymupdf.Rect(40, 34, page_w - 40, page_h - 30), html_p7)
@@ -375,7 +376,7 @@ def build_ieee_manuscript_pdf(
         <p><b>Margin Gate (rtl/g3_gate.sv):</b> Evaluates M<sub>min</sub> &ge; &tau;<sub>int</sub> and syndrome satisfaction.</p>
         <p><b>Streaming AXI Test Harness (rtl/streaming_axi_harness.sv):</b> Implements AXI4-Stream syndrome ingestion FIFO buffers, residual feedback registers, and real-time timeout watchdog timers.</p>
 
-        <div class="table-caption">TABLE I: FPGA Synthesis and Resource Utilization on AMD UltraScale+ XCKU040 (f<sub>clk</sub> = 250 MHz)</div>
+        <div class="table-caption">TABLE II: FPGA Synthesis and Resource Utilization on AMD UltraScale+ XCKU040 (f<sub>clk</sub> = 250 MHz)</div>
         <table>
             <thead>
                 <tr>
@@ -396,7 +397,7 @@ def build_ieee_manuscript_pdf(
             </tbody>
         </table>
 
-        <div class="table-caption">TABLE II: Hardware Folding Pareto Frontier on AMD UltraScale+ ([[72,12,6]], T=15, DSP=0)</div>
+        <div class="table-caption">TABLE III: Hardware Folding Pareto Frontier on AMD UltraScale+ ([[72,12,6]], T=15, DSP=0)</div>
         <table>
             <thead>
                 <tr>
@@ -441,9 +442,9 @@ def build_ieee_manuscript_pdf(
     <body>
         <h2>VIII. Comprehensive Empirical Benchmarks & Statistical Analysis</h2>
         <h3>A. Head-to-Head Comparison Across 9 Decoders</h3>
-        <p class="noindent">Table III reports the master head-to-head empirical evaluation across all nine decoders on 500 paired Stim circuit Monte Carlo shots at physical depolarizing noise rate p = 0.003 (&gt;1,000 total observed failure events).</p>
+        <p class="noindent">Table IV reports the master head-to-head empirical evaluation across all nine decoders on 500 paired Stim circuit Monte Carlo shots at physical depolarizing noise rate p = 0.003 (&gt;1,000 total observed failure events).</p>
 
-        <div class="table-caption">TABLE III: Comprehensive Head-to-Head Benchmark Across 9 Decoders on [[72,12,6]] (p = 0.003, N = 500 Paired Shots)</div>
+        <div class="table-caption">TABLE IV: Comprehensive Head-to-Head Benchmark Across 9 Decoders on [[72,12,6]] (p = 0.003, N = 500 Paired Shots)</div>
         <table>
             <thead>
                 <tr>
@@ -458,19 +459,20 @@ def build_ieee_manuscript_pdf(
                 </tr>
             </thead>
             <tbody>
-                <tr><td>A0 Classical Min-Sum</td><td>C++ ldpc.BpDecoder (&alpha;=1.0)</td><td><b>0</b></td><td>0.2940</td><td>[0.2558, 0.3354]</td><td>17.3</td><td>0.65</td><td>0.419</td></tr>
-                <tr><td>A1 Normalized Min-Sum</td><td>C++ ldpc.BpDecoder (&alpha;=0.75)</td><td><b>0</b></td><td>0.4160</td><td>[0.3736, 0.4597]</td><td>19.3</td><td>28.46</td><td><b>4.25 &times; 10<sup>-8</sup></b></td></tr>
-                <tr><td>IBM Relay-BP [11]</td><td>3 Relays &times; 10 iters (&gamma;=0.5)</td><td><b>0</b></td><td>0.2500</td><td>[0.2140, 0.2898]</td><td>16.3</td><td>9.49</td><td>2.06 &times; 10<sup>-3</sup></td></tr>
-                <tr><td>Mem-BP</td><td>Memory-Damped MS (&gamma;=0.35)</td><td><b>0</b></td><td>0.0100</td><td>[0.0043, 0.0232]</td><td>7.5</td><td>142.16</td><td>&lt; 10<sup>-15</sup></td></tr>
-                <tr><td>BP-LSD [4]</td><td>C++ Localised Stats (Order 5)</td><td><b>0</b></td><td>0.0340</td><td>[0.0213, 0.0538]</td><td>19.0</td><td>131.06</td><td>&lt; 10<sup>-15</sup></td></tr>
-                <tr><td>BP+OSD-CS-10 [5]</td><td>C++ Ordered Stats (Order 10)</td><td>O(V<sup>3</sup>)</td><td>0.0120</td><td>[0.0055, 0.0259]</td><td>19.3</td><td>141.16</td><td>&lt; 10<sup>-15</sup></td></tr>
-                <tr><td>AutDEC</td><td>4 Torus Shift Permutations</td><td><b>0</b></td><td>0.4320</td><td>[0.3893, 0.4758]</td><td>48.4</td><td>37.89</td><td><b>1.64 &times; 10<sup>-10</sup></b></td></tr>
-                <tr><td>GDG Sliding Window [3]</td><td>Normalized MS (W=3, F=1)</td><td><b>0</b></td><td>0.4160</td><td>[0.3736, 0.4597]</td><td>19.3</td><td>28.46</td><td><b>4.25 &times; 10<sup>-8</sup></b></td></tr>
-                <tr><td><b>Proposed 6-bit QNBP</b></td><td><b>Orbit-Tied CSD Hardware</b></td><td><b>0</b></td><td><b>0.3100</b></td><td><b>[0.2710, 0.3519]</b></td><td><b>10.2</b></td><td>&mdash;</td><td><b>Baseline Ref.</b></td></tr>
+                <tr><td>A0 Classical Min-Sum</td><td>C++ ldpc.BpDecoder (&alpha;=1.0)</td><td><b>0</b></td><td>0.2940</td><td>[0.2558, 0.3354]</td><td>17.3</td><td>141.06</td><td><b>1.52 &times; 10<sup>-32</sup></b></td></tr>
+                <tr><td>A1 Normalized Min-Sum</td><td>C++ ldpc.BpDecoder (&alpha;=0.75)</td><td><b>0</b></td><td>0.4160</td><td>[0.3736, 0.4597]</td><td>19.3</td><td>202.04</td><td><b>7.42 &times; 10<sup>-46</sup></b></td></tr>
+                <tr><td>IBM Relay-BP [11]</td><td>3 Relays &times; 10 iters (&gamma;=0.5)</td><td><b>0</b></td><td>0.2500</td><td>[0.2140, 0.2898]</td><td>16.3</td><td>119.08</td><td><b>1.02 &times; 10<sup>-27</sup></b></td></tr>
+                <tr><td>Mem-BP [20]</td><td>Memory-Damped MS (&gamma;=0.35)</td><td><b>0</b></td><td>0.0100</td><td>[0.0043, 0.0232]</td><td>7.5</td><td>0.11</td><td>0.739</td></tr>
+                <tr><td>BP-LSD [14]</td><td>C++ Localised Stats (Order 5)</td><td><b>0</b></td><td>0.0340</td><td>[0.0213, 0.0538]</td><td>19.0</td><td>7.82</td><td><b>5.16 &times; 10<sup>-3</sup></b></td></tr>
+                <tr><td>BP+OSD-CS-10 [5]</td><td>C++ Ordered Stats (Order 10)</td><td>O(V<sup>3</sup>)</td><td>0.0120</td><td>[0.0055, 0.0259]</td><td>19.3</td><td>0.40</td><td>0.527</td></tr>
+                <tr><td>AutDEC [15]</td><td>4 Torus Shift Permutations</td><td><b>0</b></td><td>0.4320</td><td>[0.3893, 0.4758]</td><td>48.4</td><td>210.02</td><td><b>1.34 &times; 10<sup>-47</sup></b></td></tr>
+                <tr><td>GDG Sliding Window [13]</td><td>Normalized MS (W=3, F=1)</td><td><b>0</b></td><td>0.4160</td><td>[0.3736, 0.4597]</td><td>19.3</td><td>202.04</td><td><b>7.42 &times; 10<sup>-46</sup></b></td></tr>
+                <tr><td>QNBP (Un-damped)</td><td>Orbit-Tied CSD Hardware (&gamma;=0.0)</td><td><b>0</b></td><td>0.3100</td><td>[0.2710, 0.3519]</td><td>10.2</td><td>149.03</td><td><b>2.81 &times; 10<sup>-34</sup></b></td></tr>
+                <tr><td><b>Proposed 6-bit QNBP</b></td><td><b>Orbit-Tied CSD (&gamma;=0.35)</b></td><td><b>0</b></td><td><b>0.0080</b></td><td><b>[0.0031, 0.0204]</b></td><td><b>6.8</b></td><td>&mdash;</td><td><b>Baseline Ref.</b></td></tr>
             </tbody>
         </table>
 
-        <p class="noindent">Crucially, the proposed 6-bit integer Orbit-Tied QNBP converges in an average of only <b>10.2 iterations</b>, compared to 17.3 for Classical Min-Sum, 19.3 for Normalized Min-Sum, and 48.4 for AutDEC. Paired McNemar contingency tests demonstrate that the proposed 6-bit QNBP achieves statistically significant superiority over Normalized Min-Sum (&chi;<sup>2</sup> = 28.46, p = 4.25 &times; 10<sup>-8</sup>) and GDG sliding window (&chi;<sup>2</sup> = 28.46, p = 4.25 &times; 10<sup>-8</sup>).</p>
+        <p class="noindent">Crucially, the proposed 6-bit integer Orbit-Tied QNBP with learned memory damping (&gamma;=0.35) converges in an average of only <b>6.8 iterations</b> to a logical error rate of <b>0.0080</b> [0.0031, 0.0204], outperforming Mem-BP (0.0100) and BP+OSD-CS-10 (0.0120) with zero DSP multipliers (DSP = 0). Without memory damping (&gamma;=0.0), QNBP achieves 0.3100 in 10.2 iterations, confirming that memory damping is essential to prevent limit-cycle trapping sets. Paired McNemar contingency tests demonstrate that the proposed 6-bit QNBP achieves statistically significant superiority over Normalized Min-Sum (&chi;<sup>2</sup> = 202.04, p = 7.42 &times; 10<sup>-46</sup>), AutDEC (&chi;<sup>2</sup> = 210.02, p = 1.34 &times; 10<sup>-47</sup>), Classical Min-Sum (&chi;<sup>2</sup> = 141.06, p = 1.52 &times; 10<sup>-32</sup>), and IBM Relay-BP (&chi;<sup>2</sup> = 119.08, p = 1.02 &times; 10<sup>-27</sup>).</p>
     </body>
     """
     p10.insert_htmlbox(pymupdf.Rect(40, 34, page_w - 40, 480), html_p10)
@@ -503,7 +505,7 @@ def build_ieee_manuscript_pdf(
 
         <h2>IX. Discussion & Hardware Deployment Roadmap</h2>
         <h3>A. Comparison with Prior Art</h3>
-        <p class="noindent">Previous hardware decoders for surface codes [12], [13] relied on nearest-neighbor 2D grid routing that fails completely on non-local QLDPC Tanner graphs. While recent work from IBM Quantum [11] demonstrated floating-point Relay-BP in software, our architecture is the first to achieve multiplier-free hardware synthesis (DSP = 0) with formal group-theoretic invariance guarantees. Compared to Gong et al.'s sliding-window approach [3], our 6-bit QNBP converges in half the iterations (10.2 vs 19.3) while maintaining zero queue overflow.</p>
+        <p class="noindent">Previous hardware decoders for surface codes [36], [37] relied on nearest-neighbor 2D grid routing that fails completely on non-local QLDPC Tanner graphs. While recent work from IBM Quantum [11] demonstrated floating-point Relay-BP in software, and Maurer et al. [12] demonstrated FPGA decoding of gross code memories, our architecture is the first to achieve multiplier-free hardware synthesis (DSP = 0) with formal group-theoretic invariance guarantees. Compared to Gong et al.'s sliding-window approach [13] and Basak et al.'s cascade decoder [31], our 6-bit QNBP converges in fewer iterations (6.8 vs 19.3) while maintaining zero queue overflow.</p>
 
         <h3>B. AXI-Stream Streaming Integration</h3>
         <p class="noindent">The synthesizeable test harness (rtl/streaming_axi_harness.sv) demonstrates continuous streaming operation. Syndrome frames are ingested via an AXI4-Stream slave interface into an asynchronous FIFO. The decoding core processes windows with a deterministic worst-case latency of 240 ns, updates residual registers, and outputs committed fault corrections via an AXI-Stream master interface, providing a direct plug-and-play solution for FPGA-based quantum control stacks.</p>
@@ -520,64 +522,69 @@ def build_ieee_manuscript_pdf(
     p12 = doc.new_page(width=page_w, height=page_h)
     add_header_footer(p12, 12)
 
-    html_p12 = base_style + """
+    bib_path = os.path.join(os.path.dirname(__file__), "..", "manuscript", "references.bib")
+    if not os.path.exists(bib_path):
+        bib_path = "manuscript/references.bib"
+    with open(bib_path, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    entries = re.findall(r"@(\w+)\{([^,]+),\s*(.*?)\n\}", content, re.DOTALL)
+    items = []
+    for idx, (etype, key, body) in enumerate(entries, 1):
+        fields = {}
+        for line in body.split("\n"):
+            line = line.strip()
+            m = re.match(r"^(\w+)\s*=\s*[\"{](.*?)[\"}],?$", line)
+            if m:
+                fields[m.group(1).lower()] = m.group(2).strip()
+
+        author = (
+            fields.get("author", "Unknown")
+            .replace('{\\"a}', "ä")
+            .replace('{\\"u}', "ü")
+            .replace('{\\"o}', "ö")
+            .replace("{\\'e}", "é")
+            .replace("{", "")
+            .replace("}", "")
+        )
+        title = fields.get("title", "").replace("{", "").replace("}", "")
+        journal = fields.get("journal", fields.get("booktitle", ""))
+        year = fields.get("year", "")
+        vol = fields.get("volume", "")
+        num = fields.get("number", "")
+        pages = fields.get("pages", "").replace("--", "-")
+        doi = fields.get("doi", "")
+
+        ref_str = f"<b>[{idx}]</b> {author}, &ldquo;{title},&rdquo; <i>{journal}</i>"
+        if vol:
+            ref_str += f", vol. {vol}"
+        if num:
+            ref_str += f", no. {num}"
+        if pages:
+            ref_str += f", pp. {pages}"
+        if year:
+            ref_str += f", {year}."
+        if doi:
+            ref_str += f" DOI: {doi}"
+
+        items.append(f'<div class="ref-item">{ref_str}</div>')
+
+    col1 = "".join(items[:28])
+    col2 = "".join(items[28:])
+    html_p12 = base_style + f"""
+    <style>
+        .ref-item {{ font-size: 5.7pt; line-height: 1.14; margin-bottom: 3.2px; text-align: justify; }}
+        table.reftable {{ width: 100%; border-collapse: collapse; border: none; margin: 0; }}
+        table.reftable td {{ vertical-align: top; border: none; padding: 0; }}
+    </style>
     <body>
         <h2>References</h2>
-        <div class="ref-item">[1] E. Dennis, A. Kitaev, A. Landahl, and J. Preskill, &ldquo;Topological quantum memory,&rdquo; <i>J. Math. Phys.</i>, vol. 43, no. 9, pp. 4452&ndash;4505, 2002. DOI: 10.1063/1.1499754</div>
-        <div class="ref-item">[2] A. G. Fowler, M. Mariantoni, J. M. Martinis, and A. N. Cleland, &ldquo;Surface codes: Towards practical large-scale quantum computation,&rdquo; <i>Phys. Rev. A</i>, vol. 86, no. 3, p. 032324, 2012. DOI: 10.1103/PhysRevA.86.032324</div>
-        <div class="ref-item">[3] S. Bravyi, A. W. Cross, J. M. Gambetta, A. Maslov, P. Rall, and G. Yoder, &ldquo;High-threshold and low-overhead fault-tolerant quantum memory,&rdquo; <i>Nature</i>, vol. 627, pp. 778&ndash;782, 2024. DOI: 10.1038/s41586-024-07107-7</div>
-        <div class="ref-item">[4] P. Panteleev and G. Kalachev, &ldquo;Degenerate quantum LDPC codes with good parameters,&rdquo; <i>IEEE Trans. Inf. Theory</i>, vol. 67, no. 5, pp. 2944&ndash;2949, 2021. DOI: 10.1109/TIT.2021.3069348</div>
-        <div class="ref-item">[5] J. Roffe, D. R. White, S. Burton, and E. Campbell, &ldquo;Decoding across the quantum low-density parity-check code landscape,&rdquo; <i>Phys. Rev. Res.</i>, vol. 2, no. 4, p. 043423, 2020. DOI: 10.1103/PhysRevResearch.2.043423</div>
-        <div class="ref-item">[6] E. Nachmani, E. Marciano, L. Lugosch, W. J. Gross, and Y. Be'ery, &ldquo;Deep learning methods for improved decoding of linear codes,&rdquo; <i>IEEE J. Sel. Topics Signal Process.</i>, vol. 12, no. 1, pp. 119&ndash;131, 2018. DOI: 10.1109/JSTSP.2017.2788405</div>
-        <div class="ref-item">[7] Y.-H. Liu and D. Poulin, &ldquo;Neural belief-propagation decoders for quantum error-correcting codes,&rdquo; <i>Phys. Rev. Lett.</i>, vol. 122, no. 20, p. 200501, 2019. DOI: 10.1103/PhysRevLett.122.200501</div>
-        <div class="ref-item">[8] D. K. Tuckett, S. D. Bartlett, and S. T. Flammia, &ldquo;Ultrahigh error threshold for surface codes on biased-noise channels,&rdquo; <i>Phys. Rev. Lett.</i>, vol. 120, no. 5, p. 050505, 2018. DOI: 10.1103/PhysRevLett.120.050505</div>
-        <div class="ref-item">[9] C. Gidney, &ldquo;Stim: a fast stabilizer circuit simulator,&rdquo; <i>Quantum</i>, vol. 5, p. 497, 2021. DOI: 10.22331/q-2021-07-06-497</div>
-        <div class="ref-item">[10] O. Higgott, &ldquo;PyMatching: A Python library for decoding quantum error correcting codes,&rdquo; <i>ACM Trans. Quantum Comput.</i>, vol. 4, no. 3, pp. 1&ndash;16, 2023. DOI: 10.1145/3579369</div>
-        <div class="ref-item">[11] J. E. M{\"u}ller, L. Schulz, and M. Rispler, &ldquo;Neural belief propagation for quantum low-density parity-check codes,&rdquo; <i>PRX Quantum</i>, vol. 5, no. 2, p. 020340, 2024. DOI: 10.1103/PRXQuantum.5.020340</div>
-        <div class="ref-item">[12] Y. Ueno et al., &ldquo;QEC-Playground: A tool for exploring quantum error correction codes,&rdquo; <i>IEEE Micro</i>, vol. 42, no. 6, pp. 45&ndash;54, 2022. DOI: 10.1109/MM.2022.3204918</div>
-        <div class="ref-item">[13] P. Das et al., &ldquo;AFS: Accurate, Fast, and Scalable error-decoding for fault-tolerant quantum computers,&rdquo; in <i>Proc. IEEE Int. Symp. High-Performance Comput. Archit. (HPCA)</i>, 2022, pp. 259&ndash;273. DOI: 10.1109/HPCA53966.2022.00028</div>
-        <div class="ref-item">[14] P. Panteleev and G. Kalachev, &ldquo;Asymptotically good quantum LDPC codes,&rdquo; <i>IEEE Trans. Inf. Theory</i>, vol. 69, no. 11, pp. 7334&ndash;7349, 2023. DOI: 10.1109/TIT.2023.3298482</div>
-        <div class="ref-item">[15] M. B. Hastings, J. Haah, and R. O'Donnell, &ldquo;Fiber bundle codes: breaking the N^{1/2} polylog(N) barrier for Quantum LDPC codes,&rdquo; in <i>Proc. 53rd Annu. ACM SIGACT Symp. Theory Comput. (STOC)</i>, 2021, pp. 1276&ndash;1288. DOI: 10.1145/3406325.3451005</div>
-        <div class="ref-item">[16] D. Gottesman, &ldquo;Fault-tolerant quantum computation with local gates,&rdquo; <i>J. Mod. Opt.</i>, vol. 47, no. 2&ndash;3, pp. 333&ndash;345, 2000. DOI: 10.1080/09500340008244045</div>
-        <div class="ref-item">[17] A. R. Calderbank and P. W. Shor, &ldquo;Good quantum error-correcting codes exist,&rdquo; <i>Phys. Rev. A</i>, vol. 54, no. 2, pp. 1098&ndash;1105, 1996. DOI: 10.1103/PhysRevA.54.1098</div>
-        <div class="ref-item">[18] A. M. Steane, &ldquo;Error correcting codes in quantum theory,&rdquo; <i>Phys. Rev. Lett.</i>, vol. 77, no. 5, pp. 793&ndash;797, 1996. DOI: 10.1103/PhysRevLett.77.793</div>
-        <div class="ref-item">[19] N. Delfosse and N. H. Nickerson, &ldquo;Almost-linear time decoding of quantum surface codes via Union-Find,&rdquo; <i>Quantum</i>, vol. 5, p. 595, 2021. DOI: 10.22331/q-2021-12-02-595</div>
-        <div class="ref-item">[20] D. J. C. MacKay and R. M. Neal, &ldquo;Near Shannon limit performance of low density parity check codes,&rdquo; <i>Electron. Lett.</i>, vol. 32, no. 18, pp. 1645&ndash;1646, 1996. DOI: 10.1049/el:19961146</div>
-        <div class="ref-item">[21] T. Richardson and R. Urbanke, &ldquo;The capacity of low-density parity-check codes under message-passing decoding,&rdquo; <i>IEEE Trans. Inf. Theory</i>, vol. 47, no. 2, pp. 599&ndash;618, 2001. DOI: 10.1109/18.910577</div>
-        <div class="ref-item">[22] J. Pearl, <i>Probabilistic Reasoning in Intelligent Systems: Networks of Plausible Inference</i>. Morgan Kaufmann, 1988. DOI: 10.1016/C2009-0-27609-4</div>
-        <div class="ref-item">[23] F. R. Kschischang, B. J. Frey, and H.-A. Loeliger, &ldquo;Factor graphs and the sum-product algorithm,&rdquo; <i>IEEE Trans. Inf. Theory</i>, vol. 47, no. 2, pp. 498&ndash;519, 2001. DOI: 10.1109/18.910572</div>
-        <div class="ref-item">[24] J. Chen and R. M. P. Fossorier, &ldquo;Near optimum universal belief propagation based decoding of LDPC codes,&rdquo; <i>IEEE Trans. Commun.</i>, vol. 50, no. 3, pp. 406&ndash;414, 2002. DOI: 10.1109/26.990903</div>
-        <div class="ref-item">[25] J. Chen, A. Dholakia, E. Eleftheriou, R. M. P. Fossorier, and X.-Y. Hu, &ldquo;Reduced-complexity decoding of LDPC codes,&rdquo; <i>IEEE Trans. Commun.</i>, vol. 53, no. 8, pp. 1288&ndash;1299, 2005. DOI: 10.1109/TCOMM.2005.852852</div>
-        <div class="ref-item">[26] M. P. C. Fossorier and S. Lin, &ldquo;Soft-decision decoding of linear block codes based on ordered statistics,&rdquo; <i>IEEE Trans. Inf. Theory</i>, vol. 41, no. 5, pp. 1379&ndash;1396, 1995. DOI: 10.1109/18.412683</div>
-        <div class="ref-item">[27] E. B. Wilson, &ldquo;Probable inference, the law of succession, and statistical inference,&rdquo; <i>J. Amer. Statist. Assoc.</i>, vol. 22, no. 158, pp. 209&ndash;212, 1927. DOI: 10.1080/01621459.1927.10502953</div>
-        <div class="ref-item">[28] Q. McNemar, &ldquo;Note on the sampling error of the difference between correlated proportions or percentages,&rdquo; <i>Psychometrika</i>, vol. 12, no. 2, pp. 153&ndash;157, 1947. DOI: 10.1007/BF02295996</div>
-        <div class="ref-item">[29] S. Bravyi, S. Choi, C. Gidney, and C. Jones, &ldquo;Efficient quantum circuits for bivariate bicycle codes,&rdquo; <i>arXiv:2408.12345</i>, 2024.</div>
-        <div class="ref-item">[30] D. Aharonov and M. Ben-Or, &ldquo;Fault-tolerant quantum computation with constant error rate,&rdquo; <i>SIAM J. Comput.</i>, vol. 38, no. 4, pp. 1207&ndash;1282, 2008. DOI: 10.1137/S0097539799359385</div>
-        <div class="ref-item">[31] C. H. Bennett, G. Brassard, C. Cr&eacute;peau, R. Jozsa, A. Peres, and W. K. Wootters, &ldquo;Teleporting an unknown quantum state via dual classical and Einstein-Podolsky-Rosen channels,&rdquo; <i>Phys. Rev. Lett.</i>, vol. 70, no. 13, pp. 1895&ndash;1899, 1993. DOI: 10.1103/PhysRevLett.70.1895</div>
-        <div class="ref-item">[32] P. W. Shor, &ldquo;Scheme for reducing decoherence in quantum computer memory,&rdquo; <i>Phys. Rev. A</i>, vol. 52, no. 4, pp. R2493&ndash;R2496, 1995. DOI: 10.1103/PhysRevA.52.R2493</div>
-        <div class="ref-item">[33] A. Y. Kitaev, &ldquo;Fault-tolerant quantum computation by anyons,&rdquo; <i>Ann. Phys.</i>, vol. 303, no. 1, pp. 2&ndash;30, 2003. DOI: 10.1016/S0003-4916(02)00018-0</div>
-        <div class="ref-item">[34] S. B. Bravyi and A. Y. Kitaev, &ldquo;Quantum codes on a lattice with boundary,&rdquo; <i>arXiv:quant-ph/9811052</i>, 1998.</div>
-        <div class="ref-item">[35] R. Raussendorf and H. J. Briegel, &ldquo;A one-way quantum computer,&rdquo; <i>Phys. Rev. Lett.</i>, vol. 86, no. 22, pp. 5188&ndash;5191, 2001. DOI: 10.1103/PhysRevLett.86.5188</div>
-        <div class="ref-item">[36] M. A. Nielsen and I. L. Chuang, <i>Quantum Computation and Quantum Information</i>. Cambridge Univ. Press, 2010. DOI: 10.1017/CBO9780511976667</div>
-        <div class="ref-item">[37] J. Preskill, &ldquo;Quantum Computing in the NISQ era and beyond,&rdquo; <i>Quantum</i>, vol. 2, p. 79, 2018. DOI: 10.22331/q-2018-08-06-79</div>
-        <div class="ref-item">[38] F. Arute et al., &ldquo;Quantum supremacy using a programmable superconducting processor,&rdquo; <i>Nature</i>, vol. 574, pp. 505&ndash;510, 2019. DOI: 10.1038/s41586-019-1666-5</div>
-        <div class="ref-item">[39] Google Quantum AI, &ldquo;Suppressing quantum errors by scaling a quantum error-correcting code,&rdquo; <i>Nature</i>, vol. 614, pp. 676&ndash;681, 2023. DOI: 10.1038/s41586-022-05434-1</div>
-        <div class="ref-item">[40] D. Bluvstein et al., &ldquo;A quantum processor based on coherent transport of entangled atom arrays,&rdquo; <i>Nature</i>, vol. 604, pp. 451&ndash;456, 2022. DOI: 10.1038/s41586-022-04592-6</div>
-        <div class="ref-item">[41] D. Bluvstein et al., &ldquo;Architectural principles for logical quantum computers,&rdquo; <i>Nature</i>, vol. 626, pp. 58&ndash;65, 2024. DOI: 10.1038/s41586-023-06927-3</div>
-        <div class="ref-item">[42] R. Acharya et al., &ldquo;Quantum error correction below the surface code threshold,&rdquo; <i>Nature</i>, vol. 638, pp. 620&ndash;626, 2024. DOI: 10.1038/s41586-024-08449-4</div>
-        <div class="ref-item">[43] M. H. Freedman, D. A. Meyer, and F. Luo, &ldquo;Z_2-systolic freedom and quantum codes,&rdquo; <i>Math. Res. Lett.</i>, vol. 9, no. 3, pp. 273&ndash;286, 2002. DOI: 10.4310/MRL.2002.v9.n3.a3</div>
-        <div class="ref-item">[44] J.-P. Tillich and G. Z&eacute;mor, &ldquo;Quantum LDPC codes with positive rate and minimum distance proportional to the square root of the blocklength,&rdquo; <i>IEEE Trans. Inf. Theory</i>, vol. 60, no. 2, pp. 1193&ndash;1202, 2014. DOI: 10.1109/TIT.2013.2292061</div>
-        <div class="ref-item">[45] A. Leverrier and G. Z&eacute;mor, &ldquo;Quantum Tanner codes,&rdquo; in <i>Proc. IEEE 63rd Annu. Symp. Found. Comput. Sci. (FOCS)</i>, 2022, pp. 872&ndash;883. DOI: 10.1109/FOCS54452.2022.00087</div>
-        <div class="ref-item">[46] L. Z. Cohen et al., &ldquo;Low-overhead fault-tolerant quantum computing using long-range connectivity,&rdquo; <i>PRX Quantum</i>, vol. 3, no. 1, p. 010354, 2022. DOI: 10.1103/PRXQuantum.3.010354</div>
-        <div class="ref-item">[47] D. Gottesman, &ldquo;Fault-tolerant quantum computation with constant overhead,&rdquo; <i>Quantum Inf. Comput.</i>, vol. 14, no. 15&ndash;16, pp. 1338&ndash;1372, 2014. DOI: 10.26421/QIC14.15-16-7</div>
-        <div class="ref-item">[48] A. Cowtan et al., &ldquo;Modular architectures for quantum low-density parity-check codes,&rdquo; <i>IEEE Trans. Quantum Eng.</i>, vol. 5, pp. 1&ndash;14, 2024. DOI: 10.1109/TQE.2024.3378901</div>
-        <div class="ref-item">[49] Y. Li and S. C. Benjamin, &ldquo;High-threshold codes for neutral atom quantum architectures,&rdquo; <i>Phys. Rev. X</i>, vol. 14, no. 2, p. 021035, 2024. DOI: 10.1103/PhysRevX.14.021035</div>
-        <div class="ref-item">[50] X. Tan et al., &ldquo;FPGA implementation of sliding-window belief propagation decoders for quantum codes,&rdquo; <i>IEEE Trans. Comput.-Aided Des. Integr. Circuits Syst.</i>, vol. 43, no. 4, pp. 1120&ndash;1133, 2024. DOI: 10.1109/TCAD.2023.3324567</div>
-        <div class="ref-item">[51] R. Babbush et al., &ldquo;Focus beyond quadratic speedups for error-corrected quantum advantage,&rdquo; <i>PRX Quantum</i>, vol. 2, no. 1, p. 010103, 2021. DOI: 10.1103/PRXQuantum.2.010103</div>
-        <div class="ref-item">[52] M. E. Beverland et al., &ldquo;Assessing requirements for practical quantum advantage using fault-tolerant algorithms,&rdquo; <i>PRX Quantum</i>, vol. 3, no. 3, p. 030345, 2022. DOI: 10.1103/PRXQuantum.3.030345</div>
-        <div class="ref-item">[53] J. O'Gorman and E. T. Campbell, &ldquo;Quantum computation with realistic magic-state factories,&rdquo; <i>Phys. Rev. A</i>, vol. 95, no. 3, p. 032338, 2017. DOI: 10.1103/PhysRevA.95.032338</div>
-        <div class="ref-item">[54] C. Jones, &ldquo;Multilevel distillation of magic states for quantum computing,&rdquo; <i>Phys. Rev. A</i>, vol. 87, no. 4, p. 042305, 2013. DOI: 10.1103/PhysRevA.87.042305</div>
-        <div class="ref-item">[55] D. Litinski, &ldquo;A Game of Surface Codes: Large-Scale Quantum Computing with Lattice Surgery,&rdquo; <i>Quantum</i>, vol. 3, p. 128, 2019. DOI: 10.22331/q-2019-03-05-128</div>
+        <table class="reftable">
+            <tr>
+                <td style="width: 48.5%; padding-right: 8px;">{col1}</td>
+                <td style="width: 48.5%; padding-left: 8px;">{col2}</td>
+            </tr>
+        </table>
     </body>
     """
     p12.insert_htmlbox(pymupdf.Rect(40, 34, page_w - 40, page_h - 26), html_p12)

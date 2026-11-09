@@ -110,8 +110,8 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
         102, 26, 17, 16, c_fast, c_fast_b,
         "Fast-Path FPGA",
         [
-            "Admit Rate: 15.6%",
-            "Latency: ~360 ns",
+            "Accept Rate: 75.6%",
+            "Latency: 240 ns (T=15)",
             "LER: 0.0000 (0 Err)",
             "Immediate Commit",
         ]
@@ -121,10 +121,10 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
         102, 6, 17, 16, c_slow, c_slow_b,
         "Fallback Pool",
         [
-            "Admit Rate: 84.4%",
-            "C++ BP+OSD-0",
-            "LER: 0.0680",
-            "Buffered Queue",
+            "Fallback: 24.4%",
+            "C++ BP+OSD-CS-10",
+            "P_pipe <= 2.0e-3",
+            "Buffered D/G/c Queue",
         ]
     )
 
