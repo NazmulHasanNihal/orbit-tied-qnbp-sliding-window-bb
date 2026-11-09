@@ -64,3 +64,4 @@ def test_streaming_window_single_fault_correction():
     expected_obs = (graph.obs_matrix[:, f_target].cpu().numpy().astype(np.uint8)) % 2
 
     assert np.all(pred_obs == expected_obs), "Streaming decoder failed to match expected observable!"
+

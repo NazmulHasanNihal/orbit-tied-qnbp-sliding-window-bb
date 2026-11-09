@@ -108,3 +108,4 @@ if __name__ == "__main__":
     print("Running 10,000-shot G3 Gate verification...")
     test_g3_gate_10k_shot_bit_exact_parity()
     print("✅ 10,000-shot bit-exact hardware parity verified 100%!")
+

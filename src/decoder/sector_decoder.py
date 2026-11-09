@@ -210,3 +210,4 @@ if __name__ == "__main__":
     print("✅ Separate Sector Benchmark Results:")
     for k, v in res.items():
         print(f"  {k}: Sector X (LER_Z) = {v['sector_x']['ci']} (conv: {v['sector_x']['convergence']:.2f}) | Sector Z (LER_X) = {v['sector_z']['ci']} (conv: {v['sector_z']['convergence']:.2f})")
+

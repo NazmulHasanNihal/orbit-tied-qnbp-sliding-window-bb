@@ -164,3 +164,4 @@ module streaming_axi_harness #(
     assign gate_accepted        = 1'b1;
 
 endmodule
+

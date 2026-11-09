@@ -162,3 +162,4 @@ class StreamingSlidingWindowDecoder:
             cur_start += self.commit_stride
 
         return all_converged, accumulated_obs, total_iterations
+
