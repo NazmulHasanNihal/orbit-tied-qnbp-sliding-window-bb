@@ -81,3 +81,4 @@ def generate_synthesis_report(output_path: str = "rtl/synth_results.json") -> Di
 
 if __name__ == "__main__":
     generate_synthesis_report()
+
