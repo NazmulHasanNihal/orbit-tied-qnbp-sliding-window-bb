@@ -1,0 +1,36 @@
+{
+  "target_device": "AMD UltraScale+ XCKU040-FFVA1156-2-e",
+  "clock_frequency_mhz": 250.0,
+  "clock_period_ns": 4.0,
+  "cycles_per_iteration": 4,
+  "ns_per_iteration": 16.0,
+  "latency_15_iterations_ns": 240.0,
+  "dsp_slices_used": 0,
+  "modules": {
+    "vnu": {
+      "luts": 48,
+      "ffs": 54,
+      "dsp": 0
+    },
+    "cnu": {
+      "luts": 82,
+      "ffs": 36,
+      "dsp": 0
+    },
+    "g3_gate": {
+      "luts": 124,
+      "ffs": 72,
+      "dsp": 0
+    }
+  },
+  "full_window_72": {
+    "num_vnus": 216,
+    "num_cnus": 216,
+    "total_luts": 28204,
+    "total_ffs": 19512,
+    "total_bram_36k": 0,
+    "total_dsp": 0,
+    "available_luts_xcku040": 242400,
+    "lut_utilization_pct": 11.64
+  }
+}
