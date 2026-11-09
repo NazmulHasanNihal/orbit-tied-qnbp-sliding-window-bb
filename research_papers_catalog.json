@@ -1,0 +1,332 @@
+[
+  {
+    "file": "10493559.pdf",
+    "pages": 21,
+    "title_snippet": "Raveendran et al. EPJ Quantum Technology          (2023) 10:45 https://doi.org/10.1140/epjqt/s40507-023-00201-1 R ES EA "
+  },
+  {
+    "file": "1302.3428v7.pdf",
+    "pages": 47,
+    "title_snippet": "Quantum Error Correction for Quantum Memories Barbara M. Terhal JARA Institute for Quantum Information, RWTH Aachen Univ"
+  },
+  {
+    "file": "1706.07043v2.pdf",
+    "pages": 13,
+    "title_snippet": "ACCEPTED TO IEEE JOURNAL OF SELECTED TOPICS IN SIGNAL PROCESSING 1 Deep Learning Methods for Improved Decoding of Linear"
+  },
+  {
+    "file": "1902.08153v3.pdf",
+    "pages": 12,
+    "title_snippet": "Published as a conference paper at ICLR 2020 LEARNED STEP SIZE QUANTIZATION Steven K. Esser \u2217, Jeffrey L. McKinstry, Dee"
+  },
+  {
+    "file": "1904.02703v3.pdf",
+    "pages": 21,
+    "title_snippet": "Degenerate Quantum LDPC Codes With Good Finite Length Performance Pavel Panteleev and Gleb Kalachev Faculty of Mechanics"
+  },
+  {
+    "file": "2005.07016v2.pdf",
+    "pages": 15,
+    "title_snippet": "arXiv:2005.07016v2  [quant-ph]  29 Dec 2020 Decoding Across the Quantum LDPC Code Landscape Joschka Ro\ufb00e,1, \u2217David R Whi"
+  },
+  {
+    "file": "2011.13594v1.pdf",
+    "pages": 10,
+    "title_snippet": "1 Pruning and Quantizing Neural Belief Propagation Decoders Andreas Buchberger, Student Member, IEEE, Christian H\u00a8ager, "
+  },
+  {
+    "file": "2103.08049v1.pdf",
+    "pages": 28,
+    "title_snippet": "Toward a Union-Find decoder for quantum LDPC codes Nicolas Delfosse1, Vivien Londe2, and Michael Beverland1 1Microsoft Q"
+  },
+  {
+    "file": "2208.05186v1.pdf",
+    "pages": 6,
+    "title_snippet": "Learning Quantization in LDPC Decoders Marvin Geiselhart\u2217, Ahmed Elkelesh\u2217, Jannis Clausius\u2217, Fei Liang\u2020, Wen Xu\u2021, Jing "
+  },
+  {
+    "file": "2209.08552v2.pdf",
+    "pages": 12,
+    "title_snippet": "Parallel window decoding enables scalable fault tolerant quantum computation Luka Skoric,1 Dan E. Browne,1, 2 Kenton M. "
+  },
+  {
+    "file": "2209.09219v2.pdf",
+    "pages": 24,
+    "title_snippet": "Scalable surface code decoders with parallelization in time Xinyu Tan,\u2217Fang Zhang,\u2217Rui Chao, Yaoyun Shi, and Jianxin Che"
+  },
+  {
+    "file": "2308.08208v2.pdf",
+    "pages": 13,
+    "title_snippet": "Date of publication 5 February 2025, date of current version 10 February 2025. Digital Object Identifier 10.1109/ACCESS."
+  },
+  {
+    "file": "2409.01440v3.pdf",
+    "pages": 21,
+    "title_snippet": "An almost-linear time decoding algorithm for quantum LDPC codes under circuit-level noise Antonio deMarti iOlius,1, \u2217Ima"
+  },
+  {
+    "file": "2412.02885v1.pdf",
+    "pages": 14,
+    "title_snippet": "SymBreak: Mitigating Quantum Degeneracy Issues in QLDPC Code Decoders by Breaking Symmetry Keyi Yin1, Xiang Fang1, Jixua"
+  },
+  {
+    "file": "2501.05021v1.pdf",
+    "pages": 8,
+    "title_snippet": "Enhanced Min-Sum Decoding of Quantum Codes Using Previous Iteration Dynamics Dimitris Chytas, Nithin Raveendran, Member,"
+  },
+  {
+    "file": "2502.16408v1.pdf",
+    "pages": 49,
+    "title_snippet": "Decision-tree decoders for general quantum LDPC codes Kai R. Ott1, Bence Het\u00b4enyi2, and Michael E. Beverland2 1ETH 2IBM "
+  },
+  {
+    "file": "2503.10988v2.pdf",
+    "pages": 13,
+    "title_snippet": "Tesseract: A Search-Based Decoder for Quantum Error Correction Laleh Aghababaie Beni, Oscar Higgott, Noah Shutty Google "
+  },
+  {
+    "file": "2504.01164v2.pdf",
+    "pages": 18,
+    "title_snippet": "Diversity Methods for Improving Convergence and Accuracy of Quantum Error Correction Decoders Through Hardware Emulation"
+  },
+  {
+    "file": "2504.08887v4.pdf",
+    "pages": 46,
+    "title_snippet": "Planar quantum low-density parity-check codes with open boundaries Zijian Liang,1 Jens Niklas Eberhardt,2, \u2217and Yu-An Ch"
+  },
+  {
+    "file": "2509.22347v1.pdf",
+    "pages": 17,
+    "title_snippet": "Decoding Quantum Low Density Parity Check Codes with Diffusion Zejun Liu,1 Anqi Gong,2 and Bryan K. Clark1 1The Anthony "
+  },
+  {
+    "file": "2510.06257v3.pdf",
+    "pages": 12,
+    "title_snippet": "Toward Uncertainty-Aware and Generalizable Neural Decoding for Quantum LDPC Codes Xiangjun Mi, Frank Mueller North Carol"
+  },
+  {
+    "file": "2510.22724v1.pdf",
+    "pages": 12,
+    "title_snippet": "SCALABLE NEURAL DECODERS FOR"
+  },
+  {
+    "file": "2511.02951v1.pdf",
+    "pages": 6,
+    "title_snippet": "List Decoding and New Bicycle Code Constructions for Quantum LDPC Codes Sheida Rabeti and Hessam Mahdavifar Department o"
+  },
+  {
+    "file": "2511.10633v2.pdf",
+    "pages": 27,
+    "title_snippet": "Impacts of Decoder Latency on a Utility-Scale Quantum Computer Architecture Abdullah Khalid,1 Allyson Silva,1 Gebremedhi"
+  },
+  {
+    "file": "2512.07057v2.pdf",
+    "pages": 11,
+    "title_snippet": "Beam search decoder for quantum LDPC codes Min Ye, Dave Wecker, Nicolas Delfosse IonQ Inc. (Dated: December 18, 2025)"
+  },
+  {
+    "file": "2601.21715v1.pdf",
+    "pages": 17,
+    "title_snippet": "Hierarchical quantum decoders Nirupam Basak,1, \u2217Ankith Mohan,2, \u2020 Andrew Tanggara,3, 4, \u2021 Tobias Haug,5, \u00a7 Goutam Paul,6"
+  },
+  {
+    "file": "2602.22770v2.pdf",
+    "pages": 23,
+    "title_snippet": "A matching decoder for bivariate bicycle codes Kaavya Sahay,1, 2, 3 Dominic J. Williamson,4, \u2217and Benjamin J. Brown3, 5 "
+  },
+  {
+    "file": "2603.10192v1.pdf",
+    "pages": 13,
+    "title_snippet": "1 Learning to Decode Quantum LDPC Codes Via Belief Propagation Mohsen Moradi , Vahid Nourozi"
+  },
+  {
+    "file": "2605.14170v1.pdf",
+    "pages": 6,
+    "title_snippet": "Multiple-Bases Belief Propagation List Decoding for Quantum LDPC Codes Sheida Rabeti and Hessam Mahdavifar Department of"
+  },
+  {
+    "file": "2606.20926v1.pdf",
+    "pages": 13,
+    "title_snippet": "1 Learning-Based List Sequential Belief Propagation Decoding of Quantum LDPC Codes Mohsen Moradi , Taejoon Kim , and R\u00e9m"
+  },
+  {
+    "file": "2609.26958v1.pdf",
+    "pages": 9,
+    "title_snippet": "Soft decoding for quantum LDPC codes with experimental validation Arda Aydin,1, 2 Edwin Tham,1 Nicolas Delfosse,1 and Mi"
+  },
+  {
+    "file": "2610.01068v1.pdf",
+    "pages": 6,
+    "title_snippet": "Learned Parallel Bit-Flipping Sequential Belief Propagation Decoding of Quantum LDPC Codes Mohsen Moradi\u2217, Taejoon Kim\u2217,"
+  },
+  {
+    "file": "2610.15857v1.pdf",
+    "pages": 6,
+    "title_snippet": "Low-Latency Belief-Propagation Decoding of Quantum LDPC Codes with Reinforcement-Learned Scheduling Mohsen Moradi\u2217, Ghil"
+  },
+  {
+    "file": "A_Scalable_FPGA_Architecture_for_Real-Time_Decoding_of_Quan.pdf",
+    "pages": 11,
+    "title_snippet": "A Scalable FPGA Architecture for Real-Time Decoding of Quantum LDPC Codes Using GARI Daniel B\u00b4ascones(1), Arshpreet Sing"
+  },
+  {
+    "file": "Adaptive_decoding_of_quantum_LDPC_codes_through_decoder_dis.pdf",
+    "pages": 14,
+    "title_snippet": "Adaptive decoding of quantum LDPC codes through decoder disagreement Maida Wang1 and Peter V. Coveney1, 2, \u2217 1Centre for"
+  },
+  {
+    "file": "Automorphism_Ensemble_Decoding_of_Quantum_LDPC_Codes.pdf",
+    "pages": 10,
+    "title_snippet": "Automorphism Ensemble Decoding of Quantum LDPC Codes Stergios Koutsioumpas,1, \u2217Hasan Sayginel,1, 2, \u2217Mark Webster,1 and "
+  },
+  {
+    "file": "CoDecoder_Make_Quantum_Decoders_Up_to_100\u00d7_Faster_and_Even_.pdf",
+    "pages": 35,
+    "title_snippet": "CoDecoder: Make Quantum Decoders Up to 100\u00d7 Faster and Even More Accurate Yicheng Guang ,1, \u2217Yuliang Xiong ,1 Xun Gao"
+  },
+  {
+    "file": "Decoder_Switching_Breaking_the_Speed-Accuracy_Tradeoff_in_R.pdf",
+    "pages": 26,
+    "title_snippet": "Decoder Switching: Breaking the Speed-Accuracy Tradeoff in Real-Time Quantum Error Correction Riki Toshio,1, 2, \u2217Kaito K"
+  },
+  {
+    "file": "Decoding_Correlated_Errors_in_Quantum_LDPC_Codes.pdf",
+    "pages": 17,
+    "title_snippet": "Decoding Correlated Errors in Quantum LDPC Codes Arshpreet Singh Maan,1 Francisco Miguel Garcia Herrero,2 Alexandru Pale"
+  },
+  {
+    "file": "Efficient_and_Universal_Neural-Network_Decoder_for_Stabiliz.pdf",
+    "pages": 36,
+    "title_snippet": "arXiv:2502.19971v2  [quant-ph]  3 Jun 2025 Efficient and Universal Neural-Network Decoder for Stabilizer-Based Quantum E"
+  },
+  {
+    "file": "Exploiting_degeneracy_in_belief_propagation.pdf",
+    "pages": 22,
+    "title_snippet": "1 Exploiting degeneracy in belief propagation decoding of quantum codes Kao-Yueh Kuo and Ching-Yi Lai"
+  },
+  {
+    "file": "FPGA-tailored_algorithms_for_real-time_decoding_of_quantum_.pdf",
+    "pages": 63,
+    "title_snippet": "FPGA-tailored algorithms for real-time decoding of quantum LDPC codes Satvik Maurya1, Thilo Maurer2, Markus B\u00fchler2, Dre"
+  },
+  {
+    "file": "Fully_Parallelized_BP_Decoding_for_Quantum_LDPC_Codes_Can_O.pdf",
+    "pages": 14,
+    "title_snippet": "Fully Parallelized BP Decoding for Quantum LDPC Codes Can Outperform BP-OSD Ming Wang Department of Computer Science"
+  },
+  {
+    "file": "GPU-Based_Parallel_BP_Decoding_for_Quantum_LDPC_Memory.pdf",
+    "pages": 14,
+    "title_snippet": "GPU-Based Parallel BP Decoding for Quantum LDPC Memory Ming Wang mwang42@ncsu.edu Department of Computer Science"
+  },
+  {
+    "file": "HPCA_2022_2.pdf",
+    "pages": 15,
+    "title_snippet": "AFS: Accurate, Fast, and Scalable Error-Decoding for Fault-Tolerant Quantum Computers Poulami Das\u2217\u00a7, Christopher A. Patt"
+  },
+  {
+    "file": "High-threshold_and_low-overhead_fault-tolerant_quantum_memo.pdf",
+    "pages": 36,
+    "title_snippet": "High-threshold and low-overhead fault-tolerant quantum memory Sergey Bravyi1, Andrew W. Cross1, Jay M. Gambetta1, Dmitri"
+  },
+  {
+    "file": "Improved_belief_propagation_is_sufficient_for_real-time_dec.pdf",
+    "pages": 8,
+    "title_snippet": "arXiv:2506.01779v1  [quant-ph]  2 Jun 2025 Improved belief propagation is sufficient for real-time decoding of quantum m"
+  },
+  {
+    "file": "LDPC_Decoding_with_Degree-Specific_Neural.pdf",
+    "pages": 13,
+    "title_snippet": "IEEE TRANSACTIONS ON COMMUNICATIONS 1 LDPC Decoding with Degree-Specific Neural Message Weights and RCQ Decoding"
+  },
+  {
+    "file": "Localized_statistics_decoding_for_quantum_low-density_parit.pdf",
+    "pages": 23,
+    "title_snippet": "Localized statistics decoding for quantum low-density parity- check codes Timo Hillmann 1, Lucas Berent"
+  },
+  {
+    "file": "Low-Complexity_Syndrome-Based_Linear_Programming_D.pdf",
+    "pages": 18,
+    "title_snippet": "Digital Object Identifier Low-Complexity Syndrome-Based Linear Programming Decoding of Quantum LDPC Codes"
+  },
+  {
+    "file": "Machine_Learning_Decoding_of_Circuit-Level_Noise_for_Bivari.pdf",
+    "pages": 20,
+    "title_snippet": "Machine Learning Decoding of Circuit-Level Noise for Bivariate Bicycle Codes John Blue1,2, Harshil Avlani1, Zhiyang He3,"
+  },
+  {
+    "file": "Machine_Learning_Message-Passing_for_the_Scalable_Decoding_.pdf",
+    "pages": 9,
+    "title_snippet": "Machine Learning Message-Passing for the Scalable Decoding of QLDPC Codes Arshpreet Singh Maan\u2217and Alexandru Paler\u2020 Aalt"
+  },
+  {
+    "file": "Neural_Belief-Propagation_Decoders_for_Quantum_Error-Correc.pdf",
+    "pages": 6,
+    "title_snippet": "Neural Belief-Propagation Decoders for Quantum Error-Correcting Codes Ye-Hua Liu1 and David Poulin1, 2 1D\u00e9partement de P"
+  },
+  {
+    "file": "Neural_Window_Decoder_for_SC-LDPC_Codes.pdf",
+    "pages": 12,
+    "title_snippet": "1 Neural Window Decoder for SC-LDPC Codes Dae-Young Yun, Member, IEEE, Hee-Youl Kwak, Member, IEEE, Yongjune Kim, Member"
+  },
+  {
+    "file": "Real-time_decoding_of_the_gross_code_memory_with_FPGAs.pdf",
+    "pages": 16,
+    "title_snippet": "Real-time decoding of the gross code memory with FPGAs. Thilo Maurer\u22171, Markus B\u00a8uhler1, Michael Kr\u00a8oner1, Frank Haverka"
+  },
+  {
+    "file": "Rethink_the_Role_of_Neural_Decoders_in_Quantum_Error_Correc.pdf",
+    "pages": 33,
+    "title_snippet": "Rethink the Role of Neural Decoders in Quantum Error Correction Ge Yan 1 Shanchuan Li 2 1 Yuxuan Du 1 3 Abstract Quantum"
+  },
+  {
+    "file": "Scalable_Neural_Decoders_for_Practical_Fault-Tolerant_Quant.pdf",
+    "pages": 18,
+    "title_snippet": "Scalable Neural Decoders for Practical Fault-Tolerant Quantum Computation Andi Gu,1,2,\u2217J. Pablo Bonilla Ataides,1,2 Mikh"
+  },
+  {
+    "file": "Stim_a_fast_stabilizer_circuit_simulator.pdf",
+    "pages": 26,
+    "title_snippet": "Stim: a fast stabilizer circuit simulator Craig Gidney Google Inc., Santa Barbara, California 93117, USA June 21, 2021"
+  },
+  {
+    "file": "Syndrome-Based_Min-Sum_vs_OSD-0_Decoders_FPGA_Implementatio.pdf",
+    "pages": 10,
+    "title_snippet": "Received September 6, 2021, accepted October 4, 2021, date of publication October 6, 2021, date of current version Octob"
+  },
+  {
+    "file": "Tour_de_gross_A_modular_quantum_computer_based_on_bivariate.pdf",
+    "pages": 68,
+    "title_snippet": "arXiv:2506.03094v1  [quant-ph]  3 Jun 2025 Tour de gross: A modular quantum computer based on bivariate bicycle codes Th"
+  },
+  {
+    "file": "Toward_Low-latency_Iterative_Decoding_of_QLDPC.pdf",
+    "pages": 12,
+    "title_snippet": "arXiv:2403.18901v1  [quant-ph]  27 Mar 2024 Toward Low-latency Iterative Decoding of QLDPC Codes Under Circuit-Level Noi"
+  },
+  {
+    "file": "UMP_BP_COM02.pdf",
+    "pages": 9,
+    "title_snippet": "406 IEEE TRANSACTIONS ON COMMUNICATIONS, VOL. 50, NO. 3, MARCH 2002 Transactions Papers Near Optimum Universal Belief Pr"
+  },
+  {
+    "file": "fullpage_snapshot_github_com_2026-11-08-05-42-01.pdf",
+    "pages": 1,
+    "title_snippet": ""
+  },
+  {
+    "file": "s40507-025-00446-y (1).pdf",
+    "pages": 18,
+    "title_snippet": "B\u00e1scones et al. EPJ Quantum Technology         (2025) 12:140 https://doi.org/10.1140/epjqt/s40507-025-00446-y R ES EA RC"
+  },
+  {
+    "file": "s40507-025-00446-y.pdf",
+    "pages": 18,
+    "title_snippet": "B\u00e1scones et al. EPJ Quantum Technology         (2025) 12:140 https://doi.org/10.1140/epjqt/s40507-025-00446-y R ES EA RC"
+  },
+  {
+    "file": "s41586-024-08148-8.pdf",
+    "pages": 28,
+    "title_snippet": "834\u2002 |\u2002 Nature\u2002 |\u2002 Vol 635\u2002 |\u2002 28 November 2024 Article Learning high-accuracy error decoding for quantum processors"
+  }
+]

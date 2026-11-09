@@ -218,3 +218,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Literature and cloned reference repositories
+research papers/
+external_repos/
+stim_pyg/
