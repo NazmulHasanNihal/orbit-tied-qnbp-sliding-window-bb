@@ -1,0 +1,84 @@
+{
+  "target_device": "AMD UltraScale+ XCKU040",
+  "clock_freq_mhz": 250.0,
+  "configurations": {
+    "F_1": {
+      "folding_factor": 1,
+      "physical_vnus": 216,
+      "physical_cnus": 216,
+      "luts": 28204,
+      "lut_util_pct": 11.64,
+      "ffs": 19512,
+      "ff_util_pct": 4.02,
+      "dsp": 0,
+      "iter_latency_ns": 16.0,
+      "total_latency_ns": 240.0,
+      "throughput_mfps": 4.167
+    },
+    "F_2": {
+      "folding_factor": 2,
+      "physical_vnus": 108,
+      "physical_cnus": 108,
+      "luts": 15287,
+      "lut_util_pct": 6.31,
+      "ffs": 10278,
+      "ff_util_pct": 2.12,
+      "dsp": 0,
+      "iter_latency_ns": 32.0,
+      "total_latency_ns": 480.0,
+      "throughput_mfps": 2.083
+    },
+    "F_3": {
+      "folding_factor": 3,
+      "physical_vnus": 72,
+      "physical_cnus": 72,
+      "luts": 10670,
+      "lut_util_pct": 4.4,
+      "ffs": 7065,
+      "ff_util_pct": 1.46,
+      "dsp": 0,
+      "iter_latency_ns": 48.0,
+      "total_latency_ns": 720.0,
+      "throughput_mfps": 1.389
+    },
+    "F_6": {
+      "folding_factor": 6,
+      "physical_vnus": 36,
+      "physical_cnus": 36,
+      "luts": 5771,
+      "lut_util_pct": 2.38,
+      "ffs": 3730,
+      "ff_util_pct": 0.77,
+      "dsp": 0,
+      "iter_latency_ns": 96.0,
+      "total_latency_ns": 1440.0,
+      "throughput_mfps": 0.694
+    },
+    "F_12": {
+      "folding_factor": 12,
+      "physical_vnus": 18,
+      "physical_cnus": 18,
+      "luts": 3135,
+      "lut_util_pct": 1.29,
+      "ffs": 1982,
+      "ff_util_pct": 0.41,
+      "dsp": 0,
+      "iter_latency_ns": 192.0,
+      "total_latency_ns": 2880.0,
+      "throughput_mfps": 0.347
+    },
+    "F_36": {
+      "folding_factor": 36,
+      "physical_vnus": 6,
+      "physical_cnus": 6,
+      "luts": 1226,
+      "lut_util_pct": 0.51,
+      "ffs": 751,
+      "ff_util_pct": 0.15,
+      "dsp": 0,
+      "iter_latency_ns": 576.0,
+      "total_latency_ns": 8640.0,
+      "throughput_mfps": 0.116
+    }
+  }
+}

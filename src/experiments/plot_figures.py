@@ -206,9 +206,56 @@ def plot_f2_threshold_curve(
     plt.close(fig)
 
 
+def plot_f6_folding_tradeoffs(
+    folding_json_path: str = "results/hardware_folding_results.json",
+    output_dir: str = "results/figures",
+) -> None:
+    """Figure F6: Hardware Folding Area-Latency Pareto Frontier on AMD UltraScale+."""
+    if not os.path.exists(folding_json_path):
+        return
+    with open(folding_json_path) as f:
+        data = json.load(f)
+
+    os.makedirs(output_dir, exist_ok=True)
+    fig, ax1 = plt.subplots(figsize=(5.5, 4.0))
+
+    configs = data["configurations"]
+    f_vals = [c["folding_factor"] for c in configs.values()]
+    luts = [c["luts"] for c in configs.values()]
+    latencies = [c["total_latency_ns"] for c in configs.values()]
+    throughputs = [c["throughput_mfps"] for c in configs.values()]
+
+    color1 = "#1d3557"
+    color2 = "#e76f51"
+
+    ax1.set_xlabel("Hardware Folding Factor ($F$)")
+    ax1.set_ylabel("Total Latency for $T=15$ (ns)", color=color1)
+    line1 = ax1.plot(f_vals, latencies, color=color1, marker="o", linewidth=2.0, label="Latency (ns)")
+    ax1.axhline(1000.0, color="#d62728", linestyle=":", label=r"1 $\mu$s Quantum Budget")
+    ax1.tick_params(axis="y", labelcolor=color1)
+    ax1.set_yscale("log")
+
+    ax2 = ax1.twinx()
+    ax2.set_ylabel("FPGA Logic Utilization (LUTs)", color=color2)
+    line2 = ax2.plot(f_vals, luts, color=color2, marker="s", linestyle="--", linewidth=2.0, label="LUT Count")
+    ax2.tick_params(axis="y", labelcolor=color2)
+    ax2.set_yscale("log")
+
+    lines = line1 + [plt.Line2D([0], [0], color="#d62728", linestyle=":")] + line2
+    labels = [l.get_label() for l in lines]
+    ax1.legend(lines, labels, loc="center right", frameon=True)
+
+    ax1.set_title("Figure F6: Hardware Folding Pareto Frontier ([[72,12,6]], DSP=0)")
+    fig.tight_layout()
+    fig.savefig(os.path.join(output_dir, "fig6_folding_tradeoffs.pdf"))
+    fig.savefig(os.path.join(output_dir, "fig6_folding_tradeoffs.png"))
+    plt.close(fig)
+
+
 def generate_all_figures(
     results_json_path: str = "results/ablations_results.json",
     sweep_json_path: str = "results/threshold_sweep.json",
+    folding_json_path: str = "results/hardware_folding_results.json",
 ) -> None:
     """Loads results JSON and generates complete manuscript figure bundle."""
     with open(results_json_path) as f:
@@ -218,6 +265,7 @@ def generate_all_figures(
     plot_f3_symmetry_vs_random(data)
     plot_f4_quantization(data)
     plot_f5_gates(data)
+    plot_f6_folding_tradeoffs(folding_json_path)
     if "A10_queue_simulation" in data.get("ablations", {}):
         plot_f7_queue_stability(data)
     print("✅ All figures generated successfully in results/figures/!")
