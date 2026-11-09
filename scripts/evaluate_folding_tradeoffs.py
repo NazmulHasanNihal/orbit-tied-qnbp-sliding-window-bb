@@ -84,3 +84,4 @@ def compute_folding_pareto() -> Dict[str, Any]:
 
 if __name__ == "__main__":
     compute_folding_pareto()
+

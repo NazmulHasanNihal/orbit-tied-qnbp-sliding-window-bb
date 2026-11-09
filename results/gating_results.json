@@ -1,0 +1,324 @@
+{
+  "calibration": {
+    "G1": {
+      "tau_0.5": {
+        "tau": 0.5,
+        "p_fast": 0.792,
+        "p_fb": 0.208,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
+      },
+      "tau_1.0": {
+        "tau": 1.0,
+        "p_fast": 0.792,
+        "p_fb": 0.208,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
+      },
+      "tau_1.5": {
+        "tau": 1.5,
+        "p_fast": 0.792,
+        "p_fb": 0.208,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
+      },
+      "tau_2.0": {
+        "tau": 2.0,
+        "p_fast": 0.792,
+        "p_fb": 0.208,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
+      },
+      "tau_2.5": {
+        "tau": 2.5,
+        "p_fast": 0.792,
+        "p_fb": 0.208,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
+      },
+      "tau_3.0": {
+        "tau": 3.0,
+        "p_fast": 0.792,
+        "p_fb": 0.208,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
+      }
+    },
+    "G2": {
+      "tau_0.5": {
+        "tau": 0.5,
+        "p_fast": 0.748,
+        "p_fb": 0.252,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
+      },
+      "tau_1.0": {
+        "tau": 1.0,
+        "p_fast": 0.62,
+        "p_fb": 0.38,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
+      },
+      "tau_1.5": {
+        "tau": 1.5,
+        "p_fast": 0.574,
+        "p_fb": 0.426,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
+      },
+      "tau_2.0": {
+        "tau": 2.0,
+        "p_fast": 0.56,
+        "p_fb": 0.44,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
+      },
+      "tau_2.5": {
+        "tau": 2.5,
+        "p_fast": 0.548,
+        "p_fb": 0.452,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
+      },
+      "tau_3.0": {
+        "tau": 3.0,
+        "p_fast": 0.538,
+        "p_fb": 0.462,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
+      }
+    },
+    "G3": {
+      "tau_0.5": {
+        "tau": 0.5,
+        "p_fast": 0.778,
+        "p_fb": 0.222,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
+      },
+      "tau_1.0": {
+        "tau": 1.0,
+        "p_fast": 0.766,
+        "p_fb": 0.234,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
+      },
+      "tau_1.5": {
+        "tau": 1.5,
+        "p_fast": 0.756,
+        "p_fb": 0.244,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
+      },
+      "tau_2.0": {
+        "tau": 2.0,
+        "p_fast": 0.746,
+        "p_fb": 0.254,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
+      },
+      "tau_2.5": {
+        "tau": 2.5,
+        "p_fast": 0.732,
+        "p_fb": 0.268,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
+      },
+      "tau_3.0": {
+        "tau": 3.0,
+        "p_fast": 0.722,
+        "p_fb": 0.278,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
+      }
+    }
+  },
+  "parameters": {
+    "shots": 500,
+    "physical_p": 0.001,
+    "rounds": 2,
+    "seed": 4040
+  },
+  "queue_stability": {
+    "servers_1": {
+      "buf_4": {
+        "c_servers": 1,
+        "buffer_capacity": 4,
+        "p_fast": 0.88,
+        "mean_service_ns": 230.23503999999997,
+        "utilization": 0.23023503999999997,
+        "overflow_rate": 0.0,
+        "max_backlog": 0.0,
+        "avg_backlog": 0.0
+      },
+      "buf_8": {
+        "c_servers": 1,
+        "buffer_capacity": 8,
+        "p_fast": 0.88,
+        "mean_service_ns": 230.23503999999997,
+        "utilization": 0.23023503999999997,
+        "overflow_rate": 0.0,
+        "max_backlog": 0.0,
+        "avg_backlog": 0.0
+      },
+      "buf_16": {
+        "c_servers": 1,
+        "buffer_capacity": 16,
+        "p_fast": 0.88,
+        "mean_service_ns": 230.23503999999997,
+        "utilization": 0.23023503999999997,
+        "overflow_rate": 0.0,
+        "max_backlog": 0.0,
+        "avg_backlog": 0.0
+      },
+      "buf_32": {
+        "c_servers": 1,
+        "buffer_capacity": 32,
+        "p_fast": 0.88,
+        "mean_service_ns": 230.23503999999997,
+        "utilization": 0.23023503999999997,
+        "overflow_rate": 0.0,
+        "max_backlog": 0.0,
+        "avg_backlog": 0.0
+      }
+    },
+    "servers_2": {
+      "buf_4": {
+        "c_servers": 2,
+        "buffer_capacity": 4,
+        "p_fast": 0.88,
+        "mean_service_ns": 230.23503999999997,
+        "utilization": 0.11511751999999999,
+        "overflow_rate": 0.0,
+        "max_backlog": 0.0,
+        "avg_backlog": 0.0
+      },
+      "buf_8": {
+        "c_servers": 2,
+        "buffer_capacity": 8,
+        "p_fast": 0.88,
+        "mean_service_ns": 230.23503999999997,
+        "utilization": 0.11511751999999999,
+        "overflow_rate": 0.0,
+        "max_backlog": 0.0,
+        "avg_backlog": 0.0
+      },
+      "buf_16": {
+        "c_servers": 2,
+        "buffer_capacity": 16,
+        "p_fast": 0.88,
+        "mean_service_ns": 230.23503999999997,
+        "utilization": 0.11511751999999999,
+        "overflow_rate": 0.0,
+        "max_backlog": 0.0,
+        "avg_backlog": 0.0
+      },
+      "buf_32": {
+        "c_servers": 2,
+        "buffer_capacity": 32,
+        "p_fast": 0.88,
+        "mean_service_ns": 230.23503999999997,
+        "utilization": 0.11511751999999999,
+        "overflow_rate": 0.0,
+        "max_backlog": 0.0,
+        "avg_backlog": 0.0
+      }
+    },
+    "servers_4": {
+      "buf_4": {
+        "c_servers": 4,
+        "buffer_capacity": 4,
+        "p_fast": 0.88,
+        "mean_service_ns": 230.23503999999997,
+        "utilization": 0.057558759999999994,
+        "overflow_rate": 0.0,
+        "max_backlog": 0.0,
+        "avg_backlog": 0.0
+      },
+      "buf_8": {
+        "c_servers": 4,
+        "buffer_capacity": 8,
+        "p_fast": 0.88,
+        "mean_service_ns": 230.23503999999997,
+        "utilization": 0.057558759999999994,
+        "overflow_rate": 0.0,
+        "max_backlog": 0.0,
+        "avg_backlog": 0.0
+      },
+      "buf_16": {
+        "c_servers": 4,
+        "buffer_capacity": 16,
+        "p_fast": 0.88,
+        "mean_service_ns": 230.23503999999997,
+        "utilization": 0.057558759999999994,
+        "overflow_rate": 0.0,
+        "max_backlog": 0.0,
+        "avg_backlog": 0.0
+      },
+      "buf_32": {
+        "c_servers": 4,
+        "buffer_capacity": 32,
+        "p_fast": 0.88,
+        "mean_service_ns": 230.23503999999997,
+        "utilization": 0.057558759999999994,
+        "overflow_rate": 0.0,
+        "max_backlog": 0.0,
+        "avg_backlog": 0.0
+      }
+    }
+  }
+}

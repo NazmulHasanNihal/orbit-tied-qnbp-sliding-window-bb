@@ -32,7 +32,7 @@ class QnbpTrainer:
         train_syndromes: np.ndarray,
         train_observables: np.ndarray,
         batch_size: int = 64,
-        loss_type: str = "log_domain_obs",
+        loss_type: str = "composite",
     ) -> float:
         """Trains one epoch over the dataset."""
         self.model.train()

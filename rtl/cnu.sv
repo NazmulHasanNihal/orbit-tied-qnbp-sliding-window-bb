@@ -25,6 +25,10 @@ module cnu #(
     // Multiplier-free normalized scaling factor: alpha = 0.75 => M - (M >> 2)
     input  logic                               enable_alpha_scaling,
     
+    // Injected syndrome bit and on-the-fly early-exit check satisfaction (Task 16)
+    input  logic                               syndrome_bit,
+    output logic                               check_satisfied,
+
     // Extrinsic check-to-variable outgoing messages: L_{c -> v}
     output logic signed [WIDTH-1:0]            c2v_messages [DEG_C]
 );
@@ -32,6 +36,9 @@ module cnu #(
     logic [DEG_C-1:0]   signs;
     logic [MAG_W-1:0]   mags [DEG_C];
     logic               total_parity;
+
+    // Zero-cycle early exit: check is satisfied when hard-decision message parity matches syndrome
+    assign check_satisfied = ~(total_parity ^ syndrome_bit);
 
     // 1. Separate sign and magnitude for each incoming message
     always_comb begin

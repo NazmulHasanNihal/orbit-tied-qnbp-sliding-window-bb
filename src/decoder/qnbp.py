@@ -67,6 +67,10 @@ class OrbitTiedQNBP(nn.Module):
             torch.zeros((num_layers, num_classes), dtype=torch.float32),
             requires_grad=use_boundary_classes,
         )
+        self.gamma_class_offsets = nn.Parameter(
+            torch.zeros((num_layers, num_classes), dtype=torch.float32),
+            requires_grad=use_boundary_classes,
+        )
 
         # Power-of-two quantizer
         self.quantizer = PowerOfTwoQuantizer(bit_width=bit_width, initial_shift=2.0)
@@ -132,7 +136,9 @@ class OrbitTiedQNBP(nn.Module):
             # Compute effective weights for this iteration
             alpha_f = self.orbit_alpha[t, self.fault_orbits] + self.class_offsets[t, self.fault_classes]
             alpha_edge = alpha_f[self.fault_nodes]
-            gamma_f = self.orbit_gamma[t, self.fault_orbits]
+            gamma_f = self.orbit_gamma[t, self.fault_orbits] + self.gamma_class_offsets[t, self.fault_classes]
+            # Signed memory damping in [-0.5, 1.0] to break short-cycle oscillations
+            gamma_f = torch.clamp(gamma_f, -0.5, 1.0)
 
             # 1. Check Node Update (CNU)
             msg_c2v = self._cnu_forward(syndromes, msg_v2c, alpha_edge)
@@ -221,10 +227,10 @@ class OrbitTiedQNBP(nn.Module):
         outputs: List[Tuple[torch.Tensor, torch.Tensor]],
         true_observables: torch.Tensor,
         syndromes: torch.Tensor,
-        lambda_syn: float = 0.1,
-        loss_type: str = "soft_syndrome",
+        beta_obs: float = 0.5,
+        loss_type: str = "composite",
     ) -> torch.Tensor:
-        """Computes multi-iteration supervised loss (syndrome parity, softplus, or BCE)."""
+        """Computes multi-iteration supervised loss (composite syndrome+observable, softplus, or soft_syndrome)."""
         total_loss = torch.tensor(0.0, device=true_observables.device)
         t_max = len(outputs)
 
@@ -242,7 +248,7 @@ class OrbitTiedQNBP(nn.Module):
                 total_loss = total_loss + omega_t * loss_step
                 continue
 
-            # Default: Soft syndrome parity violation loss
+            # Soft syndrome parity violation loss
             padded_v2c = F.pad(posteriors[:, self.fault_nodes], (0, 1), value=1e9)
             v2c_grid = padded_v2c[:, self.c_edge_idx]
             tanh_grid = torch.tanh(v2c_grid / 2.0)
@@ -251,7 +257,14 @@ class OrbitTiedQNBP(nn.Module):
             pi_c = (1.0 - 2.0 * syndromes.float()) * prod_tanh
             loss_syn = 0.5 * (1.0 - pi_c).mean()
 
-            total_loss = total_loss + omega_t * loss_syn
+            if loss_type == "soft_syndrome":
+                total_loss = total_loss + omega_t * loss_syn
+            else:
+                # Composite loss: L_par + beta * L_obs
+                # Soft observable projection: logits = - posteriors @ obs_matrix.T
+                obs_logits = -torch.matmul(posteriors, self.obs_matrix.T)
+                loss_obs = F.binary_cross_entropy_with_logits(obs_logits, true_observables.float())
+                total_loss = total_loss + omega_t * (loss_syn + beta_obs * loss_obs)
 
         return total_loss
 
