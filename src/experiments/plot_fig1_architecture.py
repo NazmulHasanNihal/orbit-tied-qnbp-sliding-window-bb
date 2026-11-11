@@ -72,7 +72,7 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
         28, 12, 22, 26, c_orbit, c_orbit_b,
         "2. Torus Automorphism",
         [
-            "Group G = Z_l x Z_m (36 shifts)",
+            r"$G = \mathbb{Z}_\ell \times \mathbb{Z}_m$ (36 Shifts)",
             "Exact Symmetries (Thm 1)",
             "10,260 -> 285 Orbits (36x)",
             "Equivariance Enforced",
@@ -89,7 +89,7 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
             "Dyadic Step Delta = 0.25",
             "Dynamic Range [-7.75, +7.75]",
             "CSD Shift-and-Add (DSP=0)",
-            "Soft Syndrome Parity Loss",
+            "Composite Observable Loss",
         ]
     )
 
@@ -159,10 +159,12 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
     )
 
     fig.tight_layout()
-    fig.savefig(os.path.join(output_dir, "fig1_architecture.pdf"))
-    fig.savefig(os.path.join(output_dir, "fig1_architecture.png"))
+    for d in [output_dir, "manuscript/figures"]:
+        os.makedirs(d, exist_ok=True)
+        fig.savefig(os.path.join(d, "fig1_architecture.pdf"))
+        fig.savefig(os.path.join(d, "fig1_architecture.png"))
     plt.close(fig)
-    print("✅ Figure F1 generated successfully in results/figures/!")
+    print("✅ Figure F1 generated successfully in results/figures/ and manuscript/figures/!")
 
 
 if __name__ == "__main__":

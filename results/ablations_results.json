@@ -10,22 +10,22 @@
     "A0_unweighted_minsum": {
       "errors": 2940,
       "total": 10000,
-      "rate": 0.2940,
+      "rate": 0.294,
       "ci_95_lower": 0.2851,
-      "ci_95_upper": 0.3030,
+      "ci_95_upper": 0.303,
       "display": "2.9400e-01 [2.8510e-01, 3.0300e-01]",
       "mean_iterations": 17.3,
-      "convergence_rate": 0.590
+      "convergence_rate": 0.59
     },
     "A1_normalized_minsum": {
       "errors": 4160,
       "total": 10000,
-      "rate": 0.4160,
+      "rate": 0.416,
       "ci_95_lower": 0.4063,
       "ci_95_upper": 0.4257,
       "display": "4.1600e-01 [4.0630e-01, 4.2570e-01]",
       "mean_iterations": 19.3,
-      "convergence_rate": 0.430
+      "convergence_rate": 0.43
     },
     "A2_untied_nbp": {
       "errors": 68,
@@ -61,14 +61,14 @@
       "convergence_rate": 0.962
     },
     "A5_random_tying_control": {
-      "mean_rate": 0.0260,
+      "mean_rate": 0.026,
       "std_rate": 0.0032,
       "runs": [
         0.024,
         0.028,
         0.022,
         0.026,
-        0.030
+        0.03
       ]
     },
     "A6_loss_comparison": {
@@ -78,17 +78,18 @@
         "ci_95_upper": 0.0086
       },
       "parity_only_loss": {
-        "rate": 0.0210,
+        "rate": 0.021,
         "ci_95_lower": 0.0183,
-        "ci_95_upper": 0.0240
+        "ci_95_upper": 0.024
       }
     },
     "A7_quantization_sweep": {
       "32bit_float": 0.0068,
       "6bit_csd_integer": 0.0068,
-      "5bit_integer": 0.0140,
-      "4bit_integer": 0.8120,
-      "3bit_integer": 0.8480
+      "5bit_integer": 0.014,
+      "4bit_integer": 0.812,
+      "3bit_integer": 0.848,
+      "integer_hardware_reference_6bit": 0.0068
     },
     "A8_memory_damping_sweep": {
       "signed_memory": {
@@ -107,7 +108,7 @@
       },
       "undamped": {
         "gamma": 0.0,
-        "rate": 0.3100,
+        "rate": 0.31,
         "ci_95_lower": 0.3009,
         "ci_95_upper": 0.3192,
         "mean_iterations": 10.2
@@ -115,17 +116,17 @@
     },
     "A9_gate_sweep": {
       "G1_syndrome_only": {
-        "p_accept": 0.840,
-        "p_pipe": 8.4e-4
+        "p_accept": 0.84,
+        "p_pipe": 0.00084
       },
       "G2_observable_margin": {
         "p_accept": 0.782,
-        "p_pipe": 1.8e-4
+        "p_pipe": 0.00018
       },
       "G3_confidence_margin": {
         "p_accept": 0.756,
-        "p_pipe": 2.0e-5,
-        "p_err_in_accept": 0.0000
+        "p_pipe": 2e-05,
+        "p_err_in_accept": 0.0
       }
     },
     "A10_queue_simulation": {

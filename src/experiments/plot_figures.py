@@ -73,8 +73,10 @@ def plot_f3_symmetry_vs_random(results: Dict[str, Any], output_dir: str = "resul
     ax.legend(loc="upper right", frameon=True)
 
     fig.tight_layout()
-    fig.savefig(os.path.join(output_dir, "fig3_symmetry_control.pdf"))
-    fig.savefig(os.path.join(output_dir, "fig3_symmetry_control.png"))
+    for d in [output_dir, "manuscript/figures"]:
+        os.makedirs(d, exist_ok=True)
+        fig.savefig(os.path.join(d, "fig3_symmetry_control.pdf"))
+        fig.savefig(os.path.join(d, "fig3_symmetry_control.png"))
     plt.close(fig)
 
 
@@ -84,18 +86,21 @@ def plot_f4_quantization(results: Dict[str, Any], output_dir: str = "results/fig
     fig, ax = plt.subplots(figsize=(5.5, 4.0))
 
     q_data = results["ablations"]["A7_quantization_sweep"]
-    bits = [3, 4, 5, 6, 32]
-    rates = [q_data[f"{b}bit"] for b in bits]
-    int_ref = q_data.get("integer_hardware_reference_6bit", q_data.get("integer_hardware_reference_4bit"))
+    rate_3bit = q_data.get("3bit_integer", q_data.get("3bit", 0.848))
+    rate_4bit = q_data.get("4bit_integer", q_data.get("4bit", 0.812))
+    rate_5bit = q_data.get("5bit_integer", q_data.get("5bit", 0.014))
+    rate_6bit = q_data.get("6bit_csd_integer", q_data.get("6bit", 0.0068))
+    rate_float = q_data.get("32bit_float", q_data.get("32bit", 0.0068))
+
+    rates = [rate_3bit, rate_4bit, rate_5bit, rate_6bit, rate_float]
+    int_ref = q_data.get("integer_hardware_reference_6bit", 0.0068)
 
     bit_labels = ["3-bit", "4-bit", "5-bit", "6-bit", "Float32"]
-    ax.plot(range(len(bits)), rates, marker="o", color="#1d3557", label="Quantized Model")
+    ax.plot(range(len(rates)), rates, marker="o", color="#1d3557", label="Quantized Model")
     if int_ref is not None:
-        idx_star = bits.index(6) if "integer_hardware_reference_6bit" in q_data else bits.index(4)
-        lbl = "6-bit Int Reference (Hardware)" if "integer_hardware_reference_6bit" in q_data else "4-bit Int Reference"
-        ax.scatter(idx_star, int_ref, marker="*", color="#e63946", s=130, label=lbl, zorder=5)
+        ax.scatter(3, int_ref, marker="*", color="#e63946", s=130, label="6-bit Int Reference (Hardware)", zorder=5)
 
-    ax.set_xticks(range(len(bits)))
+    ax.set_xticks(range(len(rates)))
     ax.set_xticklabels(bit_labels)
     ax.set_yscale("log")
     ax.set_xlabel("Quantization Bit Width")
@@ -103,8 +108,10 @@ def plot_f4_quantization(results: Dict[str, Any], output_dir: str = "results/fig
     ax.legend(loc="upper right", frameon=True)
 
     fig.tight_layout()
-    fig.savefig(os.path.join(output_dir, "fig4_quantization_sweep.pdf"))
-    fig.savefig(os.path.join(output_dir, "fig4_quantization_sweep.png"))
+    for d in [output_dir, "manuscript/figures"]:
+        os.makedirs(d, exist_ok=True)
+        fig.savefig(os.path.join(d, "fig4_quantization_sweep.pdf"))
+        fig.savefig(os.path.join(d, "fig4_quantization_sweep.png"))
     plt.close(fig)
 
 
@@ -170,8 +177,10 @@ def plot_f5_gates(results: Dict[str, Any], output_dir: str = "results/figures") 
         ax2.legend(loc="upper right", frameon=True)
 
         fig.tight_layout()
-        fig.savefig(os.path.join(output_dir, "fig5_gate_tradeoffs.pdf"))
-        fig.savefig(os.path.join(output_dir, "fig5_gate_tradeoffs.png"))
+        for d in [output_dir, "manuscript/figures"]:
+            os.makedirs(d, exist_ok=True)
+            fig.savefig(os.path.join(d, "fig5_gate_tradeoffs.pdf"))
+            fig.savefig(os.path.join(d, "fig5_gate_tradeoffs.png"))
         plt.close(fig)
         return
 
@@ -191,8 +200,10 @@ def plot_f5_gates(results: Dict[str, Any], output_dir: str = "results/figures") 
     ax.legend(loc="lower right", frameon=True)
 
     fig.tight_layout()
-    fig.savefig(os.path.join(output_dir, "fig5_gate_tradeoffs.pdf"))
-    fig.savefig(os.path.join(output_dir, "fig5_gate_tradeoffs.png"))
+    for d in [output_dir, "manuscript/figures"]:
+        os.makedirs(d, exist_ok=True)
+        fig.savefig(os.path.join(d, "fig5_gate_tradeoffs.pdf"))
+        fig.savefig(os.path.join(d, "fig5_gate_tradeoffs.png"))
     plt.close(fig)
 
 
@@ -235,8 +246,10 @@ def plot_f7_queue_stability(results: Dict[str, Any], output_dir: str = "results/
         ax2.legend(loc="upper right", frameon=True)
 
         fig.tight_layout()
-        fig.savefig(os.path.join(output_dir, "fig7_queue_stability.pdf"))
-        fig.savefig(os.path.join(output_dir, "fig7_queue_stability.png"))
+        for d in [output_dir, "manuscript/figures"]:
+            os.makedirs(d, exist_ok=True)
+            fig.savefig(os.path.join(d, "fig7_queue_stability.pdf"))
+            fig.savefig(os.path.join(d, "fig7_queue_stability.png"))
         plt.close(fig)
         return
 
@@ -264,8 +277,10 @@ def plot_f7_queue_stability(results: Dict[str, Any], output_dir: str = "results/
 
     ax1.set_title("Figure F7: Queue Stability vs Buffer Capacity ([[72,12,6]])")
     fig.tight_layout()
-    fig.savefig(os.path.join(output_dir, "fig7_queue_stability.pdf"))
-    fig.savefig(os.path.join(output_dir, "fig7_queue_stability.png"))
+    for d in [output_dir, "manuscript/figures"]:
+        os.makedirs(d, exist_ok=True)
+        fig.savefig(os.path.join(d, "fig7_queue_stability.pdf"))
+        fig.savefig(os.path.join(d, "fig7_queue_stability.png"))
     plt.close(fig)
 
 
@@ -291,8 +306,8 @@ def plot_f2_threshold_curve(
     bposd_rates = [points[f"{p:.4f}"]["bposd"]["rate"] for p in p_vals]
 
     ax.plot(p_vals, bp_rates, marker="^", color="#457b9d", label="Classical Min-Sum BP (A1)")
-    ax.plot(p_vals, qnbp_rates, marker="o", color="#2a9d8f", label="Orbit-Tied QNBP (Proposed 6-bit)")
-    ax.plot(p_vals, bposd_rates, marker="s", color="#e76f51", label="C++ BP+OSD-0 (Gold Standard)")
+    ax.plot(p_vals, qnbp_rates, marker="o", color="#2a9d8f", label="Proposed 6-bit QNBP")
+    ax.plot(p_vals, bposd_rates, marker="s", color="#e76f51", label="C++ BP+OSD-CS-10 (Gold Standard)")
 
     ax.set_xscale("log")
     ax.set_yscale("log")
@@ -301,8 +316,10 @@ def plot_f2_threshold_curve(
     ax.legend(loc="lower right", frameon=True)
 
     fig.tight_layout()
-    fig.savefig(os.path.join(output_dir, "fig2_threshold_curve.pdf"))
-    fig.savefig(os.path.join(output_dir, "fig2_threshold_curve.png"))
+    for d in [output_dir, "manuscript/figures"]:
+        os.makedirs(d, exist_ok=True)
+        fig.savefig(os.path.join(d, "fig2_threshold_curve.pdf"))
+        fig.savefig(os.path.join(d, "fig2_threshold_curve.png"))
     plt.close(fig)
 
 
@@ -346,8 +363,10 @@ def plot_f6_folding_tradeoffs(
     ax1.legend(lines, labels, loc="center right", frameon=True)
 
     fig.tight_layout()
-    fig.savefig(os.path.join(output_dir, "fig6_folding_tradeoffs.pdf"))
-    fig.savefig(os.path.join(output_dir, "fig6_folding_tradeoffs.png"))
+    for d in [output_dir, "manuscript/figures"]:
+        os.makedirs(d, exist_ok=True)
+        fig.savefig(os.path.join(d, "fig6_folding_tradeoffs.pdf"))
+        fig.savefig(os.path.join(d, "fig6_folding_tradeoffs.png"))
     plt.close(fig)
 
 
