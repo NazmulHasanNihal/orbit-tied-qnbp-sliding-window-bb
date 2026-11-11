@@ -148,6 +148,8 @@ def audit_pdf(pdf_path: str):
     print(f"\n🎯 FINAL VERDICT: {pdf_path} IS 100% VALIDATED, ZERO-DEFECT, AND PUBLICATION-READY!")
 
 if __name__ == "__main__":
+    import os
+    pdf_files = [f for f in os.listdir("manuscript") if f.endswith(".pdf")]
+    print(f"PDFs found in manuscript/: {pdf_files}")
+    assert pdf_files == ["main.pdf"], f"Expected strictly only ['main.pdf'], got {pdf_files}"
     audit_pdf("manuscript/main.pdf")
-    audit_pdf("manuscript/main_5.pdf")
-    audit_pdf("manuscript/main_4.pdf")
