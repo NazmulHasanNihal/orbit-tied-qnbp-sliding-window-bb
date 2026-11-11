@@ -71,7 +71,7 @@ def build_ieee_manuscript_pdf(
         <div class="affil"><sup>1</sup>Advanced Agentic Quantum Architecture Laboratory, Department of Computer Science & Engineering<br><sup>2</sup>Quantum Information Science & Error Correction Initiative &bull; Corresponding: saad.tariq@quantum-architecture.org</div>
         <div class="abstract-box">
             <span class="abstract-title">Abstract&mdash;</span>
-            Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes have emerged as premier candidates for scalable fault-tolerant quantum computation, offering order-of-magnitude reductions in physical qubit overhead compared to standard 2D topological surface codes. However, their high-rate bipartite Tanner graphs and non-local check connectivity generate dense 3D space-time detector error models (DEM) that severely strain real-time classical decoding within microsecond coherence intervals. In this paper, we propose an orbit-tied, 6-bit quantized neural belief propagation (QNBP) decoder tailored for real-time sliding-window processing of gross BB codes ([[72,12,6]] and [[144,12,12]]). By mapping the 2D torus translation group G = &Zopf;<sub>&ell;</sub> &times; &Zopf;<sub>m</sub>, we prove that all spatial shifts constitute strict DEM graph automorphisms, collapsing 10,260 circuit fault mechanisms into 285 symmetry orbits (36&times; parameter reduction) on [[72,12,6]] and 14,616 mechanisms into 203 orbits (72&times; reduction) on [[144,12,12]] while strictly guaranteeing geometric equivariance and eliminating untied neural overfitting. To guarantee multiplier-free hardware synthesis with zero Digital Signal Processing (DSP) slices, we develop a Canonical Signed-Digit (CSD) shift-and-add architecture using power-of-two dyadic quantization (&Delta; = 2<sup>-2</sup>). Under circuit-level Stim Monte Carlo depolarizing noise (p &isin; [10<sup>-3</sup>, 5&times;10<sup>-3</sup>]), we execute head-to-head benchmarking across nine decoders, including IBM Relay-BP, BP-LSD, BP+OSD-CS-10, Mem-BP, AutDEC, and Gong et al.'s sliding-window baseline. Our proposed 6-bit integer QNBP model with learned memory damping (&gamma;=0.35) converges in only 6.8 mean iterations with zero DSP blocks (DSP=0), achieving a logical error rate of P<sub>L</sub> = 0.0080 [0.0031, 0.0204] and demonstrating statistically significant superiority over Normalized Min-Sum (&chi;<sup>2</sup> = 202.04, p = 7.42 &times; 10<sup>-46</sup>), AutDEC (&chi;<sup>2</sup> = 210.02, p = 1.34 &times; 10<sup>-47</sup>), Classical Min-Sum (&chi;<sup>2</sup> = 141.06, p = 1.52 &times; 10<sup>-32</sup>), and IBM Relay-BP (&chi;<sup>2</sup> = 119.08, p = 1.02 &times; 10<sup>-27</sup>). Under realistic superconducting Pauli Z-biased noise (&eta; = p<sub>Z</sub> / p<sub>X</sub> &isin; [1, 100]), Orbit-Tied QNBP automatically adapts message weighting, achieving an 8.0&times; logical error suppression down to P<sub>L</sub> = 0.0010 [0.0005, 0.0019] at &eta;=100 (and 20.0&times; over Classical BP). Integrated with a confidence-margin fast-path gate (G<sub>3</sub>) in a streaming sliding window (W=3, F=1), our fast path achieves zero logical errors in accepted windows (P<sub>L,accept</sub> = 0.0000) with a 240 ns latency, driving queue overflow down to 0.00% under a 1 &mu;s quantum cycle budget. We synthesize and verify our architecture in SystemVerilog, achieving 10,000-shot bit-exact hardware-software parity, and establish a folding Pareto frontier on AMD UltraScale+ scaling logic down to 1,226 LUTs (0.51% device utilization).
+            Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes have emerged as premier candidates for scalable fault-tolerant quantum computation, offering order-of-magnitude reductions in physical qubit overhead compared to standard 2D topological surface codes. However, their high-rate bipartite Tanner graphs and non-local check connectivity generate dense 3D space-time detector error models (DEM) that severely strain real-time classical decoding within microsecond coherence intervals. In this paper, we propose an orbit-tied, 6-bit quantized neural belief propagation (QNBP) decoder tailored for real-time sliding-window processing of gross BB codes ([[72,12,6]] and [[144,12,12]]). By mapping the 2D torus translation group G = &Zopf;<sub>&ell;</sub> &times; &Zopf;<sub>m</sub>, we prove that all spatial shifts constitute strict DEM graph automorphisms, collapsing 10,260 circuit fault mechanisms into 285 symmetry orbits (36&times; parameter reduction) on [[72,12,6]] and 14,616 mechanisms into 203 orbits (72&times; reduction) on [[144,12,12]] while strictly guaranteeing geometric equivariance and eliminating untied neural overfitting. To guarantee multiplier-free hardware synthesis with zero Digital Signal Processing (DSP) slices, we develop a Canonical Signed-Digit (CSD) shift-and-add architecture using power-of-two dyadic quantization (&Delta; = 2<sup>-2</sup>). Under circuit-level Stim Monte Carlo depolarizing noise (p &isin; [10<sup>-3</sup>, 5&times;10<sup>-3</sup>]), we execute head-to-head benchmarking across ten decoders, including IBM Relay-BP, BP-LSD, BP+OSD-CS-10, Mem-BP, AutDEC, and Gong et al.'s sliding-window baseline. Our proposed 6-bit integer QNBP model with learned signed memory damping (&gamma; &isin; [-0.5, 1.0]) converges in only 6.4 mean iterations with zero DSP blocks (DSP=0), achieving a logical error rate of P<sub>L</sub> = 0.0068 [0.0053, 0.0086] and demonstrating statistically significant superiority over scalar Mem-BP (&chi;<sup>2</sup> = 24.38, p = 7.91 &times; 10<sup>-7</sup>), IBM Relay-BP-5 (&chi;<sup>2</sup> = 18.05, p = 2.15 &times; 10<sup>-5</sup>), Normalized Min-Sum (&chi;<sup>2</sup> = 4,040.8, p &lt; 10<sup>-100</sup>), and AutDEC (&chi;<sup>2</sup> = 4,200.4, p &lt; 10<sup>-100</sup>). Under realistic superconducting Pauli Z-biased noise (&eta; = p<sub>Z</sub> / p<sub>X</sub> &isin; [1, 100]), Orbit-Tied QNBP automatically adapts message weighting, achieving an 8.0&times; logical error suppression down to P<sub>L</sub> = 0.0010 [0.0005, 0.0019] at &eta;=100 (and 20.0&times; over Classical BP). Integrated with a confidence-margin fast-path gate (G<sub>3</sub>) in a streaming sliding window (W=3, F=1), our fast path achieves zero logical errors in accepted windows (P<sub>L,accept</sub> = 0.0000) with a 240 ns latency, driving queue overflow down to 0.00% under a 1 &mu;s quantum cycle budget. We synthesize and verify our architecture in SystemVerilog, achieving 10,000-shot bit-exact hardware-software parity, and establish a folding Pareto frontier on AMD UltraScale+ scaling logic down to 1,226 LUTs (0.51% device utilization).
             <div class="keywords"><b>Keywords&mdash;</b>Quantum error correction, QLDPC codes, bivariate-bicycle codes, neural belief propagation, automorphism orbits, biased noise, sliding-window decoding, FPGA hardware.</div>
         </div>
         <h2>I. Introduction</h2>
@@ -134,7 +134,7 @@ def build_ieee_manuscript_pdf(
         <p class="noindent">To evaluate the proposed architecture against the forefront of QLDPC decoding, we examine eight competitor decoding architectures:</p>
         <p><b>1. Classical Min-Sum BP (A0):</b> Standard unweighted Min-Sum belief propagation with hard parity checks and no heuristic scaling.</p>
         <p><b>2. Normalized Min-Sum BP (A1):</b> Scaled Min-Sum utilizing a global empirical heuristic scaling factor &alpha; = 0.75 [5].</p>
-        <p><b>3. IBM Relay-BP [11]:</b> Multi-stage restarted belief propagation where soft beliefs are damped across sequential relays with damping factor &gamma; = 0.5.</p>
+        <p><b>3. IBM Relay-BP [11]:</b> Multi-stage restarted belief propagation where node-disordered memory weights &gamma;<sub>v</sub> &sim; U[-0.24, 0.66] are evaluated in single-leg and 5-relay configurations.</p>
         <p><b>4. Mem-BP [20]:</b> Memory-damped belief propagation dampening variable posteriors across consecutive iterations via temporal weight &gamma; = 0.35.</p>
         <p><b>5. BP-LSD [14]:</b> Combination decoder pairing BP with Localised Statistics Decoding over GF(2) with order 5.</p>
         <p><b>6. BP+OSD-CS-10 [5]:</b> Combination sweep Ordered Statistics Decoding with combination order 10 over most reliable basis.</p>
@@ -255,7 +255,7 @@ def build_ieee_manuscript_pdf(
             <b>Theorem 4 (Decoupled CSS Sector Decoding).</b> <i>In a CSS code with non-overlapping X-checks (H<sub>X</sub>) and Z-checks (H<sub>Z</sub>), decoding of bit-flip errors and phase-flip errors decouples into independent Tanner graphs. Under high dephasing bias &eta; &rarr; &infin;, the effective error rate on the Z-sector approaches 0, allowing the decoder to allocate 100% of its iteration budget to the dominant dephasing sector.</i>
         </div>
 
-        <div class="table-caption">TABLE I: Logical Error Rates under Asymmetric Pauli Z-Biased Noise and ZZ Crosstalk on [[72,12,6]] (p = 0.003, N=10,000 Paired Shots)</div>
+        <div class="table-caption">TABLE I: Logical Error Rates under Asymmetric Pauli Z-Biased Noise and ZZ Crosstalk on [[72,12,6]] (p = 0.003, N=10,000 Paired Shots; Evaluates &gamma;=0.35 Checkpoint with P<sub>L</sub>=0.0080 at &eta;=1)</div>
         <table>
             <thead>
                 <tr>
@@ -305,21 +305,21 @@ def build_ieee_manuscript_pdf(
         <h3>A. Window Geometry & Boundary Residual Accounting</h3>
         <p class="noindent">Continuous syndrome extraction generates an infinite space-time DEM. We partition the timeline into overlapping sliding windows of width W = 3 rounds and commit stride F = 1 round. At each step, the decoder decodes the W-round window, commits correction operations for the oldest round F, updates prior LLRs for boundary variables, and advances the window by F rounds.</p>
         <p>Crucially, to prevent error propagation across window boundaries, uncommitted boundary syndrome residuals are strictly propagated to window k+1:</p>
-        <div class="math-block">s<sub>res</sub><sup>(k+1)</sup> = s<sub>raw</sub><sup>(k+1)</sup> &oplus; H<sub>boundary</sub> e^<sub>commit</sub><sup>(k)</sup>.</div>
+        <div class="math-block">s<sub>res</sub><sup>(k+1)</sup> = s<sub>raw</sub><sup>(k+1)</sup> &oplus; H<sub>boundary</sub> e&#770;<sub>commit</sub><sup>(k)</sup>.</div>
         <p class="noindent">This strict boundary syndrome residual accounting ensures that partially decoded errors at the right boundary of window k do not manifest as false syndromes in window k+1, eliminating edge-induced logical flips.</p>
 
         <h3>B. Dual-Path Architecture & Confidence-Margin Gating</h3>
         <p class="noindent">To decouple worst-case OSD latency from average throughput, we implement the confidence-margin gate G<sub>3</sub>. We benchmark three distinct gating triggers:</p>
-        <p><b>1. Gate G<sub>1</sub> (Syndrome Satisfaction):</b> Accepts whenever all parity checks within the window are satisfied: H e^ &equiv; s (mod 2). While simple, degenerate errors or near-boundary ambiguities can satisfy parity while inducing a logical observable flip.</p>
+        <p><b>1. Gate G<sub>1</sub> (Syndrome Satisfaction):</b> Accepts whenever all parity checks within the window are satisfied: H e&#770; &equiv; s (mod 2). While simple, degenerate errors or near-boundary ambiguities can satisfy parity while inducing a logical observable flip.</p>
         <p><b>2. Gate G<sub>2</sub> (Observable Margin):</b> Requires syndrome satisfaction and that the minimum observable marginal LLR exceeds threshold &tau;: min<sub>j</sub> |L(O<sub>j</sub>)| &ge; &tau;.</p>
         <p><b>3. Gate G<sub>3</sub> (Minimum Fault LLR Margin):</b> Requires syndrome satisfaction and that the minimum variable belief magnitude among all committed fault mechanisms exceeds threshold &tau;:</p>
-        <div class="math-block">Accept &hArr; (H e^ &equiv; s mod 2) &emsp; &and; &emsp; (min<sub>v &isin; V<sub>commit</sub></sub> |L<sub>v</sub>| &ge; &tau;)</div>
+        <div class="math-block">Accept &hArr; (H e&#770; &equiv; s mod 2) &emsp; &and; &emsp; (min<sub>v &isin; V<sub>commit</sub></sub> |L<sub>v</sub>| &ge; &tau;)</div>
         <p class="noindent">Accepted windows commit tentative hard corrections immediately with sub-microsecond latency (t<sub>fast</sub> = 240 ns). Rejected windows are routed to the fallback OSD queue.</p>
 
         <h3>C. Exact Conditional Pipeline Error Formulation</h3>
         <p class="noindent">Let p<sub>fb</sub> denote the fallback probability (p<sub>fb</sub> = 1 - P<sub>accept</sub>). The overall pipeline logical error rate is rigorously expressed as:</p>
         <div class="math-block">P<sub>pipe</sub> = (1 - p<sub>fb</sub>) P(err | accepted) + p<sub>fb</sub> P(err | fallback).</div>
-        <p class="noindent">At threshold &tau; = 1.5 and physical noise p = 0.001, Gate G<sub>3</sub> achieves P(err | accepted) = 0.0000 on 500 test shots, yielding an empirical upper bound P<sub>pipe</sub> &le; 2.0 &times; 10<sup>-3</sup>.</p>
+        <p class="noindent">At threshold &tau; = 1.5 and physical noise p = 0.001, Gate G<sub>3</sub> achieves P(err | accepted) = 0.0000 on 50,000 test shots, yielding a 95% Wilson fast-path upper bound of 7.68 &times; 10<sup>-5</sup> and an end-to-end pipeline logical error rate of P<sub>pipe</sub> = 1.90 &times; 10<sup>-4</sup>.</p>
 
         <h3>D. Multi-Server Queue Stability</h3>
         <p class="noindent">Modeling the sliding window buffer as a D/G/c/B queue with deterministic arrivals (t<sub>cycle</sub> = 1000 ns), the expected service time accounting for the fast-path attempt duration before fallback execution is:</p>
@@ -332,26 +332,26 @@ def build_ieee_manuscript_pdf(
     p7.insert_htmlbox(pymupdf.Rect(40, 34, page_w - 40, page_h - 30), html_p7)
 
     # =============================================================
-    # PAGE 8: Figures 5 & 7 (Gating Trade-offs & Queue Stability)
+    # PAGE 8: Figures 4 & 5 (Quantization Sweep & Gate Trade-offs)
     # =============================================================
     p8 = doc.new_page(width=page_w, height=page_h)
     add_header_footer(p8, 8)
 
+    fig4_path = os.path.join(figures_dir, "fig4_quantization_sweep.png")
     fig5_path = os.path.join(figures_dir, "fig5_gate_tradeoffs.png")
-    fig7_path = os.path.join(figures_dir, "fig7_queue_stability.png")
-    if os.path.exists(fig5_path):
-        p8.insert_image(pymupdf.Rect(40, 36, page_w - 40, 320), filename=fig5_path)
+    if os.path.exists(fig4_path):
+        p8.insert_image(pymupdf.Rect(40, 36, page_w - 40, 320), filename=fig4_path)
         p8.insert_textbox(
             pymupdf.Rect(40, 324, page_w - 40, 348),
-            "Fig. 5. Confidence margin gate trade-offs (G1, G2, G3): (a) Fast-path acceptance rate vs threshold tau; and (b) End-to-end pipeline error P_pipe.",
+            "Fig. 4. Quantization bit-width ladder vs logical error rate, showing that 6-bit integer quantization matches float32 accuracy with zero prior clipping.",
             fontsize=7.5, fontname="Helvetica-Oblique", align=pymupdf.TEXT_ALIGN_CENTER
         )
 
-    if os.path.exists(fig7_path):
-        p8.insert_image(pymupdf.Rect(40, 356, page_w - 40, 640), filename=fig7_path)
+    if os.path.exists(fig5_path):
+        p8.insert_image(pymupdf.Rect(40, 356, page_w - 40, 640), filename=fig5_path)
         p8.insert_textbox(
             pymupdf.Rect(40, 644, page_w - 40, 668),
-            "Fig. 7. Sliding-window queue stability: (a) Buffer overflow fraction vs capacity B; and (b) Decoding server utilization rho under 1.0 us quantum cycle budget.",
+            "Fig. 5. Confidence margin gate trade-offs (G1, G2, G3): (a) Fast-path acceptance rate vs threshold tau; and (b) End-to-end pipeline error P_pipe.",
             fontsize=7.5, fontname="Helvetica-Oblique", align=pymupdf.TEXT_ALIGN_CENTER
         )
 
@@ -371,7 +371,7 @@ def build_ieee_manuscript_pdf(
     html_p9 = base_style + """
     <body>
         <h2>VII. Synthesizeable Hardware RTL & Subgroup Orbit Folding</h2>
-        <p class="noindent">We designed and verified fully synthesizeable SystemVerilog RTL modules targeting AMD UltraScale+ FPGAs (vnu.sv, cnu.sv, g3_gate.sv, and streaming_axi_harness.sv). In the W=3 window, 10,260 physical DEM fault mechanisms collapse to 285 symmetry orbits, column-deduplicated into 498 physical macro-VNUs (498 &times; 48 LUTs &approx; 23.9k LUTs) and 216 CNUs (216 &times; 82 LUTs &approx; 17.7k LUTs) with shared logic yielding 28,204 LUTs total (DSP=0). Post-place-and-route timing achieves WNS = +0.18 ns at 250 MHz (F<sub>max</sub> = 262 MHz) and 108.8 ns mean early-exit latency (240 ns worst-case).</p>
+        <p class="noindent">We designed and verified fully synthesizeable SystemVerilog RTL modules targeting AMD UltraScale+ FPGAs (vnu.sv, cnu.sv, g3_gate.sv, and streaming_axi_harness.sv). In the W=3 window, 10,260 physical DEM fault mechanisms collapse to 285 symmetry orbits, column-deduplicated into 498 physical macro-VNUs (498 &times; 48 LUTs &approx; 23.9k LUTs) and 216 CNUs (216 &times; 82 LUTs &approx; 17.7k LUTs) with shared logic yielding 28,204 LUTs total (DSP=0). Post-place-and-route timing achieves WNS = +0.18 ns at 250 MHz (F<sub>max</sub> = 262 MHz) and 102.4 ns mean early-exit latency at 6.4 iterations (108.8 ns at 6.8 iterations; 240 ns worst-case).</p>
 
         <div class="table-caption">TABLE II: FPGA Synthesis and Resource Utilization on AMD UltraScale+ XCKU040 (f<sub>clk</sub> = 250 MHz, WNS = +0.18 ns)</div>
         <table>
@@ -390,7 +390,7 @@ def build_ieee_manuscript_pdf(
                 <tr><td>CNU (cnu.sv)</td><td>82</td><td>36</td><td>0</td><td><b>0</b></td><td>2 cycles (8 ns)</td></tr>
                 <tr><td>Gate G<sub>3</sub> (g3_gate.sv)</td><td>124</td><td>72</td><td>0</td><td><b>0</b></td><td>1 cycle (4 ns)</td></tr>
                 <tr><td>Full Window (W=3)</td><td>28,204</td><td>19,512</td><td>0</td><td><b>0</b></td><td>16 ns / iter</td></tr>
-                <tr><td>Device Utilization</td><td>11.64%</td><td>4.02%</td><td>0.0%</td><td><b>0.0%</b></td><td>108.8 ns (mean) / 240 ns (max)</td></tr>
+                <tr><td>Device Utilization</td><td>11.64%</td><td>4.02%</td><td>0.0%</td><td><b>0.0%</b></td><td>102.4 ns (mean) / 240 ns (max)</td></tr>
             </tbody>
         </table>
 
@@ -430,7 +430,7 @@ def build_ieee_manuscript_pdf(
         )
 
     # =============================================================
-    # PAGE 10: Section VIII (Empirical Benchmarks), Table III, Figure 4
+    # PAGE 10: Section VIII (Empirical Benchmarks), Table IV, Figure 7
     # =============================================================
     p10 = doc.new_page(width=page_w, height=page_h)
     add_header_footer(p10, 10)
@@ -473,14 +473,14 @@ def build_ieee_manuscript_pdf(
         <p class="noindent">Crucially, the proposed 6-bit integer Orbit-Tied QNBP with learned signed memory damping (&gamma; &isin; [-0.5, 1.0]) converges in an average of only <b>6.4 iterations</b> to a logical error rate of <b>0.0068</b> [0.0053, 0.0086], outperforming scalar Mem-BP (0.0102), IBM Single-Leg DMem-BP (0.0160), and BP+OSD-CS-10 (0.0120) with zero DSP multipliers (DSP = 0). Paired McNemar contingency tests demonstrate that the proposed 6-bit QNBP achieves statistically significant superiority over scalar Mem-BP (&chi;<sup>2</sup> = 24.38, p = 7.91 &times; 10<sup>-7</sup> &lt; 0.001), IBM Relay-BP-5 (&chi;<sup>2</sup> = 18.05, p = 2.15 &times; 10<sup>-5</sup>), Normalized Min-Sum (&chi;<sup>2</sup> = 4,040.8, p &lt; 10<sup>-100</sup>), and AutDEC (&chi;<sup>2</sup> = 4,200.4, p &lt; 10<sup>-100</sup>).</p>
     </body>
     """
-    p10.insert_htmlbox(pymupdf.Rect(40, 34, page_w - 40, 480), html_p10)
+    p10.insert_htmlbox(pymupdf.Rect(40, 34, page_w - 40, 460), html_p10)
 
-    fig4_path = os.path.join(figures_dir, "fig4_quantization_sweep.png")
-    if os.path.exists(fig4_path):
-        p10.insert_image(pymupdf.Rect(120, 490, 490, 725), filename=fig4_path)
+    fig7_path = os.path.join(figures_dir, "fig7_queue_stability.png")
+    if os.path.exists(fig7_path):
+        p10.insert_image(pymupdf.Rect(40, 465, page_w - 40, 725), filename=fig7_path)
         p10.insert_textbox(
             pymupdf.Rect(40, 730, page_w - 40, 755),
-            "Fig. 4. Quantization bit-width ladder vs logical error rate, showing that 6-bit integer quantization matches float32 accuracy with zero prior clipping.",
+            "Fig. 7. Sliding-window queue stability: (a) Buffer overflow fraction vs capacity B; and (b) Decoding server utilization rho under 1.0 us quantum cycle budget.",
             fontsize=7.5, fontname="Helvetica-Oblique", align=pymupdf.TEXT_ALIGN_CENTER
         )
 
@@ -517,8 +517,8 @@ def build_ieee_manuscript_pdf(
             <tbody>
                 <tr><td>Maurer et al. [12]</td><td>IBM VU19P</td><td>128</td><td>94,200</td><td>420 ns</td></tr>
                 <tr><td>B&aacute;scones et al. (GARI) [48]</td><td>AMD VCU19P</td><td>192</td><td>142,500</td><td>680 ns</td></tr>
-                <tr><td>Gu et al. (Cascade) [56]</td><td>Nvidia H200</td><td>GPU Core</td><td>TensorCore</td><td>12.4 &mu;s</td></tr>
-                <tr><td><b>Proposed Orbit-Tied QNBP</b></td><td><b>AMD XCKU040</b></td><td><b>0</b></td><td><b>1,226&ndash;28,204</b></td><td><b>108.8 ns (mean) / 240 ns (max)</b></td></tr>
+                <tr><td>Gu et al. (Cascade) [49]</td><td>Nvidia H200</td><td>GPU Core</td><td>TensorCore</td><td>12.4 &mu;s</td></tr>
+                <tr><td><b>Proposed Orbit-Tied QNBP</b></td><td><b>AMD XCKU040</b></td><td><b>0</b></td><td><b>1,226&ndash;28,204</b></td><td><b>102.4 ns (mean) / 240 ns (max)</b></td></tr>
             </tbody>
         </table>
 
@@ -532,7 +532,7 @@ def build_ieee_manuscript_pdf(
     p11.insert_htmlbox(pymupdf.Rect(40, 34, page_w - 40, page_h - 30), html_p11)
 
     # =============================================================
-    # PAGE 12: Comprehensive 55-Reference Bibliography
+    # PAGE 12: Comprehensive 59-Reference Bibliography
     # =============================================================
     p12 = doc.new_page(width=page_w, height=page_h)
     add_header_footer(p12, 12)
@@ -559,6 +559,8 @@ def build_ieee_manuscript_pdf(
             .replace('{\\"u}', "ü")
             .replace('{\\"o}', "ö")
             .replace("{\\'e}", "é")
+            .replace("{\\'a}", "á")
+            .replace("\\'a", "á")
             .replace("{", "")
             .replace("}", "")
         )
@@ -607,8 +609,10 @@ def build_ieee_manuscript_pdf(
 
     os.makedirs(os.path.dirname(output_pdf_path), exist_ok=True)
     doc.save(output_pdf_path)
+    output_2_path = os.path.join(os.path.dirname(output_pdf_path), "main_2.pdf")
+    doc.save(output_2_path)
     doc.close()
-    print(f"✅ Generated {len(doc) if not doc.is_closed else 12}-page publication PDF: {output_pdf_path}")
+    print(f"✅ Generated 12-page publication PDFs: {output_pdf_path} and {output_2_path}")
 
 
 if __name__ == "__main__":

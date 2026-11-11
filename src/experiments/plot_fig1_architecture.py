@@ -123,7 +123,7 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
         [
             "Fallback: 24.4%",
             "C++ BP+OSD-CS-10",
-            "P_pipe <= 2.0e-3",
+            "P_pipe = 1.9e-4",
             "Buffered D/G/c Queue",
         ]
     )
