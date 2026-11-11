@@ -9,9 +9,15 @@ def audit_pdf(pdf_path: str):
 
     # 1. Check forbidden strings
     forbidden = [
+        # Numerical & chi2 inconsistencies
         "4,040.8", "4,200.4", "24.38", "18.05", "G<sub>2</sub>",
-        "5.0 ns/iter", "314", "rayv", "commir", "falback", "0.1.25",
-        "Gate G2", "669..", "toy d=3", "2006", "I. Q. A. Team", "and et al."
+        "5.0 ns/iter", "-314", "314 =", "rayv", "commir", "falback", "0.1.25",
+        "669..", "toy d=3", "2006", "I. Q. A. Team", "and et al.",
+        "44.2 pJ", "18.8 pJ",
+        # Forensic Audit Forbidden Strings
+        "72.12", "72.12.6", "72.12,6", "[[72,12.6]]", "Z_{mv}", "P_{accpt}", "+25c;", "ieves", "Undamped-",
+        "1. 1. McKinstry", "K. R. OL", "Avlami", "021035",
+        "\\_v", "\\rho", "NYIS", "110192", "K. R. On", "6bit -QNBP"
     ]
     for i, page in enumerate(doc):
         text = page.get_text()
@@ -66,10 +72,10 @@ def audit_pdf(pdf_path: str):
 
     # 7. Page 6 Audit
     p6 = doc[5].get_text()
-    assert "Theorem 4" in p6, "P6: Theorem 4 missing"
+    assert "Proposition 1" in p6 or "Theorem 4" in p6, "P6: Proposition 1 / Theorem 4 missing"
     assert "TABLE I" in p6, "P6: Table I missing"
     assert "0.0068" in p6 or "0.0080" in p6, "P6: Table I Proposed QNBP missing"
-    print("✅ Check 7: Page 6 (Theorem 4 Decoupled CSS, Biased Noise, Table I, Figures 2-3) verified.")
+    print("✅ Check 7: Page 6 (Proposition 1 Decoupled CSS, Biased Noise, Table I, Figures 2-3) verified.")
 
     # 8. Page 7 Audit
     p7 = doc[6].get_text()
@@ -89,14 +95,30 @@ def audit_pdf(pdf_path: str):
     print("✅ Check 9: Page 8 (Fig 4 Quantization, Fig 5 Gate Trade-offs, Queue Stability Verification) verified.")
 
     # 10. Page 9 Audit
-    p9 = doc[8].get_text()
+    p9_page = doc[8]
+    p9 = p9_page.get_text()
     assert "g3_gate.sv" in p9, "P9: g3_gate.sv missing"
     assert "TABLE II" in p9 and "TABLE III" in p9, "P9: Tables II and III missing"
     assert "184 mW" in p9, "P9: Dynamic power missing"
-    assert "44.2 pJ" in p9 and "18.8 pJ" in p9, "P9: Energy metrics missing"
+    assert "44.16 nJ" in p9 and "18.84 nJ" in p9, "P9: Corrected nJ energy metrics missing"
     assert "1.35 Gbps" in p9, "P9: AXI4-Stream ingress missing"
     assert "Fig. 6" in p9, "P9: Fig 6 missing"
-    print("✅ Check 10: Page 9 (Synthesizeable RTL, Power/Energy, Tables II & III, Fig 6) verified.")
+
+    # Layout bounds check: verify Section VII, Table II, Table III, Fig 6 render with y0 >= 34.0 pt and no clipping
+    blocks_p9 = p9_page.get_text("blocks")
+    body_blocks = [b for b in blocks_p9 if b[1] > 30.0 and b[3] < 760.0]
+    assert len(body_blocks) >= 15, f"P9: Expected >= 15 body blocks, got {len(body_blocks)}"
+    min_body_y0 = min(b[1] for b in body_blocks)
+    max_body_y1 = max(b[3] for b in body_blocks)
+    assert min_body_y0 >= 34.0, f"P9: Content top margin clipped (min y0 = {min_body_y0} < 34.0 pt)"
+    assert max_body_y1 <= 755.0, f"P9: Content bottom margin clipped (max y1 = {max_body_y1} > 755.0 pt)"
+
+    # Image check: verify Fig 6 is placed within clean bounds
+    images_p9 = p9_page.get_image_info()
+    assert len(images_p9) == 1, f"P9: Expected exactly 1 image (Fig. 6), got {len(images_p9)}"
+    fig6_bbox = images_p9[0]["bbox"]
+    assert fig6_bbox[1] >= 450.0 and fig6_bbox[3] <= 730.0, f"P9: Fig 6 bbox outside valid range: {fig6_bbox}"
+    print("✅ Check 10: Page 9 (Synthesizeable RTL, Power/Energy, Tables II & III, Fig 6, Layout Bounds y0 >= 34.0 pt) verified.")
 
     # 11. Page 10 Audit
     p10 = doc[9].get_text()

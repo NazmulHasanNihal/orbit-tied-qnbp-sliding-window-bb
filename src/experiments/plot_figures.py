@@ -47,19 +47,25 @@ def plot_f3_symmetry_vs_random(results: Dict[str, Any], output_dir: str = "resul
     a5_mean = abl["A5_random_tying_control"]["mean_rate"]
     a5_std = abl["A5_random_tying_control"]["std_rate"]
 
-    # Parameter counts
+    # Parameter counts aligned with Section VIII-B (W=3, R=3):
+    # 7,308 fault mechanisms collapse to 203 orbits (36.0x orbit reduction)
+    # A1: 15 parameters
+    # A2: 15 * 7308 = 109,620 parameters
+    # A3: 15 * 203 = 3,045 parameters
+    # A4: 3,090 parameters (203 orbits + 3 boundary classes x 15 iters)
+    # A5: 15 * 203 = 3,045 parameters
     params = {
         "A1 (Normalized MS)": (15, a1_rate, "#6c757d", "^"),
         "A2 (Untied NBP)": (15 * 7308, a2_rate, "#e63946", "s"),
-        "A3 (Orbit-tied)": (15 * 285, a3_rate, "#f4a261", "D"),
-        "A4 (Proposed QNBP)": (15 * 285 + 45, a4_rate, "#2a9d8f", "o"),
+        "A3 (Orbit-tied)": (15 * 203, a3_rate, "#f4a261", "D"),
+        "A4 (Proposed QNBP)": (3090, a4_rate, "#2a9d8f", "o"),
     }
 
     # Plot A5 Random-tying cloud
     for seed_rate in a5_runs:
-        ax.scatter(15 * 285, seed_rate, color="#b0bec5", alpha=0.7, s=40, zorder=3)
+        ax.scatter(15 * 203, seed_rate, color="#b0bec5", alpha=0.7, s=40, zorder=3)
     ax.errorbar(
-        15 * 285, a5_mean, yerr=a5_std, fmt="x", color="#455a64",
+        15 * 203, a5_mean, yerr=a5_std, fmt="x", color="#455a64",
         capsize=4, label="A5 Random Control (5 seeds)", zorder=4
     )
 
@@ -136,7 +142,7 @@ def plot_f5_gates(results: Dict[str, Any], output_dir: str = "results/figures") 
             g_json = json.load(fp)
         g_data = g_json.get("calibration", {})
         taus = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0]
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9.5, 3.8))
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10.0, 3.8))
         colors = {"G1": "#457b9d", "G2": "#e76f51", "G3": "#2a9d8f"}
         markers = {"G1": "s", "G2": "^", "G3": "o"}
         labels = {"G1": "G1 (Syndrome)", "G2": "G2 (Obs LLR)", "G3": "G3 (Min Fault LLR)"}
@@ -170,13 +176,13 @@ def plot_f5_gates(results: Dict[str, Any], output_dir: str = "results/figures") 
         ax2.set_yscale("log")
         ax2.set_ylim([1e-5, 2e-3])
         overall_wilson_ub = wilson_upper_bound(0, n_shots)
-        ax2.axhline(overall_wilson_ub, color="#455a64", linestyle="--", label=rf"Overall 95% Wilson Bound ({overall_wilson_ub:.2e})")
+        ax2.axhline(overall_wilson_ub, color="#455a64", linestyle="--", label=rf"Fast-Path Accept 95% Wilson Bound ({overall_wilson_ub:.2e})")
         ax2.axhline(1.0 / n_shots, color="#888888", linestyle=":", label=rf"Empirical Resolution Limit $1/N$ ({1.0/n_shots:.2e})")
-        ax2.set_title(r"(b) Pipeline Error vs. Threshold ($p=0.001, N=50,000$)")
+        ax2.set_title(r"(b) Pipeline Error vs. Threshold ($p=0.001, N=50,000$)", fontsize=9.2)
         ax2.grid(True, linestyle="--", alpha=0.4)
         ax2.legend(loc="upper right", frameon=True)
 
-        fig.tight_layout()
+        fig.tight_layout(pad=1.2)
         for d in [output_dir, "manuscript/figures"]:
             os.makedirs(d, exist_ok=True)
             fig.savefig(os.path.join(d, "fig5_gate_tradeoffs.pdf"))
@@ -220,12 +226,12 @@ def plot_f7_queue_stability(results: Dict[str, Any], output_dir: str = "results/
 
         # Left: Overflow Rate (%) vs Buffer for uncalibrated vs calibrated
         uncalib_overflows = [98.5, 96.2, 94.0, 91.5]
-        ax1.plot(buffers, uncalib_overflows, color="#d62728", marker="x", linestyle="--", label="Uncalibrated Sequential (rho=1.99)")
+        ax1.plot(buffers, uncalib_overflows, color="#d62728", marker="x", linestyle="--", label=r"Uncalibrated Sequential ($\rho = 1.99$)")
         for c, color, marker in [(1, "#2a9d8f", "o"), (2, "#1d3557", "s"), (4, "#e76f51", "^")]:
             c_key = f"servers_{c}"
             if c_key in q_data:
                 ovfs = [q_data[c_key][f"buf_{b}"]["overflow_rate"] * 100.0 for b in buffers]
-                ax1.plot(buffers, ovfs, color=color, marker=marker, label=f"Calibrated D/G/{c} (rho={q_data[c_key]['buf_4']['utilization']:.2f})")
+                ax1.plot(buffers, ovfs, color=color, marker=marker, label=rf"Calibrated $D/G/{c}$ ($\rho = {q_data[c_key]['buf_4']['utilization']:.2f}$)")
 
         ax1.set_xlabel("Buffer Capacity $B$ (Windows)")
         ax1.set_ylabel("Queue Overflow Fraction (%)")
@@ -238,10 +244,10 @@ def plot_f7_queue_stability(results: Dict[str, Any], output_dir: str = "results/
         utils = [q_data[f"servers_{c}"]["buf_16"]["utilization"] for c in servers if f"servers_{c}" in q_data]
         mean_serv = [q_data[f"servers_{c}"]["buf_16"]["mean_service_ns"] for c in servers if f"servers_{c}" in q_data]
         ax2.bar([str(c) for c in servers[:len(utils)]], utils, color=["#2a9d8f", "#1d3557", "#e76f51"], alpha=0.85)
-        ax2.axhline(1.0, color="#d62728", linestyle="--", label="Stability Limit (rho=1.0)")
+        ax2.axhline(1.0, color="#d62728", linestyle="--", label=r"Stability Limit ($\rho=1.0$)")
         ax2.set_xlabel("Parallel Decoding Servers ($c$)")
-        ax2.set_ylabel("Server Utilization $\\rho$")
-        ax2.set_title("(b) Queue Utilization ($t_{\\mathrm{cycle}}=1.0~\\mu\\mathrm{s}$)")
+        ax2.set_ylabel(r"Server Utilization $\rho$")
+        ax2.set_title(r"(b) Queue Utilization ($t_{\mathrm{cycle}}=1.0~\mu\mathrm{s}$)")
         ax2.grid(True, linestyle="--", alpha=0.4)
         ax2.legend(loc="upper right", frameon=True)
 
@@ -305,15 +311,19 @@ def plot_f2_threshold_curve(
     qnbp_rates = [points[f"{p:.4f}"]["qnbp"]["rate"] for p in p_vals]
     bposd_rates = [points[f"{p:.4f}"]["bposd"]["rate"] for p in p_vals]
 
+    # Distinguish measured points at p=10^-3 and 2x10^-3 by slight visual offset for bposd
+    p_bposd = [p * 1.03 if (p <= 0.0025) else p for p in p_vals]
+
     ax.plot(p_vals, bp_rates, marker="^", color="#457b9d", label="Classical Min-Sum BP (A1)")
     ax.plot(p_vals, qnbp_rates, marker="o", color="#2a9d8f", label="Proposed 6-bit QNBP")
-    ax.plot(p_vals, bposd_rates, marker="s", color="#e76f51", label="C++ BP+OSD-CS-10 (Gold Standard)")
+    ax.plot(p_bposd, bposd_rates, marker="s", color="#e76f51", label="C++ BP+OSD-CS-10 (Gold Standard)")
 
     ax.set_xscale("log")
     ax.set_yscale("log")
+    ax.set_ylim([0.0008, 0.6])
     ax.set_xlabel("Physical Depolarizing Error Rate ($p$)")
     ax.set_ylabel("Logical Error Rate per Window ($P_L$)")
-    ax.legend(loc="lower right", frameon=True)
+    ax.legend(loc="upper left", frameon=True)
 
     fig.tight_layout()
     for d in [output_dir, "manuscript/figures"]:
@@ -348,7 +358,7 @@ def plot_f6_folding_tradeoffs(
     ax1.set_xlabel("Hardware Folding Factor ($F$)")
     ax1.set_ylabel("Total Latency for $T=15$ (ns)", color=color1)
     line1 = ax1.plot(f_vals, latencies, color=color1, marker="o", linewidth=2.0, label="Latency (ns)")
-    ax1.axhline(1000.0, color="#d62728", linestyle=":", label=r"1 $\mu$s Quantum Budget")
+    ax1.axhline(1000.0, color="#d62728", linestyle=":", label="1000 ns Cycle Budget")
     ax1.tick_params(axis="y", labelcolor=color1)
     ax1.set_yscale("log")
 
@@ -357,8 +367,11 @@ def plot_f6_folding_tradeoffs(
     line2 = ax2.plot(f_vals, luts, color=color2, marker="s", linestyle="--", linewidth=2.0, label="LUT Count")
     ax2.tick_params(axis="y", labelcolor=color2)
     ax2.set_yscale("log")
+    ax2.set_ylim([800, 40000])
+    ax2.set_yticks([1000, 3000, 10000, 30000])
+    ax2.set_yticklabels(["1k", "3k", "10k", "30k"])
 
-    lines = line1 + [plt.Line2D([0], [0], color="#d62728", linestyle=":")] + line2
+    lines = line1 + [plt.Line2D([0], [0], color="#d62728", linestyle=":", label="1000 ns Cycle Budget")] + line2
     labels = [l.get_label() for l in lines]
     ax1.legend(lines, labels, loc="center right", frameon=True)
 

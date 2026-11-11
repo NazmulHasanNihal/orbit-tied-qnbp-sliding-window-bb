@@ -12,8 +12,8 @@ import matplotlib.patches as patches
 def generate_figure_1(output_dir: str = "results/figures") -> None:
     """Generates Figure 1: End-to-end decoding and hardware architecture."""
     os.makedirs(output_dir, exist_ok=True)
-    fig, ax = plt.subplots(figsize=(12, 5.0), dpi=300)
-    ax.set_xlim(0, 120)
+    fig, ax = plt.subplots(figsize=(13.0, 5.0), dpi=300)
+    ax.set_xlim(0, 130)
     ax.set_ylim(0, 50)
     ax.axis("off")
 
@@ -38,11 +38,11 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
         )
         ax.add_patch(rect)
         ax.text(x + w / 2, y + h - 3.2, title, ha="center", va="center",
-                fontsize=10.5, fontweight="bold", color=border_color)
+                fontsize=10.0, fontweight="bold", color=border_color)
         line_y = y + h - 7.5
         for line in subtitle_lines:
             ax.text(x + w / 2, line_y, line, ha="center", va="center",
-                    fontsize=8.5, color="#212121")
+                    fontsize=8.2, color="#212121")
             line_y -= 3.6
 
     def draw_arrow(x1, y1, x2, y2, label=""):
@@ -54,9 +54,9 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
             ax.text((x1 + x2) / 2, (y1 + y2) / 2 + 1.8, label,
                     ha="center", va="bottom", fontsize=8.0, fontweight="bold", color="#37474f")
 
-    # Box 1: Quantum Circuit & DEM
+    # Box 1: Quantum Circuit & DEM (width 19, right edge 21)
     draw_box(
-        2, 12, 22, 26, c_circuit, c_circuit_b,
+        2, 12, 19, 26, c_circuit, c_circuit_b,
         "1. Stim Space-Time DEM",
         [
             "Gross BB Code [[72,12,6]]",
@@ -67,9 +67,9 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
         ]
     )
 
-    # Box 2: Torus Automorphism Orbits
+    # Box 2: Torus Automorphism Orbits (width 21, left edge 29, right edge 50)
     draw_box(
-        28, 12, 22, 26, c_orbit, c_orbit_b,
+        29, 12, 21, 26, c_orbit, c_orbit_b,
         "2. Torus Automorphism",
         [
             r"$G = \mathbb{Z}_\ell \times \mathbb{Z}_m$ (36 Shifts)",
@@ -80,9 +80,9 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
         ]
     )
 
-    # Box 3: 6-Bit Unfolded QNBP
+    # Box 3: 6-Bit Unfolded QNBP (width 21, left edge 58, right edge 79)
     draw_box(
-        54, 12, 23, 26, c_qnbp, c_qnbp_b,
+        58, 12, 21, 26, c_qnbp, c_qnbp_b,
         "3. 6-Bit Integer QNBP",
         [
             "T=15 Unfolded Iterations",
@@ -93,21 +93,21 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
         ]
     )
 
-    # Box 4: Confidence Margin Gate
+    # Box 4: Confidence Margin Gate G3 (width 17, left edge 87, right edge 104)
     draw_box(
-        81, 15, 17, 20, c_gate, c_gate_b,
+        87, 13, 17, 24, c_gate, c_gate_b,
         "4. Margin Gate G3",
         [
             "Syndrome Matched?",
-            "M_min = min |L_v| >= tau",
+            r"$M_{\min} = \min |L_v| \geq \tau$",
             "Zero False Flips",
             "Log-Depth Evaluator",
         ]
     )
 
-    # Fast Path & Fallback Boxes
+    # Fast Path & Fallback Boxes (left edge 112, right edge 128)
     draw_box(
-        102, 26, 17, 16, c_fast, c_fast_b,
+        112, 26, 16, 16, c_fast, c_fast_b,
         "Fast-Path FPGA",
         [
             "Accept Rate: 75.6%",
@@ -118,43 +118,43 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
     )
 
     draw_box(
-        102, 6, 17, 16, c_slow, c_slow_b,
+        112, 6, 16, 16, c_slow, c_slow_b,
         "Fallback Pool",
         [
             "Fallback: 24.4%",
             "C++ BP+OSD-CS-10",
-            "P_pipe = 1.9e-4",
-            "Buffered D/G/c Queue",
+            r"$P_{\mathrm{pipe}} = 1.9\times 10^{-4}$",
+            r"Buffered $D/G/c$ Queue",
         ]
     )
 
-    # Connecting Arrows
-    draw_arrow(24, 25, 28, 25, "Extract DEM")
-    draw_arrow(50, 25, 54, 25, "Orbit Tying")
-    draw_arrow(77, 25, 81, 25, "Posterior L_v")
+    # Connecting Arrows with generous 8-unit horizontal spacing
+    draw_arrow(21, 25, 29, 25, "Extract DEM")
+    draw_arrow(50, 25, 58, 25, "Orbit Tying")
+    draw_arrow(79, 25, 87, 25, r"Posterior $L_v$")
 
-    # Branching Arrows from Gate
+    # Branching Arrows from Gate: position labels cleanly on the arrow shafts
     ax.annotate(
-        "", xy=(102, 34), xytext=(98, 28),
+        "", xy=(112, 34), xytext=(104, 28),
         arrowprops=dict(arrowstyle="->", color=c_fast_b, lw=2.0, mutation_scale=14)
     )
-    ax.text(97, 33, "Pass (>= tau)", ha="right", va="bottom", fontsize=8.5, fontweight="bold", color=c_fast_b)
+    ax.text(108, 32.5, r"Pass ($\geq \tau$)", ha="center", va="bottom", fontsize=8.0, fontweight="bold", color=c_fast_b)
 
     ax.annotate(
-        "", xy=(102, 14), xytext=(98, 22),
+        "", xy=(112, 14), xytext=(104, 22),
         arrowprops=dict(arrowstyle="->", color=c_slow_b, lw=2.0, mutation_scale=14)
     )
-    ax.text(97, 15, "Fail (< tau)", ha="right", va="top", fontsize=8.5, fontweight="bold", color=c_slow_b)
+    ax.text(108, 16.5, r"Fail ($< \tau$)", ha="center", va="top", fontsize=8.0, fontweight="bold", color=c_slow_b)
 
     # Bottom Sliding Window Banner
     banner = patches.FancyBboxPatch(
-        (2, 2), 75, 6, boxstyle="round,pad=0.5,rounding_size=1.0",
+        (2, 2), 85, 6, boxstyle="round,pad=0.5,rounding_size=1.0",
         linewidth=1.2, edgecolor="#78909c", facecolor="#eceff1"
     )
     ax.add_patch(banner)
     ax.text(
-        39.5, 5,
-        "Continuous Streaming Sliding Window (Width W = 3 rounds, Commit Stride F = 1 round, Cycle = 1000 ns)",
+        44.5, 5,
+        r"Continuous Streaming Sliding Window (Width $W = 3$ rounds, Commit Stride $F = 1$ round, Cycle = $1000\text{ ns}$)",
         ha="center", va="center", fontsize=8.5, fontweight="bold", color="#37474f"
     )
 
@@ -169,4 +169,3 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
 
 if __name__ == "__main__":
     generate_figure_1()
-
