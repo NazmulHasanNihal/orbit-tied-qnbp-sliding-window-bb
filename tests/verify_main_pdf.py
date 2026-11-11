@@ -8,7 +8,11 @@ def audit_pdf(pdf_path: str):
     assert len(doc) == 12, f"Expected 12 pages, got {len(doc)}"
 
     # 1. Check forbidden strings
-    forbidden = ["5.0 ns/iter", "314", "rayv", "commir", "falback", "0.1.25", "Gate G2", "669..", "toy d=3", "2006", "I. Q. A. Team", "and et al."]
+    forbidden = [
+        "4,040.8", "4,200.4", "24.38", "18.05", "G<sub>2</sub>",
+        "5.0 ns/iter", "314", "rayv", "commir", "falback", "0.1.25",
+        "Gate G2", "669..", "toy d=3", "2006", "I. Q. A. Team", "and et al."
+    ]
     for i, page in enumerate(doc):
         text = page.get_text()
         for w in forbidden:
@@ -100,10 +104,10 @@ def audit_pdf(pdf_path: str):
     assert "0.0068" in p10, "P10: Table IV proposed LER missing"
     assert "6.4" in p10, "P10: Table IV iterations missing"
     assert "0.125" in p10, "P10: Relay-BP gamma_0 missing"
-    assert "4,040.8" in p10, "P10: Normalized Min-Sum chi2 missing"
-    assert "4,200.4" in p10, "P10: AutDEC chi2 missing"
-    assert "24.38" in p10, "P10: Mem-BP chi2 missing"
-    assert "18.05" in p10, "P10: Relay-BP-5 chi2 missing"
+    assert "2,642.1" in p10, "P10: Normalized Min-Sum chi2 missing"
+    assert "2,750.5" in p10, "P10: AutDEC chi2 missing"
+    assert "14.72" in p10, "P10: Mem-BP chi2 missing"
+    assert "12.06" in p10, "P10: Relay-BP-5 chi2 missing"
     assert "Fig. 7" in p10, "P10: Fig 7 missing"
     print("✅ Check 11: Page 10 (Master Benchmark Table IV, 10 Decoders, Synchronized Statistics, Fig 7) verified.")
 
@@ -114,6 +118,7 @@ def audit_pdf(pdf_path: str):
     assert "GARI" in p11, "P11: GARI missing"
     assert "Cascade" in p11, "P11: Cascade missing"
     assert "450,000" in p11, "P11: 450,000 LUTs missing"
+    assert "0.0118" in p11, "P11: Untied NBP 0.0118 missing"
     assert "11.2" in p11, "P11: Multi-point distance scaling 11.2x missing"
     assert "toy d=3" not in p11, "P11: toy d=3 found"
     assert "Data and Code Availability" in p11, "P11: Data and Code Availability missing"
@@ -144,4 +149,5 @@ def audit_pdf(pdf_path: str):
 
 if __name__ == "__main__":
     audit_pdf("manuscript/main.pdf")
+    audit_pdf("manuscript/main_5.pdf")
     audit_pdf("manuscript/main_4.pdf")
