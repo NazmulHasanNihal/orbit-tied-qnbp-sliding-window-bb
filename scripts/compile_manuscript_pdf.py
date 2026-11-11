@@ -653,10 +653,8 @@ def build_ieee_manuscript_pdf(
 
     os.makedirs(os.path.dirname(output_pdf_path), exist_ok=True)
     doc.save(output_pdf_path)
-    output_3_path = os.path.join(os.path.dirname(output_pdf_path), "main_3.pdf")
-    doc.save(output_3_path)
     doc.close()
-    print(f"✅ Generated 12-page publication PDFs: {output_pdf_path} and {output_3_path}")
+    print(f"✅ Generated single canonical 12-page publication PDF: {output_pdf_path}")
 
 
 if __name__ == "__main__":
