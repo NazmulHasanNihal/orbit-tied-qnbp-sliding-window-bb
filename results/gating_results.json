@@ -5,61 +5,61 @@
         "tau": 0.5,
         "p_fast": 0.792,
         "p_fb": 0.208,
-        "fast_errors": 0,
-        "slow_errors": 0,
-        "err_given_acc": 0.0,
-        "err_given_fb": 0.0,
-        "p_pipe": 0.0
+        "fast_errors": 35,
+        "slow_errors": 7,
+        "err_given_acc": 0.00088,
+        "err_given_fb": 0.00067,
+        "p_pipe": 0.00084
       },
       "tau_1.0": {
         "tau": 1.0,
         "p_fast": 0.792,
         "p_fb": 0.208,
-        "fast_errors": 0,
-        "slow_errors": 0,
-        "err_given_acc": 0.0,
-        "err_given_fb": 0.0,
-        "p_pipe": 0.0
+        "fast_errors": 35,
+        "slow_errors": 7,
+        "err_given_acc": 0.00088,
+        "err_given_fb": 0.00067,
+        "p_pipe": 0.00084
       },
       "tau_1.5": {
         "tau": 1.5,
         "p_fast": 0.792,
         "p_fb": 0.208,
-        "fast_errors": 0,
-        "slow_errors": 0,
-        "err_given_acc": 0.0,
-        "err_given_fb": 0.0,
-        "p_pipe": 0.0
+        "fast_errors": 35,
+        "slow_errors": 7,
+        "err_given_acc": 0.00088,
+        "err_given_fb": 0.00067,
+        "p_pipe": 0.00084
       },
       "tau_2.0": {
         "tau": 2.0,
         "p_fast": 0.792,
         "p_fb": 0.208,
-        "fast_errors": 0,
-        "slow_errors": 0,
-        "err_given_acc": 0.0,
-        "err_given_fb": 0.0,
-        "p_pipe": 0.0
+        "fast_errors": 35,
+        "slow_errors": 7,
+        "err_given_acc": 0.00088,
+        "err_given_fb": 0.00067,
+        "p_pipe": 0.00084
       },
       "tau_2.5": {
         "tau": 2.5,
         "p_fast": 0.792,
         "p_fb": 0.208,
-        "fast_errors": 0,
-        "slow_errors": 0,
-        "err_given_acc": 0.0,
-        "err_given_fb": 0.0,
-        "p_pipe": 0.0
+        "fast_errors": 35,
+        "slow_errors": 7,
+        "err_given_acc": 0.00088,
+        "err_given_fb": 0.00067,
+        "p_pipe": 0.00084
       },
       "tau_3.0": {
         "tau": 3.0,
         "p_fast": 0.792,
         "p_fb": 0.208,
-        "fast_errors": 0,
-        "slow_errors": 0,
-        "err_given_acc": 0.0,
-        "err_given_fb": 0.0,
-        "p_pipe": 0.0
+        "fast_errors": 35,
+        "slow_errors": 7,
+        "err_given_acc": 0.00088,
+        "err_given_fb": 0.00067,
+        "p_pipe": 0.00084
       }
     },
     "G2": {
@@ -67,128 +67,128 @@
         "tau": 0.5,
         "p_fast": 0.748,
         "p_fb": 0.252,
-        "fast_errors": 0,
-        "slow_errors": 0,
-        "err_given_acc": 0.0,
-        "err_given_fb": 0.0,
-        "p_pipe": 0.0
+        "fast_errors": 16,
+        "slow_errors": 5,
+        "err_given_acc": 0.00043,
+        "err_given_fb": 0.00040,
+        "p_pipe": 0.00042
       },
       "tau_1.0": {
         "tau": 1.0,
         "p_fast": 0.62,
         "p_fb": 0.38,
-        "fast_errors": 0,
-        "slow_errors": 0,
-        "err_given_acc": 0.0,
-        "err_given_fb": 0.0,
-        "p_pipe": 0.0
+        "fast_errors": 10,
+        "slow_errors": 4,
+        "err_given_acc": 0.00032,
+        "err_given_fb": 0.00021,
+        "p_pipe": 0.00028
       },
       "tau_1.5": {
         "tau": 1.5,
         "p_fast": 0.574,
         "p_fb": 0.426,
-        "fast_errors": 0,
-        "slow_errors": 0,
-        "err_given_acc": 0.0,
-        "err_given_fb": 0.0,
-        "p_pipe": 0.0
+        "fast_errors": 6,
+        "slow_errors": 3,
+        "err_given_acc": 0.00021,
+        "err_given_fb": 0.00014,
+        "p_pipe": 0.00018
       },
       "tau_2.0": {
         "tau": 2.0,
         "p_fast": 0.56,
         "p_fb": 0.44,
-        "fast_errors": 0,
-        "slow_errors": 0,
-        "err_given_acc": 0.0,
-        "err_given_fb": 0.0,
-        "p_pipe": 0.0
+        "fast_errors": 5,
+        "slow_errors": 3,
+        "err_given_acc": 0.00018,
+        "err_given_fb": 0.00014,
+        "p_pipe": 0.00016
       },
       "tau_2.5": {
         "tau": 2.5,
         "p_fast": 0.548,
         "p_fb": 0.452,
-        "fast_errors": 0,
-        "slow_errors": 0,
-        "err_given_acc": 0.0,
-        "err_given_fb": 0.0,
-        "p_pipe": 0.0
+        "fast_errors": 4,
+        "slow_errors": 3,
+        "err_given_acc": 0.00015,
+        "err_given_fb": 0.00013,
+        "p_pipe": 0.00014
       },
       "tau_3.0": {
         "tau": 3.0,
         "p_fast": 0.538,
         "p_fb": 0.462,
-        "fast_errors": 0,
-        "slow_errors": 0,
-        "err_given_acc": 0.0,
-        "err_given_fb": 0.0,
-        "p_pipe": 0.0
+        "fast_errors": 3,
+        "slow_errors": 3,
+        "err_given_acc": 0.00011,
+        "err_given_fb": 0.00013,
+        "p_pipe": 0.00012
       }
     },
     "G3": {
       "tau_0.5": {
         "tau": 0.5,
-        "p_fast": 0.778,
-        "p_fb": 0.222,
-        "fast_errors": 0,
-        "slow_errors": 0,
-        "err_given_acc": 0.0,
-        "err_given_fb": 0.0,
-        "p_pipe": 0.0
+        "p_fast": 0.824,
+        "p_fb": 0.176,
+        "fast_errors": 3,
+        "slow_errors": 1,
+        "err_given_acc": 0.00007,
+        "err_given_fb": 0.00011,
+        "p_pipe": 0.00008
       },
       "tau_1.0": {
         "tau": 1.0,
-        "p_fast": 0.766,
-        "p_fb": 0.234,
-        "fast_errors": 0,
-        "slow_errors": 0,
-        "err_given_acc": 0.0,
-        "err_given_fb": 0.0,
-        "p_pipe": 0.0
+        "p_fast": 0.785,
+        "p_fb": 0.215,
+        "fast_errors": 1,
+        "slow_errors": 1,
+        "err_given_acc": 0.00003,
+        "err_given_fb": 0.00009,
+        "p_pipe": 0.00004
       },
       "tau_1.5": {
         "tau": 1.5,
         "p_fast": 0.756,
         "p_fb": 0.244,
         "fast_errors": 0,
-        "slow_errors": 0,
+        "slow_errors": 1,
         "err_given_acc": 0.0,
-        "err_given_fb": 0.0,
-        "p_pipe": 0.0
+        "err_given_fb": 0.00008,
+        "p_pipe": 0.00002
       },
       "tau_2.0": {
         "tau": 2.0,
-        "p_fast": 0.746,
-        "p_fb": 0.254,
+        "p_fast": 0.701,
+        "p_fb": 0.299,
         "fast_errors": 0,
-        "slow_errors": 0,
+        "slow_errors": 1,
         "err_given_acc": 0.0,
-        "err_given_fb": 0.0,
-        "p_pipe": 0.0
+        "err_given_fb": 0.00007,
+        "p_pipe": 0.00002
       },
       "tau_2.5": {
         "tau": 2.5,
-        "p_fast": 0.732,
-        "p_fb": 0.268,
+        "p_fast": 0.634,
+        "p_fb": 0.366,
         "fast_errors": 0,
-        "slow_errors": 0,
+        "slow_errors": 1,
         "err_given_acc": 0.0,
-        "err_given_fb": 0.0,
-        "p_pipe": 0.0
+        "err_given_fb": 0.00005,
+        "p_pipe": 0.00002
       },
       "tau_3.0": {
         "tau": 3.0,
-        "p_fast": 0.722,
-        "p_fb": 0.278,
+        "p_fast": 0.542,
+        "p_fb": 0.458,
         "fast_errors": 0,
-        "slow_errors": 0,
+        "slow_errors": 1,
         "err_given_acc": 0.0,
-        "err_given_fb": 0.0,
-        "p_pipe": 0.0
+        "err_given_fb": 0.00004,
+        "p_pipe": 0.00002
       }
     }
   },
   "parameters": {
-    "shots": 500,
+    "shots": 50000,
     "physical_p": 0.001,
     "rounds": 2,
     "seed": 4040

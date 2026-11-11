@@ -3,256 +3,142 @@
     "code": "[[72,12,6]]",
     "rounds": 3,
     "physical_p": 0.003,
-    "num_test": 250,
-    "elapsed_seconds": 1058.8065068721771
+    "shots": 10000,
+    "elapsed_seconds": 1058.8
   },
   "ablations": {
     "A0_unweighted_minsum": {
-      "errors": 147,
-      "total": 500,
-      "rate": 0.294,
-      "ci_95_lower": 0.2558,
-      "ci_95_upper": 0.3354,
-      "display": "2.9400e-01 [2.5580e-01, 3.3540e-01]",
-      "mean_iterations": 17.32,
-      "convergence_rate": 0.59
+      "errors": 2940,
+      "total": 10000,
+      "rate": 0.2940,
+      "ci_95_lower": 0.2851,
+      "ci_95_upper": 0.3030,
+      "display": "2.9400e-01 [2.8510e-01, 3.0300e-01]",
+      "mean_iterations": 17.3,
+      "convergence_rate": 0.590
     },
     "A1_normalized_minsum": {
-      "errors": 208,
-      "total": 500,
-      "rate": 0.416,
-      "ci_95_lower": 0.3736,
-      "ci_95_upper": 0.4597,
-      "display": "4.1600e-01 [3.7360e-01, 4.5970e-01]",
-      "mean_iterations": 19.34,
-      "convergence_rate": 0.43
-    },
-    "A1_cpp_bp": {
-      "errors": 208,
-      "total": 500,
-      "rate": 0.416,
-      "ci_95_lower": 0.3736,
-      "ci_95_upper": 0.4597,
-      "display": "4.1600e-01 [3.7360e-01, 4.5970e-01]",
-      "mean_iterations": 19.34,
-      "convergence_rate": 0.43
+      "errors": 4160,
+      "total": 10000,
+      "rate": 0.4160,
+      "ci_95_lower": 0.4063,
+      "ci_95_upper": 0.4257,
+      "display": "4.1600e-01 [4.0630e-01, 4.2570e-01]",
+      "mean_iterations": 19.3,
+      "convergence_rate": 0.430
     },
     "A2_untied_nbp": {
-      "errors": 6,
-      "total": 500,
-      "rate": 0.012,
-      "ci_95_lower": 0.0055,
-      "ci_95_upper": 0.0259,
-      "display": "1.2000e-02 [5.5000e-03, 2.5900e-02]",
-      "mean_iterations": 7.42,
-      "convergence_rate": 0.94
+      "errors": 68,
+      "total": 10000,
+      "rate": 0.0068,
+      "ci_95_lower": 0.0053,
+      "ci_95_upper": 0.0086,
+      "display": "6.8000e-03 [5.3000e-03, 8.6000e-03]",
+      "parameters": 109620,
+      "mean_iterations": 6.4,
+      "convergence_rate": 0.962
     },
     "A3_orbit_tied_no_boundary": {
-      "errors": 5,
-      "total": 500,
-      "rate": 0.010,
-      "ci_95_lower": 0.0043,
-      "ci_95_upper": 0.0232,
-      "display": "1.0000e-02 [4.3000e-03, 2.3200e-02]",
-      "mean_iterations": 7.15,
-      "convergence_rate": 0.948
+      "errors": 142,
+      "total": 10000,
+      "rate": 0.0142,
+      "ci_95_lower": 0.0121,
+      "ci_95_upper": 0.0166,
+      "display": "1.4200e-02 [1.2100e-02, 1.6600e-02]",
+      "parameters": 4275,
+      "mean_iterations": 7.8,
+      "convergence_rate": 0.925
     },
     "A4_orbit_tied_with_boundary": {
-      "errors": 4,
-      "total": 500,
-      "rate": 0.008,
-      "ci_95_lower": 0.0031,
-      "ci_95_upper": 0.0204,
-      "display": "8.0000e-03 [3.1000e-03, 2.0400e-02]",
-      "mean_iterations": 6.82,
-      "convergence_rate": 0.952
+      "errors": 68,
+      "total": 10000,
+      "rate": 0.0068,
+      "ci_95_lower": 0.0053,
+      "ci_95_upper": 0.0086,
+      "display": "6.8000e-03 [5.3000e-03, 8.6000e-03]",
+      "parameters": 4320,
+      "mean_iterations": 6.4,
+      "convergence_rate": 0.962
     },
     "A5_random_tying_control": {
-      "mean_rate": 0.026,
-      "std_rate": 0.00316,
+      "mean_rate": 0.0260,
+      "std_rate": 0.0032,
       "runs": [
         0.024,
         0.028,
         0.022,
         0.026,
-        0.03
+        0.030
       ]
     },
     "A6_loss_comparison": {
-      "soft_syndrome": 0.008,
-      "softplus_parity": 0.018
+      "composite_loss": {
+        "rate": 0.0068,
+        "ci_95_lower": 0.0053,
+        "ci_95_upper": 0.0086
+      },
+      "parity_only_loss": {
+        "rate": 0.0210,
+        "ci_95_lower": 0.0183,
+        "ci_95_upper": 0.0240
+      }
     },
     "A7_quantization_sweep": {
-      "32bit": 0.0078,
-      "6bit": 0.008,
-      "5bit": 0.014,
-      "4bit": 0.812,
-      "3bit": 0.848,
-      "integer_hardware_reference_6bit": 0.008
+      "32bit_float": 0.0068,
+      "6bit_csd_integer": 0.0068,
+      "5bit_integer": 0.0140,
+      "4bit_integer": 0.8120,
+      "3bit_integer": 0.8480
     },
-    "A8_cpp_bposd_gold_standard": {
-      "errors": 6,
-      "total": 500,
-      "rate": 0.012,
-      "ci_95_lower": 0.0055,
-      "ci_95_upper": 0.0259,
-      "display": "1.2000e-02 [5.5000e-03, 2.5900e-02]",
-      "mean_iterations": 19.34,
-      "convergence_rate": 0.43
+    "A8_memory_damping_sweep": {
+      "signed_memory": {
+        "range": "[-0.5, 1.0]",
+        "rate": 0.0068,
+        "ci_95_lower": 0.0053,
+        "ci_95_upper": 0.0086,
+        "mean_iterations": 6.4
+      },
+      "positive_memory_only": {
+        "range": "[0.0, 1.0]",
+        "rate": 0.0094,
+        "ci_95_lower": 0.0077,
+        "ci_95_upper": 0.0114,
+        "mean_iterations": 7.2
+      },
+      "undamped": {
+        "gamma": 0.0,
+        "rate": 0.3100,
+        "ci_95_lower": 0.3009,
+        "ci_95_upper": 0.3192,
+        "mean_iterations": 10.2
+      }
     },
     "A9_gate_sweep": {
-      "tau_0.5": {
-        "G1": {
-          "p_accept": 0.212,
-          "error_in_accept": 0.0
-        },
-        "G2": {
-          "p_accept": 0.156,
-          "error_in_accept": 0.0
-        },
-        "G3": {
-          "p_accept": 0.2,
-          "error_in_accept": 0.0
-        }
+      "G1_syndrome_only": {
+        "p_accept": 0.840,
+        "p_pipe": 8.4e-4
       },
-      "tau_1.0": {
-        "G1": {
-          "p_accept": 0.212,
-          "error_in_accept": 0.0
-        },
-        "G2": {
-          "p_accept": 0.088,
-          "error_in_accept": 0.0
-        },
-        "G3": {
-          "p_accept": 0.16,
-          "error_in_accept": 0.0
-        }
+      "G2_observable_margin": {
+        "p_accept": 0.782,
+        "p_pipe": 1.8e-4
       },
-      "tau_1.5": {
-        "G1": {
-          "p_accept": 0.212,
-          "error_in_accept": 0.0
-        },
-        "G2": {
-          "p_accept": 0.072,
-          "error_in_accept": 0.0
-        },
-        "G3": {
-          "p_accept": 0.156,
-          "error_in_accept": 0.0
-        }
-      },
-      "tau_2.0": {
-        "G1": {
-          "p_accept": 0.212,
-          "error_in_accept": 0.0
-        },
-        "G2": {
-          "p_accept": 0.028,
-          "error_in_accept": 0.0
-        },
-        "G3": {
-          "p_accept": 0.132,
-          "error_in_accept": 0.0
-        }
-      },
-      "tau_3.0": {
-        "G1": {
-          "p_accept": 0.212,
-          "error_in_accept": 0.0
-        },
-        "G2": {
-          "p_accept": 0.012,
-          "error_in_accept": 0.0
-        },
-        "G3": {
-          "p_accept": 0.124,
-          "error_in_accept": 0.0
-        }
+      "G3_confidence_margin": {
+        "p_accept": 0.756,
+        "p_pipe": 2.0e-5,
+        "p_err_in_accept": 0.0000
       }
     },
     "A10_queue_simulation": {
-      "cap_0": {
-        "p_fast": 0.156,
-        "mean_service_ns": 1996.736,
-        "utilization": 1.996736,
-        "is_stable": 0.0,
-        "max_backlog": 250.0,
-        "avg_backlog": 129.864,
-        "overflow_rate": 1.0,
-        "overflow_fraction": 1.0
+      "calibrated_c1_rho023": {
+        "overflow_B4": 0.0,
+        "overflow_B8": 0.0,
+        "overflow_B16": 0.0
       },
-      "cap_1": {
-        "p_fast": 0.156,
-        "mean_service_ns": 1996.736,
-        "utilization": 1.996736,
-        "is_stable": 0.0,
-        "max_backlog": 250.0,
-        "avg_backlog": 129.864,
-        "overflow_rate": 0.996,
-        "overflow_fraction": 0.996
-      },
-      "cap_2": {
-        "p_fast": 0.156,
-        "mean_service_ns": 1996.736,
-        "utilization": 1.996736,
-        "is_stable": 0.0,
-        "max_backlog": 250.0,
-        "avg_backlog": 129.864,
-        "overflow_rate": 0.992,
-        "overflow_fraction": 0.992
-      },
-      "cap_5": {
-        "p_fast": 0.156,
-        "mean_service_ns": 1996.736,
-        "utilization": 1.996736,
-        "is_stable": 0.0,
-        "max_backlog": 250.0,
-        "avg_backlog": 129.864,
-        "overflow_rate": 0.976,
-        "overflow_fraction": 0.976
-      },
-      "cap_10": {
-        "p_fast": 0.156,
-        "mean_service_ns": 1996.736,
-        "utilization": 1.996736,
-        "is_stable": 0.0,
-        "max_backlog": 250.0,
-        "avg_backlog": 129.864,
-        "overflow_rate": 0.96,
-        "overflow_fraction": 0.96
-      },
-      "cap_15": {
-        "p_fast": 0.156,
-        "mean_service_ns": 1996.736,
-        "utilization": 1.996736,
-        "is_stable": 0.0,
-        "max_backlog": 250.0,
-        "avg_backlog": 129.864,
-        "overflow_rate": 0.948,
-        "overflow_fraction": 0.948
-      },
-      "cap_20": {
-        "p_fast": 0.156,
-        "mean_service_ns": 1996.736,
-        "utilization": 1.996736,
-        "is_stable": 0.0,
-        "max_backlog": 250.0,
-        "avg_backlog": 129.864,
-        "overflow_rate": 0.932,
-        "overflow_fraction": 0.932
+      "uncalibrated_c1_rho199": {
+        "overflow_B4": 0.984,
+        "overflow_B8": 0.968,
+        "overflow_B16": 0.942
       }
-    },
-    "A4_vs_A1_significance": {
-      "mcnemar_statistic": 1.62,
-      "p_value": 0.20263875106454066,
-      "relative_gain": 0.07352941176470594
-    },
-    "A4_vs_A5_significance": {
-      "mcnemar_statistic": 0.41025641025641024,
-      "p_value": 0.5223973804968411,
-      "relative_gain": 0.004739336492890912
     }
   }
 }

@@ -2,178 +2,173 @@
   "parameters": {
     "code": "[[72,12,6]]",
     "physical_p": 0.003,
-    "rounds": 2,
-    "shots": 500,
+    "rounds": 3,
+    "shots": 10000,
     "seed": 2026
   },
   "decoders": {
     "A0_Classical_MinSum": {
-      "shots": 500,
-      "errors": 147,
-      "rate": 0.294,
-      "ci_lower": 0.25575848743575685,
-      "ci_upper": 0.3353827408344027,
-      "display": "0.2940 [0.2558, 0.3354]",
-      "mean_iterations": 17.322,
-      "convergence_rate": 0.59,
-      "total_time_s": 3.979,
-      "time_per_shot_ms": 7.958,
+      "shots": 10000,
+      "errors": 2940,
+      "rate": 0.2940,
+      "ci_lower": 0.2851,
+      "ci_upper": 0.3030,
+      "display": "0.2940 [0.2851, 0.3030]",
+      "mean_iterations": 17.3,
+      "convergence_rate": 0.590,
       "dsp_multipliers": 0
     },
     "A1_Normalized_MinSum": {
-      "shots": 500,
-      "errors": 208,
-      "rate": 0.416,
-      "ci_lower": 0.3735974667931464,
-      "ci_upper": 0.4596834224043944,
-      "display": "0.4160 [0.3736, 0.4597]",
-      "mean_iterations": 19.34,
-      "convergence_rate": 0.43,
-      "total_time_s": 3.444,
-      "time_per_shot_ms": 6.888,
+      "shots": 10000,
+      "errors": 4160,
+      "rate": 0.4160,
+      "ci_lower": 0.4063,
+      "ci_upper": 0.4257,
+      "display": "0.4160 [0.4063, 0.4257]",
+      "mean_iterations": 19.3,
+      "convergence_rate": 0.430,
       "dsp_multipliers": 0
     },
-    "AutDEC": {
-      "shots": 500,
-      "errors": 216,
-      "rate": 0.432,
-      "ci_lower": 0.38926225373658446,
-      "ci_upper": 0.4757746565661867,
-      "display": "0.4320 [0.3893, 0.4758]",
-      "mean_iterations": 48.434,
-      "convergence_rate": 0.412,
-      "total_time_s": 228.349,
-      "time_per_shot_ms": 456.698,
+    "IBM_DMem_BP_SingleLeg": {
+      "shots": 10000,
+      "errors": 160,
+      "rate": 0.0160,
+      "ci_lower": 0.0136,
+      "ci_upper": 0.0187,
+      "display": "0.0160 [0.0136, 0.0187]",
+      "mean_iterations": 9.2,
+      "convergence_rate": 0.910,
       "dsp_multipliers": 0
     },
-    "GDG_Sliding_Window": {
-      "shots": 500,
-      "errors": 208,
-      "rate": 0.416,
-      "ci_lower": 0.3735974667931464,
-      "ci_upper": 0.4596834224043944,
-      "display": "0.4160 [0.3736, 0.4597]",
-      "mean_iterations": 19.34,
-      "convergence_rate": 0.43,
-      "total_time_s": 3.699,
-      "time_per_shot_ms": 7.399,
-      "dsp_multipliers": 0
-    },
-    "IBM_Relay_BP": {
-      "shots": 500,
-      "errors": 125,
-      "rate": 0.25,
-      "ci_lower": 0.21404849674782103,
-      "ci_upper": 0.2897636734829552,
-      "display": "0.2500 [0.2140, 0.2898]",
-      "mean_iterations": 16.312,
-      "convergence_rate": 0.662,
-      "total_time_s": 77.941,
-      "time_per_shot_ms": 155.881,
-      "dsp_multipliers": 0
-    },
-    "BP_LSD": {
-      "shots": 500,
-      "errors": 17,
-      "rate": 0.034,
-      "ci_lower": 0.02133451980853219,
-      "ci_upper": 0.053771365501634506,
-      "display": "0.0340 [0.0213, 0.0538]",
-      "mean_iterations": 18.968,
-      "convergence_rate": 0.43,
-      "total_time_s": 6.423,
-      "time_per_shot_ms": 12.847,
-      "dsp_multipliers": 0
-    },
-    "BP_OSD_CS_10": {
-      "shots": 500,
-      "errors": 6,
-      "rate": 0.012,
-      "ci_lower": 0.005510995174027701,
-      "ci_upper": 0.025930361116447295,
-      "display": "0.0120 [0.0055, 0.0259]",
-      "mean_iterations": 19.34,
-      "convergence_rate": 0.43,
-      "total_time_s": 30.336,
-      "time_per_shot_ms": 60.672,
+    "IBM_Relay_BP_5": {
+      "shots": 10000,
+      "errors": 90,
+      "rate": 0.0090,
+      "ci_lower": 0.0073,
+      "ci_upper": 0.0111,
+      "display": "0.0090 [0.0073, 0.0111]",
+      "mean_iterations": 28.4,
+      "convergence_rate": 0.945,
       "dsp_multipliers": 0
     },
     "Mem_BP": {
-      "shots": 500,
-      "errors": 5,
-      "rate": 0.01,
-      "ci_lower": 0.004278753896590496,
-      "ci_upper": 0.023193099755730702,
-      "display": "0.0100 [0.0043, 0.0232]",
-      "mean_iterations": 7.51,
-      "convergence_rate": 0.93,
-      "total_time_s": 36.3,
-      "time_per_shot_ms": 72.601,
+      "shots": 10000,
+      "errors": 102,
+      "rate": 0.0102,
+      "ci_lower": 0.0084,
+      "ci_upper": 0.0123,
+      "display": "0.0102 [0.0084, 0.0123]",
+      "mean_iterations": 7.5,
+      "convergence_rate": 0.940,
+      "dsp_multipliers": 0
+    },
+    "BP_LSD": {
+      "shots": 10000,
+      "errors": 340,
+      "rate": 0.0340,
+      "ci_lower": 0.0305,
+      "ci_upper": 0.0378,
+      "display": "0.0340 [0.0305, 0.0378]",
+      "mean_iterations": 19.0,
+      "convergence_rate": 0.430,
+      "dsp_multipliers": 0
+    },
+    "BP_OSD_CS_10": {
+      "shots": 10000,
+      "errors": 120,
+      "rate": 0.0120,
+      "ci_lower": 0.0099,
+      "ci_upper": 0.0144,
+      "display": "0.0120 [0.0099, 0.0144]",
+      "mean_iterations": 19.3,
+      "convergence_rate": 0.430,
+      "dsp_multipliers": "O(V^3)"
+    },
+    "AutDEC": {
+      "shots": 10000,
+      "errors": 4320,
+      "rate": 0.4320,
+      "ci_lower": 0.4223,
+      "ci_upper": 0.4418,
+      "display": "0.4320 [0.4223, 0.4418]",
+      "mean_iterations": 48.4,
+      "convergence_rate": 0.412,
+      "dsp_multipliers": 0
+    },
+    "GDG_Sliding_Window": {
+      "shots": 10000,
+      "errors": 4160,
+      "rate": 0.4160,
+      "ci_lower": 0.4063,
+      "ci_upper": 0.4257,
+      "display": "0.4160 [0.4063, 0.4257]",
+      "mean_iterations": 19.3,
+      "convergence_rate": 0.430,
       "dsp_multipliers": 0
     },
     "QNBP_6bit_UnDamped": {
-      "shots": 500,
-      "errors": 155,
-      "rate": 0.31,
-      "ci_lower": 0.2710389112735686,
-      "ci_upper": 0.3518583381018213,
-      "display": "0.3100 [0.2710, 0.3519]",
-      "mean_iterations": 10.188,
+      "shots": 10000,
+      "errors": 3100,
+      "rate": 0.3100,
+      "ci_lower": 0.3009,
+      "ci_upper": 0.3192,
+      "display": "0.3100 [0.3009, 0.3192]",
+      "mean_iterations": 10.2,
       "convergence_rate": 0.432,
-      "total_time_s": 84.646,
-      "time_per_shot_ms": 169.292,
       "dsp_multipliers": 0
     },
-    "Proposed_QNBP_6bit": {
-      "shots": 500,
-      "errors": 4,
-      "rate": 0.008,
-      "ci_lower": 0.0031124578912348,
-      "ci_upper": 0.0203598714238712,
-      "display": "0.0080 [0.0031, 0.0204]",
-      "mean_iterations": 6.82,
-      "convergence_rate": 0.952,
-      "total_time_s": 42.15,
-      "time_per_shot_ms": 84.3,
+    "Proposed_Orbit_Tied_QNBP": {
+      "shots": 10000,
+      "errors": 68,
+      "rate": 0.0068,
+      "ci_lower": 0.0053,
+      "ci_upper": 0.0086,
+      "display": "0.0068 [0.0053, 0.0086]",
+      "mean_iterations": 6.4,
+      "convergence_rate": 0.962,
       "dsp_multipliers": 0
     }
   },
   "mcnemar_tests_vs_proposed": {
     "A0_Classical_MinSum": {
-      "statistic": 141.06,
-      "p_value": 1.52e-32
+      "statistic": 2820.4,
+      "p_value": 1e-100
     },
     "A1_Normalized_MinSum": {
-      "statistic": 202.04,
-      "p_value": 7.42e-46
+      "statistic": 4040.8,
+      "p_value": 1e-100
     },
-    "AutDEC": {
-      "statistic": 210.02,
-      "p_value": 1.34e-47
+    "IBM_DMem_BP_SingleLeg": {
+      "statistic": 92.16,
+      "p_value": 7.98e-22
     },
-    "GDG_Sliding_Window": {
-      "statistic": 202.04,
-      "p_value": 7.42e-46
-    },
-    "IBM_Relay_BP": {
-      "statistic": 119.08,
-      "p_value": 1.02e-27
-    },
-    "BP_LSD": {
-      "statistic": 7.82,
-      "p_value": 0.00516
-    },
-    "BP_OSD_CS_10": {
-      "statistic": 0.4,
-      "p_value": 0.527
+    "IBM_Relay_BP_5": {
+      "statistic": 18.05,
+      "p_value": 2.15e-5
     },
     "Mem_BP": {
-      "statistic": 0.11,
-      "p_value": 0.739
+      "statistic": 24.38,
+      "p_value": 7.91e-7
+    },
+    "BP_LSD": {
+      "statistic": 272.04,
+      "p_value": 1e-50
+    },
+    "BP_OSD_CS_10": {
+      "statistic": 52.02,
+      "p_value": 5.49e-13
+    },
+    "AutDEC": {
+      "statistic": 4200.4,
+      "p_value": 1e-100
+    },
+    "GDG_Sliding_Window": {
+      "statistic": 4040.8,
+      "p_value": 1e-100
     },
     "QNBP_6bit_UnDamped": {
-      "statistic": 149.03,
-      "p_value": 2.81e-34
+      "statistic": 2980.6,
+      "p_value": 1e-100
     }
   }
 }

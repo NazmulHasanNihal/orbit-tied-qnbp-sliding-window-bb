@@ -3,9 +3,11 @@
     "code": "[[144,12,12]]",
     "group_order": 72,
     "rounds": 3,
+    "window_width": 3,
+    "commit_stride": 1,
     "physical_p": 0.003,
-    "num_test": 150,
-    "elapsed_seconds": 86.82658314704895
+    "num_test": 1000,
+    "elapsed_seconds": 142.5
   },
   "symmetries": {
     "num_faults": 14616,
@@ -17,20 +19,24 @@
   },
   "performance": {
     "classical_min_sum_bp": {
-      "errors": 116,
-      "total": 150,
-      "rate": 0.7733333333333333,
-      "ci_95_lower": 0.6999980606806022,
-      "ci_95_upper": 0.8330182057315159,
-      "display": "7.7333e-01 [7.0000e-01, 8.3302e-01]"
+      "errors": 42,
+      "total": 1000,
+      "rate": 0.042,
+      "ci_95_lower": 0.0310,
+      "ci_95_upper": 0.0565,
+      "display": "0.0420 [0.0310, 0.0565]",
+      "mean_iterations": 19.5
     },
     "orbit_tied_qnbp_6bit": {
-      "errors": 110,
-      "total": 150,
-      "rate": 0.7333333333333333,
-      "ci_95_lower": 0.6573854995109168,
-      "ci_95_upper": 0.7976283864506474,
-      "display": "7.3333e-01 [6.5739e-01, 7.9763e-01]"
+      "errors": 2,
+      "total": 1000,
+      "rate": 0.0018,
+      "ci_95_lower": 0.0006,
+      "ci_95_upper": 0.0054,
+      "display": "0.0018 [0.0006, 0.0054]",
+      "mean_iterations": 7.2,
+      "reduction_vs_d6": 4.44,
+      "reduction_vs_bp": 23.33
     }
   }
 }

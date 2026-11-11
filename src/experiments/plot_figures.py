@@ -70,7 +70,6 @@ def plot_f3_symmetry_vs_random(results: Dict[str, Any], output_dir: str = "resul
     ax.set_yscale("log")
     ax.set_xlabel("Trainable Parameters ($N_{params}$)")
     ax.set_ylabel("Logical Error Rate per Window ($P_L$)")
-    ax.set_title("Figure F3: Symmetry Tying vs Random Control ([[72,12,6]], p=0.003)")
     ax.legend(loc="upper right", frameon=True)
 
     fig.tight_layout()
@@ -101,7 +100,6 @@ def plot_f4_quantization(results: Dict[str, Any], output_dir: str = "results/fig
     ax.set_yscale("log")
     ax.set_xlabel("Quantization Bit Width")
     ax.set_ylabel("Logical Error Rate ($P_L$)")
-    ax.set_title("Figure F4: Quantization vs Accuracy ([[72,12,6]], p=0.003)")
     ax.legend(loc="upper right", frameon=True)
 
     fig.tight_layout()
@@ -161,13 +159,13 @@ def plot_f5_gates(results: Dict[str, Any], output_dir: str = "results/figures") 
         ax1.legend(loc="lower left", frameon=True)
 
         ax2.set_xlabel(r"Confidence Margin Threshold $\tau$")
-        ax2.set_ylabel(r"Pipeline 95% Confidence Upper Bound")
+        ax2.set_ylabel(r"Pipeline Logical Error Rate ($P_{\mathrm{pipe}}$)")
         ax2.set_yscale("log")
-        ax2.set_ylim([1e-3, 0.05])
+        ax2.set_ylim([1e-5, 2e-3])
         overall_wilson_ub = wilson_upper_bound(0, n_shots)
-        ax2.axhline(overall_wilson_ub, color="#455a64", linestyle="--", label=rf"Overall 95% Wilson Bound ({overall_wilson_ub:.4f})")
-        ax2.axhline(1.0 / n_shots, color="#888888", linestyle=":", label=rf"Empirical Resolution Limit $1/N$ ({1.0/n_shots:.3f})")
-        ax2.set_title(r"(b) Pipeline Error vs. Threshold ($p=0.001, N=500$)")
+        ax2.axhline(overall_wilson_ub, color="#455a64", linestyle="--", label=rf"Overall 95% Wilson Bound ({overall_wilson_ub:.2e})")
+        ax2.axhline(1.0 / n_shots, color="#888888", linestyle=":", label=rf"Empirical Resolution Limit $1/N$ ({1.0/n_shots:.2e})")
+        ax2.set_title(r"(b) Pipeline Error vs. Threshold ($p=0.001, N=50,000$)")
         ax2.grid(True, linestyle="--", alpha=0.4)
         ax2.legend(loc="upper right", frameon=True)
 
@@ -300,7 +298,6 @@ def plot_f2_threshold_curve(
     ax.set_yscale("log")
     ax.set_xlabel("Physical Depolarizing Error Rate ($p$)")
     ax.set_ylabel("Logical Error Rate per Window ($P_L$)")
-    ax.set_title("Figure F2: Logical Error Rate vs Physical Noise ([[72,12,6]])")
     ax.legend(loc="lower right", frameon=True)
 
     fig.tight_layout()
@@ -348,7 +345,6 @@ def plot_f6_folding_tradeoffs(
     labels = [l.get_label() for l in lines]
     ax1.legend(lines, labels, loc="center right", frameon=True)
 
-    ax1.set_title("Figure F6: Hardware Folding Pareto Frontier ([[72,12,6]], DSP=0)")
     fig.tight_layout()
     fig.savefig(os.path.join(output_dir, "fig6_folding_tradeoffs.pdf"))
     fig.savefig(os.path.join(output_dir, "fig6_folding_tradeoffs.png"))
