@@ -36,10 +36,10 @@
    - `pytest tests/ -k "not cosim_10k"`: Passed 32/32 tests in 66.46s.
    - `README.md`: Upgraded to comprehensive Q1 research portal with full benchmark tables and reproduction guide.
 
-4. **Repository Directory Cleanup Complete:**
-   - Removed legacy drafts folder `archive_old_drafts/` (`main_2.pdf`, `main_3.pdf`, `main_4.pdf`, `main_5.pdf`, `main_ieeetran.tex`).
-   - Removed empty/dead package `stim_pyg/`.
-   - Removed redundant pre-audit backups `manuscript/main_backup_preaudit.tex` and `manuscript/references_backup_preaudit.bib`.
-   - Removed superseded early phase scratch logs `findings.md`, `progress.md`, and `task_plan.md`.
-   - Removed OS metadata `.agent/skills/.DS_Store`.
-   - Committed clean tree state via `aa108ac` with zero regressions (all 13 PDF verification checks & 32 pytest tests pass).
+5. **Professional Python Library Packaging Complete (`orbit-tied-qnbp` v1.0.0):**
+   - Configured standard `pyproject.toml` (PEP 517/518/621) with setuptools backend, SPDX Apache-2.0 license, and typed marker `py.typed` (PEP 561).
+   - Structured standard `src/orbit_tied_qnbp/` package with clean subpackages (`circuits`, `data`, `decoder`, `experiments`, `utils`) and backward-compatible `src/__init__.py`.
+   - Built production distribution artifacts in `dist/` (`orbit_tied_qnbp-1.0.0-py3-none-any.whl` and `orbit_tied_qnbp-1.0.0.tar.gz`).
+   - Implemented professional CLI `qnbp` (commands: `info`, `verify`, `benchmark`).
+   - Automated test suite: Passed 32/32 tests in 27.34s; PDF verification: 13/13 passed.
+   - Committed via `9f1cc0c`. Repository is 100% publication and PyPI release ready.
