@@ -24,8 +24,10 @@
 
 \title{Orbit-Tied Quantized Neural Belief Propagation for Real-Time Sliding-Window Decoding of Bivariate-Bicycle Quantum Codes}
 
-\author{Saad Tariq%
-\thanks{Saad Tariq is with the Department of Computer Science and Engineering, Lahore University of Management Sciences, Lahore 54000, Pakistan (e-mail: \texttt{saad.tariq@ieee.org}). This work was supported in part by the Open Quantum Error Correction Research Initiative.}}
+\author{Md.~Nazmul,
+        Musrat~Jahan~Gungun,
+        and~Maheli~Ahmed%
+\thanks{Md. Nazmul (ORCID: 0009-0001-6115-7023), Musrat Jahan Gungun (ORCID: 0009-0006-4249-9198), and Maheli Ahmed (ORCID: 0000-0002-5183-7498) are with the Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh (e-mail: \texttt{nazmulhas36@gmail.com}). Md. Nazmul is the corresponding author. This work was supported in part by the Open Quantum Error Correction Research Initiative.}}
 
 \markboth{IEEE Transactions on Quantum Engineering,~Vol.~XX, No.~X,~2026}%
 {Orbit-Tied Quantized Neural Belief Propagation for Sliding-Window Decoding of Bivariate-Bicycle Codes}
@@ -471,7 +473,7 @@ The synthesizeable test harness (\texttt{rtl/streaming\_axi\_harness.sv}) demons
 We have presented an orbit-tied, 6-bit quantized neural belief propagation decoder for gross bivariate-bicycle codes. By exploiting torus automorphisms, we collapsed parameter counts by $36\times$ on $[[72,12,6]]$ and $72\times$ on $[[144,12,12]]$, eliminated untied overfitting, and realized multiplier-free execution with zero DSP slices. Paired with a confidence margin fast-path gate and hardware folding schedule, the proposed architecture provides a scalable, sub-microsecond decoding pipeline for next-generation fault-tolerant quantum computers.
 
 \section*{Data and Code Availability}
-The complete open-source codebase, including the Stim-to-PyG DEM compiler, automorphism orbit verifier, 6-bit QNBP checkpoints, and synthesizeable SystemVerilog RTL modules (\texttt{vnu.sv}, \texttt{cnu.sv}, \texttt{g3\_gate.sv}, and \texttt{streaming\_axi\_harness.sv}) with 10,000-shot testbenches, is publicly available at: \url{https://github.com/saadtariq/orbit-tied-qnbp-sliding-window-bb}.
+The complete open-source codebase, including the Stim-to-PyG DEM compiler, automorphism orbit verifier, 6-bit QNBP checkpoints, and synthesizeable SystemVerilog RTL modules (\texttt{vnu.sv}, \texttt{cnu.sv}, \texttt{g3\_gate.sv}, and \texttt{streaming\_axi\_harness.sv}) with 10,000-shot testbenches, is publicly available at: \url{https://github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb}.
 
 \balance
 \bibliographystyle{IEEEtran}

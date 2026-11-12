@@ -51,12 +51,12 @@ def generate_cover_letter_pdf(output_pdf_path: str) -> None:
     </style>
     <body>
         <div class="header">
-            <div class="inst">LAHORE UNIVERSITY OF MANAGEMENT SCIENCES</div>
+            <div class="inst">COLLEGE OF TECHNOLOGY, NATIONAL UNIVERSITY</div>
             <div class="dept">Department of Computer Science and Engineering &bull; Quantum Architecture &amp; QEC Laboratory</div>
             <table class="meta-table">
                 <tr>
-                    <td style="width: 50%;">D.H.A. Phase 5, Lahore 54000, Pakistan</td>
-                    <td style="width: 50%; text-align: right;">E-mail: <b>saad.tariq@ieee.org</b> &bull; Member, IEEE</td>
+                    <td style="width: 50%;">Board Bazar, Gazipur-1704, Bangladesh</td>
+                    <td style="width: 50%; text-align: right;">E-mail: <b>nazmulhas36@gmail.com</b> &bull; ORCID: 0009-0001-6115-7023</td>
                 </tr>
             </table>
         </div>
@@ -76,11 +76,19 @@ def generate_cover_letter_pdf(output_pdf_path: str) -> None:
         <p>Dear Prof. Van Meter and the Editorial Board of <i>IEEE Transactions on Quantum Engineering</i>,</p>
 
         <p>
-        I am pleased to submit our original research manuscript, titled <b>&ldquo;Orbit-Tied Quantized Neural Belief Propagation for Real-Time Sliding-Window Decoding of Bivariate-Bicycle Quantum Codes,&rdquo;</b> for peer-reviewed publication as a Regular Paper in the <i>IEEE Transactions on Quantum Engineering</i>. The manuscript consists of 12 pages in standard IEEE Transactions two-column format, comprising 7 multi-panel publication figures, 5 comparative benchmark tables, formal mathematical proofs, synthesizeable hardware designs, and 59 comprehensive citations.
+        On behalf of my co-authors, I am pleased to submit our original research manuscript, titled <b>&ldquo;Orbit-Tied Quantized Neural Belief Propagation for Real-Time Sliding-Window Decoding of Bivariate-Bicycle Quantum Codes,&rdquo;</b> for peer-reviewed publication as a Regular Paper in the <i>IEEE Transactions on Quantum Engineering</i>. The manuscript consists of 12 pages in standard IEEE Transactions two-column format, comprising 7 multi-panel publication figures, 5 comparative benchmark tables, formal mathematical proofs, synthesizeable hardware designs, and 59 comprehensive citations.
         </p>
 
         <p>
-        <b>Background and Motivation:</b> Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes, pioneered by Bravyi et al. (2024), represent a transformative milestone toward scalable fault-tolerant quantum computation, enabling an order-of-magnitude reduction in physical qubit overhead compared to standard 2D topological surface codes. However, translating BB codes into operational quantum processors faces a critical decoding bottleneck: their dense, non-local Tanner graphs produce complex 3D space-time Detector Error Models (DEM) with thousands of correlated fault mechanisms. Conventional decoders (such as BP+OSD) require hundreds of microseconds on high-end CPUs, causing catastrophic backlog and buffer overflow under the strict &sim;1&nbsp;&mu;s coherence budget of superconducting quantum processors.
+        <b>Authorship Sequence:</b><br>
+        &bull; <b>Md. Nazmul</b> (Lead &amp; Corresponding Author; ORCID: 0009-0001-6115-7023)<br>
+        &bull; <b>Musrat Jahan Gungun</b> (Co-Author; ORCID: 0009-0006-4249-9198)<br>
+        &bull; <b>Maheli Ahmed</b> (Faculty Supervisor; ORCID: 0000-0002-5183-7498)<br>
+        <i>All authors are with the Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh.</i>
+        </p>
+
+        <p>
+        <b>Background and Motivation:</b> Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes, pioneered by Bravyi et al. (Nature 2024), represent a transformative milestone toward scalable fault-tolerant quantum computation, enabling an order-of-magnitude reduction in physical qubit overhead compared to standard 2D topological surface codes. However, translating BB codes into operational quantum processors faces a critical decoding bottleneck: their dense, non-local Tanner graphs produce complex 3D space-time Detector Error Models (DEM) with thousands of correlated fault mechanisms. Conventional decoders (such as BP+OSD) require hundreds of microseconds on high-end CPUs, causing catastrophic backlog and buffer overflow under the strict &sim;1&nbsp;&mu;s coherence budget of superconducting quantum processors.
         </p>
 
         <p>
@@ -89,17 +97,12 @@ def generate_cover_letter_pdf(output_pdf_path: str) -> None:
 
         <div class="bullet">
             <span class="b-title">1. Torus Automorphism Equivariance (Theorem 2):</span>
-            We prove that the 2D torus translation group $G = \mathbb{Z}_\ell \times \mathbb{Z}_m$ forms an exact automorphism group of the space-time DEM hypergraph. By tying neural BP weights across automorphism orbits, we collapse 7,308 DEM fault mechanisms into 203 orbits ($36.0\times$ reduction) on $[[72,12,6]]$ and 14,616 mechanisms into 203 orbits ($72.0\times$ reduction) on $[[144,12,12]]$, guaranteeing mathematical equivariance and eliminating untied neural overfitting.
+            We prove that the 2D torus translation group G = Z<sub>&ell;</sub> &times; Z<sub>m</sub> forms an exact automorphism group of the space-time DEM hypergraph. By tying neural BP weights across automorphism orbits, we collapse 7,308 DEM fault mechanisms into 203 orbits (36.0&times; reduction) on [[72,12,6]] and 14,616 mechanisms into 203 orbits (72.0&times; reduction) on [[144,12,12]], guaranteeing mathematical equivariance and eliminating untied neural overfitting.
         </div>
 
         <div class="bullet">
             <span class="b-title">2. Multiplier-Free 6-Bit Dyadic CSD Architecture (Theorem 3):</span>
-            To eliminate costly Digital Signal Processing (DSP) multiplier blocks entirely ($\text{DSP}=0$), we prove dyadic fixed-point bounds ($[-7.75, +7.75]$, $\Delta=0.25$) and implement all variable- and check-node updates using two-term Canonical Signed-Digit (CSD) shift-and-add arithmetic, enabling ultra-compact FPGA deployment.
-        </div>
-
-        <div class="bullet">
-            <span class="b-title">3. Multi-Stage Margin Gating &amp; Streaming Sliding Window:</span>
-            We engineer a confidence-margin fast-path gate ($G_3$) within a continuous sliding window ($W=3, F=1$). Gate $G_3$ routes 75.6% of syndrome windows with zero logical errors ($P_{L, \text{accept}} = 0.0000$), reducing queue backlog to $6.0 \times 10^{-5}$ and delivering a pipeline logical error rate of $P_{\text{pipe}} = 1.90 \times 10^{-4}$ with 102.4&nbsp;ns mean latency (240&nbsp;ns max) &mdash; well within the $1\,\mu\text{s}$ quantum cycle limit.
+            To eliminate costly Digital Signal Processing (DSP) multiplier blocks entirely (DSP=0), we prove dyadic fixed-point bounds ([-7.75, +7.75], &Delta;=0.25) and implement all variable- and check-node updates using two-term Canonical Signed-Digit (CSD) shift-and-add arithmetic, enabling ultra-compact FPGA deployment.
         </div>
     </body>
     """
@@ -118,18 +121,23 @@ def generate_cover_letter_pdf(output_pdf_path: str) -> None:
     </style>
     <body>
         <div class="bullet">
+            <span class="b-title">3. Multi-Stage Margin Gating &amp; Streaming Sliding Window:</span>
+            We engineer a confidence-margin fast-path gate (G<sub>3</sub>) within a continuous sliding window (W=3, F=1). Gate G<sub>3</sub> routes 75.6% of syndrome windows with zero logical errors (P<sub>L,accept</sub> = 0.0000), reducing queue backlog to 6.0 &times; 10<sup>-5</sup> and delivering an end-to-end pipeline logical error rate of P<sub>pipe</sub> = 1.90 &times; 10<sup>-4</sup> with 102.4&nbsp;ns mean latency (240&nbsp;ns max) &mdash; well within the 1&nbsp;&mu;s quantum cycle limit.
+        </div>
+
+        <div class="bullet">
             <span class="b-title">4. 100-Round Continuous Streaming Memory Survival:</span>
-            We validate continuous operation across $R=100$ measurement rounds ($100\,\mu\text{s}$ at $1\,\mu\text{s}$/cycle). Active temporal boundary residual propagation ($s_{\text{res}}^{(k+1)} = s_{\text{raw}}^{(k+1)} \oplus H_{\text{boundary}} \hat{e}_{\text{commit}}^{(k)}$) maintains $98.1\%$ logical survival at 100 rounds ($F_{\text{log}} = 0.9981$ at 10&nbsp;&mu;s, $0.9812$ at 100&nbsp;&mu;s), whereas boundary-agnostic decoding collapses to $22.1\%$ ($4.4\times$ degradation).
+            We validate continuous operation across R=100 measurement rounds (100&nbsp;&mu;s at 1&nbsp;&mu;s/cycle). Active temporal boundary residual propagation preserves 98.1% logical survival at 100 rounds (F<sub>log</sub> = 0.9981 at 10&nbsp;&mu;s, 0.9812 at 100&nbsp;&mu;s), whereas boundary-agnostic decoding collapses to 22.1% (4.4&times; degradation).
         </div>
 
         <div class="bullet">
             <span class="b-title">5. Empirical IBM Quantum Heron r2 Calibration Benchmark:</span>
-            Evaluating our decoder against the empirical calibration snapshot of IBM's flagship 133-qubit Heron r2 processor ($p_{\text{2Q}} = 2.1 \times 10^{-3}, \eta = 50.0, p_{\text{RO}} = 8.0 \times 10^{-3}$) confirms convergence in only 3.85 mean iterations &mdash; the fastest among all 6 models tested (vs. 9.16 for Classical Min-Sum, 11.86 for Normalized Min-Sum, and 8.86 for BP+OSD-CS-10) with $\text{DSP}=0$.
+            Evaluating our decoder against the empirical calibration snapshot of IBM's flagship 133-qubit Heron r2 processor (p<sub>2Q</sub> = 2.1 &times; 10<sup>-3</sup>, &eta; = 50.0, p<sub>RO</sub> = 8.0 &times; 10<sup>-3</sup>) confirms convergence in only 3.85 mean iterations &mdash; the fastest among all 6 models tested (vs. 9.16 for Classical Min-Sum, 11.86 for Normalized Min-Sum, and 8.86 for BP+OSD-CS-10) with DSP=0.
         </div>
 
         <div class="bullet">
             <span class="b-title">6. Hardware Synthesis &amp; 10,000-Shot Co-Simulation Parity:</span>
-            We synthesize our complete architecture in SystemVerilog for AMD UltraScale+ XCKU040 FPGA ($f_{\text{clk}} = 250\text{ MHz}$, $WNS = +0.18\text{ ns}$, 28,204 LUTs, 0 DSPs), confirming 10,000-shot bit-exact hardware-software co-simulation parity.
+            We synthesize our complete architecture in SystemVerilog for AMD UltraScale+ XCKU040 FPGA (f<sub>clk</sub> = 250&nbsp;MHz, WNS = +0.18&nbsp;ns, 28,204 LUTs, 0 DSPs), confirming 10,000-shot bit-exact hardware-software co-simulation parity.
         </div>
 
         <div class="section-h">Scope Alignment with IEEE Transactions on Quantum Engineering:</div>
@@ -141,7 +149,7 @@ def generate_cover_letter_pdf(output_pdf_path: str) -> None:
         <p>
         1. <b>Originality:</b> This manuscript represents original research and is not currently published, accepted, or under concurrent evaluation in any other journal or conference.<br>
         2. <b>Software &amp; Data Availability:</b> In accordance with IEEE open science standards, the complete implementation is publicly available as an open-source Python library (<code>orbit-tied-qnbp</code> v1.0.0 on PyPI and GitHub: <code>github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb</code>), including all synthesizeable SystemVerilog RTL, testbenches, and dataset generation scripts.<br>
-        3. <b>Conflict of Interest:</b> The author certifies that there are no financial or commercial conflicts of interest.
+        3. <b>Conflict of Interest:</b> The authors certify that there are no financial or commercial conflicts of interest.
         </p>
 
         <div class="section-h">Suggested Expert Reviewers:</div>
@@ -177,10 +185,11 @@ def generate_cover_letter_pdf(output_pdf_path: str) -> None:
 
         <div class="sign">
             Sincerely,<br><br>
-            <b>Saad Tariq</b>, Member, IEEE<br>
+            <b>Md. Nazmul</b> (Lead &amp; Corresponding Author)<br>
+            <i>On behalf of co-authors Musrat Jahan Gungun and Maheli Ahmed</i><br>
             Department of Computer Science and Engineering<br>
-            Lahore University of Management Sciences, Lahore 54000, Pakistan<br>
-            E-mail: <code>saad.tariq@ieee.org</code>
+            College of Technology, National University, Gazipur, Bangladesh<br>
+            E-mail: <code>nazmulhas36@gmail.com</code> &bull; ORCID: <code>0009-0001-6115-7023</code>
         </div>
     </body>
     """
@@ -203,7 +212,7 @@ def generate_metadata_markdown(output_path: str) -> None:
 **Target Journal:** *IEEE Transactions on Quantum Engineering (IEEE TQE)*  
 **Manuscript Type:** Regular Paper (Original Research)  
 **Track / Subject Category:** Quantum Architecture, Quantum Error Correction, and Physical Hardware  
-**Corresponding Author:** Saad Tariq (saad.tariq@ieee.org)  
+**Corresponding Author:** Md. Nazmul (nazmulhas36@gmail.com)  
 
 ---
 
@@ -240,18 +249,42 @@ Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes have emerg
 
 ## 2. Author Details (ScholarOne Step 3)
 
+### Author 1 (Lead & Corresponding Author)
 | Field | Value |
 |---|---|
-| **First (Given) Name** | Saad |
-| **Last (Family) Name** | Tariq |
-| **Email Address** | `saad.tariq@ieee.org` |
-| **Institution / University** | Lahore University of Management Sciences (LUMS) |
+| **First (Given) Name** | Md. |
+| **Last (Family) Name** | Nazmul |
+| **ORCID** | `0009-0001-6115-7023` |
+| **Email Address** | `nazmulhas36@gmail.com` |
+| **Institution / University** | College of Technology, National University |
 | **Department** | Department of Computer Science and Engineering |
-| **Address** | Sector U, D.H.A. Phase 5 |
-| **City, State, Postal Code** | Lahore, Punjab, 54000 |
-| **Country** | Pakistan |
-| **IEEE Membership Status** | Member, IEEE |
-| **Role** | Author & Corresponding Author |
+| **City, Postal Code** | Gazipur, 1704 |
+| **Country** | Bangladesh |
+| **Role** | Project Leader / Corresponding Author |
+
+### Author 2 (Co-Author)
+| Field | Value |
+|---|---|
+| **First (Given) Name** | Musrat Jahan |
+| **Last (Family) Name** | Gungun |
+| **ORCID** | `0009-0006-4249-9198` |
+| **Institution / University** | College of Technology, National University |
+| **Department** | Department of Computer Science and Engineering |
+| **City, Postal Code** | Gazipur, 1704 |
+| **Country** | Bangladesh |
+| **Role** | Project Member / Researcher |
+
+### Author 3 (Faculty Supervisor)
+| Field | Value |
+|---|---|
+| **First (Given) Name** | Maheli |
+| **Last (Family) Name** | Ahmed |
+| **ORCID** | `0000-0002-5183-7498` |
+| **Institution / University** | College of Technology, National University |
+| **Department** | Department of Computer Science and Engineering |
+| **City, Postal Code** | Gazipur, 1704 |
+| **Country** | Bangladesh |
+| **Role** | Faculty Supervisor |
 
 ---
 
@@ -281,19 +314,13 @@ Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes have emerg
 - **E-mail:** `b.m.terhal@tudelft.nl`
 - **Expertise / Rationale:** Leading authority on fault-tolerant quantum computing architectures, quantum memory thresholds, and hardware requirements for real-time error correction.
 
-### Reviewer 5
-- **Name:** Prof. Shilin Huang
-- **Institution:** Department of Electrical and Computer Engineering, Duke University, Durham, NC, USA
-- **E-mail:** `shilin.huang@duke.edu`
-- **Expertise / Rationale:** Expert in neural belief propagation decoding for quantum codes and FPGA-accelerated quantum control pipelines.
-
 ---
 
 ## 4. Mandatory Submission Declarations (ScholarOne Step 5)
 
 ### Conflict of Interest Statement
 ```
-The author declares that there are no financial, personal, or professional conflicts of interest that could be perceived as influencing the work reported in this manuscript.
+The authors declare that there are no financial, personal, or professional conflicts of interest that could be perceived as influencing the work reported in this manuscript.
 ```
 
 ### Data and Code Availability Statement
@@ -303,17 +330,17 @@ All code, models, synthesizeable SystemVerilog RTL, simulation scripts, and benc
 
 ### Funding and Acknowledgment Statement
 ```
-This work was supported in part by the Open Quantum Error Correction Research Initiative. The author thanks the open-source quantum computing community and developers of Stim, PyTorch, and PyMuPDF.
+This work was supported in part by the Open Quantum Error Correction Research Initiative. The authors thank the open-source quantum computing community and developers of Stim, PyTorch, and PyMuPDF.
 ```
 
 ### AI Disclosure Statement (IEEE Author Guidelines Compliance)
 ```
-Generative AI and automated toolchains were utilized solely for code linting, automated layout bounds verification, and script formatting. All scientific formulations, mathematical proofs (Theorems 1–3), decoder architectures, SystemVerilog hardware RTL, and empirical conclusions were conceived, verified, and authored by the author.
+Generative AI and automated toolchains were utilized solely for code linting, automated layout bounds verification, and script formatting. All scientific formulations, mathematical proofs (Theorems 1–3), decoder architectures, SystemVerilog hardware RTL, and empirical conclusions were conceived, verified, and authored by the authors.
 ```
 
 ### Prior Publication / Dual Submission Certification
 ```
-The author certifies that this manuscript is original work, has not been published previously, and is not currently under consideration for publication elsewhere.
+The authors certify that this manuscript is original work, has not been published previously, and is not currently under consideration for publication elsewhere.
 ```
 
 ---
@@ -347,8 +374,7 @@ def main() -> None:
     generate_metadata_markdown("SUBMISSION_METADATA.md")
 
     # 5. Generate Text & Markdown Cover Letter
-    with open("submission/COVER_LETTER.md", "w", encoding="utf-8") as f:
-        f.write("""# Official Editorial Cover Letter — IEEE Transactions on Quantum Engineering
+    cover_letter_md = """# Official Editorial Cover Letter — IEEE Transactions on Quantum Engineering
 
 **To:**  
 Prof. Rodney Van Meter, Editor-in-Chief  
@@ -356,10 +382,11 @@ Prof. Rodney Van Meter, Editor-in-Chief
 IEEE Quantum Initiative  
 
 **From:**  
-Saad Tariq, Member, IEEE  
+Md. Nazmul (Lead & Corresponding Author)  
+*On behalf of co-authors Musrat Jahan Gungun and Maheli Ahmed*  
 Department of Computer Science and Engineering  
-Lahore University of Management Sciences, Lahore 54000, Pakistan  
-E-mail: `saad.tariq@ieee.org`  
+College of Technology, National University, Gazipur, Bangladesh  
+E-mail: `nazmulhas36@gmail.com` • ORCID: `0009-0001-6115-7023`  
 
 **Date:** November 12, 2026  
 
@@ -369,9 +396,15 @@ E-mail: `saad.tariq@ieee.org`
 
 Dear Prof. Van Meter and Members of the Editorial Board,
 
-I am pleased to submit our original research manuscript, titled **"Orbit-Tied Quantized Neural Belief Propagation for Real-Time Sliding-Window Decoding of Bivariate-Bicycle Quantum Codes,"** for consideration as a Regular Paper in the *IEEE Transactions on Quantum Engineering*.
+On behalf of my co-authors, I am pleased to submit our original research manuscript, titled **"Orbit-Tied Quantized Neural Belief Propagation for Real-Time Sliding-Window Decoding of Bivariate-Bicycle Quantum Codes,"** for consideration as a Regular Paper in the *IEEE Transactions on Quantum Engineering*.
 
 The manuscript contains 12 pages in standard IEEE Transactions two-column format, comprising 7 multi-panel figures, 5 benchmark tables, rigorous mathematical theorems, cycle-accurate SystemVerilog hardware co-simulation, and 59 sequential references.
+
+### Authorship Sequence
+- **Md. Nazmul** (Lead & Corresponding Author; ORCID: `0009-0001-6115-7023`) — Project leader / Contact person
+- **Musrat Jahan Gungun** (Co-Author; ORCID: `0009-0006-4249-9198`) — Project member / Researcher
+- **Maheli Ahmed** (Faculty Supervisor; ORCID: `0000-0002-5183-7498`) — Supervisor  
+*All authors are affiliated with the Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh.*
 
 ### Motivation and Core Engineering Problem
 Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes (Bravyi et al., *Nature* 2024) offer an order-of-magnitude reduction in physical qubit overhead compared to topological surface codes. However, deploying them in real-time quantum control systems has remained blocked by a fundamental decoding dilemma: their dense, non-local check connectivity creates 3D space-time Detector Error Models (DEM) with thousands of correlated fault mechanisms. Conventional software decoders (e.g., BP+OSD) take hundreds of microseconds on CPUs, causing catastrophic backlog and buffer overflow under the strict ~1 μs coherence budget of superconducting quantum processors.
@@ -387,17 +420,21 @@ Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes (Bravyi et
 ### Editorial Certifications
 - **Originality:** This manuscript is original, has not been published previously, and is not currently under review elsewhere.
 - **Reproducibility:** The complete software library (`orbit-tied-qnbp` v1.0.0) is published on PyPI and GitHub (`github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb`) with pinned seeds, automated test suites, and SystemVerilog RTL.
-- **Conflict of Interest:** The author declares no competing financial or personal interests.
+- **Conflict of Interest:** The authors declare no competing financial or personal interests.
 
 Thank you very much for your time and editorial guidance.
 
 Sincerely,  
-**Saad Tariq**, Member, IEEE  
+**Md. Nazmul** (Lead & Corresponding Author)  
+*On behalf of co-authors Musrat Jahan Gungun and Maheli Ahmed*  
 Department of Computer Science and Engineering  
-Lahore University of Management Sciences, Lahore 54000, Pakistan  
-E-mail: `saad.tariq@ieee.org`
-""")
-    shutil.copy("submission/COVER_LETTER.md", "COVER_LETTER.md")
+College of Technology, National University, Gazipur, Bangladesh  
+E-mail: `nazmulhas36@gmail.com` • ORCID: `0009-0001-6115-7023`
+"""
+    with open("submission/COVER_LETTER.md", "w", encoding="utf-8") as f:
+        f.write(cover_letter_md)
+    with open("COVER_LETTER.md", "w", encoding="utf-8") as f:
+        f.write(cover_letter_md)
     print("✅ Generated Cover Letter Markdown files")
 
 

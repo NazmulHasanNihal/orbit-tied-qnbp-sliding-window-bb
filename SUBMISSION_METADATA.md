@@ -3,7 +3,7 @@
 **Target Journal:** *IEEE Transactions on Quantum Engineering (IEEE TQE)*  
 **Manuscript Type:** Regular Paper (Original Research)  
 **Track / Subject Category:** Quantum Architecture, Quantum Error Correction, and Physical Hardware  
-**Corresponding Author:** Saad Tariq (saad.tariq@ieee.org)  
+**Corresponding Author:** Md. Nazmul (nazmulhas36@gmail.com)  
 
 ---
 
@@ -40,18 +40,42 @@ Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes have emerg
 
 ## 2. Author Details (ScholarOne Step 3)
 
+### Author 1 (Lead & Corresponding Author)
 | Field | Value |
 |---|---|
-| **First (Given) Name** | Saad |
-| **Last (Family) Name** | Tariq |
-| **Email Address** | `saad.tariq@ieee.org` |
-| **Institution / University** | Lahore University of Management Sciences (LUMS) |
+| **First (Given) Name** | Md. |
+| **Last (Family) Name** | Nazmul |
+| **ORCID** | `0009-0001-6115-7023` |
+| **Email Address** | `nazmulhas36@gmail.com` |
+| **Institution / University** | College of Technology, National University |
 | **Department** | Department of Computer Science and Engineering |
-| **Address** | Sector U, D.H.A. Phase 5 |
-| **City, State, Postal Code** | Lahore, Punjab, 54000 |
-| **Country** | Pakistan |
-| **IEEE Membership Status** | Member, IEEE |
-| **Role** | Author & Corresponding Author |
+| **City, Postal Code** | Gazipur, 1704 |
+| **Country** | Bangladesh |
+| **Role** | Project Leader / Corresponding Author |
+
+### Author 2 (Co-Author)
+| Field | Value |
+|---|---|
+| **First (Given) Name** | Musrat Jahan |
+| **Last (Family) Name** | Gungun |
+| **ORCID** | `0009-0006-4249-9198` |
+| **Institution / University** | College of Technology, National University |
+| **Department** | Department of Computer Science and Engineering |
+| **City, Postal Code** | Gazipur, 1704 |
+| **Country** | Bangladesh |
+| **Role** | Project Member / Researcher |
+
+### Author 3 (Faculty Supervisor)
+| Field | Value |
+|---|---|
+| **First (Given) Name** | Maheli |
+| **Last (Family) Name** | Ahmed |
+| **ORCID** | `0000-0002-5183-7498` |
+| **Institution / University** | College of Technology, National University |
+| **Department** | Department of Computer Science and Engineering |
+| **City, Postal Code** | Gazipur, 1704 |
+| **Country** | Bangladesh |
+| **Role** | Faculty Supervisor |
 
 ---
 
@@ -81,19 +105,13 @@ Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes have emerg
 - **E-mail:** `b.m.terhal@tudelft.nl`
 - **Expertise / Rationale:** Leading authority on fault-tolerant quantum computing architectures, quantum memory thresholds, and hardware requirements for real-time error correction.
 
-### Reviewer 5
-- **Name:** Prof. Shilin Huang
-- **Institution:** Department of Electrical and Computer Engineering, Duke University, Durham, NC, USA
-- **E-mail:** `shilin.huang@duke.edu`
-- **Expertise / Rationale:** Expert in neural belief propagation decoding for quantum codes and FPGA-accelerated quantum control pipelines.
-
 ---
 
 ## 4. Mandatory Submission Declarations (ScholarOne Step 5)
 
 ### Conflict of Interest Statement
 ```
-The author declares that there are no financial, personal, or professional conflicts of interest that could be perceived as influencing the work reported in this manuscript.
+The authors declare that there are no financial, personal, or professional conflicts of interest that could be perceived as influencing the work reported in this manuscript.
 ```
 
 ### Data and Code Availability Statement
@@ -103,17 +121,17 @@ All code, models, synthesizeable SystemVerilog RTL, simulation scripts, and benc
 
 ### Funding and Acknowledgment Statement
 ```
-This work was supported in part by the Open Quantum Error Correction Research Initiative. The author thanks the open-source quantum computing community and developers of Stim, PyTorch, and PyMuPDF.
+This work was supported in part by the Open Quantum Error Correction Research Initiative. The authors thank the open-source quantum computing community and developers of Stim, PyTorch, and PyMuPDF.
 ```
 
 ### AI Disclosure Statement (IEEE Author Guidelines Compliance)
 ```
-Generative AI and automated toolchains were utilized solely for code linting, automated layout bounds verification, and script formatting. All scientific formulations, mathematical proofs (Theorems 1–3), decoder architectures, SystemVerilog hardware RTL, and empirical conclusions were conceived, verified, and authored by the author.
+Generative AI and automated toolchains were utilized solely for code linting, automated layout bounds verification, and script formatting. All scientific formulations, mathematical proofs (Theorems 1–3), decoder architectures, SystemVerilog hardware RTL, and empirical conclusions were conceived, verified, and authored by the authors.
 ```
 
 ### Prior Publication / Dual Submission Certification
 ```
-The author certifies that this manuscript is original work, has not been published previously, and is not currently under consideration for publication elsewhere.
+The authors certify that this manuscript is original work, has not been published previously, and is not currently under consideration for publication elsewhere.
 ```
 
 ---

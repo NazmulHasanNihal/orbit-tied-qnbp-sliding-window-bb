@@ -6,10 +6,11 @@ Prof. Rodney Van Meter, Editor-in-Chief
 IEEE Quantum Initiative  
 
 **From:**  
-Saad Tariq, Member, IEEE  
+Md. Nazmul (Lead & Corresponding Author)  
+*On behalf of co-authors Musrat Jahan Gungun and Maheli Ahmed*  
 Department of Computer Science and Engineering  
-Lahore University of Management Sciences, Lahore 54000, Pakistan  
-E-mail: `saad.tariq@ieee.org`  
+College of Technology, National University, Gazipur, Bangladesh  
+E-mail: `nazmulhas36@gmail.com` • ORCID: `0009-0001-6115-7023`  
 
 **Date:** November 12, 2026  
 
@@ -19,9 +20,15 @@ E-mail: `saad.tariq@ieee.org`
 
 Dear Prof. Van Meter and Members of the Editorial Board,
 
-I am pleased to submit our original research manuscript, titled **"Orbit-Tied Quantized Neural Belief Propagation for Real-Time Sliding-Window Decoding of Bivariate-Bicycle Quantum Codes,"** for consideration as a Regular Paper in the *IEEE Transactions on Quantum Engineering*.
+On behalf of my co-authors, I am pleased to submit our original research manuscript, titled **"Orbit-Tied Quantized Neural Belief Propagation for Real-Time Sliding-Window Decoding of Bivariate-Bicycle Quantum Codes,"** for consideration as a Regular Paper in the *IEEE Transactions on Quantum Engineering*.
 
 The manuscript contains 12 pages in standard IEEE Transactions two-column format, comprising 7 multi-panel figures, 5 benchmark tables, rigorous mathematical theorems, cycle-accurate SystemVerilog hardware co-simulation, and 59 sequential references.
+
+### Authorship Sequence
+- **Md. Nazmul** (Lead & Corresponding Author; ORCID: `0009-0001-6115-7023`) — Project leader / Contact person
+- **Musrat Jahan Gungun** (Co-Author; ORCID: `0009-0006-4249-9198`) — Project member / Researcher
+- **Maheli Ahmed** (Faculty Supervisor; ORCID: `0000-0002-5183-7498`) — Supervisor  
+*All authors are affiliated with the Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh.*
 
 ### Motivation and Core Engineering Problem
 Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes (Bravyi et al., *Nature* 2024) offer an order-of-magnitude reduction in physical qubit overhead compared to topological surface codes. However, deploying them in real-time quantum control systems has remained blocked by a fundamental decoding dilemma: their dense, non-local check connectivity creates 3D space-time Detector Error Models (DEM) with thousands of correlated fault mechanisms. Conventional software decoders (e.g., BP+OSD) take hundreds of microseconds on CPUs, causing catastrophic backlog and buffer overflow under the strict ~1 μs coherence budget of superconducting quantum processors.
@@ -37,12 +44,13 @@ Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes (Bravyi et
 ### Editorial Certifications
 - **Originality:** This manuscript is original, has not been published previously, and is not currently under review elsewhere.
 - **Reproducibility:** The complete software library (`orbit-tied-qnbp` v1.0.0) is published on PyPI and GitHub (`github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb`) with pinned seeds, automated test suites, and SystemVerilog RTL.
-- **Conflict of Interest:** The author declares no competing financial or personal interests.
+- **Conflict of Interest:** The authors declare no competing financial or personal interests.
 
 Thank you very much for your time and editorial guidance.
 
 Sincerely,  
-**Saad Tariq**, Member, IEEE  
+**Md. Nazmul** (Lead & Corresponding Author)  
+*On behalf of co-authors Musrat Jahan Gungun and Maheli Ahmed*  
 Department of Computer Science and Engineering  
-Lahore University of Management Sciences, Lahore 54000, Pakistan  
-E-mail: `saad.tariq@ieee.org`
+College of Technology, National University, Gazipur, Bangladesh  
+E-mail: `nazmulhas36@gmail.com` • ORCID: `0009-0001-6115-7023`

@@ -10,10 +10,12 @@ readme = "README.md"
 requires-python = ">=3.9"
 license = "Apache-2.0"
 authors = [
-    { name = "Saad Tariq", email = "saad.tariq@ieee.org" }
+    { name = "Md. Nazmul", email = "nazmulhas36@gmail.com" },
+    { name = "Musrat Jahan Gungun" },
+    { name = "Maheli Ahmed" }
 ]
 maintainers = [
-    { name = "Saad Tariq", email = "saad.tariq@ieee.org" }
+    { name = "Md. Nazmul", email = "nazmulhas36@gmail.com" }
 ]
 keywords = [
     "quantum-computing",

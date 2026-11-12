@@ -29,9 +29,11 @@ def audit_pdf(pdf_path: str):
 
     # 2. Page 1 Audit
     p1 = doc[0].get_text()
-    assert "Saad Tariq" in p1, "P1: Author missing"
+    assert "Md. Nazmul" in p1, "P1: Author missing"
+    assert "Musrat Jahan Gungun" in p1, "P1: Co-author missing"
+    assert "Maheli Ahmed" in p1, "P1: Supervisor missing"
     assert "Antigravity" not in p1, "P1: AI affiliation found"
-    assert "saad.tariq@ieee.org" in p1, "P1: Real email missing"
+    assert "nazmulhas36@gmail.com" in p1, "P1: Real email missing"
     assert "ten decoders" in p1, "P1: Abstract decoders count missing"
     assert "6.4" in p1, "P1: Proposed convergence missing"
     assert "0.0068" in p1, "P1: Proposed LER missing"
