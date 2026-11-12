@@ -68,10 +68,10 @@ benchmarks = [
 qnbp = "orbit_tied_qnbp.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/saadtariq/orbit-tied-qnbp-sliding-window-bb"
-Documentation = "https://github.com/saadtariq/orbit-tied-qnbp-sliding-window-bb#readme"
-Repository = "https://github.com/saadtariq/orbit-tied-qnbp-sliding-window-bb.git"
-"Bug Tracker" = "https://github.com/saadtariq/orbit-tied-qnbp-sliding-window-bb/issues"
+Homepage = "https://github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb"
+Documentation = "https://github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb#readme"
+Repository = "https://github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb.git"
+"Bug Tracker" = "https://github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]

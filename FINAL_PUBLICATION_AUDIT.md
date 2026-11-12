@@ -2,7 +2,7 @@
 ## Comprehensive Technical Audit, Peer-Review Evaluation & Publication Readiness Scorecard
 
 **Paper Title:** *Orbit-Tied Quantized Neural Belief Propagation for Real-Time Sliding-Window Decoding of Bivariate-Bicycle Quantum Codes*  
-**Authors:** Saad Tariq  
+**Authors:** Md. Nazmul (Lead & Corresponding), Musrat Jahan Gungun, Maheli Ahmed  
 **Target Venues:** IEEE Transactions on Quantum Engineering (IEEE TQE) / PRX Quantum / Nature Quantum Information / IEEE Transactions on Information Theory  
 **Audit Date:** November 11, 2026  
 **Auditing Panel:** Multidisciplinary Senior Research Team (QEC Theory, LDPC Decoding, Neural/ML, Quantum Noise Modeling, FPGA/ASIC Hardware, Statistical Benchmarking, Senior Journal Reviewer, Scientific Editor)

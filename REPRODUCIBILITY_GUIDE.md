@@ -1,8 +1,8 @@
 # Master Reproducibility Guide: Orbit-Tied QNBP
 
 **Project:** Orbit-Tied Quantized Neural Belief Propagation (QNBP) for Real-Time Sliding-Window Decoding of Bivariate-Bicycle Quantum Codes  
-**Authors:** Senior Research Team  
-**Artifact Repository:** [https://github.com/saadtariq/orbit-tied-qnbp-sliding-window-bb](https://github.com/saadtariq/orbit-tied-qnbp-sliding-window-bb)  
+**Authors:** Md. Nazmul (Lead & Corresponding), Musrat Jahan Gungun, Maheli Ahmed  
+**Artifact Repository:** [https://github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb](https://github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb)  
 **Standard Compliance:** ACM / IEEE Artifact Evaluation Guidelines (Badges: Available, Functional, Reusable)
 
 ---
