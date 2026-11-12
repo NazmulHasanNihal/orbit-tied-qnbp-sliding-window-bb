@@ -126,7 +126,7 @@ def cmd_verify() -> int:
     sys.stdout.write("[6/6] Testing 6-bit integer QNBP CSD reference model... ")
     sys.stdout.flush()
     from orbit_tied_qnbp.decoder.integer_reference import IntegerQNBP
-    qnbp_int = IntegerQNBP(dem_graph, num_layers=10)
+    qnbp_int = IntegerQNBP(dem_graph, num_layers=10, bit_width=6, alpha_val=0.75, gamma_val=0.35)
     res_int = qnbp_int.decode(syn_zero)
     assert res_int.converged and np.sum(res_int.corrections) == 0, "Integer QNBP zero syndrome failed!"
     print("PASSED")
@@ -163,7 +163,7 @@ def cmd_benchmark(args: argparse.Namespace) -> int:
     samples, obs_flips = sampler.sample(shots=args.shots, separate_observables=True)
 
     dec_ms = MinSumDecoder(graph, max_iter=15)
-    dec_int = IntegerQNBP(graph, num_layers=15)
+    dec_int = IntegerQNBP(graph, num_layers=15, bit_width=6, alpha_val=0.75, gamma_val=0.35)
 
     ms_errors, int_errors = 0, 0
     t_start = time.time()

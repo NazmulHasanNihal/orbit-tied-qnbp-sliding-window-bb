@@ -31,9 +31,9 @@ class IntegerQNBP:
         self,
         graph: DemGraph,
         num_layers: int = 15,
-        bit_width: int = 4,
+        bit_width: int = 6,
         alpha_val: float = 0.75,
-        gamma_val: float = 0.0,
+        gamma_val: float = 0.35,
         shift_scale: int = 2,
     ) -> None:
         self.graph = graph
