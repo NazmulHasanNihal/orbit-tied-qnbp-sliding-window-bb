@@ -24,9 +24,20 @@ This directory contains the complete technical documentation, mathematical proof
 
 ## 🏛️ Author & Citation Information
 
-- **Md. Nazmul** (Lead & Corresponding Author, ORCID: [0009-0001-6115-7023](https://orcid.org/0009-0001-6115-7023), `nazmulhas36@gmail.com`)
-- **Musrat Jahan Gungun** (Co-Author, ORCID: [0009-0006-4249-9198](https://orcid.org/0009-0006-4249-9198))
-- **Maheli Ahmed** (Faculty Supervisor, ORCID: [0000-0002-5183-7498](https://orcid.org/0000-0002-5183-7498))
+1. **Md. Nazmul** (Lead & Corresponding Author)  
+   * **Role:** Lead Researcher, Conceptualization, Methodology & Software Architecture  
+   * **Email:** [`nazmulhas36@gmail.com`](mailto:nazmulhas36@gmail.com)  
+   * **ORCID:** [0009-0001-6115-7023](https://orcid.org/0009-0001-6115-7023)
+
+2. **Musrat Jahan Gungun** (Co-Author)  
+   * **Role:** Data Curation, Baseline Benchmarking, Validation & Statistical Testing  
+   * **Email:** [`gungunjahan84@gmail.com`](mailto:gungunjahan84@gmail.com)  
+   * **ORCID:** [0009-0006-4249-9198](https://orcid.org/0009-0006-4249-9198)
+
+3. **Maheli Ahmed** (Co-Author & Faculty Supervisor)  
+   * **Role:** Faculty Supervision, Resources, Formal Analysis & Model Governance  
+   * **Email:** [`maheli.ahmed.cse.cot@gmail.com`](mailto:maheli.ahmed.cse.cot@gmail.com)  
+   * **ORCID:** [0000-0002-5183-7498](https://orcid.org/0000-0002-5183-7498)
 
 *Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh*
 

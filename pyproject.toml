@@ -11,8 +11,8 @@ requires-python = ">=3.9"
 license = "Apache-2.0"
 authors = [
     { name = "Md. Nazmul", email = "nazmulhas36@gmail.com" },
-    { name = "Musrat Jahan Gungun" },
-    { name = "Maheli Ahmed" }
+    { name = "Musrat Jahan Gungun", email = "gungunjahan84@gmail.com" },
+    { name = "Maheli Ahmed", email = "maheli.ahmed.cse.cot@gmail.com" }
 ]
 maintainers = [
     { name = "Md. Nazmul", email = "nazmulhas36@gmail.com" }

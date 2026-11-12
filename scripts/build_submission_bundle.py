@@ -80,11 +80,14 @@ def generate_cover_letter_pdf(output_pdf_path: str) -> None:
         </p>
 
         <p>
-        <b>Authorship Sequence:</b><br>
-        &bull; <b>Md. Nazmul</b> (Lead &amp; Corresponding Author; ORCID: 0009-0001-6115-7023)<br>
-        &bull; <b>Musrat Jahan Gungun</b> (Co-Author; ORCID: 0009-0006-4249-9198)<br>
-        &bull; <b>Maheli Ahmed</b> (Faculty Supervisor; ORCID: 0000-0002-5183-7498)<br>
-        <i>All authors are with the Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh.</i>
+        <b>Authorship Sequence &amp; Roles:</b><br>
+        &bull; <b>Md. Nazmul</b> (Lead &amp; Corresponding Author; ORCID: <a href="https://orcid.org/0009-0001-6115-7023">0009-0001-6115-7023</a>; E-mail: <code>nazmulhas36@gmail.com</code>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<i>Role: Lead Researcher, Conceptualization, Methodology &amp; Software Architecture</i><br>
+        &bull; <b>Musrat Jahan Gungun</b> (Co-Author; ORCID: <a href="https://orcid.org/0009-0006-4249-9198">0009-0006-4249-9198</a>; E-mail: <code>gungunjahan84@gmail.com</code>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<i>Role: Data Curation, Baseline Benchmarking, Validation &amp; Statistical Testing</i><br>
+        &bull; <b>Maheli Ahmed</b> (Co-Author &amp; Faculty Supervisor; ORCID: <a href="https://orcid.org/0000-0002-5183-7498">0000-0002-5183-7498</a>; E-mail: <code>maheli.ahmed.cse.cot@gmail.com</code>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<i>Role: Faculty Supervision, Resources, Formal Analysis &amp; Model Governance</i><br>
+        <i>Department of Computer Science and Engineering, College of Technology, National University, Gazipur-1704, Bangladesh.</i>
         </p>
 
         <p>
@@ -254,37 +257,42 @@ Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes have emerg
 |---|---|
 | **First (Given) Name** | Md. |
 | **Last (Family) Name** | Nazmul |
-| **ORCID** | `0009-0001-6115-7023` |
+| **ORCID Identifier** | `0009-0001-6115-7023` |
+| **Direct Record URL** | https://orcid.org/0009-0001-6115-7023 |
 | **Email Address** | `nazmulhas36@gmail.com` |
 | **Institution / University** | College of Technology, National University |
 | **Department** | Department of Computer Science and Engineering |
 | **City, Postal Code** | Gazipur, 1704 |
 | **Country** | Bangladesh |
-| **Role** | Project Leader / Corresponding Author |
+| **Role** | Lead Researcher, Conceptualization, Methodology & Software Architecture |
 
 ### Author 2 (Co-Author)
 | Field | Value |
 |---|---|
 | **First (Given) Name** | Musrat Jahan |
 | **Last (Family) Name** | Gungun |
-| **ORCID** | `0009-0006-4249-9198` |
+| **ORCID Identifier** | `0009-0006-4249-9198` |
+| **Direct Record URL** | https://orcid.org/0009-0006-4249-9198 |
+| **Email Address** | `gungunjahan84@gmail.com` |
 | **Institution / University** | College of Technology, National University |
 | **Department** | Department of Computer Science and Engineering |
 | **City, Postal Code** | Gazipur, 1704 |
 | **Country** | Bangladesh |
-| **Role** | Project Member / Researcher |
+| **Role** | Data Curation, Baseline Benchmarking, Validation & Statistical Testing |
 
-### Author 3 (Faculty Supervisor)
+### Author 3 (Co-Author & Faculty Supervisor)
 | Field | Value |
 |---|---|
 | **First (Given) Name** | Maheli |
 | **Last (Family) Name** | Ahmed |
-| **ORCID** | `0000-0002-5183-7498` |
+| **ORCID Identifier** | `0000-0002-5183-7498` |
+| **Direct Record URL** | https://orcid.org/0000-0002-5183-7498 |
+| **Email Address** | `maheli.ahmed.cse.cot@gmail.com` |
 | **Institution / University** | College of Technology, National University |
 | **Department** | Department of Computer Science and Engineering |
 | **City, Postal Code** | Gazipur, 1704 |
 | **Country** | Bangladesh |
-| **Role** | Faculty Supervisor |
+| **Role** | Faculty Supervision, Resources, Formal Analysis & Model Governance |
 
 ---
 
@@ -371,10 +379,9 @@ def main() -> None:
 
     # 4. Generate Metadata Guides
     generate_metadata_markdown("submission/SUBMISSION_METADATA.md")
-    generate_metadata_markdown("SUBMISSION_METADATA.md")
 
     # 5. Generate Text & Markdown Cover Letter
-    cover_letter_md = """# Official Editorial Cover Letter — IEEE Transactions on Quantum Engineering
+    cover_letter_md = r"""# Official Editorial Cover Letter — IEEE Transactions on Quantum Engineering
 
 **To:**  
 Prof. Rodney Van Meter, Editor-in-Chief  
@@ -400,11 +407,11 @@ On behalf of my co-authors, I am pleased to submit our original research manuscr
 
 The manuscript contains 12 pages in standard IEEE Transactions two-column format, comprising 7 multi-panel figures, 5 benchmark tables, rigorous mathematical theorems, cycle-accurate SystemVerilog hardware co-simulation, and 59 sequential references.
 
-### Authorship Sequence
-- **Md. Nazmul** (Lead & Corresponding Author; ORCID: `0009-0001-6115-7023`) — Project leader / Contact person
-- **Musrat Jahan Gungun** (Co-Author; ORCID: `0009-0006-4249-9198`) — Project member / Researcher
-- **Maheli Ahmed** (Faculty Supervisor; ORCID: `0000-0002-5183-7498`) — Supervisor  
-*All authors are affiliated with the Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh.*
+### Authorship Sequence & Roles
+- **Md. Nazmul** (Lead & Corresponding Author; ORCID: [0009-0001-6115-7023](https://orcid.org/0009-0001-6115-7023); E-mail: `nazmulhas36@gmail.com`) — Lead Researcher, Conceptualization, Methodology & Software Architecture
+- **Musrat Jahan Gungun** (Co-Author; ORCID: [0009-0006-4249-9198](https://orcid.org/0009-0006-4249-9198); E-mail: `gungunjahan84@gmail.com`) — Data Curation, Baseline Benchmarking, Validation & Statistical Testing
+- **Maheli Ahmed** (Co-Author & Faculty Supervisor; ORCID: [0000-0002-5183-7498](https://orcid.org/0000-0002-5183-7498); E-mail: `maheli.ahmed.cse.cot@gmail.com`) — Faculty Supervision, Resources, Formal Analysis & Model Governance  
+*Department of Computer Science and Engineering, College of Technology, National University, Gazipur-1704, Bangladesh.*
 
 ### Motivation and Core Engineering Problem
 Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes (Bravyi et al., *Nature* 2024) offer an order-of-magnitude reduction in physical qubit overhead compared to topological surface codes. However, deploying them in real-time quantum control systems has remained blocked by a fundamental decoding dilemma: their dense, non-local check connectivity creates 3D space-time Detector Error Models (DEM) with thousands of correlated fault mechanisms. Conventional software decoders (e.g., BP+OSD) take hundreds of microseconds on CPUs, causing catastrophic backlog and buffer overflow under the strict ~1 μs coherence budget of superconducting quantum processors.
@@ -433,9 +440,7 @@ E-mail: `nazmulhas36@gmail.com` • ORCID: `0009-0001-6115-7023`
 """
     with open("submission/COVER_LETTER.md", "w", encoding="utf-8") as f:
         f.write(cover_letter_md)
-    with open("COVER_LETTER.md", "w", encoding="utf-8") as f:
-        f.write(cover_letter_md)
-    print("✅ Generated Cover Letter Markdown files")
+    print("✅ Generated Cover Letter Markdown in submission/COVER_LETTER.md")
 
 
 if __name__ == "__main__":

@@ -45,37 +45,42 @@ Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes have emerg
 |---|---|
 | **First (Given) Name** | Md. |
 | **Last (Family) Name** | Nazmul |
-| **ORCID** | `0009-0001-6115-7023` |
+| **ORCID Identifier** | `0009-0001-6115-7023` |
+| **Direct Record URL** | https://orcid.org/0009-0001-6115-7023 |
 | **Email Address** | `nazmulhas36@gmail.com` |
 | **Institution / University** | College of Technology, National University |
 | **Department** | Department of Computer Science and Engineering |
 | **City, Postal Code** | Gazipur, 1704 |
 | **Country** | Bangladesh |
-| **Role** | Project Leader / Corresponding Author |
+| **Role** | Lead Researcher, Conceptualization, Methodology & Software Architecture |
 
 ### Author 2 (Co-Author)
 | Field | Value |
 |---|---|
 | **First (Given) Name** | Musrat Jahan |
 | **Last (Family) Name** | Gungun |
-| **ORCID** | `0009-0006-4249-9198` |
+| **ORCID Identifier** | `0009-0006-4249-9198` |
+| **Direct Record URL** | https://orcid.org/0009-0006-4249-9198 |
+| **Email Address** | `gungunjahan84@gmail.com` |
 | **Institution / University** | College of Technology, National University |
 | **Department** | Department of Computer Science and Engineering |
 | **City, Postal Code** | Gazipur, 1704 |
 | **Country** | Bangladesh |
-| **Role** | Project Member / Researcher |
+| **Role** | Data Curation, Baseline Benchmarking, Validation & Statistical Testing |
 
-### Author 3 (Faculty Supervisor)
+### Author 3 (Co-Author & Faculty Supervisor)
 | Field | Value |
 |---|---|
 | **First (Given) Name** | Maheli |
 | **Last (Family) Name** | Ahmed |
-| **ORCID** | `0000-0002-5183-7498` |
+| **ORCID Identifier** | `0000-0002-5183-7498` |
+| **Direct Record URL** | https://orcid.org/0000-0002-5183-7498 |
+| **Email Address** | `maheli.ahmed.cse.cot@gmail.com` |
 | **Institution / University** | College of Technology, National University |
 | **Department** | Department of Computer Science and Engineering |
 | **City, Postal Code** | Gazipur, 1704 |
 | **Country** | Bangladesh |
-| **Role** | Faculty Supervisor |
+| **Role** | Faculty Supervision, Resources, Formal Analysis & Model Governance |
 
 ---
 

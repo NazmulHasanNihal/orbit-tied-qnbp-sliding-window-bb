@@ -6,7 +6,7 @@ sliding-window decoding of bivariate-bicycle (BB) codes.
 
 __version__ = "1.0.0"
 __author__ = "Md. Nazmul, Musrat Jahan Gungun, Maheli Ahmed"
-__email__ = "nazmulhas36@gmail.com"
+__email__ = "nazmulhas36@gmail.com, gungunjahan84@gmail.com, maheli.ahmed.cse.cot@gmail.com"
 
 from orbit_tied_qnbp.circuits.bivariate_bicycle import BivariateBicycleCode
 from orbit_tied_qnbp.data.dem_graph import DemGraph

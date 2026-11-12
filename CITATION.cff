@@ -26,10 +26,12 @@ authors:
     given-names: "Musrat Jahan"
     orcid: "https://orcid.org/0009-0006-4249-9198"
     affiliation: "Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh"
+    email: "gungunjahan84@gmail.com"
   - family-names: "Ahmed"
     given-names: "Maheli"
     orcid: "https://orcid.org/0000-0002-5183-7498"
     affiliation: "Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh"
+    email: "maheli.ahmed.cse.cot@gmail.com"
 preferred-citation:
   type: article
   title: "Orbit-Tied Quantized Neural Belief Propagation for Sliding-Window Decoding of Bivariate-Bicycle Codes"

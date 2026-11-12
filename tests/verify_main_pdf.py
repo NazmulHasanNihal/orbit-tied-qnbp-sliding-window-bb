@@ -34,6 +34,8 @@ def audit_pdf(pdf_path: str):
     assert "Maheli Ahmed" in p1, "P1: Supervisor missing"
     assert "Antigravity" not in p1, "P1: AI affiliation found"
     assert "nazmulhas36@gmail.com" in p1, "P1: Real email missing"
+    assert "gungunjahan84@gmail.com" in p1, "P1: Co-author email missing"
+    assert "maheli.ahmed.cse.cot@gmail.com" in p1, "P1: Supervisor email missing"
     assert "ten decoders" in p1, "P1: Abstract decoders count missing"
     assert "6.4" in p1, "P1: Proposed convergence missing"
     assert "0.0068" in p1, "P1: Proposed LER missing"

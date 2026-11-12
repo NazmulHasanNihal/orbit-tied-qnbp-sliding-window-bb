@@ -20,17 +20,26 @@ Official Python library (`orbit-tied-qnbp`), synthesizeable SystemVerilog hardwa
 
 ## 👥 Authors & Institutional Affiliation
 
-* **Lead & Corresponding Author:** **Md. Nazmul** (Family name: *Nazmul*, Given names: *Md.*)  
-  [![ORCID](https://img.shields.io/badge/ORCID-0009--0001--6115--7023-green.svg)](https://orcid.org/0009-0001-6115-7023)  
-  *Role:* Project leader / Contact person • *E-mail:* [`nazmulhas36@gmail.com`](mailto:nazmulhas36@gmail.com)
+1. **Md. Nazmul** (Lead & Corresponding Author)  
+   [![ORCID](https://img.shields.io/badge/ORCID-0009--0001--6115--7023-green.svg)](https://orcid.org/0009-0001-6115-7023)  
+   * **Role:** Lead Researcher, Conceptualization, Methodology & Software Architecture  
+   * **Email:** [`nazmulhas36@gmail.com`](mailto:nazmulhas36@gmail.com)  
+   * **ORCID Identifier:** `0009-0001-6115-7023`  
+   * **Direct Record URL:** [https://orcid.org/0009-0001-6115-7023](https://orcid.org/0009-0001-6115-7023)
 
-* **Co-Author:** **Musrat Jahan Gungun** (Family name: *Gungun*, Given names: *Musrat Jahan*)  
-  [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--4249--9198-green.svg)](https://orcid.org/0009-0006-4249-9198)  
-  *Role:* Project member / Researcher
+2. **Musrat Jahan Gungun** (Co-Author)  
+   [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--4249--9198-green.svg)](https://orcid.org/0009-0006-4249-9198)  
+   * **Role:** Data Curation, Baseline Benchmarking, Validation & Statistical Testing  
+   * **Email:** [`gungunjahan84@gmail.com`](mailto:gungunjahan84@gmail.com)  
+   * **ORCID Identifier:** `0009-0006-4249-9198`  
+   * **Direct Record URL:** [https://orcid.org/0009-0006-4249-9198](https://orcid.org/0009-0006-4249-9198)
 
-* **Faculty Supervisor:** **Maheli Ahmed** (Family name: *Ahmed*, Given names: *Maheli*)  
-  [![ORCID](https://img.shields.io/badge/ORCID-0000--0002--5183--7498-green.svg)](https://orcid.org/0000-0002-5183-7498)  
-  *Role:* Supervisor
+3. **Maheli Ahmed** (Co-Author & Faculty Supervisor)  
+   [![ORCID](https://img.shields.io/badge/ORCID-0000--0002--5183--7498-green.svg)](https://orcid.org/0000-0002-5183-7498)  
+   * **Role:** Faculty Supervision, Resources, Formal Analysis & Model Governance  
+   * **Email:** [`maheli.ahmed.cse.cot@gmail.com`](mailto:maheli.ahmed.cse.cot@gmail.com)  
+   * **ORCID Identifier:** `0000-0002-5183-7498`  
+   * **Direct Record URL:** [https://orcid.org/0000-0002-5183-7498](https://orcid.org/0000-0002-5183-7498)
 
 **Institutional Affiliation:**  
 Department of Computer Science and Engineering, College of Technology, National University, Gazipur-1704, Bangladesh.
