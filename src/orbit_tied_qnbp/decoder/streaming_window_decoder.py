@@ -37,6 +37,7 @@ class StreamingSlidingWindowDecoder:
         commit_stride: int = 1,
         max_bp_iter: int = 15,
         alpha: float = 0.75,
+        gamma: float = 0.35,
     ) -> None:
         self.code = code
         self.num_rounds = num_rounds
@@ -45,6 +46,7 @@ class StreamingSlidingWindowDecoder:
         self.commit_stride = commit_stride
         self.max_bp_iter = max_bp_iter
         self.alpha = alpha
+        self.gamma = gamma
 
         # Build round-to-detector and round-to-fault mapping
         self._build_temporal_partition()
@@ -123,6 +125,7 @@ class StreamingSlidingWindowDecoder:
                     num_layers=self.max_bp_iter,
                     bit_width=6,
                     alpha_val=self.alpha,
+                    gamma_val=self.gamma,
                 )
                 res = dec.decode(residual_syndrome)
             else:
@@ -130,6 +133,7 @@ class StreamingSlidingWindowDecoder:
                     graph=self.graph,
                     max_iter=self.max_bp_iter,
                     alpha=self.alpha,
+                    gamma=self.gamma,
                 )
                 res = dec_ms.decode(residual_syndrome)
 

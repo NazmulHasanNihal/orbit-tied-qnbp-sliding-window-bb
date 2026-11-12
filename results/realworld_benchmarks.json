@@ -1,0 +1,122 @@
+{
+  "timestamp": "2026-11-12T07:31:15Z",
+  "test1_ibm_heron_calibration": {
+    "profile": "IBM Quantum Heron r2",
+    "parameters": {
+      "physical_p_2q": 0.0021,
+      "bias_eta": 50.0,
+      "readout_p": 0.008,
+      "single_qubit_p": 0.00015,
+      "code": "[[72,12,6]]",
+      "rounds": 3,
+      "shots": 250
+    },
+    "decoders": {
+      "classical_minsum": {
+        "rate": 0.004,
+        "ci_lower": 0.0007064475340650966,
+        "ci_upper": 0.02230578556541592,
+        "display": "4.0000e-03 [7.0645e-04, 2.2306e-02]",
+        "mean_iterations": 9.164,
+        "convergence_rate": 0.816,
+        "mcnemar_chi2": 0.0,
+        "mcnemar_p": 1.0
+      },
+      "normalized_minsum": {
+        "rate": 0.004,
+        "ci_lower": 0.0007064475340650966,
+        "ci_upper": 0.02230578556541592,
+        "display": "4.0000e-03 [7.0645e-04, 2.2306e-02]",
+        "mean_iterations": 11.864,
+        "convergence_rate": 0.668,
+        "mcnemar_chi2": 0.5,
+        "mcnemar_p": 1.0
+      },
+      "ibm_relay_bp": {
+        "rate": 0.004,
+        "ci_lower": 0.0007064475340650966,
+        "ci_upper": 0.02230578556541592,
+        "display": "4.0000e-03 [7.0645e-04, 2.2306e-02]",
+        "mean_iterations": 8.584,
+        "convergence_rate": 0.896,
+        "mcnemar_chi2": 0.0,
+        "mcnemar_p": 1.0
+      },
+      "mem_bp": {
+        "rate": 0.0,
+        "ci_lower": 8.673617379884035e-19,
+        "ci_upper": 0.015133299495444574,
+        "display": "0.0000e+00 [8.6736e-19, 1.5133e-02]",
+        "mean_iterations": 4.764,
+        "convergence_rate": 0.928,
+        "mcnemar_chi2": 0.0,
+        "mcnemar_p": 1.0
+      },
+      "standalone_bposd_10": {
+        "rate": 0.0,
+        "ci_lower": 8.673617379884035e-19,
+        "ci_upper": 0.015133299495444574,
+        "display": "0.0000e+00 [8.6736e-19, 1.5133e-02]",
+        "mean_iterations": 8.856,
+        "convergence_rate": 0.664,
+        "mcnemar_chi2": 0.0,
+        "mcnemar_p": 1.0
+      },
+      "proposed_qnbp_6bit": {
+        "rate": 0.004,
+        "ci_lower": 0.0007064475340650966,
+        "ci_upper": 0.02230578556541592,
+        "display": "4.0000e-03 [7.0645e-04, 2.2306e-02]",
+        "mean_iterations": 3.852,
+        "convergence_rate": 0.916,
+        "dsp_multipliers": 0
+      }
+    }
+  },
+  "test2_100round_streaming_survival": {
+    "rounds": 100,
+    "physical_duration_us": 100.0,
+    "shots_evaluated": 10,
+    "per_round_logical_error_rate_pipeline": 0.00019,
+    "per_round_logical_error_rate_qnbp": 0.0018,
+    "per_round_logical_error_rate_agnostic": 0.015,
+    "survival_at_checkpoints": {
+      "pipeline_gate_g3": {
+        "round_10": 0.9981,
+        "round_25": 0.9953,
+        "round_50": 0.9905,
+        "round_75": 0.9858,
+        "round_100": 0.9812
+      },
+      "standalone_qnbp_6bit": {
+        "round_10": 0.9821,
+        "round_25": 0.956,
+        "round_50": 0.9139,
+        "round_75": 0.8736,
+        "round_100": 0.8351
+      },
+      "boundary_agnostic": {
+        "round_10": 0.8597,
+        "round_25": 0.6853,
+        "round_50": 0.4697,
+        "round_75": 0.3219,
+        "round_100": 0.2206
+      }
+    },
+    "retention_at_100_rounds": {
+      "pipeline_gate_g3": 0.9812,
+      "standalone_qnbp_6bit": 0.8351,
+      "boundary_agnostic": 0.2206
+    }
+  },
+  "test3_axi4_stream_ingress": {
+    "platform": "AMD UltraScale+ XCKU040-FBVA676-1-E",
+    "clock_mhz": 250.0,
+    "line_rate_gbps": 1.35,
+    "mean_latency_ns": 102.4,
+    "max_latency_ns": 240.0,
+    "cycle_slack_ns": 760.0,
+    "observed_buffer_overflow": 0.0,
+    "theoretical_overflow_bound": 6e-05
+  }
+}

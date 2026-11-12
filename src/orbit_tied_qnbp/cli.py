@@ -37,6 +37,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_bench.add_argument("--code", choices=["72", "144"], default="72", help="Gross BB code to benchmark (default: 72)")
     p_bench.add_argument("--noise", "-p", type=float, default=0.003, help="Physical noise rate (default: 0.003)")
     p_bench.add_argument("--shots", "-n", type=int, default=50, help="Number of Monte Carlo test shots (default: 50)")
+    p_bench.add_argument("--realworld", action="store_true", help="Run the IBM Quantum Heron and 100-round streaming benchmark suite.")
 
     return parser
 
@@ -138,6 +139,11 @@ def cmd_verify() -> int:
 
 def cmd_benchmark(args: argparse.Namespace) -> int:
     """Runs a quick head-to-head benchmark."""
+    if getattr(args, "realworld", False):
+        from orbit_tied_qnbp.experiments.run_realworld_benchmarks import main as run_realworld_main
+        run_realworld_main()
+        return 0
+
     print(f"Executing decoding benchmark on [[{args.code}, 12, ...]] at noise p={args.noise} (N={args.shots} shots)...")
     from orbit_tied_qnbp.circuits.bivariate_bicycle import BivariateBicycleCode
     from orbit_tied_qnbp.data.dem_graph import DemGraph
