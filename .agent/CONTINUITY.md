@@ -1,9 +1,14 @@
 # 🌀 Continuity Status (5-Gate OpenSpec & Q1 Research Workflow)
 
 **Project:** Orbit-Tied Quantized Neural Belief Propagation for Sliding-Window Decoding of Bivariate-Bicycle Codes  
-**Current Task:** Forensic Deep Check, Full Repository Verification, and Publication Verdict  
+**Current Task:** Author Record Synchronization, Professional README Enhancement with Mermaid.js Diagrams, and Complete Submission Package  
 **Current Gate:** GATE 5 — VERIFIED & SUBMISSION-READY (Strictly 1 Canonical Deliverable: `manuscript/main.pdf`)  
-**Status:** Completed exhaustive repository-wide deep check. All 35 pytest unit/integration tests pass (100% green). Single 12-page deliverable `manuscript/main.pdf` passed all 13 forensic checks. CLI self-diagnostics and benchmarks verified. Packaging artifacts in `dist/` verified. Working tree 100% clean. Ready for immediate IEEE TQE submission and PyPI release.
+**Authors:**  
+- **Md. Nazmul** (Lead & Corresponding Author, ORCID: 0009-0001-6115-7023, nazmulhas36@gmail.com)
+- **Musrat Jahan Gungun** (Co-Author, ORCID: 0009-0006-4249-9198)
+- **Maheli Ahmed** (Faculty Supervisor, ORCID: 0000-0002-5183-7498)  
+**Affiliation:** Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh  
+**Status:** All author records, ORCIDs, and institutional affiliations synchronized across manuscript (main.pdf, main.tex, main_ieeetran.tex), submission bundle (cover_letter.pdf, cover_letter.tex, SUBMISSION_METADATA.md), pyproject.toml, and README.md. README enhanced with 5 comprehensive Mermaid.js diagrams. 35/35 pytest tests pass. 13/13 PDF forensic checks pass. Clean working tree pushed to GitHub main with release tag v1.0.0.
 
 ---
 
