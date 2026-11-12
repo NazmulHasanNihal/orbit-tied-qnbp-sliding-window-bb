@@ -15,9 +15,10 @@ def audit_pdf(pdf_path: str):
         "669..", "toy d=3", "2006", "I. Q. A. Team", "and et al.",
         "44.2 pJ", "18.8 pJ",
         # Forensic Audit Forbidden Strings
-        "72.12", "72.12.6", "72.12,6", "[[72,12.6]]", "Z_{mv}", "P_{accpt}", "+25c;", "ieves", "Undamped-",
+        "72.12", "72.12.6", "72.12,6", "[[72,12.6]]", "144.12", "Z_{mv}", "P_{accpt}", "+25c;", "ieves", "Undamped-",
         "1. 1. McKinstry", "K. R. OL", "Avlami", "021035",
-        "\\_v", "\\rho", "NYIS", "110192", "K. R. On", "6bit -QNBP"
+        "\\_v", "\\rho", "NYIS", "110192", "K. R. On", "6bit -QNBP",
+        "National University,.", "ranw", "thresholdt", "Nazmul HasanNihal", "01045"
     ]
     for i, page in enumerate(doc):
         text = page.get_text()

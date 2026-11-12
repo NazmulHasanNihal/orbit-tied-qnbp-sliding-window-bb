@@ -169,7 +169,7 @@ def plot_f5_gates(results: Dict[str, Any], output_dir: str = "results/figures") 
         ax1.set_ylabel("Fast-Path Acceptance Rate (%)")
         ax1.set_title("(a) Fast-Path Acceptance Rate vs. Threshold")
         ax1.grid(True, linestyle="--", alpha=0.4)
-        ax1.legend(loc="lower left", frameon=True)
+        ax1.legend(loc="upper right", frameon=True)
 
         ax2.set_xlabel(r"Confidence Margin Threshold $\tau$")
         ax2.set_ylabel(r"Pipeline Logical Error Rate ($P_{\mathrm{pipe}}$)")
@@ -378,8 +378,8 @@ def plot_f6_folding_tradeoffs(
     fig.tight_layout()
     for d in [output_dir, "manuscript/figures"]:
         os.makedirs(d, exist_ok=True)
-        fig.savefig(os.path.join(d, "fig6_folding_tradeoffs.pdf"))
-        fig.savefig(os.path.join(d, "fig6_folding_tradeoffs.png"))
+        fig.savefig(os.path.join(d, "fig6_folding_tradeoffs.pdf"), dpi=300)
+        fig.savefig(os.path.join(d, "fig6_folding_tradeoffs.png"), dpi=300)
     plt.close(fig)
 
 

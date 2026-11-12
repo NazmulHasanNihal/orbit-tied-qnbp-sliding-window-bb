@@ -84,10 +84,11 @@ def build_ieee_manuscript_pdf(
     fig1_path = os.path.join(figures_dir, "fig1_architecture.png")
     if os.path.exists(fig1_path):
         p1.insert_image(pymupdf.Rect(40, 505, page_w - 40, 735), filename=fig1_path)
-        p1.insert_textbox(
+        p1.insert_htmlbox(
             pymupdf.Rect(40, 737, page_w - 40, 762),
-            "Fig. 1. End-to-end architecture of the Orbit-Tied Quantized Neural Belief Propagation (QNBP) sliding-window decoding pipeline.",
-            fontsize=7.5, fontname="Helvetica-Oblique", align=pymupdf.TEXT_ALIGN_CENTER
+            '<div style="font-family: helvetica; font-size: 7.5pt; font-style: italic; text-align: center; line-height: 1.15;">'
+            'Fig. 1. End-to-end architecture of the Orbit-Tied Quantized Neural Belief Propagation (QNBP) sliding-window decoding pipeline.'
+            '</div>'
         )
 
     # =============================================================
@@ -255,7 +256,7 @@ def build_ieee_manuscript_pdf(
             <b>Proposition 1 (Effective Dephasing Channel Concentration).</b> <i>In a CSS bivariate-bicycle code, physical Pauli Z phase-flip errors anti-commute with X-stabilizers (H<sub>X</sub> = [A | B]) and are detected exclusively by X-type checks, while physical Pauli X errors are detected by Z-checks (H<sub>Z</sub> = [B<sup>T</sup> | A<sup>T</sup>]). Under strong transmon dephasing bias &eta; = p<sub>Z</sub> / p<sub>X</sub> &gg; 1, syndrome excitation concentrates overwhelmingly on X-checks, while bit-flip excitation on Z-checks approaches the noise floor O(1/&eta;). Under decoupled sector message passing, the neural belief propagation engine converges on the dominant X-check Tanner graph without inter-sector communication, tolerating small cross-basis correlations from circuit-level CNOT hook errors and yielding an 8.0&times; logical error suppression at &eta; = 100.</i>
         </div>
 
-        <div class="table-caption">TABLE I: Logical Error Rates under Asymmetric Pauli Z-Biased Noise and ZZ Crosstalk on [[72,12,6]] (p = 0.003, N=10,000 Paired Shots; Evaluates &gamma;=0.35 Checkpoint with P<sub>L</sub>=0.0080 at &eta;=1)</div>
+        <div class="table-caption">TABLE I: Logical Error Rates under Asymmetric Pauli Z-Biased Noise and ZZ Crosstalk on [[72,12,6]] (p = 0.003, N=10,000 Paired Shots; Evaluates &gamma;=0.35 Checkpoint with P<sub>L</sub>=0.0080 at &eta;=1))</div>
         <table>
             <thead>
                 <tr>
@@ -282,15 +283,17 @@ def build_ieee_manuscript_pdf(
     if os.path.exists(fig2_path) and os.path.exists(fig3_path):
         p6.insert_image(pymupdf.Rect(40, 400, 290, 620), filename=fig2_path)
         p6.insert_image(pymupdf.Rect(310, 400, 560, 620), filename=fig3_path)
-        p6.insert_textbox(
-            pymupdf.Rect(40, 625, 290, 655),
-            "Fig. 2. Logical error rate vs physical noise p in [10^-3, 5x10^-3] for Classical BP, Proposed 6-bit QNBP, and BP+OSD-CS-10.",
-            fontsize=7.5, fontname="Helvetica-Oblique", align=pymupdf.TEXT_ALIGN_CENTER
+        p6.insert_htmlbox(
+            pymupdf.Rect(40, 625, 290, 660),
+            '<div style="font-family: helvetica; font-size: 7.5pt; font-style: italic; text-align: center; line-height: 1.15;">'
+            'Fig. 2. Logical error rate vs physical noise <i>p</i> &isin; [10<sup>&minus;3</sup>, 5&times;10<sup>&minus;3</sup>] for Classical BP, Proposed 6-bit QNBP, and BP+OSD-CS-10.'
+            '</div>'
         )
-        p6.insert_textbox(
-            pymupdf.Rect(310, 625, 560, 655),
-            "Fig. 3. Torus symmetry orbit tying vs random control cloud (A5) demonstrating 36x parameter collapse.",
-            fontsize=7.5, fontname="Helvetica-Oblique", align=pymupdf.TEXT_ALIGN_CENTER
+        p6.insert_htmlbox(
+            pymupdf.Rect(310, 625, 560, 660),
+            '<div style="font-family: helvetica; font-size: 7.5pt; font-style: italic; text-align: center; line-height: 1.15;">'
+            'Fig. 3. Torus symmetry orbit tying vs random control cloud (A5) demonstrating 36&times; parameter collapse.'
+            '</div>'
         )
 
     # =============================================================
@@ -314,7 +317,7 @@ def build_ieee_manuscript_pdf(
         <p><b>1. Syndrome Check (Gate G<sub>1</sub>):</b> Accepts whenever all parity checks within the window are satisfied: H e&#770; &equiv; s (mod 2). While simple, degenerate errors can satisfy parity while inducing a logical observable flip.</p>
         <p><b>2. Observable Margin Filter (Gate G<sub>2</sub>):</b> Requires syndrome satisfaction and that the minimum observable marginal LLR exceeds threshold &tau;: min<sub>j</sub> |L(O<sub>j</sub>)| &ge; &tau;.</p>
         <p><b>3. Proposed Fault Belief Margin (Gate G<sub>3</sub>):</b> Requires syndrome satisfaction and that the minimum variable belief magnitude among all committed fault mechanisms exceeds threshold &tau;:</p>
-        <div class="math-block">Accept &hArr; (H e&#770; &equiv; s mod 2) &emsp; &and; &emsp; (min<sub>v &isin; V<sub>commit</sub></sub> |L<sub>v</sub>| &ge; &tau;)</div>
+        <div class="math-block">Accept &hArr; (H e&#770; &equiv; s mod 2) &emsp; <b>and</b> &emsp; (min<sub>v &isin; V<sub>commit</sub></sub> |L<sub>v</sub>| &ge; &tau;)</div>
         <p class="noindent">Accepted windows commit tentative hard corrections immediately with sub-microsecond latency (t<sub>fast</sub> = 240 ns). Rejected windows are routed to the fallback OSD queue. Note that while standalone C++ BP+OSD-CS-10 in Table IV yields P<sub>L</sub> = 0.0120 when seeded by unweighted Min-Sum BP posteriors on isolated single windows without learned damping or boundary residual feedback, our hybrid sliding-window pipeline fallback seeds OSD-CS-10 with calibrated QNBP posteriors and active boundary residual propagation, suppressing the conditional fallback error rate to P(err | fallback) = 7.78 &times; 10<sup>-4</sup> and yielding an end-to-end pipeline error rate of P<sub>pipe</sub> = 1.90 &times; 10<sup>-4</sup>.</p>
 
         <h3>C. Exact Conditional Pipeline Error & Drift Robustness</h3>
@@ -343,18 +346,20 @@ def build_ieee_manuscript_pdf(
     fig5_path = os.path.join(figures_dir, "fig5_gate_tradeoffs.png")
     if os.path.exists(fig4_path):
         p8.insert_image(pymupdf.Rect(40, 36, page_w - 40, 320), filename=fig4_path)
-        p8.insert_textbox(
-            pymupdf.Rect(40, 324, page_w - 40, 348),
-            "Fig. 4. Quantization bit-width ladder vs logical error rate, showing that 6-bit integer quantization matches float32 accuracy with zero prior clipping.",
-            fontsize=7.5, fontname="Helvetica-Oblique", align=pymupdf.TEXT_ALIGN_CENTER
+        p8.insert_htmlbox(
+            pymupdf.Rect(40, 324, page_w - 40, 350),
+            '<div style="font-family: helvetica; font-size: 7.5pt; font-style: italic; text-align: center; line-height: 1.15;">'
+            'Fig. 4. Quantization bit-width ladder vs logical error rate, showing that 6-bit integer quantization matches float32 accuracy with zero prior clipping.'
+            '</div>'
         )
 
     if os.path.exists(fig5_path):
         p8.insert_image(pymupdf.Rect(40, 356, page_w - 40, 640), filename=fig5_path)
-        p8.insert_textbox(
-            pymupdf.Rect(40, 644, page_w - 40, 668),
-            "Fig. 5. Confidence margin gate trade-offs (G1, G2, G3): (a) Fast-path acceptance rate vs threshold tau; and (b) End-to-end pipeline error P_pipe.",
-            fontsize=7.5, fontname="Helvetica-Oblique", align=pymupdf.TEXT_ALIGN_CENTER
+        p8.insert_htmlbox(
+            pymupdf.Rect(40, 644, page_w - 40, 670),
+            '<div style="font-family: helvetica; font-size: 7.5pt; font-style: italic; text-align: center; line-height: 1.15;">'
+            'Fig. 5. Confidence margin gate trade-offs (G<sub>1</sub>, G<sub>2</sub>, G<sub>3</sub>): (a) Fast-path acceptance rate vs threshold &tau;; and (b) End-to-end pipeline error <i>P</i><sub>pipe</sub>.'
+            '</div>'
         )
 
     html_p8_bottom = base_style + """
@@ -373,7 +378,7 @@ def build_ieee_manuscript_pdf(
     html_p9 = base_style + """
     <body>
         <h2>VII. Synthesizeable Hardware RTL & Subgroup Orbit Folding</h2>
-        <p class="noindent">We designed and verified fully synthesizeable SystemVerilog RTL modules targeting AMD UltraScale+ FPGAs (vnu.sv, cnu.sv, g3_gate.sv, and streaming_axi_harness.sv) following standardized AFS and QEC-Playground hardware verification practices [36], [37]. While the circuit-level Stim detector error model (DEM) for a 3-round window (W=3) contains 7,308 hyperedge fault mechanisms partitioned into 203 symmetry orbits of size 36 (203 &times; 36 = 7,308), hardware implementation maps these faults onto 216 physical Variable Node Units (72 data qubits &times; 3 rounds) via syndrome-graph bipartite projection. Each physical variable node v &isin; {1,...,216} aggregates the log-likelihood ratios of the collapsed detector-neighborhood fault subset incident on its local check neighborhood, L_v<sup>(0)</sup> = &sum;_{f &isin; F_v} ln((1-p_f)/p_f), ensuring exact mathematical consistency between the 7,308 circuit-level DEM faults and the 216 parallel hardware VNUs.</p>
+        <p class="noindent">We designed and verified fully synthesizeable SystemVerilog RTL modules targeting AMD UltraScale+ FPGAs (vnu.sv, cnu.sv, g3_gate.sv, and streaming_axi_harness.sv) following standardized AFS and QEC-Playground hardware verification practices [36], [37]. While the circuit-level Stim detector error model (DEM) for a 3-round window (W=3) contains 7,308 hyperedge fault mechanisms partitioned into 203 symmetry orbits of size 36 (203 &times; 36 = 7,308), hardware implementation maps these faults onto 216 physical Variable Node Units (72 data qubits &times; 3 rounds) via syndrome-graph bipartite projection. Each physical variable node v &isin; {1,...,216} aggregates the log-likelihood ratios of the collapsed detector-neighborhood fault subset incident on its local check neighborhood, <i>L</i><sub>v</sub><sup>(0)</sup> = &sum;<sub>f &isin; F<sub>v</sub></sub> ln((1 &minus; p<sub>f</sub>) / p<sub>f</sub>), ensuring exact mathematical consistency between the 7,308 circuit-level DEM faults and the 216 parallel hardware VNUs.</p>
         <p>In hardware, the 3-round syndrome extraction window (W=3) evaluates 216 checks (72 &times; 3) using a parallel array of 216 Check Node Units (216 &times; 82 LUTs = 17,712 LUTs) and 216 Variable Node Units (216 &times; 48 LUTs = 10,368 LUTs), combined with Gate G3 logic (124 LUTs) yielding exactly 28,204 LUTs total (DSP=0, 11.64% of AMD XCKU040). Post-place-and-route timing demonstrates WNS = +0.18 ns at 250 MHz (F<sub>max</sub> = 262 MHz) and 102.4 ns mean early-exit latency at 6.4 iterations (240 ns worst-case). Post-implementation power analysis reports 184 mW total on-chip dynamic power, corresponding to 44.16 nJ worst-case dynamic energy per decoded window (0.613 nJ/qubit) and 18.84 nJ mean energy under early exit (0.262 nJ/qubit), while the streaming AXI4-Stream interface sustains 1.35 Gbps syndrome ingress (&lt; 14% of a 10 Gbps transceiver lane).</p>
 
         <div class="table-caption">TABLE II: FPGA Synthesis, Power, and Resource Utilization on AMD UltraScale+ XCKU040 (f<sub>clk</sub> = 250 MHz, WNS = +0.18 ns, BRAM = 0 [0.0%])</div>
@@ -427,10 +432,11 @@ def build_ieee_manuscript_pdf(
     fig6_path = os.path.join(figures_dir, "fig6_folding_tradeoffs.png")
     if os.path.exists(fig6_path):
         p9.insert_image(pymupdf.Rect(120, 485, 490, 725), filename=fig6_path)
-        p9.insert_textbox(
+        p9.insert_htmlbox(
             pymupdf.Rect(40, 730, page_w - 40, 755),
-            "Fig. 6. Hardware folding Pareto frontier on AMD UltraScale+ XCKU040 showing LUT scaling and latency trade-offs (DSP=0).",
-            fontsize=7.5, fontname="Helvetica-Oblique", align=pymupdf.TEXT_ALIGN_CENTER
+            '<div style="font-family: helvetica; font-size: 7.5pt; font-style: italic; text-align: center; line-height: 1.15;">'
+            'Fig. 6. Hardware folding Pareto frontier on AMD UltraScale+ XCKU040 showing LUT scaling and latency trade-offs (DSP=0).'
+            '</div>'
         )
 
     # =============================================================
@@ -482,10 +488,11 @@ def build_ieee_manuscript_pdf(
     fig7_path = os.path.join(figures_dir, "fig7_queue_stability.png")
     if os.path.exists(fig7_path):
         p10.insert_image(pymupdf.Rect(40, 465, page_w - 40, 725), filename=fig7_path)
-        p10.insert_textbox(
+        p10.insert_htmlbox(
             pymupdf.Rect(40, 730, page_w - 40, 755),
-            "Fig. 7. Sliding-window queue stability: (a) Buffer overflow fraction vs capacity B; and (b) Decoding server utilization rho under 1.0 us quantum cycle budget.",
-            fontsize=7.5, fontname="Helvetica-Oblique", align=pymupdf.TEXT_ALIGN_CENTER
+            '<div style="font-family: helvetica; font-size: 7.5pt; font-style: italic; text-align: center; line-height: 1.15;">'
+            'Fig. 7. Sliding-window queue stability: (a) Buffer overflow fraction vs capacity <i>B</i>; and (b) Decoding server utilization &rho; under 1.0 &mu;s quantum cycle budget.'
+            '</div>'
         )
 
     # =============================================================

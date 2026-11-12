@@ -12,8 +12,8 @@ import matplotlib.patches as patches
 def generate_figure_1(output_dir: str = "results/figures") -> None:
     """Generates Figure 1: End-to-end decoding and hardware architecture."""
     os.makedirs(output_dir, exist_ok=True)
-    fig, ax = plt.subplots(figsize=(13.0, 5.0), dpi=300)
-    ax.set_xlim(0, 130)
+    fig, ax = plt.subplots(figsize=(14.0, 5.0), dpi=300)
+    ax.set_xlim(0, 142)
     ax.set_ylim(0, 50)
     ax.axis("off")
 
@@ -54,22 +54,22 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
             ax.text((x1 + x2) / 2, (y1 + y2) / 2 + 1.8, label,
                     ha="center", va="bottom", fontsize=8.0, fontweight="bold", color="#37474f")
 
-    # Box 1: Quantum Circuit & DEM (width 19, right edge 21)
+    # Box 1: Quantum Circuit & DEM (width 18, x=2..20, padded 1.2..20.8)
     draw_box(
-        2, 12, 19, 26, c_circuit, c_circuit_b,
+        2, 12, 18, 26, c_circuit, c_circuit_b,
         "1. Stim Space-Time DEM",
         [
             "Gross BB Code [[72,12,6]]",
             "Bravyi Depth-7 Circuit",
-            "Noise p in [10^-3, 5x10^-3]",
+            r"Noise $p \in [10^{-3}, 5\times 10^{-3}]$",
             "10,260 Fault Mechanisms",
             "Bipartite Tanner Graph",
         ]
     )
 
-    # Box 2: Torus Automorphism Orbits (width 21, left edge 29, right edge 50)
+    # Box 2: Torus Automorphism Orbits (width 20, x=31..51, padded 30.2..51.8)
     draw_box(
-        29, 12, 21, 26, c_orbit, c_orbit_b,
+        31, 12, 20, 26, c_orbit, c_orbit_b,
         "2. Torus Automorphism",
         [
             r"$G = \mathbb{Z}_\ell \times \mathbb{Z}_m$ (36 Shifts)",
@@ -80,22 +80,22 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
         ]
     )
 
-    # Box 3: 6-Bit Unfolded QNBP (width 21, left edge 58, right edge 79)
+    # Box 3: 6-Bit Unfolded QNBP (width 20, x=62..82, padded 61.2..82.8)
     draw_box(
-        58, 12, 21, 26, c_qnbp, c_qnbp_b,
+        62, 12, 20, 26, c_qnbp, c_qnbp_b,
         "3. 6-Bit Integer QNBP",
         [
             "T=15 Unfolded Iterations",
-            "Dyadic Step Delta = 0.25",
+            r"Dyadic Step $\Delta = 0.25$",
             "Dynamic Range [-7.75, +7.75]",
             "CSD Shift-and-Add (DSP=0)",
             "Composite Observable Loss",
         ]
     )
 
-    # Box 4: Confidence Margin Gate G3 (width 17, left edge 87, right edge 104)
+    # Box 4: Confidence Margin Gate G3 (width 17, x=93..110, padded 92.2..110.8)
     draw_box(
-        87, 13, 17, 24, c_gate, c_gate_b,
+        93, 13, 17, 24, c_gate, c_gate_b,
         "4. Margin Gate G3",
         [
             "Syndrome Matched?",
@@ -105,9 +105,9 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
         ]
     )
 
-    # Fast Path & Fallback Boxes (left edge 112, right edge 128)
+    # Fast Path & Fallback Boxes (width 17, x=122..139, padded 121.2..139.8)
     draw_box(
-        112, 26, 16, 16, c_fast, c_fast_b,
+        122, 26, 17, 16, c_fast, c_fast_b,
         "Fast-Path FPGA",
         [
             "Accept Rate: 75.6%",
@@ -118,7 +118,7 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
     )
 
     draw_box(
-        112, 6, 16, 16, c_slow, c_slow_b,
+        122, 6, 17, 16, c_slow, c_slow_b,
         "Fallback Pool",
         [
             "Fallback: 24.4%",
@@ -128,32 +128,32 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
         ]
     )
 
-    # Connecting Arrows with generous 8-unit horizontal spacing
-    draw_arrow(21, 25, 29, 25, "Extract DEM")
-    draw_arrow(50, 25, 58, 25, "Orbit Tying")
-    draw_arrow(79, 25, 87, 25, r"Posterior $L_v$")
+    # Connecting Arrows with generous 11-unit horizontal spacing
+    draw_arrow(21.5, 25, 30.5, 25, "Extract DEM")
+    draw_arrow(52.5, 25, 61.5, 25, "Orbit Tying")
+    draw_arrow(83.5, 25, 92.5, 25, r"Posterior $L_v$")
 
-    # Branching Arrows from Gate: position labels cleanly on the arrow shafts
+    # Branching Arrows from Gate: start outside Box 4 padding (110.8), cleanly onto arrow shafts
     ax.annotate(
-        "", xy=(112, 34), xytext=(104, 28),
+        "", xy=(121.5, 34), xytext=(111.5, 27),
         arrowprops=dict(arrowstyle="->", color=c_fast_b, lw=2.0, mutation_scale=14)
     )
-    ax.text(108, 32.5, r"Pass ($\geq \tau$)", ha="center", va="bottom", fontsize=8.0, fontweight="bold", color=c_fast_b)
+    ax.text(116.5, 32.5, r"Pass ($\geq \tau$)", ha="center", va="bottom", fontsize=8.0, fontweight="bold", color=c_fast_b)
 
     ax.annotate(
-        "", xy=(112, 14), xytext=(104, 22),
+        "", xy=(121.5, 14), xytext=(111.5, 23),
         arrowprops=dict(arrowstyle="->", color=c_slow_b, lw=2.0, mutation_scale=14)
     )
-    ax.text(108, 16.5, r"Fail ($< \tau$)", ha="center", va="top", fontsize=8.0, fontweight="bold", color=c_slow_b)
+    ax.text(116.5, 16.5, r"Fail ($< \tau$)", ha="center", va="top", fontsize=8.0, fontweight="bold", color=c_slow_b)
 
     # Bottom Sliding Window Banner
     banner = patches.FancyBboxPatch(
-        (2, 2), 85, 6, boxstyle="round,pad=0.5,rounding_size=1.0",
+        (2, 2), 108, 6, boxstyle="round,pad=0.5,rounding_size=1.0",
         linewidth=1.2, edgecolor="#78909c", facecolor="#eceff1"
     )
     ax.add_patch(banner)
     ax.text(
-        44.5, 5,
+        56.0, 5,
         r"Continuous Streaming Sliding Window (Width $W = 3$ rounds, Commit Stride $F = 1$ round, Cycle = $1000\text{ ns}$)",
         ha="center", va="center", fontsize=8.5, fontweight="bold", color="#37474f"
     )
@@ -161,8 +161,8 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
     fig.tight_layout()
     for d in [output_dir, "manuscript/figures"]:
         os.makedirs(d, exist_ok=True)
-        fig.savefig(os.path.join(d, "fig1_architecture.pdf"))
-        fig.savefig(os.path.join(d, "fig1_architecture.png"))
+        fig.savefig(os.path.join(d, "fig1_architecture.pdf"), dpi=300)
+        fig.savefig(os.path.join(d, "fig1_architecture.png"), dpi=300)
     plt.close(fig)
     print("✅ Figure F1 generated successfully in results/figures/ and manuscript/figures/!")
 

@@ -91,6 +91,14 @@ filterwarnings = [
 [tool.ruff]
 line-length = 120
 target-version = "py310"
+exclude = [
+    ".agent",
+    ".git",
+    "build",
+    "dist",
+    ".venv",
+    "venv",
+]
 
 [tool.ruff.lint]
 select = ["E", "F", "W"]
@@ -101,5 +109,8 @@ ignore = [
     "F403",  # star imports
     "F405",  # star import names
     "F841",  # unused variable
+    "W291",  # trailing whitespace
+    "W292",  # newline at end of file
+    "W293",  # blank line contains whitespace
 ]
 
