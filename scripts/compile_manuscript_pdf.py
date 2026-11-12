@@ -659,7 +659,7 @@ def build_ieee_manuscript_pdf(
     p12.insert_htmlbox(pymupdf.Rect(40, 34, page_w - 40, page_h - 26), html_p12)
 
     os.makedirs(os.path.dirname(output_pdf_path), exist_ok=True)
-    doc.save(output_pdf_path)
+    doc.save(output_pdf_path, deflate=True, garbage=4, clean=True)
     doc.close()
     print(f"✅ Generated single canonical 12-page publication PDF: {output_pdf_path}")
 
