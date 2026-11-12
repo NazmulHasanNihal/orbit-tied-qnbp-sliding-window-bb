@@ -3,7 +3,7 @@
 **Project:** Orbit-Tied Quantized Neural Belief Propagation for Sliding-Window Decoding of Bivariate-Bicycle Codes  
 **Current Task:** Master Research Revision Prompt (Phases 1–26 Technical Audit & Publication Upgrade)  
 **Current Gate:** GATE 5 — VERIFIED & SUBMISSION-READY (Strictly 1 Canonical Deliverable: `manuscript/main.pdf`)  
-**Status:** Consolidated to strictly ONE canonical manuscript PDF (`manuscript/main.pdf`). Duplicate `main_4.pdf` permanently removed. Energy corrected to $18.84\text{ nJ}$, logic verified at $28,204\text{ LUTs}$, queue stability confirmed ($\rho=0.23$). Zero forbidden substrings detected.
+**Status:** Canonical `README.md` completely overhauled with synchronized Master 10-Decoder Table IV, Biased Noise Table I, FPGA Synthesis Table II, Folding Pareto Table III, Prior Art Table V, Mermaid architecture diagram, and all 8 published audit reports.
 
 ---
 
@@ -34,3 +34,4 @@
    - Table V caption placed above Table V (IEEE style).
    - `tests/verify_main_pdf.py`: Passed 13/13 assertions strictly on `manuscript/main.pdf`.
    - `pytest tests/ -k "not cosim_10k"`: Passed 32/32 tests in 33.24s.
+   - `README.md`: Upgraded to comprehensive Q1 research portal with full benchmark tables and reproduction guide.
