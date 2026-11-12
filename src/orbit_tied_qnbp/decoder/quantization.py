@@ -6,6 +6,7 @@ multiplier-free canonical signed-digit shift-and-add arithmetic for QNBP.
 
 from typing import Tuple, List, Optional
 import numpy as np
+from numpy.typing import NDArray
 import torch
 import torch.nn as nn
 from torch.autograd import Function

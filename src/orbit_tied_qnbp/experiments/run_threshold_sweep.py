@@ -52,9 +52,9 @@ def run_threshold_sweep(
 
     for p in p_values:
         p_str = f"{p:.4f}"
-        print(f"\n==========================================", flush=True)
+        print("\n==========================================", flush=True)
         print(f"  Physical Error Rate p = {p_str}", flush=True)
-        print(f"==========================================", flush=True)
+        print("==========================================", flush=True)
 
         circuit = code.build_stim_circuit(rounds=rounds, error_rate=p)
         dem = circuit.detector_error_model(decompose_errors=False)
@@ -75,7 +75,7 @@ def run_threshold_sweep(
         obs_mat = graph.obs_matrix.cpu().numpy()
 
         # A. Evaluate C++ BpDecoder (Min-Sum with scaling 0.75)
-        print(f"  Evaluating C++ ldpc.BpDecoder (A1)...", flush=True)
+        print("  Evaluating C++ ldpc.BpDecoder (A1)...", flush=True)
         bp_dec = BpDecoder(
             pcm, channel_probs=channel_probs, max_iter=15, bp_method="ms", ms_scaling_factor=0.75
         )
@@ -88,7 +88,7 @@ def run_threshold_sweep(
         print(f"    BP LER: {bp_ci['display']}", flush=True)
 
         # B. Train and Evaluate Orbit-Tied QNBP (A4)
-        print(f"  Training and Evaluating Orbit-Tied QNBP (A4)...", flush=True)
+        print("  Training and Evaluating Orbit-Tied QNBP (A4)...", flush=True)
         qnbp_model = OrbitTiedQNBP(
             graph=graph,
             num_layers=15,
@@ -123,7 +123,7 @@ def run_threshold_sweep(
         print(f"    QNBP LER: {qnbp_ci['display']}", flush=True)
 
         # C. Evaluate C++ BpOsdDecoder (Gold-standard BP+OSD-0)
-        print(f"  Evaluating C++ ldpc.BpOsdDecoder (A8 Gold-Standard)...", flush=True)
+        print("  Evaluating C++ ldpc.BpOsdDecoder (A8 Gold-Standard)...", flush=True)
         bposd_dec = BpOsdDecoder(
             pcm,
             channel_probs=channel_probs,

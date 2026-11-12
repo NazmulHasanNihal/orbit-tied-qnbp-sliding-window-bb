@@ -329,7 +329,7 @@ def run_axi_stream_ingress_benchmark() -> Dict[str, Any]:
     print(f"  AXI4-Stream Syndrome Bandwidth:  {line_rate_gbps:.2f} Gbps (< 14% of 10G Transceiver)")
     print(f"  Decoding Core Latency:           Mean = {mean_latency_ns:.1f} ns | Max = {max_latency_ns:.1f} ns")
     print(f"  Quantum Cycle Budget:            {quantum_cycle_ns:.1f} ns (Slack = {quantum_cycle_ns - max_latency_ns:.1f} ns)")
-    print(f"  Queue Overflow Probability:      < 6.0e-5 (0.00% observed across 50,000 windows for B >= 4)")
+    print("  Queue Overflow Probability:      < 6.0e-5 (0.00% observed across 50,000 windows for B >= 4)")
 
     return {
         "platform": "AMD UltraScale+ XCKU040-FBVA676-1-E",

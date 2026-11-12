@@ -34,9 +34,9 @@ def run_scaling_experiment(
     """Runs the [[144, 12, 12]] code scaling experiment."""
     start_time = time.time()
     code = BivariateBicycleCode.code_144_12_12()
-    print(f"\n==========================================", flush=True)
-    print(f"  Running Scaling Benchmark: [[144, 12, 12]] (Group order |G| = 72)", flush=True)
-    print(f"==========================================", flush=True)
+    print("\n==========================================", flush=True)
+    print("  Running Scaling Benchmark: [[144, 12, 12]] (Group order |G| = 72)", flush=True)
+    print("==========================================", flush=True)
 
     circuit = code.build_stim_circuit(rounds=rounds, error_rate=p_phys)
     dem = circuit.detector_error_model(decompose_errors=False)
@@ -69,7 +69,7 @@ def run_scaling_experiment(
     obs_mat = graph.obs_matrix.cpu().numpy()
 
     # 3. Baseline A1: Normalized Min-Sum (C++ ldpc.BpDecoder)
-    print(f"  Evaluating Classical Min-Sum BP (C++ ldpc.BpDecoder)...", flush=True)
+    print("  Evaluating Classical Min-Sum BP (C++ ldpc.BpDecoder)...", flush=True)
     bp_dec = BpDecoder(
         pcm, channel_probs=channel_probs, max_iter=15, bp_method="ms", ms_scaling_factor=0.75
     )
@@ -82,7 +82,7 @@ def run_scaling_experiment(
     print(f"    BP LER: {bp_ci['display']}", flush=True)
 
     # 4. Proposed 6-Bit Orbit-Tied QNBP
-    print(f"  Training and Evaluating 6-Bit Orbit-Tied QNBP...", flush=True)
+    print("  Training and Evaluating 6-Bit Orbit-Tied QNBP...", flush=True)
     qnbp_model = OrbitTiedQNBP(
         graph=graph,
         num_layers=15,
