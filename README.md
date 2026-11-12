@@ -1,5 +1,6 @@
 # Orbit-Tied Quantized Neural Belief Propagation (QNBP) for Real-Time Sliding-Window Decoding of Bivariate-Bicycle Quantum Codes
 
+[![CI](https://github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb/actions/workflows/ci.yml/badge.svg)](https://github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb/actions)
 [![PyPI Version](https://img.shields.io/badge/pypi-v1.0.0-blue.svg)](https://pypi.org/project/orbit-tied-qnbp/)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-brightgreen.svg)](https://www.python.org/)
 [![CI Test Suite](https://img.shields.io/badge/pytest-35%20passed%20(100%25)-brightgreen.svg)](tests/)
@@ -8,6 +9,7 @@
 [![AMD FPGA](https://img.shields.io/badge/AMD_UltraScale%2B-28%2C204_LUTs_(11.6%25)-red.svg)](rtl/)
 [![Throughput](https://img.shields.io/badge/Latency-102.4_ns_(240_ns_max)-yellowgreen.svg)](results/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![Cite](https://img.shields.io/badge/Cite-CITATION.cff-orange.svg)](CITATION.cff)
 [![DOI](https://img.shields.io/badge/DOI-10.1109%2FTQE.2026.XXXXXXX-lightgrey.svg)](manuscript/references.bib)
 
 Official Python library (`orbit-tied-qnbp`), synthesizeable SystemVerilog hardware RTL, automated verification testbench, and 12-page IEEE Transactions publication manuscript for:  
@@ -48,6 +50,12 @@ Department of Computer Science and Engineering, College of Technology, National 
 - [Hardware Synthesis & Folding Pareto Frontier](#-hardware-synthesis--folding-pareto-frontier)
 - [Prior Art Hardware Comparison](#-prior-art-hardware-comparison)
 - [Mathematical Theorems & Proofs](#-mathematical-theorems--proofs)
+- [Documentation & Technical Whitepapers](#-documentation--technical-whitepapers)
+- [Repository Structure & Submission Package](#-repository-structure--submission-package)
+- [Automated Verification & Reproduction](#-automated-verification--reproduction)
+- [Citation](#-citation)
+- [Contributing & Community](#-contributing--community)
+- [License](#-license)
 - [Repository Structure & Submission Package](#-repository-structure--submission-package)
 - [Automated Verification & Reproduction](#-automated-verification--reproduction)
 - [Citation](#-citation)
@@ -395,23 +403,50 @@ Synthesized on **AMD UltraScale+ XCKU040** ($f_{\text{clk}} = 250\text{ MHz}$, $
 
 ---
 
+## 📚 Documentation & Technical Whitepapers
+
+Comprehensive theoretical derivations, empirical evaluations, and audit reports are documented in [`docs/`](docs/README.md):
+
+| Document | Primary Focus | Key Insights & Results |
+| :--- | :--- | :--- |
+| **[`docs/REPRODUCIBILITY_GUIDE.md`](docs/REPRODUCIBILITY_GUIDE.md)** | Step-by-Step Reproduction | Exact CLI commands to reproduce all 5 tables, 7 figures, and 35 automated unit tests from scratch. |
+| **[`docs/MATHEMATICAL_VALIDATION.md`](docs/MATHEMATICAL_VALIDATION.md)** | Rigorous Derivations & Proofs | Formal proofs for Theorems 1–3, Proposition 1, orbit group actions ($G = \mathbb{Z}_\ell \times \mathbb{Z}_m$), and dyadic bounds. |
+| **[`docs/HARDWARE_VALIDATION.md`](docs/HARDWARE_VALIDATION.md)** | RTL Synthesis & Logic Breakdown | Vivado 2023.2 reports on AMD UltraScale+ xcvu13p, CSD shift-add arithmetic ($DSP=0$), and $18.84\text{ nJ}$ energy scaling. |
+| **[`docs/EXPERIMENTAL_VALIDATION.md`](docs/EXPERIMENTAL_VALIDATION.md)** | Benchmark Analysis | 10-decoder head-to-head analysis, McNemar $\chi^2$ significance tests, $G_3$ gating calibration, and IBM Heron results. |
+| **[`docs/FINAL_PUBLICATION_AUDIT.md`](docs/FINAL_PUBLICATION_AUDIT.md)** | 10-Point Publication Audit | Rigorous pre-flight checklist verifying IEEE layout, 300+ DPI vector graphics, zero visual clipping, and citation integrity. |
+| **[`docs/TECHNICAL_CORRECTIONS.md`](docs/TECHNICAL_CORRECTIONS.md)** | Technical Corrections Log | Exhaustive before-and-after mapping across all 26 engineering and theoretical development phases. |
+
+---
+
 ## 📦 Repository Structure & Submission Package
 
 ```
 orbit-tied-qnbp-sliding-window-bb/
-├── manuscript/
-│   ├── main.pdf                       # Canonical 12-page publication manuscript (1.75 MB)
+├── .github/                           # GitHub Actions CI/CD workflows and issue templates
+│   ├── workflows/ci.yml               # Automated test, lint, and verification workflow
+│   ├── ISSUE_TEMPLATE/                # Bug report and feature request templates
+│   └── pull_request_template.md       # PR checklist and verification guidelines
+├── docs/                              # Technical whitepapers and validation reports
+│   ├── README.md                      # Documentation index
+│   ├── REPRODUCIBILITY_GUIDE.md       # Full reproducibility guide
+│   ├── MATHEMATICAL_VALIDATION.md     # Derivations for Theorems 1–3 & Proposition 1
+│   ├── HARDWARE_VALIDATION.md         # SystemVerilog synthesis and CSD logic reports
+│   ├── EXPERIMENTAL_VALIDATION.md     # 10-decoder empirical analysis & statistical tests
+│   ├── FINAL_PUBLICATION_AUDIT.md     # 10-point scored publication-readiness audit
+│   └── TECHNICAL_CORRECTIONS.md       # Technical audit log across all 26 phases
+├── manuscript/                        # IEEE Transactions publication package
+│   ├── main.pdf                       # Canonical 12-page vector publication PDF (1.75 MB)
 │   ├── main_ieeetran.tex              # IEEEtran LaTeX source
 │   ├── references.bib                 # 59 complete, sequential references
 │   └── figures/                       # Figs. 1–7 (vector .pdf and 300+ DPI .png)
 ├── submission/                        # Complete IEEE ScholarOne submission bundle
 │   ├── main.pdf                       # Main manuscript upload
-│   ├── cover_letter.pdf               # Official IEEE Editorial Cover Letter
+│   ├── cover_letter.pdf               # Official IEEE Editorial Cover Letter (2 pages)
 │   ├── cover_letter.tex               # Cover letter LaTeX source
 │   ├── COVER_LETTER.md                # Cover letter Markdown text
-│   ├── SUBMISSION_METADATA.md         # Form metadata, author sequence & suggested reviewers
-│   └── manuscript_sources.zip         # LaTeX package for ScholarOne upload
-├── rtl/                               # Synthesizeable SystemVerilog Hardware
+│   ├── SUBMISSION_METADATA.md         # ScholarOne form metadata & 4 suggested reviewers
+│   └── manuscript_sources.zip         # Packaged LaTeX archive for submission
+├── rtl/                               # Synthesizeable SystemVerilog Hardware Modules
 │   ├── vnu.sv                         # Variable Node Unit (CSD shift-add, saturation)
 │   ├── cnu.sv                         # Check Node Unit (Min1/Min2 comparator tree)
 │   ├── g3_gate.sv                     # Confidence Gate G3 tree min comparator
@@ -426,6 +461,12 @@ orbit-tied-qnbp-sliding-window-bb/
 │   ├── test_hardware_cosim.py         # 10,000-shot bit-exact RTL co-simulation
 │   ├── test_realworld_benchmarks.py   # IBM Heron calibration & 100-round streaming
 │   └── verify_main_pdf.py             # 13-point forensic PDF layout verification
+├── results/                           # Raw benchmark JSON files & simulation data
+├── scripts/                           # Compilation and evaluation scripts
+├── CITATION.cff                       # Machine-readable academic citation metadata
+├── CONTRIBUTING.md                    # Open-source contribution guidelines
+├── CODE_OF_CONDUCT.md                 # Contributor Covenant v2.1
+├── SECURITY.md                        # Security policy and vulnerability disclosure
 ├── pyproject.toml                     # PyPI packaging configuration
 └── README.md                          # Repository documentation
 ```
@@ -465,6 +506,17 @@ If you use this work, software library, or hardware RTL in your research, please
   doi={10.1109/TQE.2026.XXXXXXX}
 }
 ```
+
+A machine-readable citation is also available in [`CITATION.cff`](CITATION.cff).
+
+---
+
+## 🤝 Contributing & Community
+
+Contributions are welcome! Please review our:
+- [Contribution Guidelines](CONTRIBUTING.md)
+- [Code of Conduct](CODE_OF_CONDUCT.md)
+- [Security Policy](SECURITY.md)
 
 ---
 

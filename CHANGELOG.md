@@ -50,12 +50,12 @@
 
 ## 2. Documentation & Artifact Deliverables Generated
 
-1. `AUDIT_REPORT.md`: Comprehensive 8-category forensic audit of all source files, raw data, and claims.
-2. `TECHNICAL_CORRECTIONS.md`: Detailed mapping of pre-audit issues to corrected states.
-3. `MATHEMATICAL_VALIDATION.md`: Complete theoretical derivations and proofs for Theorems 1–4, Proposition 1, and Corollary 1.
-4. `EXPERIMENTAL_VALIDATION.md`: Benchmark audit across 10 decoders, McNemar statistics, G3 calibration, and 60-round streaming tests.
-5. `HARDWARE_VALIDATION.md`: Energy re-calculation, logic synthesis breakdown, CSD arithmetic, and folding Pareto frontier.
-6. `REPRODUCIBILITY_GUIDE.md`: Step-by-step reproduction instructions for all tables, figures, and tests.
-7. `CHANGELOG.md`: Forensic audit change tracking.
-8. `FINAL_PUBLICATION_AUDIT.md`: 10-point scored publication-readiness audit.
+1. [`docs/AUDIT_REPORT.md`](docs/AUDIT_REPORT.md): Comprehensive 8-category forensic audit of all source files, raw data, and claims.
+2. [`docs/TECHNICAL_CORRECTIONS.md`](docs/TECHNICAL_CORRECTIONS.md): Detailed mapping of pre-audit issues to corrected states.
+3. [`docs/MATHEMATICAL_VALIDATION.md`](docs/MATHEMATICAL_VALIDATION.md): Complete theoretical derivations and proofs for Theorems 1–4, Proposition 1, and Corollary 1.
+4. [`docs/EXPERIMENTAL_VALIDATION.md`](docs/EXPERIMENTAL_VALIDATION.md): Benchmark audit across 10 decoders, McNemar statistics, G3 calibration, and 60-round streaming tests.
+5. [`docs/HARDWARE_VALIDATION.md`](docs/HARDWARE_VALIDATION.md): Energy re-calculation, logic synthesis breakdown, CSD arithmetic, and folding Pareto frontier.
+6. [`docs/REPRODUCIBILITY_GUIDE.md`](docs/REPRODUCIBILITY_GUIDE.md): Step-by-step reproduction instructions for all tables, figures, and tests.
+7. [`docs/FINAL_PUBLICATION_AUDIT.md`](docs/FINAL_PUBLICATION_AUDIT.md): 10-point scored publication-readiness audit.
+8. [`docs/RESEARCH_PLAN.md`](docs/RESEARCH_PLAN.md): Monolithic research execution roadmap.
 
