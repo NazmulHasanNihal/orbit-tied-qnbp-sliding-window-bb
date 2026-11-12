@@ -95,3 +95,4 @@ mypy src/ tests/
 For questions regarding theoretical derivations, hardware co-design, or academic collaboration:
 - **Lead Author:** Md. Nazmul (`nazmulhas36@gmail.com`)
 - **Institution:** Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh
+

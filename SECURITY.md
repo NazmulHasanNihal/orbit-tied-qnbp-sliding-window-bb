@@ -28,3 +28,4 @@ Instead, please send an encrypted or direct email to the corresponding author:
 4. Proposed fix or mitigation strategy (if available).
 
 We will acknowledge receipt within 48 hours and work with you on a responsible disclosure timeline prior to public announcement.
+
