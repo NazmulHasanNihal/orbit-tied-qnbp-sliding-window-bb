@@ -9,9 +9,9 @@ Verifies:
 
 import numpy as np
 import pytest
-from src.decoder.integer_reference import IntegerQNBP
-from src.decoder.sliding_window import ConfidenceGate
-from src.decoder.baselines import DecodeResult
+from orbit_tied_qnbp.decoder.integer_reference import IntegerQNBP
+from orbit_tied_qnbp.decoder.sliding_window import ConfidenceGate
+from orbit_tied_qnbp.decoder.baselines import DecodeResult
 
 
 def test_vnu_10k_shot_bit_exact_parity() -> None:

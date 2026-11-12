@@ -10,10 +10,10 @@ Tests:
 
 import numpy as np
 import pytest
-from src.circuits.bivariate_bicycle import BivariateBicycleCode
-from src.data.dem_graph import DemGraph
-from src.decoder.orbits import DemOrbitManager
-from src.decoder.competitor_baselines import (
+from orbit_tied_qnbp.circuits.bivariate_bicycle import BivariateBicycleCode
+from orbit_tied_qnbp.data.dem_graph import DemGraph
+from orbit_tied_qnbp.decoder.orbits import DemOrbitManager
+from orbit_tied_qnbp.decoder.competitor_baselines import (
     MemBpDecoder,
     BpLsdBaselineDecoder,
     BpOsdBaselineDecoder,

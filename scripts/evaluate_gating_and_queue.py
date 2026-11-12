@@ -15,12 +15,12 @@ import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import numpy as np
-from src.circuits.bivariate_bicycle import BivariateBicycleCode
-from src.data.dem_graph import DemGraph
-from src.decoder.integer_reference import IntegerQNBP
-from src.decoder.competitor_baselines import BpOsdBaselineDecoder
-from src.decoder.sliding_window import ConfidenceGate
-from src.utils.metrics import wilson_score_interval
+from orbit_tied_qnbp.circuits.bivariate_bicycle import BivariateBicycleCode
+from orbit_tied_qnbp.data.dem_graph import DemGraph
+from orbit_tied_qnbp.decoder.integer_reference import IntegerQNBP
+from orbit_tied_qnbp.decoder.competitor_baselines import BpOsdBaselineDecoder
+from orbit_tied_qnbp.decoder.sliding_window import ConfidenceGate
+from orbit_tied_qnbp.utils.metrics import wilson_score_interval
 
 
 def run_gating_calibration(

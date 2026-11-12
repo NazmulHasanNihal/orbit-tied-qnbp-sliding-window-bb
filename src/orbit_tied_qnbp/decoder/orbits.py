@@ -10,7 +10,7 @@ import numpy as np
 from numpy.typing import NDArray
 import stim
 
-from src.circuits.bivariate_bicycle import BivariateBicycleCode
+from orbit_tied_qnbp.circuits.bivariate_bicycle import BivariateBicycleCode
 
 
 class DemOrbitManager:

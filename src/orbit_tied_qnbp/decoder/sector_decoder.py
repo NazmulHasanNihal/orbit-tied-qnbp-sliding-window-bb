@@ -10,10 +10,10 @@ import numpy as np
 import scipy.sparse as sp
 from numpy.typing import NDArray
 
-from src.circuits.bivariate_bicycle import BivariateBicycleCode
-from src.data.dem_graph import DemGraph
-from src.decoder.baselines import DecodeResult, MinSumDecoder
-from src.utils.metrics import format_ci_metric
+from orbit_tied_qnbp.circuits.bivariate_bicycle import BivariateBicycleCode
+from orbit_tied_qnbp.data.dem_graph import DemGraph
+from orbit_tied_qnbp.decoder.baselines import DecodeResult, MinSumDecoder
+from orbit_tied_qnbp.utils.metrics import format_ci_metric
 
 
 class SeparateXZSectorDecoder:

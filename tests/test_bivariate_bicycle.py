@@ -3,7 +3,7 @@
 import numpy as np
 import pytest
 import stim
-from src.circuits.bivariate_bicycle import BivariateBicycleCode
+from orbit_tied_qnbp.circuits.bivariate_bicycle import BivariateBicycleCode
 
 
 def test_code_72_12_6_properties():

@@ -9,7 +9,7 @@ import numpy as np
 from numpy.typing import NDArray
 import stim
 
-from src.utils.gf2 import (
+from orbit_tied_qnbp.utils.gf2 import (
     gf2_rank,
     verify_css_commutativity,
     compute_canonical_logicals,
@@ -73,6 +73,26 @@ class BivariateBicycleCode:
 
         # Precompute permutation mappings for monomials A1, A2, A3, B1, B2, B3
         self.perms = self._build_permutation_tables()
+
+    @classmethod
+    def gross_72(cls) -> "BivariateBicycleCode":
+        """Instantiates the canonical [[72, 12, 6]] Gross Bivariate-Bicycle code."""
+        return cls(
+            l=6,
+            m=6,
+            a_terms=[(3, 0), (0, 1), (0, 2)],
+            b_terms=[(0, 3), (1, 0), (2, 0)],
+        )
+
+    @classmethod
+    def gross_144(cls) -> "BivariateBicycleCode":
+        """Instantiates the canonical [[144, 12, 12]] Gross Bivariate-Bicycle code."""
+        return cls(
+            l=12,
+            m=6,
+            a_terms=[(3, 0), (0, 1), (0, 2)],
+            b_terms=[(0, 3), (1, 0), (2, 0)],
+        )
 
     @classmethod
     def code_72_12_6(cls) -> "BivariateBicycleCode":

@@ -10,7 +10,7 @@ import numpy as np
 from numpy.typing import NDArray
 import torch
 
-from src.data.dem_graph import DemGraph
+from orbit_tied_qnbp.data.dem_graph import DemGraph
 
 try:
     from ldpc import bposd_decoder  # type: ignore

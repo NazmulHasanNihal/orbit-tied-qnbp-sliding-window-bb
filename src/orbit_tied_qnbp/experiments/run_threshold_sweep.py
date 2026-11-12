@@ -18,12 +18,12 @@ import scipy.sparse as sp
 import torch
 from ldpc import BpDecoder, BpOsdDecoder
 
-from src.circuits.bivariate_bicycle import BivariateBicycleCode
-from src.data.dem_graph import DemGraph
-from src.decoder.qnbp import OrbitTiedQNBP
-from src.experiments.data_loader import QecDataLoader
-from src.experiments.trainer import QnbpTrainer
-from src.utils.metrics import format_ci_metric
+from orbit_tied_qnbp.circuits.bivariate_bicycle import BivariateBicycleCode
+from orbit_tied_qnbp.data.dem_graph import DemGraph
+from orbit_tied_qnbp.decoder.qnbp import OrbitTiedQNBP
+from orbit_tied_qnbp.experiments.data_loader import QecDataLoader
+from orbit_tied_qnbp.experiments.trainer import QnbpTrainer
+from orbit_tied_qnbp.utils.metrics import format_ci_metric
 
 
 def run_threshold_sweep(

@@ -8,9 +8,9 @@ from typing import List, Tuple, Dict, Any, Optional
 import numpy as np
 from numpy.typing import NDArray
 
-from src.data.dem_graph import DemGraph
-from src.decoder.quantization import CanonicalSignedDigit
-from src.decoder.baselines import DecodeResult
+from orbit_tied_qnbp.data.dem_graph import DemGraph
+from orbit_tied_qnbp.decoder.quantization import CanonicalSignedDigit
+from orbit_tied_qnbp.decoder.baselines import DecodeResult
 
 
 class IntegerQNBP:

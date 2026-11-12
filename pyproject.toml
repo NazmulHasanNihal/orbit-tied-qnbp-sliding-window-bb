@@ -1,0 +1,88 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "orbit-tied-qnbp"
+version = "1.0.0"
+description = "Orbit-Tied Quantized Neural Belief Propagation for Sliding-Window Decoding of Bivariate-Bicycle Quantum Codes"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "Apache-2.0"
+authors = [
+    { name = "Saad Tariq", email = "saad.tariq@ieee.org" }
+]
+maintainers = [
+    { name = "Saad Tariq", email = "saad.tariq@ieee.org" }
+]
+keywords = [
+    "quantum-computing",
+    "quantum-error-correction",
+    "qldpc",
+    "bivariate-bicycle-codes",
+    "neural-belief-propagation",
+    "sliding-window-decoding",
+    "fpga-hardware",
+    "canonical-signed-digit",
+    "stim"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Operating System :: OS Independent",
+    "Typing :: Typed",
+]
+dependencies = [
+    "numpy>=1.22.0",
+    "scipy>=1.8.0",
+    "torch>=2.0.0",
+    "stim>=1.12.0",
+    "matplotlib>=3.5.0",
+    "pymupdf>=1.23.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "ruff>=0.4.0",
+    "mypy>=1.10.0",
+    "build>=1.0.0",
+    "twine>=4.0.0",
+]
+benchmarks = [
+    "ldpc>=0.1.50",
+    "sinter>=1.12.0",
+]
+
+[project.scripts]
+qnbp = "orbit_tied_qnbp.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/saadtariq/orbit-tied-qnbp-sliding-window-bb"
+Documentation = "https://github.com/saadtariq/orbit-tied-qnbp-sliding-window-bb#readme"
+Repository = "https://github.com/saadtariq/orbit-tied-qnbp-sliding-window-bb.git"
+"Bug Tracker" = "https://github.com/saadtariq/orbit-tied-qnbp-sliding-window-bb/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+orbit_tied_qnbp = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --import-mode=importlib"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::FutureWarning",
+]
+

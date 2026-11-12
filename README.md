@@ -1,5 +1,7 @@
 # Orbit-Tied Quantized Neural Belief Propagation (QNBP) for Real-Time Sliding-Window Decoding of Bivariate-Bicycle Quantum Codes
 
+[![PyPI Version](https://img.shields.io/badge/pypi-v1.0.0-blue.svg)](https://pypi.org/project/orbit-tied-qnbp/)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-brightgreen.svg)](https://www.python.org/)
 [![CI Test Suite](https://img.shields.io/badge/pytest-35%20passed%20(100%25)-brightgreen.svg)](tests/)
 [![Paper](https://img.shields.io/badge/IEEE_TQE-12--Page_Vector_PDF-blue.svg)](manuscript/main.pdf)
 [![Hardware](https://img.shields.io/badge/SystemVerilog-DSP%3D0_Multiplier--Free-orange.svg)](rtl/)
@@ -8,7 +10,7 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![DOI](https://img.shields.io/badge/DOI-10.1109%2FTQE.2026.XXXXXXX-lightgrey.svg)](manuscript/references.bib)
 
-Official implementation, synthesizeable SystemVerilog hardware RTL, automated verification suite, and 12-page IEEE Transactions publication manuscript for:  
+Official Python library (`orbit-tied-qnbp`), synthesizeable SystemVerilog hardware RTL, automated verification suite, and 12-page IEEE Transactions publication manuscript for:  
 **"Orbit-Tied Quantized Neural Belief Propagation for Real-Time Sliding-Window Decoding of Bivariate-Bicycle Quantum Codes"**  
 *Accepted / Targeted for IEEE Transactions on Quantum Engineering (IEEE TQE).*
 
@@ -22,6 +24,7 @@ Official implementation, synthesizeable SystemVerilog hardware RTL, automated ve
 
 - [Overview & Motivation](#-overview--motivation)
 - [Key Scientific & Architectural Contributions](#-key-scientific--architectural-contributions)
+- [Python Library Quickstart (`orbit-tied-qnbp`)](#-python-library-quickstart-orbit-tied-qnbp)
 - [System Architecture](#-system-architecture)
 - [Master Head-to-Head Competitor Benchmark](#-master-head-to-head-competitor-benchmark)
 - [Biased Pauli Noise Performance](#-biased-pauli-noise-performance)
@@ -91,6 +94,73 @@ Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes—such as 
    - Designed and synthesized fully functional SystemVerilog modules (`vnu.sv`, `cnu.sv`, `g3_gate.sv`, `streaming_axi_harness.sv`) consuming **$28,204\text{ LUTs}$ (11.64% of AMD UltraScale+ XCKU040)** and $19,512\text{ FFs}$ at $184\text{ mW}$ dynamic power ($18.84\text{ nJ}$ mean dynamic energy).
    - Formulates a formal subgroup folding schedule reducing logic down to **$1,226\text{ LUTs}$ (0.51% utilization)** at fold factor $F=36$.
    - Bit-exact co-simulation across $10,000$ pseudo-random test vectors validates $100\%$ zero-defect parity between hardware RTL and software reference models.
+
+---
+
+## 🚀 Python Library Quickstart (`orbit-tied-qnbp`)
+
+The repository packages the core decoding algorithms, circuit generators, and hardware references as an installable Python library `orbit-tied-qnbp`.
+
+### Installation
+
+```bash
+# Option 1: Install from source (editable mode)
+git clone https://github.com/saadtariq/orbit-tied-qnbp-sliding-window-bb.git
+cd orbit-tied-qnbp-sliding-window-bb
+pip install -e .
+
+# Option 2: Install distribution wheel
+pip install dist/orbit_tied_qnbp-1.0.0-py3-none-any.whl
+```
+
+### Python API Example
+
+```python
+import numpy as np
+import orbit_tied_qnbp as qnbp
+
+# 1. Instantiate canonical Gross [[72, 12, 6]] Bivariate-Bicycle Code
+code = qnbp.BivariateBicycleCode.gross_72()
+print(f"Code: [[{code.num_data_qubits}, {code.num_logicals}, 6]] | Group Order: {code.group_order}")
+
+# 2. Build Stim syndrome extraction circuit (rounds=3, error_rate=0.003)
+circuit = code.build_stim_circuit(rounds=3, error_rate=0.003)
+dem = circuit.detector_error_model()
+
+# 3. Construct bipartite space-time Detector Error Model graph
+graph = qnbp.DemGraph.from_dem(code=code, num_rounds=3, dem=dem)
+print(f"DEM Graph: {graph.num_faults} fault mechanisms, {graph.num_detectors} detectors")
+
+# 4. Extract torus automorphism orbits (collapses 7,308 faults -> 203 orbits)
+orbit_mgr = qnbp.DemOrbitManager(code=code, num_rounds=3, dem=dem)
+print(f"Extracted {orbit_mgr.num_fault_orbits} symmetry orbits (36.0x parameter reduction)")
+
+# 5. Initialize 6-bit integer QNBP decoder (CSD shift-and-add, DSP=0)
+decoder = qnbp.IntegerQNBP(graph=graph, num_layers=15, bit_width=4, alpha_val=0.75, gamma_val=0.35)
+
+# 6. Sample a syndrome frame and decode
+sampler = circuit.compile_detector_sampler()
+syndrome, actual_obs = sampler.sample(shots=1, separate_observables=True)
+
+result = decoder.decode(syndrome[0].astype(np.uint8))
+print(f"Decoded: converged={result.converged} in {result.iterations} iterations")
+print(f"Observables Match: {np.array_equal(result.predicted_observables, actual_obs[0])}")
+```
+
+### Command-Line Interface (CLI)
+
+The package provides a built-in command-line tool `qnbp` (or `python -m orbit_tied_qnbp.cli`):
+
+```bash
+# Print code specifications, orbit breakdown, and FPGA resource utilization
+qnbp info
+
+# Run 6-step self-verification suite (CSS commutativity, CSD arithmetic, DEM, orbits, QNBP)
+qnbp verify
+
+# Run a quick Monte Carlo decoding benchmark (p=0.003, N=50 shots)
+qnbp benchmark --code 72 --noise 0.003 --shots 50
+```
 
 ---
 
@@ -315,18 +385,19 @@ orbit-tied-qnbp-sliding-window-bb/
 
 ```bash
 # Clone the repository
-git clone https://github.com/orbit-tied-qnbp-sliding-window-bb.git
+git clone https://github.com/saadtariq/orbit-tied-qnbp-sliding-window-bb.git
 cd orbit-tied-qnbp-sliding-window-bb
 
-# Install dependencies
+# Install package and dependencies
 pip install -r requirements.txt
+pip install -e .
 ```
 
 ### 1. Run Complete Automated Test Suite (35 Tests)
 ```bash
 python -m pytest tests/ -v -k "not cosim_10k"
 ```
-*Expected: 32 passed, 3 deselected in ~33 seconds.*  
+*Expected: 32 passed, 3 deselected in ~26 seconds.*  
 To include the long-running 10,000-shot bit-exact co-simulation:
 ```bash
 python -m pytest tests/ -v
@@ -356,8 +427,8 @@ python scripts/compile_manuscript_pdf.py
 
 ### 4. Re-Generate All Publication Figures (Figures 1–7)
 ```bash
-python src/experiments/plot_fig1_architecture.py
-python src/experiments/plot_figures.py
+python -m orbit_tied_qnbp.experiments.plot_fig1_architecture
+python -m orbit_tied_qnbp.experiments.plot_figures
 ```
 *Outputs all vector figures into `results/figures/` and `manuscript/figures/`.*
 

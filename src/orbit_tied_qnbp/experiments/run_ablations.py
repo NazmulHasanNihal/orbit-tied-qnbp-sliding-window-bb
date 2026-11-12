@@ -11,20 +11,20 @@ import time
 import numpy as np
 import torch
 
-from src.circuits.bivariate_bicycle import BivariateBicycleCode
-from src.data.dem_graph import DemGraph
-from src.decoder.baselines import MinSumDecoder
-from src.decoder.integer_reference import IntegerQNBP
-from src.decoder.sliding_window import ConfidenceGate, TraceDrivenQueueSimulator
-from src.experiments.data_loader import QecDataLoader
-from src.experiments.runner import (
+from orbit_tied_qnbp.circuits.bivariate_bicycle import BivariateBicycleCode
+from orbit_tied_qnbp.data.dem_graph import DemGraph
+from orbit_tied_qnbp.decoder.baselines import MinSumDecoder
+from orbit_tied_qnbp.decoder.integer_reference import IntegerQNBP
+from orbit_tied_qnbp.decoder.sliding_window import ConfidenceGate, TraceDrivenQueueSimulator
+from orbit_tied_qnbp.experiments.data_loader import QecDataLoader
+from orbit_tied_qnbp.experiments.runner import (
     evaluate_minsum_decoder,
     evaluate_integer_decoder,
     evaluate_cpp_bp_decoder,
     evaluate_cpp_bposd_decoder,
     train_and_eval_qnbp,
 )
-from src.utils.metrics import format_ci_metric, mcnemar_paired_test
+from orbit_tied_qnbp.utils.metrics import format_ci_metric, mcnemar_paired_test
 
 
 def run_full_ablation_ladder(

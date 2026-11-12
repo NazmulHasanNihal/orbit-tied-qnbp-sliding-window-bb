@@ -8,7 +8,7 @@ import numpy as np
 import torch
 import torch.optim as optim
 
-from src.decoder.qnbp import OrbitTiedQNBP
+from orbit_tied_qnbp.decoder.qnbp import OrbitTiedQNBP
 
 
 class QnbpTrainer:

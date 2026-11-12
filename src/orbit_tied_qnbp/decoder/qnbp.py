@@ -10,8 +10,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from src.data.dem_graph import DemGraph
-from src.decoder.quantization import PowerOfTwoQuantizer, SteClamp
+from orbit_tied_qnbp.data.dem_graph import DemGraph
+from orbit_tied_qnbp.decoder.quantization import PowerOfTwoQuantizer, SteClamp
 
 
 class OrbitTiedQNBP(nn.Module):

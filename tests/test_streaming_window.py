@@ -2,9 +2,9 @@
 
 import numpy as np
 import pytest
-from src.circuits.bivariate_bicycle import BivariateBicycleCode
-from src.data.dem_graph import DemGraph
-from src.decoder.streaming_window_decoder import StreamingSlidingWindowDecoder
+from orbit_tied_qnbp.circuits.bivariate_bicycle import BivariateBicycleCode
+from orbit_tied_qnbp.data.dem_graph import DemGraph
+from orbit_tied_qnbp.decoder.streaming_window_decoder import StreamingSlidingWindowDecoder
 
 
 def test_noiseless_streaming_window():

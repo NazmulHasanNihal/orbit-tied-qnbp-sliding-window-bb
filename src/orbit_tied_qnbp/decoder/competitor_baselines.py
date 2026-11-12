@@ -20,9 +20,9 @@ try:
 except ImportError:
     HAS_LDPC_CPP = False
 
-from src.data.dem_graph import DemGraph
-from src.decoder.baselines import DecodeResult, MinSumDecoder
-from src.decoder.orbits import DemOrbitManager
+from orbit_tied_qnbp.data.dem_graph import DemGraph
+from orbit_tied_qnbp.decoder.baselines import DecodeResult, MinSumDecoder
+from orbit_tied_qnbp.decoder.orbits import DemOrbitManager
 
 
 class MemBpDecoder:

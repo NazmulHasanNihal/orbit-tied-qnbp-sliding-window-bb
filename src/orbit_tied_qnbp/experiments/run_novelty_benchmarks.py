@@ -13,17 +13,17 @@ import os
 import numpy as np
 import stim
 
-from src.circuits.bivariate_bicycle import BivariateBicycleCode
-from src.data.dem_graph import DemGraph
-from src.decoder.baselines import MinSumDecoder, RelayBPDecoder
-from src.decoder.integer_reference import IntegerQNBP
-from src.decoder.orbits import DemOrbitManager
-from src.experiments.runner import (
+from orbit_tied_qnbp.circuits.bivariate_bicycle import BivariateBicycleCode
+from orbit_tied_qnbp.data.dem_graph import DemGraph
+from orbit_tied_qnbp.decoder.baselines import MinSumDecoder, RelayBPDecoder
+from orbit_tied_qnbp.decoder.integer_reference import IntegerQNBP
+from orbit_tied_qnbp.decoder.orbits import DemOrbitManager
+from orbit_tied_qnbp.experiments.runner import (
     evaluate_minsum_decoder,
     evaluate_relay_bp_decoder,
     evaluate_integer_decoder,
 )
-from src.utils.metrics import format_ci_metric
+from orbit_tied_qnbp.utils.metrics import format_ci_metric
 
 
 def run_biased_noise_sweep(

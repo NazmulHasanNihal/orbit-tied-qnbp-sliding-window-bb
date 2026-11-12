@@ -26,19 +26,19 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 import numpy as np
 from scipy.stats import norm
 
-from src.circuits.bivariate_bicycle import BivariateBicycleCode
-from src.data.dem_graph import DemGraph
-from src.decoder.baselines import MinSumDecoder, RelayBPDecoder
-from src.decoder.integer_reference import IntegerQNBP
-from src.decoder.orbits import DemOrbitManager
-from src.decoder.competitor_baselines import (
+from orbit_tied_qnbp.circuits.bivariate_bicycle import BivariateBicycleCode
+from orbit_tied_qnbp.data.dem_graph import DemGraph
+from orbit_tied_qnbp.decoder.baselines import MinSumDecoder, RelayBPDecoder
+from orbit_tied_qnbp.decoder.integer_reference import IntegerQNBP
+from orbit_tied_qnbp.decoder.orbits import DemOrbitManager
+from orbit_tied_qnbp.decoder.competitor_baselines import (
     MemBpDecoder,
     BpLsdBaselineDecoder,
     BpOsdBaselineDecoder,
     AutDecBaselineDecoder,
     FastBpBaselineDecoder,
 )
-from src.utils.metrics import wilson_score_interval, mcnemar_paired_test
+from orbit_tied_qnbp.utils.metrics import wilson_score_interval, mcnemar_paired_test
 
 
 def evaluate_decoder(decoder: Any, syn: np.ndarray, obs: np.ndarray) -> Dict[str, Any]:

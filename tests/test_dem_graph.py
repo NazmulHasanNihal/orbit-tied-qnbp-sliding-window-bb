@@ -3,8 +3,8 @@
 import numpy as np
 import pytest
 import torch
-from src.circuits.bivariate_bicycle import BivariateBicycleCode
-from src.data.dem_graph import DemGraph, HAS_PYG
+from orbit_tied_qnbp.circuits.bivariate_bicycle import BivariateBicycleCode
+from orbit_tied_qnbp.data.dem_graph import DemGraph, HAS_PYG
 
 
 def test_dem_graph_construction():

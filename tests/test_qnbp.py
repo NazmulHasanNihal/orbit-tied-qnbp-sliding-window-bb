@@ -3,10 +3,10 @@
 import numpy as np
 import pytest
 import torch
-from src.circuits.bivariate_bicycle import BivariateBicycleCode
-from src.data.dem_graph import DemGraph
-from src.decoder.qnbp import OrbitTiedQNBP
-from src.decoder.quantization import PowerOfTwoQuantizer, CanonicalSignedDigit
+from orbit_tied_qnbp.circuits.bivariate_bicycle import BivariateBicycleCode
+from orbit_tied_qnbp.data.dem_graph import DemGraph
+from orbit_tied_qnbp.decoder.qnbp import OrbitTiedQNBP
+from orbit_tied_qnbp.decoder.quantization import PowerOfTwoQuantizer, CanonicalSignedDigit
 
 
 def test_quantizer_powers_of_two():

@@ -16,8 +16,7 @@ try:
 except ImportError:
     HAS_PYG = False
 
-from src.circuits.bivariate_bicycle import BivariateBicycleCode
-from src.decoder.orbits import DemOrbitManager
+from orbit_tied_qnbp.circuits.bivariate_bicycle import BivariateBicycleCode
 
 
 class DemGraph:
@@ -81,6 +80,7 @@ class DemGraph:
         if window_end_round is None:
             window_end_round = num_rounds - 1
 
+        from orbit_tied_qnbp.decoder.orbits import DemOrbitManager
         orbit_mgr = DemOrbitManager(code=code, num_rounds=num_rounds, dem=dem)
         num_detectors = dem.num_detectors
         num_faults = len(orbit_mgr.parsed_errors)

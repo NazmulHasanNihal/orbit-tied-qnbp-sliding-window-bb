@@ -2,8 +2,8 @@
 
 import numpy as np
 import pytest
-from src.circuits.bivariate_bicycle import BivariateBicycleCode
-from src.decoder.orbits import DemOrbitManager
+from orbit_tied_qnbp.circuits.bivariate_bicycle import BivariateBicycleCode
+from orbit_tied_qnbp.decoder.orbits import DemOrbitManager
 
 
 def test_orbits_72_12_6():

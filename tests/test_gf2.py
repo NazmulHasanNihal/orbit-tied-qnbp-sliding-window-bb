@@ -2,7 +2,7 @@
 
 import numpy as np
 import pytest
-from src.utils.gf2 import (
+from orbit_tied_qnbp.utils.gf2 import (
     gf2_rank,
     gf2_nullspace,
     verify_css_commutativity,

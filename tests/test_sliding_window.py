@@ -2,9 +2,9 @@
 
 import numpy as np
 import pytest
-from src.circuits.bivariate_bicycle import BivariateBicycleCode
-from src.decoder.baselines import DecodeResult
-from src.decoder.sliding_window import (
+from orbit_tied_qnbp.circuits.bivariate_bicycle import BivariateBicycleCode
+from orbit_tied_qnbp.decoder.baselines import DecodeResult
+from orbit_tied_qnbp.decoder.sliding_window import (
     ConfidenceGate,
     SlidingWindowManager,
     TraceDrivenQueueSimulator,
