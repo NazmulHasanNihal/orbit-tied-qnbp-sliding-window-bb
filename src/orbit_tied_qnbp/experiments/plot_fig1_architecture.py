@@ -59,7 +59,7 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
         2, 12, 18, 26, c_circuit, c_circuit_b,
         "1. Stim Space-Time DEM",
         [
-            "Gross BB Code [[72,12,6]]",
+            "72-Qubit BB Code [[72,12,6]]",
             "Bravyi Depth-7 Circuit",
             r"Noise $p \in [10^{-3}, 5\times 10^{-3}]$",
             "10,260 Fault Mechanisms",
@@ -73,7 +73,7 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
         "2. Torus Automorphism",
         [
             r"$G = \mathbb{Z}_\ell \times \mathbb{Z}_m$ (36 Shifts)",
-            "Exact Symmetries (Thm 1)",
+            "Exact Symmetries (Prop. 1)",
             "10,260 -> 285 Orbits (36x)",
             "Equivariance Enforced",
             "Window Boundary Classes",
@@ -86,10 +86,10 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
         "3. 6-Bit Integer QNBP",
         [
             "T=15 Unfolded Iterations",
+            r"Dyadic Pre-Scale $\kappa = 0.75$",
             r"Dyadic Step $\Delta = 0.25$",
             "Dynamic Range [-7.75, +7.75]",
             "CSD Shift-and-Add (DSP=0)",
-            "Composite Observable Loss",
         ]
     )
 
@@ -108,10 +108,10 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
     # Fast Path & Fallback Boxes (width 17, x=122..139, padded 121.2..139.8)
     draw_box(
         122, 26, 17, 16, c_fast, c_fast_b,
-        "Fast-Path FPGA",
+        "Fast Path (p=0.003)",
         [
             "Accept Rate: 75.6%",
-            "Latency: 240 ns (T=15)",
+            "Latency: 240 ns max",
             "LER: 0.0000 (0 Err)",
             "Immediate Commit",
         ]
@@ -119,12 +119,12 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
 
     draw_box(
         122, 6, 17, 16, c_slow, c_slow_b,
-        "Fallback Pool",
+        "Fallback (p=0.003)",
         [
             "Fallback: 24.4%",
-            "C++ BP+OSD-CS-10",
-            r"$P_{\mathrm{pipe}} = 1.9\times 10^{-4}$",
-            r"Buffered $D/G/c$ Queue",
+            "Tier 1: FPGA Core (950 ns)",
+            r"Tier 2: OSD ($p=0.001$)",
+            r"Zero Overflow ($B \geq 4$)",
         ]
     )
 

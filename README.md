@@ -65,10 +65,6 @@ Department of Computer Science and Engineering, College of Technology, National 
 - [Citation](#-citation)
 - [Contributing & Community](#-contributing--community)
 - [License](#-license)
-- [Repository Structure & Submission Package](#-repository-structure--submission-package)
-- [Automated Verification & Reproduction](#-automated-verification--reproduction)
-- [Citation](#-citation)
-- [License](#-license)
 
 ---
 
@@ -121,7 +117,7 @@ Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes—such as 
 ```mermaid
 flowchart LR
     subgraph S1["1. Quantum Processor"]
-        Q["Superconducting Qubits<br>133-Qubit BB Code"] -->|"Raw Syringes (1 µs)"| AXI["AXI4-Stream Ingress<br>1.35 Gbps Line-Rate"]
+        Q["Superconducting Qubits<br>133-Qubit BB Code"] -->|"Raw Syndromes (1 µs)"| AXI["AXI4-Stream Ingress<br>1.35 Gbps Line-Rate"]
     end
 
     subgraph S2["2. Sliding Window Buffer"]
@@ -319,16 +315,18 @@ Evaluated under circuit-level Stim depolarizing noise ($p = 0.003$, $R=3$, $[[72
 
 | Decoder | Logical Error Rate ($P_L$) [95% CI] | Convergence Iterations | Multipliers (DSP) | Decoding Latency | Parameter Redundancy | Stat. Significance vs. Proposed ($\chi^2, p$) |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|
-| **Classical Min-Sum (Baseline)** | 0.4160 [0.4063, 0.4257] | 15.00 | 0 | 120.0 ns | Untied | $\chi^2 = 2,642.1, p < 10^{-100}$ |
-| **Normalized Min-Sum ($\alpha=0.75$)**| 0.4160 [0.4063, 0.4257] | 15.00 | 0 | 120.0 ns | Untied | $\chi^2 = 2,642.1, p < 10^{-100}$ |
-| **IBM Relay-BP-5 (Bravyi et al. 2024)**| 0.0120 [0.0100, 0.0143] | 9.80 | 0 | 180.0 ns | Untied | $\chi^2 = 12.06, p = 0.000515$ |
-| **Relay-BP-10** | 0.0120 [0.0100, 0.0143] | 9.80 | 0 | 180.0 ns | Untied | $\chi^2 = 12.06, p = 0.000515$ |
-| **BP-LSD (Local Small-Set)** | 0.0120 [0.0100, 0.0143] | 8.50 | 0 | 25.0 µs | Untied | $\chi^2 = 12.06, p = 0.000515$ |
-| **BP+OSD-CS-10 (Roffe et al. 2020)** | 0.0120 [0.0100, 0.0143] | 8.80 | Software | 320.0 µs | Untied | $\chi^2 = 12.06, p = 0.000515$ |
-| **Mem-BP (Scalar Memory)** | 0.0130 [0.0109, 0.0154] | 8.90 | 0 | 120.0 ns | Untied | $\chi^2 = 14.72, p = 0.000125$ |
-| **AutDEC (Automorphism Ensemble)** | 0.4160 [0.4063, 0.4257] | 15.00 | 0 | 4.8 µs | Untied | $\chi^2 = 2,750.5, p < 10^{-100}$ |
-| **Gong et al. Sliding-Window (2024)** | 0.0120 [0.0100, 0.0143] | 9.20 | Software | 450.0 µs | Untied | $\chi^2 = 12.06, p = 0.000515$ |
-| **Proposed 6-Bit Orbit-Tied QNBP** | **0.0068 [0.0053, 0.0086]** | **6.40** | **0 (CSD)** | **102.4 ns** | **36.0× reduction** | **Reference / Optimal** |
+| **Classical Min-Sum (Baseline)** | 0.2940 [0.2851, 0.3030] | 17.3 | 0 | 276.8 ns | Untied | $\chi^2 = 1,940.2, p < 10^{-40}$ |
+| **Normalized Min-Sum ($\alpha=0.75$)** | 0.4160 [0.4063, 0.4257] | 19.3 | 0 | 308.8 ns | Untied | $\chi^2 = 2,642.1, p < 10^{-40}$ |
+| **IBM DMem-BP (Single-Leg) [11]** | 0.0160 [0.0136, 0.0187] | 9.2 | 0 | 147.2 ns | Untied | $\chi^2 = 42.2, p = 8.32 \times 10^{-11}$ |
+| **IBM Relay-BP (5-Leg Hardware-Capped, 50 iters) [11]** | 0.0090 [0.0073, 0.0111] | 28.4 | 0 | 454.4 ns | Untied | $\chi^2 = 12.1, p = 5.15 \times 10^{-4}$ |
+| **IBM Relay-BP-5 (Full 300-Leg, S=5) [11]** | 0.0060 [0.0046, 0.0077] | 148.5 | 0 | 2,376.0 ns | Untied | $\chi^2 = 1.1, p = 0.286$ |
+| **Mem-BP (Scalar Memory $\gamma=0.35$) [20]** | 0.0102 [0.0084, 0.0123] | 7.5 | 0 | 120.0 ns | Untied | $\chi^2 = 14.7, p = 1.25 \times 10^{-4}$ |
+| **BP-LSD (Local Small-Set) [14]** | 0.0340 [0.0305, 0.0378] | 19.0 | 0 | 25.0 µs | Untied | $\chi^2 = 186.4, p = 1.00 \times 10^{-40}$ |
+| **BP+OSD-CS-10 (Roffe et al. 2020) [5]** | 0.0120 [0.0099, 0.0144] | 19.3 | O(V^3) | 320.0 µs | Untied | $\chi^2 = 28.1, p = 1.13 \times 10^{-7}$ |
+| **AutDEC (Automorphism Ensemble) [15]** | 0.4320 [0.4223, 0.4418] | 48.4 | 0 | 4.8 µs | Untied | $\chi^2 = 2,750.5, p < 10^{-40}$ |
+| **GDG Sliding Window (Gong et al. 2024) [13]** | 0.4160 [0.4063, 0.4257] | 19.3 | 0 | 308.8 ns | Untied | $\chi^2 = 2,642.1, p < 10^{-40}$ |
+| **QNBP (Undamped $\gamma=0.0$)** | 0.3100 [0.3009, 0.3192] | 10.2 | 0 | 163.2 ns | Untied | $\chi^2 = 2,050.8, p < 10^{-40}$ |
+| **Proposed 6-Bit Orbit-Tied QNBP** | **0.0068 [0.0053, 0.0086]** | **6.4** | **0 (CSD)** | **102.4 ns** | **36.0× reduction** | **Baseline Ref.** |
 
 ---
 
@@ -336,14 +334,14 @@ Evaluated under circuit-level Stim depolarizing noise ($p = 0.003$, $R=3$, $[[72
 
 We evaluated our decoder under the physical noise parameters extracted from the calibration snapshot of IBM's flagship 133-qubit Heron r2 processor ($p_{\text{2Q}} = 2.1 \times 10^{-3}, \eta = 50.0, p_{\text{RO}} = 8.0 \times 10^{-3}, p_{\text{1Q}} = 1.5 \times 10^{-4}$):
 
-| Decoder Model | Logical Error Rate ($P_L$) | Mean Iterations | Multipliers (DSP) | Latency Profile |
+| Decoder Model | Logical Error Rate ($P_L$) [95% CI] | Mean Iterations | Multipliers (DSP) | Latency Profile |
 |---|:---:|:---:|:---:|:---:|
-| Classical Min-Sum | 0.4160 | 9.16 | 0 | 120.0 ns |
-| Normalized Min-Sum ($\alpha=0.75$) | 0.4160 | 11.86 | 0 | 120.0 ns |
-| IBM Relay-BP | 0.0120 | 8.58 | 0 | 180.0 ns |
-| BP+OSD-CS-10 | 0.0120 | 8.86 | Software | 320.0 µs |
-| Mem-BP | 0.0130 | 8.86 | 0 | 120.0 ns |
-| **Proposed 6-bit Orbit-Tied QNBP** | **0.0068** | **3.85** | **0 (CSD)** | **61.6 ns** |
+| Classical Min-Sum | 0.0040 [0.0007, 0.0223] | 9.16 | 0 | 146.6 ns |
+| Normalized Min-Sum ($\alpha=0.75$) | 0.0040 [0.0007, 0.0223] | 11.86 | 0 | 189.8 ns |
+| IBM Relay-BP | 0.0040 [0.0007, 0.0223] | 8.58 | 0 | 137.3 ns |
+| Mem-BP | 0.0000 [0.0000, 0.0151] | 4.76 | 0 | 76.2 ns |
+| BP+OSD-CS-10 | 0.0000 [0.0000, 0.0151] | 8.86 | Software | 320.0 µs |
+| **Proposed 6-bit Orbit-Tied QNBP** | **0.0040 [0.0007, 0.0223]** | **3.85** | **0 (CSD)** | **61.6 ns** |
 
 ---
 
@@ -365,12 +363,13 @@ Testing multi-round sliding-window decoding across $R=100$ continuous measuremen
 
 Under superconducting transmon dephasing noise ($\eta = p_Z / p_X \in [1, 100]$):
 
-| Noise Bias ($\eta$) | Proposed 6-bit QNBP $P_L$ | Classical Min-Sum $P_L$ | Relative Gain |
-|:---:|:---:|:---:|:---:|
-| $\eta = 1$ (Depolarizing) | 0.0080 [0.0064, 0.0099] | 0.4160 [0.4063, 0.4257] | $52.0\times$ |
-| $\eta = 10$ | 0.0045 [0.0033, 0.0060] | 0.1200 [0.1136, 0.1266] | $26.7\times$ |
-| $\eta = 30$ | 0.0022 [0.0014, 0.0033] | 0.0550 [0.0506, 0.0596] | $25.0\times$ |
-| $\eta = 100$ (Highly Biased) | **0.0010 [0.0005, 0.0019]** | 0.0200 [0.0173, 0.0230] | **$20.0\times$** |
+| Noise Model / Channel Bias ($\eta = p_Z/p_X$) | Proposed 6-bit QNBP ($P_L$) [95% CI] | Classical Min-Sum ($P_L$) [95% CI] | Improvement Factor ($\times$) |
+|---|:---:|:---:|:---:|
+| $\eta = 1.0$ (Depolarizing) | 0.0080 [0.0064, 0.0099] | 0.2940 [0.2851, 0.3030] | $36.8\times$ |
+| $\eta = 10.0$ (Moderate Bias) | 0.0042 [0.0031, 0.0057] | 0.1400 [0.1332, 0.1470] | $33.3\times$ |
+| $\eta = 50.0$ (High Bias / Heron r2) | 0.0018 [0.0011, 0.0029] | 0.0400 [0.0363, 0.0440] | $22.2\times$ |
+| $\eta = 100.0$ (Extreme Bias) | **0.0010 [0.0005, 0.0019]** | 0.0200 [0.0173, 0.0230] | **$20.0\times$** |
+| ZZ Crosstalk ($\epsilon_{ZZ} = 0.10$) | 0.0014 [0.0008, 0.0024] | 0.0310 [0.0277, 0.0346] | $22.1\times$ |
 
 ---
 
@@ -378,37 +377,36 @@ Under superconducting transmon dephasing noise ($\eta = p_Z / p_X \in [1, 100]$)
 
 Synthesized on **AMD UltraScale+ XCKU040** ($f_{\text{clk}} = 250\text{ MHz}$, $t_{\text{clk}} = 4.0\text{ ns}$, $\text{WNS} = +0.18\text{ ns}$):
 
-| Fold Factor ($F$) | Subgroup ($H$) | LUTs (Utilization) | Flip-Flops | DSPs | Clock Cycles ($T=15$) | Latency | Dynamic Power |
+| Fold Factor ($F$) | Physical VNUs/CNUs | LUTs (Utilization) | Flip-Flops | DSPs | Iteration Latency | Total Latency ($T=15$) | Throughput |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **$F = 1$ (Full Parallel)** | $\{0\}$ | 28,204 (11.64%) | 19,512 (4.02%) | **0** | 15 | **60.0 ns** | 184.0 mW |
-| **$F = 2$** | $\mathbb{Z}_2$ | 15,230 (6.28%) | 10,536 (2.17%) | **0** | 30 | **120.0 ns** | 101.2 mW |
-| **$F = 6$** | $\mathbb{Z}_6$ | 5,640 (2.33%) | 3,902 (0.80%) | **0** | 90 | **360.0 ns** | 41.4 mW |
-| **$F = 36$ (Max Fold)** | $\mathbb{Z}_6 \times \mathbb{Z}_6$ | **1,226 (0.51%)** | **848 (0.17%)** | **0** | 540 | **2,160.0 ns** | **11.0 mW** |
+| **$F = 1$** | 216 / 216 | 28,204 (11.64%) | 19,512 (4.02%) | **0** | 16.0 ns | **240.0 ns** | 4.167 Mfps |
+| **$F = 2$** | 108 / 108 | 15,287 (6.31%) | 10,278 (2.12%) | **0** | 32.0 ns | **480.0 ns** | 2.083 Mfps |
+| **$F = 3$** | 72 / 72 | 10,670 (4.40%) | 7,065 (1.46%) | **0** | 48.0 ns | **720.0 ns** | 1.389 Mfps |
+| **$F = 6$** | 36 / 36 | 5,771 (2.38%) | 3,730 (0.77%) | **0** | 96.0 ns | **1440.0 ns** | 0.694 Mfps |
+| **$F = 12$** | 18 / 18 | 3,135 (1.29%) | 1,982 (0.41%) | **0** | 192.0 ns | **2880.0 ns** | 0.347 Mfps |
+| **$F = 36$** | 6 / 6 | 1,226 (0.51%) | 751 (0.15%) | **0** | 576.0 ns | **8640.0 ns** | 0.116 Mfps |
 
 ---
 
 ## 📊 Prior Art Hardware Comparison
 
-| Metric | Gu et al. (2024) | Zheng et al. (2024) | IBM Relay-BP (2024) | **This Work (Orbit-Tied QNBP)** |
-|---|:---:|:---:|:---:|:---:|
-| **Target Code** | $[[72, 12, 6]]$ Gross BB | $[[72, 12, 6]]$ Gross BB | $[[72, 12, 6]]$ Gross BB | **$[[72, 12, 6]]$ & $[[144, 12, 12]]$** |
-| **Decoding Algorithm** | Layered Normalized Min-Sum | 2-bit Serial Min-Sum | Relay Belief Propagation | **Orbit-Tied 6-bit QNBP + CSD** |
-| **FPGA Platform** | Xilinx Virtex-7 | Intel Stratix 10 | High-End Workstation CPU | **AMD UltraScale+ XCKU040** |
-| **LUT Utilization** | 184,320 (61.4%) | 92,160 (30.7%) | N/A (Software) | **28,204 (11.64%)** |
-| **DSP Multipliers** | 144 | 0 | N/A (Software) | **0 (Strictly Multiplier-Free)** |
-| **Mean Iterations** | 15.0 | 12.0 | 9.8 | **6.40 (3.85 under Heron r2)** |
-| **Decoding Latency** | 1.80 µs | 3.20 µs | 180.0 ns | **102.4 ns (240 ns max)** |
-| **Confidence Gating** | None (100% full run) | None (100% full run) | None (100% full run) | **Gate $G_3$ (75.6% fast-path admit)** |
-| **Queue Overflow** | Not Evaluated | Not Evaluated | Backlog Divergence | **$0.00\%$ observed ($B \ge 4$)** |
+| Architecture | Code / Scope | Platform | Multipliers (DSP) | Logic Utilization (LUTs) | Latency Profile | Gate G3 Fast-Path Admit |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Maurer et al. [12]** | 3D Window $[[144,12,12]]$ ($W=12$) | IBM / AMD VU19P | **0** (int4) | $\sim$450,000 LUTs ($>50\%$ VU19P) | 24 ns/iter ($\sim$408 ns/round) | No Fast/Slow Gate |
+| **Báscones et al. (GARI) [48]** | 3D Window $[[144,12,12]]$ | AMD VCU19P (3-Core) | Multi-Core | VCU19P Fabric | Sub-$\mu$s Parallel Retries | Speculative Retry |
+| **Gu et al. (Cascade) [49]** | 3D $[[72,12,6]]$ / $[[144,12,12]]$ | Nvidia H200 GPU | TensorCore | 14-Layer Equiv. CNN | 12.4 $\mu$s (Batch GPU) | GPU Only |
+| **Proposed 216-VNU Architecture** | **3D Sliding-Window $[[72,12,6]]$ ($W=3$)** | **AMD XCKU040** | **0 (6-bit CSD)** | **1,226--28,204 LUTs (11.6%)** | **102.4 ns (mean) / 240 ns (max)** | **75.6% ($P_{\mathrm{pipe}} = 1.9\times 10^{-4}$)** |
+| **Proposed 203-Orbit Full-DEM** | **3D Sliding-Window $[[72,12,6]]$ ($W=3$)** | **AMD XCKU040** | **0 (6-bit CSD)** | **31,800 LUTs (13.1%)** | **144.0 ns (mean) / 360 ns (max)** | **75.6% ($P_{\mathrm{pipe}} = 1.9\times 10^{-4}$)** |
+| **Projected Gross Code $[[144,12,12]]$** | **3D Sliding-Window $[[144,12,12]]$ ($W=12$)** | **AMD XCKU040** | **0 (6-bit CSD)** | **58,400 LUTs (24.1%)** | **192.0 ns (mean) / 480 ns (max)** | **91.2% ($P_{\mathrm{pipe}} = 2.4\times 10^{-5}$)** |
 
 ---
 
 ## 📐 Mathematical Theorems & Proofs
 
-* **Theorem 1 (Torus Automorphism Group):** For any bivariate-bicycle code defined by polynomials $A(x,y), B(x,y)$ over ring $R = \mathbb{F}_2[x,y]/(x^\ell-1, y^m-1)$, the 2D shift operator $T_{(\delta_x, \delta_y)}$ defines an automorphism of the Tanner graph and Stim space-time detector error model.
-* **Theorem 2 (Equivariance of Orbit-Tied Neural BP):** Orbit-tied message passing satisfies exact permutation equivariance under the group action of $G = \mathbb{Z}_\ell \times \mathbb{Z}_m$, guaranteeing identical error correction capability across all shifted fault patterns.
-* **Theorem 3 (Dyadic Fixed-Point Safety Bound):** A 6-bit signed integer representation with dyadic step size $\Delta = 2^{-2} = 0.25$ spans $[-31\Delta, +31\Delta] = [-7.75, +7.75]$, strictly enclosing physical fault priors $\ln((1-p)/p) \approx 6.906$ at $p = 10^{-3}$ with a positive safety margin $\delta = 0.844$.
-* **Proposition 1 (Decoupled CSS Sector Equivalence):** Under Pauli $Z$-biased noise ($\eta = p_Z / p_X$), the $X$- and $Z$-sector parity check matrices decouple into non-interacting factor graphs, eliminating the need for inter-sector message passing.
+* **Proposition 1 (Torus Translation Invariance of Space-Time DEM):** For any bivariate-bicycle code defined by polynomials $A(x,y), B(x,y)$ over ring $R = \mathbb{F}_2[x,y]/(x^\ell-1, y^m-1)$, the 2D shift operator $T_{(\delta_x, \delta_y)}$ defines an automorphism of the Tanner graph and Stim space-time detector error model.
+* **Proposition 2 (Equivariance of Orbit-Tied Neural Message Passing):** Orbit-tied message passing satisfies exact permutation equivariance under the group action of $G = \mathbb{Z}_\ell \times \mathbb{Z}_m$, guaranteeing identical error correction capability across all shifted fault patterns.
+* **Lemma 1 (6-Bit Dyadic Dynamic Range Bound):** A 6-bit signed integer representation with dyadic step size $\Delta = 2^{-2} = 0.25$ spans $[-31\Delta, +31\Delta] = [-7.75, +7.75]$, strictly enclosing physical fault priors $\ln((1-p)/p) \approx 6.906$ at $p = 10^{-3}$ with a positive safety margin $\delta = 0.844$.
+* **Proposition 3 (Effective Dephasing Channel Concentration):** Under Pauli $Z$-biased noise ($\eta = p_Z / p_X$), the $X$- and $Z$-sector parity check matrices decouple into non-interacting factor graphs, eliminating the need for inter-sector message passing.
 
 ---
 
@@ -420,10 +418,8 @@ Comprehensive theoretical derivations, empirical evaluations, and audit reports 
 | :--- | :--- | :--- |
 | **[`docs/REPRODUCIBILITY_GUIDE.md`](docs/REPRODUCIBILITY_GUIDE.md)** | Step-by-Step Reproduction | Exact CLI commands to reproduce all 5 tables, 7 figures, and 35 automated unit tests from scratch. |
 | **[`docs/MATHEMATICAL_VALIDATION.md`](docs/MATHEMATICAL_VALIDATION.md)** | Rigorous Derivations & Proofs | Formal proofs for Theorems 1–3, Proposition 1, orbit group actions ($G = \mathbb{Z}_\ell \times \mathbb{Z}_m$), and dyadic bounds. |
-| **[`docs/HARDWARE_VALIDATION.md`](docs/HARDWARE_VALIDATION.md)** | RTL Synthesis & Logic Breakdown | Vivado 2023.2 reports on AMD UltraScale+ xcvu13p, CSD shift-add arithmetic ($DSP=0$), and $18.84\text{ nJ}$ energy scaling. |
+| **[`docs/HARDWARE_VALIDATION.md`](docs/HARDWARE_VALIDATION.md)** | RTL Synthesis & Logic Breakdown | Vivado 2023.2 reports on AMD Kintex UltraScale+ XCKU040, CSD shift-add arithmetic ($DSP=0$), and $18.84\text{ nJ}$ energy scaling. |
 | **[`docs/EXPERIMENTAL_VALIDATION.md`](docs/EXPERIMENTAL_VALIDATION.md)** | Benchmark Analysis | 10-decoder head-to-head analysis, McNemar $\chi^2$ significance tests, $G_3$ gating calibration, and IBM Heron results. |
-| **[`docs/FINAL_PUBLICATION_AUDIT.md`](docs/FINAL_PUBLICATION_AUDIT.md)** | 10-Point Publication Audit | Rigorous pre-flight checklist verifying IEEE layout, 300+ DPI vector graphics, zero visual clipping, and citation integrity. |
-| **[`docs/TECHNICAL_CORRECTIONS.md`](docs/TECHNICAL_CORRECTIONS.md)** | Technical Corrections Log | Exhaustive before-and-after mapping across all 26 engineering and theoretical development phases. |
 
 ---
 
@@ -487,8 +483,11 @@ orbit-tied-qnbp-sliding-window-bb/
 Run all automated unit tests, hardware co-simulation checks, and real-world benchmarks:
 
 ```bash
-# Run complete test suite (35 tests)
-python -m pytest tests/ -k "not cosim_10k"
+# Run complete test suite (38 tests)
+python -m pytest tests/
+
+# Run full 10,000-shot bit-exact RTL co-simulation verification
+python -m pytest tests/test_hardware_cosim.py -v
 
 # Run 13-point forensic PDF integrity verification
 python tests/verify_main_pdf.py
@@ -508,11 +507,8 @@ If you use this work, software library, or hardware RTL in your research, please
   author={Nazmul, Md. and Gungun, Musrat Jahan and Ahmed, Maheli},
   title={Orbit-Tied Quantized Neural Belief Propagation for Real-Time Sliding-Window Decoding of Bivariate-Bicycle Quantum Codes},
   journal={IEEE Transactions on Quantum Engineering},
-  volume={7},
-  number={1},
-  pages={1--12},
   year={2026},
-  doi={10.1109/TQE.2026.XXXXXXX}
+  note={Preprint, under review at IEEE Transactions on Quantum Engineering (2026)}
 }
 ```
 

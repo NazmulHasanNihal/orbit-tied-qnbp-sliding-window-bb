@@ -18,7 +18,8 @@ def audit_pdf(pdf_path: str):
         "72.12", "72.12.6", "72.12,6", "[[72,12.6]]", "144.12", "Z_{mv}", "P_{accpt}", "+25c;", "ieves", "Undamped-",
         "1. 1. McKinstry", "K. R. OL", "Avlami", "021035",
         "\\_v", "\\rho", "NYIS", "110192", "K. R. On", "6bit -QNBP",
-        "National University,.", "ranw", "thresholdt", "Nazmul HasanNihal", "01045"
+        "National University,.", "ranw", "thresholdt", "Nazmul HasanNihal", "01045",
+        "Raw Syringes", "xcvu13p", "0.0120 [0.0100, 0.0143]"
     ]
     for i, page in enumerate(doc):
         text = page.get_text()
@@ -57,30 +58,30 @@ def audit_pdf(pdf_path: str):
     assert "0.75 [5]" in p3 or "alpha = 0.75 [5]" in p3, "P3: Citation bracket missing"
     assert "[-0.24, 0.66]" in p3, "P3: Relay-BP disordered weights missing"
     assert "Torus Automorphism Group Theory" in p3, "P3: Sec III missing"
-    assert "Theorem 1" in p3, "P3: Theorem 1 missing"
-    print("✅ Check 4: Page 3 (Competitor Baselines, Torus Automorphism Group, Theorem 1) verified.")
+    assert "Proposition 1" in p3 or "Theorem 1" in p3, "P3: Proposition 1 / Theorem 1 missing"
+    print("✅ Check 4: Page 3 (Competitor Baselines, Torus Automorphism Group, Proposition 1) verified.")
 
     # 5. Page 4 Audit
     p4 = doc[3].get_text()
-    assert "Theorem 2" in p4, "P4: Theorem 2 missing"
+    assert "Proposition 2" in p4 or "Theorem 2" in p4, "P4: Proposition 2 / Theorem 2 missing"
     assert "Variable Node" in p4 and "VNU" in p4, "P4: VNU missing"
     assert "Check Node" in p4 and "CNU" in p4, "P4: CNU missing"
     assert "CSD" in p4 or "shift" in p4, "P4: CSD arithmetic missing"
-    print("✅ Check 5: Page 4 (Theorem 2 Equivariance, VNU/CNU Equations, Multiplier-Free CSD) verified.")
+    print("✅ Check 5: Page 4 (Proposition 2 Equivariance, VNU/CNU Equations, Multiplier-Free CSD) verified.")
 
     # 6. Page 5 Audit
     p5 = doc[4].get_text()
-    assert "Theorem 3" in p5, "P5: Theorem 3 missing"
+    assert "Lemma 1" in p5 or "Theorem 3" in p5, "P5: Lemma 1 / Theorem 3 missing"
     assert "[-7.75" in p5 or "-7.75, +7.75" in p5, "P5: Dynamic range missing"
     assert "BCE" in p5 or "Composite Observable Loss" in p5, "P5: Composite loss missing"
-    print("✅ Check 6: Page 5 (Theorem 3 Dyadic Bound, CSD Arithmetic, Composite Observable Loss) verified.")
+    print("✅ Check 6: Page 5 (Lemma 1 Dyadic Bound, CSD Arithmetic, Composite Observable Loss) verified.")
 
     # 7. Page 6 Audit
     p6 = doc[5].get_text()
-    assert "Proposition 1" in p6 or "Theorem 4" in p6, "P6: Proposition 1 / Theorem 4 missing"
+    assert "Proposition 3" in p6 or "Proposition 1" in p6 or "Theorem 4" in p6, "P6: Proposition 3 missing"
     assert "TABLE I" in p6, "P6: Table I missing"
     assert "0.0068" in p6 or "0.0080" in p6, "P6: Table I Proposed QNBP missing"
-    print("✅ Check 7: Page 6 (Proposition 1 Decoupled CSS, Biased Noise, Table I, Figures 2-3) verified.")
+    print("✅ Check 7: Page 6 (Proposition 3 Decoupled CSS, Biased Noise, Table I, Figures 2-3) verified.")
 
     # 8. Page 7 Audit
     p7 = doc[6].get_text()
