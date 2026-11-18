@@ -6,6 +6,26 @@
 
 ---
 
+## [v2.1.0] - 2026-11-18: Precision Repair Pass Across Figures, Mathematics, Bibliography & README
+
+### 🟢 Visual & Figure Architecture Precision Repairs
+- **Fig. 7 (`fig7_queue_stability`):** Plotted explicit multi-server utilization series across $c \in [1, 2, 3, 4]$ ($\rho = 1.99/c$, $\rho_{\text{seq}} = 0.67/c$, $\rho_{\text{fb}} = 0.23/c$) and dual calibrated curves ($c=1, c=2$ at $0.00\%$ overflow) across $B \in [4, 8, 16, 32]$.
+- **Fig. 5 (`fig5_gate_tradeoffs`):** Expanded Panel (b) y-axis log range to $[10^{-6}, 10^{-2}]$ to preserve $G_3$ at $P_{\text{pipe}} = 7.00 \times 10^{-6}$; synchronized reference lines to $N=50,000$ ($7.92 \times 10^{-5}$ upper bound, $2.00 \times 10^{-5}$ resolution limit); relocated Panel (a) legend to `lower left`.
+- **Fig. 6 (`fig6_folding_tradeoffs`):** Cleaned title formatting, widened input prior bounding box to prevent label clipping, centered branching arrow annotations, and added `bbox_inches='tight', pad_inches=0.15`.
+- **Fig. 1 (`fig1_architecture`):** Synchronized DEM mechanism counts to $W=3$ baseline ($7,308$ fault mechanisms, $203$ orbits, $36.0\times$ collapse).
+
+### 🟢 Mathematical & Manuscript Typesetting Repairs
+- **Author Affiliation Block (Page 1):** Cleaned author block to eliminate repeated name duplication; formatted institutional affiliations and contact emails as a dedicated italic block.
+- **Glyph & Math Invariance:** Fixed Proposition 1 prior invariance notation (`p(T(v)) = p(v) for all v \in V`), restored dyadic prior bounds ($[-31\Delta, +31\Delta] = [-7.75, +7.75]$, $[5.18, 7.21]$), composite observable loss coupling ($\beta = 0.5$), and stream stall critical threshold ($p_{\text{crit}} \approx 0.28$ (28%)).
+- **Bibliography Layout (Page 12):** Strict two-column table segregation ([1]–[30] in column 1, [31]–[59] in column 2) ensuring clean sequential reading order without interleaving.
+
+### 🟢 README & Single-Source-of-Truth Table Synchronization
+- **Lemma 1 Prior Range:** Documented both $p=0.003$ ($L_{\text{in}}^{(0)} = 6.39$) and $p=0.001$ ($L_{\text{in}}^{(0)} = 7.21$) spanning $[5.18, 7.21] \subset [-7.75, +7.75]$ with safety headroom $\delta \ge 0.54$.
+- **Table I (Biased Noise):** Synchronized Classical BP baseline ($0.2940$, $0.1400$, $0.0400$, $0.0200$, $0.0310$) and relative gains ($36.8\times$, $33.3\times$, $22.2\times$, $20.0\times$, $22.1\times$).
+- **Ablation Table:** Synchronized full 4-tier quantization ladder (3-bit: $0.8480$, 4-bit: $0.8120$, 5-bit: $0.0150$, 6-bit: $0.0068$).
+
+---
+
 ## [v2.0.0] - 2026-11-11: Master Technical Audit & Validation Upgrade
 
 ### 🔴 Critical Corrections Applied

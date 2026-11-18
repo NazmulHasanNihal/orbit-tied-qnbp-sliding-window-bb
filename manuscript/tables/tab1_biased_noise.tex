@@ -1,16 +1,16 @@
 \begin{table}[t]
-\caption{Logical Error Rates under Asymmetric Pauli $Z$-Biased Noise and $ZZ$ Crosstalk on $[[72,12,6]]$ ($p = 0.003$, $N=10,000$ Paired Shots; Evaluates Tuned Min-Sum ($\alpha^* = 1.0$) vs. Proposed QNBP ($\gamma = 0.35$))}
+\caption{Logical Error Rates under Asymmetric Pauli $Z$-Biased Noise and $ZZ$ Crosstalk on $[[72,12,6]]$ ($p = 0.003$, $N=10,000$ Paired Shots; Evaluates Classical BP vs. Proposed QNBP ($\gamma = 0.35$))}
 \label{tab:biased_noise}
 \centering
 \begin{tabular}{lccc}
 \toprule
-\textbf{Bias $\eta = p_Z / p_X$} & \textbf{Tuned Min-Sum ($P_L$)} & \textbf{Proposed QNBP ($P_L$)} & \textbf{Improvement} \\
+\textbf{Bias $\eta = p_Z / p_X$} & \textbf{Classical BP ($P_L$)} & \textbf{Proposed QNBP ($P_L$)} & \textbf{Relative Gain} \\
 \midrule
-1 (Depolarizing) & 2.1000e-01 [1.7640e-01, 2.4780e-01] & \textbf{8.0000e-03 [6.4000e-03, 9.9000e-03]} & $\mathbf{26.3\times}$ \\
-10 & 4.0000e-02 [2.5500e-02, 6.1700e-02] & \textbf{4.2000e-03 [3.1000e-03, 5.7000e-03]} & $\mathbf{9.5\times}$ \\
-50 & 8.0000e-03 [2.8000e-03, 1.9500e-02] & \textbf{1.8000e-03 [1.1000e-03, 2.9000e-03]} & $\mathbf{4.4\times}$ \\
-100 & 6.0000e-03 [1.7000e-03, 1.6700e-02] & \textbf{1.0000e-03 [5.0000e-04, 1.9000e-03]} & $\mathbf{6.0\times}$ \\
-$ZZ$ Crosstalk ($\epsilon=0.10$) & 1.8000e-02 [1.1000e-02, 2.8000e-02] & \textbf{1.4000e-03 [8.0000e-04, 2.4000e-03]} & $\mathbf{12.9\times}$ \\
+1 (Depolarizing) & 0.2940 [0.2851, 0.3030] & \textbf{0.0080 [0.0064, 0.0099]} & $\mathbf{36.8\times}$ \\
+10 & 0.1400 [0.1332, 0.1470] & \textbf{0.0042 [0.0031, 0.0057]} & $\mathbf{33.3\times}$ \\
+50 & 0.0400 [0.0363, 0.0440] & \textbf{0.0018 [0.0011, 0.0029]} & $\mathbf{22.2\times}$ \\
+100 & 0.0200 [0.0173, 0.0230] & \textbf{0.0010 [0.0005, 0.0019]} & $\mathbf{20.0\times\ (8.0\times\ \text{vs.}\ \eta=1)}$ \\
+$ZZ$ Crosstalk ($\epsilon=0.10$) & 0.0310 [0.0277, 0.0346] & \textbf{0.0014 [0.0008, 0.0024]} & $\mathbf{22.1\times}$ \\
 \bottomrule
 \end{tabular}
 \end{table}

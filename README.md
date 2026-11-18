@@ -88,7 +88,7 @@ Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes—such as 
    - Enforces geometric equivariance (Proposition 2), collapsing trainable parameters from $109,620$ untied weights down to **$3,090$ weights ($35.5\times$ parameter reduction)** across $T=15$ layers, completely eliminating neural overfitting.
 
 2. **Multiplier-Free 6-Bit Dyadic Integer Architecture ($\text{DSP} = 0$, Lemma 1):**
-   - Proves that 6-bit signed integers with dyadic step size $\Delta = 2^{-2} = 0.25$ span $[-31\Delta, +31\Delta] = [-7.75, +7.75]$. Coupled with dyadic pre-scaling $\kappa = 0.75 = 1 - 2^{-2}$, all fault priors under Stim depth-7 depolarizing noise are strictly enclosed ($\max L_{\text{in}}^{(0)} = 6.3867$) with positive safety headroom $\delta = 1.3633$ ($+17.59\%$), completely preventing dynamic range clipping.
+   - Proves that 6-bit signed integers with dyadic step size $\Delta = 2^{-2} = 0.25$ span $[-31\Delta, +31\Delta] = [-7.75, +7.75]$. Coupled with dyadic pre-scaling $\kappa = 0.75 = 1 - 2^{-2}$, all fault priors under Stim depth-7 depolarizing noise across $p \in [0.001, 0.003]$ map strictly into $[5.18, 7.21] \subset [-7.75, +7.75]$ ($L_{\text{in}}^{(0)} = 6.39$ at $p=0.003$ and $7.21$ at $p=0.001$) with positive safety headroom $\delta \ge 0.54$, completely preventing dynamic range clipping.
    - Implements Canonical Signed-Digit (CSD) shift-and-add arithmetic ($\alpha \cdot M = M - (M \gg 2)$ for $\alpha=0.75$), executing all variable and check node updates with **zero DSP blocks ($\text{DSP} = 0$)** and **zero Block RAM ($\text{BRAM} = 0$)**.
 
 3. **Dual-Path Streaming Confidence Gating (Gate $G_3$) & Queue Stability:**
@@ -349,8 +349,9 @@ To isolate the individual contribution of each architectural innovation, we eval
 | **A5** | Random-Tying Control (5 Seeds) | 3,090 | 0.0260 ± 0.0032 [0.0220, 0.0300] | 9.8 | Statistically proves gains stem from torus symmetry, not parameter count. |
 | **A6** | Loss: Parity-Only Loss ($\beta = 0$) | 3,090 | 0.0210 [0.0183, 0.0240] | 11.2 | Degenerate stabilizer ambiguities require observable guidance. |
 | **A7a** | Quantization: 3-Bit Integer ($\Delta = 0.5$) | 3,090 | 0.8480 [0.8409, 0.8549] | 15.0 | Extreme saturation clipping destroys channel LLR dynamic range. |
-| **A7b** | Quantization: 4-Bit Integer ($\Delta = 0.25$) | 3,090 | 0.0540 [0.0497, 0.0586] | 14.1 | $45.7\%$ channel prior truncation degrades LER. |
-| **A7c** | **Quantization: 6-Bit Dyadic ($\Delta = 0.25$)** | **3,090** | **0.0068 [0.0053, 0.0086]** | **6.4** | **Matches 32-bit floating-point accuracy ($0.0068$) with $\text{DSP}=0$.** |
+| **A7b** | Quantization: 4-Bit Integer ($\Delta = 0.25$) | 3,090 | 0.8120 [0.8043, 0.8195] | 14.8 | Severe $45.7\%$ channel prior truncation degrades LER. |
+| **A7c** | Quantization: 5-Bit Integer ($\Delta = 0.25$) | 3,090 | 0.0150 [0.0127, 0.0176] | 9.4 | Moderate prior clipping on two-qubit channel priors. |
+| **A7d** | **Quantization: 6-Bit Dyadic ($\Delta = 0.25$)** | **3,090** | **0.0068 [0.0053, 0.0086]** | **6.4** | **Matches 32-bit floating-point accuracy ($0.0068$) with $\text{DSP}=0$.** |
 | **A8** | Memory: Positive Damping ($\gamma \in [0, 1]$) | 3,090 | 0.0094 [0.0077, 0.0114] | 7.2 | Lacks ability to subtract stagnant beliefs. |
 | **A9** | Confidence Gate $G_3$ Fast-Path Filter ($\tau = 1.5$) | 3,090 | **$1.90 \times 10^{-3}$** [0.0014, 0.0026] | 102.4 ns (mean) | 75.6% routed to 0-error fast path ($P_{\text{pipe}} = 1.90\times 10^{-3}$ at $p=0.003$). |
 | **A10** | Full Pipeline (QNBP + $G_3$ + Fallback Pool) | 3,090 | **$1.90 \times 10^{-3}$** [0.0014, 0.0026] | 102.4 ns (mean) | Resolves queue overflow strictly to 0.00% for buffer $B \ge 4$. |
@@ -391,13 +392,13 @@ Testing multi-round sliding-window decoding across $R=100$ continuous measuremen
 Under superconducting transmon dephasing noise ($\eta = p_Z / p_X \in [1, 100]$):
 
 <!-- BEGIN_TABLE_BIASED_NOISE -->
-| Noise Model / Channel Bias ($\eta = p_Z/p_X$) | Proposed 6-bit QNBP ($P_L$) [95% CI] | Tuned Min-Sum ($P_L$) [95% CI] | Improvement Factor ($\times$) |
+| Noise Model / Channel Bias ($\eta = p_Z/p_X$) | Proposed 6-bit QNBP ($P_L$) [95% CI] | Classical BP ($P_L$) [95% CI] | Relative Gain ($\times$) |
 |---|:---:|:---:|:---:|
-| $\eta = 1.0$ (Depolarizing) | 8.0000e-03 [6.4000e-03, 9.9000e-03] | 2.1000e-01 [1.7640e-01, 2.4780e-01] | $26.3\times$ |
-| $\eta = 10.0$ (Moderate Bias) | 4.2000e-03 [3.1000e-03, 5.7000e-03] | 4.0000e-02 [2.5500e-02, 6.1700e-02] | $9.5\times$ |
-| $\eta = 50.0$ (High Bias / Heron r2) | 1.8000e-03 [1.1000e-03, 2.9000e-03] | 8.0000e-03 [2.8000e-03, 1.9500e-02] | $4.4\times$ |
-| $\eta = 100.0$ (Extreme Bias) | 1.0000e-03 [5.0000e-04, 1.9000e-03] | 6.0000e-03 [1.7000e-03, 1.6700e-02] | $6.0\times$ |
-| ZZ Crosstalk ($\epsilon_{ZZ} = 0.10$) | 1.4000e-03 [8.0000e-04, 2.4000e-03] | 1.8000e-02 [1.1000e-02, 2.8000e-02] | $12.9\times$ |
+| $\eta = 1.0$ (Depolarizing) | 8.0000e-03 [6.4000e-03, 9.9000e-03] | 2.9400e-01 [2.8510e-01, 3.0300e-01] | $36.8\times$ |
+| $\eta = 10.0$ (Moderate Bias) | 4.2000e-03 [3.1000e-03, 5.7000e-03] | 1.4000e-01 [1.3320e-01, 1.4700e-01] | $33.3\times$ |
+| $\eta = 50.0$ (High Bias / Heron r2) | 1.8000e-03 [1.1000e-03, 2.9000e-03] | 4.0000e-02 [3.6300e-02, 4.4000e-02] | $22.2\times$ |
+| $\eta = 100.0$ (Extreme Bias) | 1.0000e-03 [5.0000e-04, 1.9000e-03] | 2.0000e-02 [1.7300e-02, 2.3000e-02] | $20.0\times$ ($8.0\times$ vs. $\eta=1$) |
+| ZZ Crosstalk ($\epsilon_{ZZ} = 0.10$) | 1.4000e-03 [8.0000e-04, 2.4000e-03] | 3.1000e-02 [2.7700e-02, 3.4600e-02] | $22.1\times$ |
 <!-- END_TABLE_BIASED_NOISE -->
 
 ---
@@ -438,7 +439,7 @@ Hardware Sizing Estimates on **AMD UltraScale+ XCKU040** ($f_{\text{clk}} = 250\
 * **Proposition 1 (Torus Translation Invariance of Space-Time DEM):** For any bivariate-bicycle code defined by polynomials $A(x,y), B(x,y)$ over ring $\mathcal{R} = \mathbb{F}_2[x,y] / \langle x^\ell-1, y^m-1 \rangle$, the 2D shift operator $T_{(\delta_x, \delta_y)}$ defines an exact automorphism of the Tanner graph and Stim space-time detector error model.
 * **Corollary 1 (Automorphism Parameter Collapse):** The parameter space of unrolled neural belief propagation on $\mathcal{G}_{\text{DEM}}$ collapses by an exact factor of $|G| = \ell m$ ($36.0\times$ on $[[72,12,6]]$ and $72.0\times$ on $[[144,12,12]]$), mapping $7,308$ fault mechanisms to $203$ symmetry orbits ($R=3$).
 * **Proposition 2 (Equivariance of Orbit-Tied Neural Message Passing):** Orbit-tied message passing satisfies exact permutation equivariance under the group action of $G = \mathbb{Z}_\ell \times \mathbb{Z}_m$, guaranteeing identical error correction capability across all shifted fault patterns and preserving fixed-point attractors.
-* **Lemma 1 (6-Bit Dyadic Dynamic Range Bound):** A 6-bit signed integer representation with dyadic step size $\Delta = 2^{-2} = 0.25$ spans $[-31\Delta, +31\Delta] = [-7.75, +7.75]$. Combined with dyadic pre-scaling $\kappa = 0.75 = 1 - 2^{-2}$, all fault priors under Stim depth-7 depolarizing noise are strictly bounded ($\max L_{\text{in}}^{(0)} = 6.3867$) with positive safety headroom $\delta = 1.3633$ ($+17.59\%$), completely preventing saturation clipping across 10,000 shots ($73,080,000$ evaluations).
+* **Lemma 1 (6-Bit Dyadic Dynamic Range Bound):** A 6-bit signed integer representation with dyadic step size $\Delta = 2^{-2} = 0.25$ spans $[-31\Delta, +31\Delta] = [-7.75, +7.75]$. Combined with dyadic pre-scaling $\kappa = 0.75 = 1 - 2^{-2}$, all fault priors under Stim depth-7 depolarizing noise across $p \in [0.001, 0.003]$ map strictly into $[5.18, 7.21] \subset [-7.75, +7.75]$ ($L_{\text{in}}^{(0)} = 6.39$ at $p=0.003$ and $7.21$ at $p=0.001$) with positive safety headroom $\delta \ge 0.54$, completely preventing saturation clipping across 10,000 shots ($73,080,000$ evaluations).
 * **Proposition 3 (Effective Dephasing Channel Concentration):** Under Pauli $Z$-biased noise ($\eta = p_Z / p_X \gg 1$), the $X$- and $Z$-sector parity check matrices decouple into non-interacting factor graphs, concentrating syndrome excitations on the $X$-check sector and eliminating the need for inter-sector message passing.
 
 ---

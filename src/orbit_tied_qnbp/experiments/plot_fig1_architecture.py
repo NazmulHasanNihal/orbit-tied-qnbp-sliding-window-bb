@@ -62,7 +62,7 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
             "72-Qubit BB Code [[72,12,6]]",
             "Bravyi Depth-7 Circuit",
             r"Noise $p \in [10^{-3}, 5\times 10^{-3}]$",
-            "10,260 Fault Mechanisms",
+            "7,308 Fault Mechanisms (W=3)",
             "Bipartite Tanner Graph",
         ]
     )
@@ -74,7 +74,7 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
         [
             r"$G = \mathbb{Z}_\ell \times \mathbb{Z}_m$ (36 Shifts)",
             "Exact Symmetries (Prop. 1)",
-            "10,260 -> 285 Orbits (36x)",
+            "7,308 -> 203 Orbits (36x)",
             "Equivariance Enforced",
             "Window Boundary Classes",
         ]
@@ -161,8 +161,8 @@ def generate_figure_1(output_dir: str = "results/figures") -> None:
     fig.tight_layout()
     for d in [output_dir, "manuscript/figures"]:
         os.makedirs(d, exist_ok=True)
-        fig.savefig(os.path.join(d, "fig1_architecture.pdf"), dpi=300)
-        fig.savefig(os.path.join(d, "fig1_architecture.png"), dpi=300)
+        fig.savefig(os.path.join(d, "fig1_architecture.pdf"), dpi=300, bbox_inches="tight", pad_inches=0.1)
+        fig.savefig(os.path.join(d, "fig1_architecture.png"), dpi=300, bbox_inches="tight", pad_inches=0.1)
     plt.close(fig)
     print("✅ Figure F1 generated successfully in results/figures/ and manuscript/figures/!")
 
