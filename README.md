@@ -423,10 +423,14 @@ Comprehensive theoretical derivations, empirical evaluations, and audit reports 
 
 | Document | Primary Focus | Key Insights & Results |
 | :--- | :--- | :--- |
-| **[`docs/REPRODUCIBILITY_GUIDE.md`](docs/REPRODUCIBILITY_GUIDE.md)** | Step-by-Step Reproduction | Exact CLI commands to reproduce all 5 tables, 7 figures, and 35 automated unit tests from scratch. |
-| **[`docs/MATHEMATICAL_VALIDATION.md`](docs/MATHEMATICAL_VALIDATION.md)** | Rigorous Derivations & Proofs | Formal proofs for Theorems 1–3, Proposition 1, orbit group actions ($G = \mathbb{Z}_\ell \times \mathbb{Z}_m$), and dyadic bounds. |
-| **[`docs/HARDWARE_VALIDATION.md`](docs/HARDWARE_VALIDATION.md)** | RTL Synthesis & Logic Breakdown | Vivado 2023.2 reports on AMD Kintex UltraScale+ XCKU040, CSD shift-add arithmetic ($DSP=0$), and $18.84\text{ nJ}$ energy scaling. |
+| **[`docs/REPRODUCIBILITY_GUIDE.md`](docs/REPRODUCIBILITY_GUIDE.md)** | Step-by-Step Reproduction | Exact CLI commands to reproduce all 5 tables, 7 figures, and 46 automated unit and integration tests from scratch. |
+| **[`docs/MATHEMATICAL_VALIDATION.md`](docs/MATHEMATICAL_VALIDATION.md)** | Rigorous Derivations & Proofs | Formal proofs for Propositions 1–3, Lemma 1, orbit group actions ($G = \mathbb{Z}_\ell \times \mathbb{Z}_m$), and dyadic bounds. |
+| **[`docs/HARDWARE_VALIDATION.md`](docs/HARDWARE_VALIDATION.md)** | RTL Synthesis & Logic Breakdown | Vivado synthesis reports on AMD Kintex UltraScale+ XCKU040, CSD shift-add arithmetic ($DSP=0$), and $18.84\text{ nJ}$ energy scaling. |
 | **[`docs/EXPERIMENTAL_VALIDATION.md`](docs/EXPERIMENTAL_VALIDATION.md)** | Benchmark Analysis | 10-decoder head-to-head analysis, McNemar $\chi^2$ significance tests, $G_3$ gating calibration, and IBM Heron results. |
+| **[`FINAL_VERIFICATION.md`](FINAL_VERIFICATION.md)** | 12-Phase Verification Scorecard | Complete scorecard verifying all 76 claims with 39 automated assertions passing (100.0%). |
+| **[`CLAIMS_LEDGER.md`](CLAIMS_LEDGER.md)** | Claim Traceability Matrix | Every numeric claim mapped to committed source data in `results/*.json`. |
+| **[`REVIEWER_RISKS.md`](REVIEWER_RISKS.md)** | Peer-Review Defense Dossier | Detailed answers and mathematical proofs for 15 most critical referee questions. |
+| **[`TODO_HUMAN.md`](TODO_HUMAN.md)** | External Hardware & Cluster Guide | Exact commands for Vivado implementation, Verilator co-sim, and $N \ge 10^6$ Monte Carlo scaling. |
 
 ---
 
@@ -441,16 +445,16 @@ orbit-tied-qnbp-sliding-window-bb/
 ├── docs/                              # Technical whitepapers and validation reports
 │   ├── README.md                      # Documentation index
 │   ├── REPRODUCIBILITY_GUIDE.md       # Full reproducibility guide
-│   ├── MATHEMATICAL_VALIDATION.md     # Derivations for Theorems 1–3 & Proposition 1
+│   ├── MATHEMATICAL_VALIDATION.md     # Derivations for Propositions 1–3 & Lemma 1
 │   ├── HARDWARE_VALIDATION.md         # SystemVerilog synthesis and CSD logic reports
 │   ├── EXPERIMENTAL_VALIDATION.md     # 10-decoder empirical analysis & statistical tests
-│   ├── FINAL_PUBLICATION_AUDIT.md     # 10-point scored publication-readiness audit
-│   └── TECHNICAL_CORRECTIONS.md       # Technical audit log across all 26 phases
+│   └── AUDIT_REPORT.md                # Comprehensive pre-submission audit report
 ├── manuscript/                        # IEEE Transactions publication package
-│   ├── main.pdf                       # Canonical 12-page vector publication PDF (1.75 MB)
+│   ├── main.pdf                       # Canonical 12-page vector publication PDF
 │   ├── main_ieeetran.tex              # IEEEtran LaTeX source
 │   ├── references.bib                 # 59 complete, sequential references
-│   └── figures/                       # Figs. 1–7 (vector .pdf and 300+ DPI .png)
+│   ├── tables/                        # Synchronized LaTeX tables (tab1–tab5)
+│   └── figures/                       # Figs. 1–7 (vector .pdf and 400+ DPI .png)
 ├── submission/                        # Complete IEEE ScholarOne submission bundle
 │   ├── main.pdf                       # Main manuscript upload
 │   ├── cover_letter.pdf               # Official IEEE Editorial Cover Letter (2 pages)
@@ -468,13 +472,22 @@ orbit-tied-qnbp-sliding-window-bb/
 │   ├── circuits/                      # Bivariate-bicycle codes & Stim circuit generator
 │   ├── data/                          # DEM hypergraph construction
 │   ├── decoder/                       # Orbit-tied QNBP, CSD quantizer, streaming decoder
-│   └── experiments/                   # Reproducibility runners and benchmarks
-├── tests/                             # Automated Test Suite (35 tests, 100% pass)
-│   ├── test_hardware_cosim.py         # 10,000-shot bit-exact RTL co-simulation
+│   ├── experiments/                   # Reproducibility runners and benchmarks
+│   └── utils/                         # Result schema, metrics, and McNemar test
+├── tests/                             # Automated Test Suite (46 passed, 100%)
+│   ├── test_hardware_cosim.py         # Bit-exact RTL co-simulation verification
 │   ├── test_realworld_benchmarks.py   # IBM Heron calibration & 100-round streaming
+│   ├── test_automorphism_closure.py   # Torus automorphism closure (263,088 checks)
+│   ├── test_quant_clipping.py         # Lemma 1 dyadic dynamic range verification
 │   └── verify_main_pdf.py             # 13-point forensic PDF layout verification
 ├── results/                           # Raw benchmark JSON files & simulation data
-├── scripts/                           # Compilation and evaluation scripts
+├── scripts/                           # Reproducibility, table generator, and verification scripts
+├── Makefile                           # Unified developer workflow (test, tables, pdf, verify)
+├── CLAIMS_LEDGER.md                   # 76-claim audit and verification matrix
+├── FINAL_VERIFICATION.md              # 12-phase technical audit scorecard
+├── REVIEWER_RISKS.md                  # Reviewer defense and risk mitigation
+├── TODO_HUMAN.md                      # Instructions for external cluster & Vivado runs
+├── CHANGELOG.md                       # Comprehensive project changelog
 ├── CITATION.cff                       # Machine-readable academic citation metadata
 ├── CONTRIBUTING.md                    # Open-source contribution guidelines
 ├── CODE_OF_CONDUCT.md                 # Contributor Covenant v2.1
@@ -490,14 +503,24 @@ orbit-tied-qnbp-sliding-window-bb/
 Run all automated unit tests, hardware co-simulation checks, and real-world benchmarks:
 
 ```bash
-# Run complete test suite (38 tests)
-python -m pytest tests/
+# Run complete test suite (46 passed tests)
+make test
+# Or: python -m pytest tests/ -k "not cosim_10k"
+
+# Verify all 76 claims against committed results JSON
+make verify
+# Or: python scripts/verify_claims.py
+
+# Check table synchronization against results JSON
+make check-tables
+# Or: python scripts/make_tables.py --check
 
 # Run full 10,000-shot bit-exact RTL co-simulation verification
 python -m pytest tests/test_hardware_cosim.py -v
 
 # Run 13-point forensic PDF integrity verification
-python tests/verify_main_pdf.py
+make audit-pdf
+# Or: python tests/verify_main_pdf.py
 
 # Run CLI diagnostic self-check
 python -m orbit_tied_qnbp.cli verify

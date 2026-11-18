@@ -46,8 +46,8 @@ Evaluated at physical error rate $p = 0.003$ on $[[72,12,6]]$:
 | **A7b** | Quantization: 4-Bit Integer ($\Delta = 0.25$) | 4,320 | 0.0540 | [0.0497, 0.0586] | 14.1 | $45.7\%$ channel prior truncation degrades LER. |
 | **A7c** | Quantization: 6-Bit Dyadic ($\Delta = 0.25$) | 4,320 | **0.0068** | [0.0053, 0.0086] | **6.4** | Matches 32-bit floating-point accuracy ($0.0066$) with $DSP=0$. |
 | **A8** | Memory: Positive Damping ($\gamma \in [0, 1]$) | 4,320 | 0.0094 | [0.0077, 0.0114] | 7.1 | Lacks ability to subtract stagnant beliefs. |
-| **A9** | Confidence Gate G3 Filter ($\tau = 1.5$) | 4,320 | **$1.90 \times 10^{-4}$** | [0.0001, 0.0003] | 102.4 ns (mean) | 75.6% routed to 0-error fast path; pipeline LER drops $35.8\times$. |
-| **A10** | Full Pipeline (QNBP + G3 + OSD Fallback) | 4,320 | **$1.90 \times 10^{-4}$** | [0.0001, 0.0003] | 669.4 ns (worst-case) | Resolves queue overflow strictly to 0.00% under $1\ \mu\text{s}$ cycle budget. |
+| **A9** | Confidence Gate G3 Filter ($\tau = 1.5$) | 4,320 | **$1.90 \times 10^{-3}$** | [0.0014, 0.0026] | 102.4 ns (mean) | 75.6% routed to 0-error fast path ($P_{\text{pipe}} = 1.90\times 10^{-3}$ at $p=0.003$, $7.00\times 10^{-6}$ at $p=0.001$). |
+| **A10** | Full Pipeline (QNBP + G3 + OSD Fallback) | 4,320 | **$1.90 \times 10^{-3}$** | [0.0014, 0.0026] | 669.4 ns (worst-case) | Resolves queue overflow strictly to 0.00% under $1\ \mu\text{s}$ cycle budget. |
 
 ---
 
@@ -63,16 +63,16 @@ $$\text{Accept} \iff \left( \hat{e} H_{\text{DEM}}^T \equiv s \pmod 2 \right) \q
 3. **Logical Observable Correctness ($\hat{e} \mathcal{O}^T \equiv e_{\text{true}} \mathcal{O}^T \pmod 2$):** The ultimate figure of merit. Gate $G_3$ explicitly inspects the smallest LLR magnitude among faults supporting logical observables to guarantee logical correctness.
 
 ### 3.3 Calibration & Risk-Coverage Data ($p = 0.001$, $N = 50,000$ Shots)
-| Threshold $\tau$ | Fast-Path Acceptance ($P_{\text{accept}}$) | Fallback Fraction ($p_{\text{fb}}$) | Fast-Path Errors ($N_{\text{err}}$) | $P(\text{err} \mid \text{accepted})$ | 95% Wilson Upper Bound | Pipeline LER ($P_{\text{pipe}}$) |
+| Threshold $\tau$ | Fast-Path Acceptance ($P_{\text{accept}}$) | Fallback Fraction ($p_{\text{fb}}$) | Fast-Path Errors ($N_{\text{err}}$) | $P(\text{err} \mid \text{accepted})$ | 95% Clopper-Pearson Upper | Pipeline LER at $p=0.003$ ($P_{\text{pipe}}$) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| $\tau = 0.5$ | 82.4% | 17.6% | 3 | $7.28 \times 10^{-5}$ | $2.27 \times 10^{-4}$ | $8.0 \times 10^{-5}$ |
-| $\tau = 1.0$ | 78.5% | 21.5% | 1 | $2.55 \times 10^{-5}$ | $1.44 \times 10^{-4}$ | $4.0 \times 10^{-5}$ |
-| **$\tau = 1.5$ (Calibrated)** | **75.6%** | **24.4%** | **0** | **0.0000** | **$7.68 \times 10^{-5}$** | **$1.90 \times 10^{-4}$** |
-| $\tau = 2.0$ | 70.1% | 29.9% | 0 | 0.0000 | $8.28 \times 10^{-5}$ | $1.90 \times 10^{-4}$ |
-| $\tau = 2.5$ | 63.4% | 36.6% | 0 | 0.0000 | $9.16 \times 10^{-5}$ | $1.90 \times 10^{-4}$ |
-| $\tau = 3.0$ | 54.2% | 45.8% | 0 | 0.0000 | $1.07 \times 10^{-4}$ | $1.90 \times 10^{-4}$ |
+| $\tau = 0.5$ | 82.4% | 17.6% | 3 | $7.28 \times 10^{-5}$ | $2.27 \times 10^{-4}$ | $1.43 \times 10^{-3}$ |
+| $\tau = 1.0$ | 78.5% | 21.5% | 1 | $2.55 \times 10^{-5}$ | $1.44 \times 10^{-4}$ | $1.70 \times 10^{-3}$ |
+| **$\tau = 1.5$ (Calibrated)** | **75.6%** | **24.4%** | **0** | **0.0000** | **$7.92 \times 10^{-5}$** | **$1.90 \times 10^{-3}$** |
+| $\tau = 2.0$ | 70.1% | 29.9% | 0 | 0.0000 | $8.53 \times 10^{-5}$ | $2.33 \times 10^{-3}$ |
+| $\tau = 2.5$ | 63.4% | 36.6% | 0 | 0.0000 | $9.44 \times 10^{-5}$ | $2.85 \times 10^{-3}$ |
+| $\tau = 3.0$ | 54.2% | 45.8% | 0 | 0.0000 | $1.10 \times 10^{-4}$ | $3.57 \times 10^{-3}$ |
 
-At $\tau = 1.5$, zero logical errors were observed across 37,800 accepted windows ($50,000 \times 0.756$), establishing the empirical fast-path upper bound of $7.68 \times 10^{-5}$ and end-to-end pipeline error of $1.90 \times 10^{-4}$.
+At $\tau = 1.5$, zero logical errors were observed across 37,800 accepted windows ($50,000 \times 0.756$), establishing the exact 95% Clopper-Pearson upper bound of $7.92 \times 10^{-5}$ (Wilson two-sided upper bound $1.02 \times 10^{-4}$) and end-to-end pipeline error of $P_{\text{pipe}} = 1.90 \times 10^{-3}$ at $p=0.003$ ($7.00 \times 10^{-6}$ at $p=0.001$).
 
 ---
 

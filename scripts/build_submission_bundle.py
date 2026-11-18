@@ -125,7 +125,7 @@ def generate_cover_letter_pdf(output_pdf_path: str) -> None:
     <body>
         <div class="bullet">
             <span class="b-title">3. Multi-Stage Margin Gating &amp; Streaming Sliding Window:</span>
-            We engineer a confidence-margin fast-path gate (G<sub>3</sub>) within a continuous sliding window (W=3, F=1). Gate G<sub>3</sub> routes 75.6% of syndrome windows with zero logical errors (P<sub>L,accept</sub> = 0.0000), reducing queue backlog to 6.0 &times; 10<sup>-5</sup> and delivering an end-to-end pipeline logical error rate of P<sub>pipe</sub> = 1.90 &times; 10<sup>-4</sup> with 102.4&nbsp;ns mean latency (240&nbsp;ns max) &mdash; well within the 1&nbsp;&mu;s quantum cycle limit.
+            We engineer a confidence-margin fast-path gate (G<sub>3</sub>) within a continuous sliding window (W=3, F=1). Gate G<sub>3</sub> routes 75.6% of syndrome windows with zero logical errors (P<sub>L,accept</sub> = 0.0000; exact 95% Clopper-Pearson bound 7.92 &times; 10<sup>-5</sup>), delivering an end-to-end pipeline error rate of P<sub>pipe</sub> = 1.90 &times; 10<sup>-3</sup> at p=0.003 (7.00 &times; 10<sup>-6</sup> at p=0.001) with 102.4&nbsp;ns mean latency (240&nbsp;ns max) &mdash; well within the 1&nbsp;&mu;s quantum cycle limit.
         </div>
 
         <div class="bullet">
@@ -140,7 +140,7 @@ def generate_cover_letter_pdf(output_pdf_path: str) -> None:
 
         <div class="bullet">
             <span class="b-title">6. Hardware Synthesis &amp; 10,000-Shot Co-Simulation Parity:</span>
-            We synthesize our complete architecture in SystemVerilog for AMD Kintex UltraScale+ XCKU040 FPGA (f<sub>clk</sub> = 250&nbsp;MHz, WNS = +0.18&nbsp;ns, 28,204 LUTs, 0 DSPs), confirming 10,000-shot bit-exact hardware-software co-simulation parity.
+            We synthesize our complete architecture in SystemVerilog for AMD Kintex UltraScale+ XCKU040 FPGA (f<sub>clk</sub> = 250&nbsp;MHz, 28,204 LUTs, 0 DSPs), confirming 10,000-shot bit-exact hardware-software co-simulation parity.
         </div>
 
         <div class="section-h">Scope Alignment with IEEE Transactions on Quantum Engineering:</div>
@@ -151,7 +151,7 @@ def generate_cover_letter_pdf(output_pdf_path: str) -> None:
         <div class="section-h">Editorial &amp; Ethical Declarations:</div>
         <p>
         1. <b>Originality:</b> This manuscript represents original research and is not currently published, accepted, or under concurrent evaluation in any other journal or conference.<br>
-        2. <b>Software &amp; Data Availability:</b> In accordance with IEEE open science standards, the complete implementation is publicly available as an open-source Python library (<code>orbit-tied-qnbp</code> v1.0.0 on PyPI and GitHub: <code>github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb</code>), including all synthesizeable SystemVerilog RTL, testbenches, and dataset generation scripts.<br>
+        2. <b>Software &amp; Data Availability:</b> In accordance with IEEE open science standards, the complete implementation is publicly available as an open-source Python library on GitHub (<code>https://github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb</code>), including all synthesizeable SystemVerilog RTL, testbenches, and dataset generation scripts.<br>
         3. <b>Conflict of Interest:</b> The authors certify that there are no financial or commercial conflicts of interest.
         </p>
 
@@ -233,7 +233,7 @@ Orbit-Tied QNBP for Sliding-Window Decoding of BB Codes
 
 ### Abstract (Plain-Text for Portal)
 ```
-Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes offer order-of-magnitude reductions in physical qubit overhead compared to topological surface codes. However, their non-local check connectivity generates dense 3D space-time detector error models (DEM) that strain real-time decoding within microsecond coherence intervals. In this paper, we propose an orbit-tied, 6-bit quantized neural belief propagation (QNBP) decoder tailored for real-time sliding-window processing of BB codes. By mapping the 2D torus translation group G = Z_l x Z_m, we demonstrate that spatial shifts constitute exact DEM graph automorphisms, collapsing 7,308 circuit fault mechanisms into 203 symmetry orbits (R=3, a 36x parameter reduction on the 72-qubit BB code [[72,12,6]], and 14,616 mechanisms into 203 orbits, a 72x reduction, on the [[144,12,12]] gross code) while enforcing geometric equivariance and mitigating untied neural overfitting. To enable multiplier-free hardware synthesis with zero Digital Signal Processing (DSP) slices (DSP=0), we develop a Canonical Signed-Digit (CSD) shift-and-add architecture using power-of-two dyadic quantization (Delta = 2^-2) and pre-scaled priors (kappa = 0.75). Benchmarked against ten decoders under circuit-level Stim depolarizing noise (p in [10^-3, 5x10^-3]), our 6-bit integer QNBP model with learned signed memory damping (gamma in [-0.5, 1.0]) converges in 6.4 mean iterations to a logical error rate of P_L = 0.0068 [0.0053, 0.0086], outperforming scalar Mem-BP (chi^2 = 14.72, p = 0.000125) and hardware-capped IBM Relay-BP (chi^2 = 12.06, p = 0.000515) with zero DSP blocks. Under superconducting transmon dephasing bias (eta = 100), QNBP naturally adapts message weighting, suppressing logical errors 8.0x down to P_L = 0.0010 (20.0x over Classical BP). Integrated with a confidence-margin fast-path gate (G3), 75.6% of syndrome windows exit in 102.4 ns mean latency with zero accepted errors (P_L,accept = 0.0000) and P_pipe = 1.90 x 10^-4, resolving queue overflow below 6.0 x 10^-5 under a 1 microsecond quantum cycle budget.
+Bivariate-bicycle (BB) quantum codes offer high encoding rates but generate dense 3D space-time detector error models (DEM) challenging real-time decoding within microsecond coherence intervals. We propose an orbit-tied, 6-bit quantized neural belief propagation (QNBP) decoder for real-time sliding-window processing of BB codes. Spatial shifts under the 2D torus translation group induce exact DEM graph automorphisms, collapsing 7,308 fault mechanisms into 203 symmetry orbits (a 36.0x reduction on [[72,12,6]] and 72.0x on [[144,12,12]]), enforcing equivariance and eliminating untied overfitting. We develop a multiplier-free Canonical Signed-Digit (CSD) architecture using dyadic step size (Delta = 2^-2) and pre-scaling (kappa = 0.75) with zero DSP slices (DSP=0). Benchmarked against ten decoders under Stim depolarizing noise (p = 0.003), 6-bit QNBP converges in 6.4 mean iterations to logical error rate P_L = 0.0068 [0.0053, 0.0086], outperforming scalar Mem-BP and hardware-capped IBM Relay-BP. Under transmon dephasing bias (eta = 100), QNBP suppresses logical errors 8.0x to P_L = 0.0010. Integrated with a confidence-margin gate (G3), 75.6% of windows exit in 102.4 ns mean latency with zero accepted errors (95% bound 7.92 x 10^-5) and pipeline error P_pipe = 1.90 x 10^-3 at p = 0.003 (7.00 x 10^-6 at p = 0.001), resolving queue overflow under a 1 microsecond quantum cycle deadline.
 ```
 
 ### Keywords / Index Terms
@@ -333,7 +333,7 @@ The authors declare that there are no financial, personal, or professional confl
 
 ### Data and Code Availability Statement
 ```
-All code, models, synthesizeable SystemVerilog RTL, simulation scripts, and benchmark datasets supporting the findings of this study are available in a public GitHub repository at https://github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb and have been published as an open-source Python package 'orbit-tied-qnbp' (v1.0.0) on the Python Package Index (PyPI). All random seeds and benchmark configurations are pinned for exact empirical reproduction.
+All code, models, synthesizeable SystemVerilog RTL, simulation scripts, and benchmark datasets supporting the findings of this study are publicly available in a GitHub repository at https://github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb. All random seeds and benchmark configurations are pinned for exact empirical reproduction.
 ```
 
 ### Funding and Acknowledgment Statement
@@ -419,14 +419,14 @@ Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes (Bravyi et
 ### Key Technical Contributions
 1. **Torus Automorphism Equivariance (Proposition 2):** We prove that 2D torus translations $G = \mathbb{Z}_\ell \times \mathbb{Z}_m$ constitute strict DEM graph automorphisms. Weight tying across automorphism orbits collapses 7,308 fault mechanisms to 203 orbits ($36.0\times$ parameter reduction) on $[[72,12,6]]$ and 14,616 mechanisms to 203 orbits ($72.0\times$ reduction) on $[[144,12,12]]$, strictly guaranteeing geometric equivariance and eliminating untied neural overfitting.
 2. **Multiplier-Free 6-Bit Dyadic CSD Architecture (Lemma 1):** We prove dyadic clipping bounds ($[-7.75, +7.75]$, $\Delta=0.25$) and implement all variable- and check-node operations with zero DSP multipliers ($\text{DSP}=0$) using two-term Canonical Signed-Digit (CSD) shift-and-add arithmetic.
-3. **Multi-Stage Margin Gating & Streaming Sliding Window:** In a streaming sliding window ($W=3, F=1$), our margin gate $G_3$ routes 75.6% of syndrome windows with zero logical errors ($P_{L, \text{accept}} = 0.0000$), delivering an end-to-end pipeline error rate of $P_{\text{pipe}} = 1.90 \times 10^{-4}$ at 102.4 ns mean latency (240 ns max), keeping queue buffer overflow below $6.0 \times 10^{-5}$ under $1\,\mu\text{s}$ quantum cycles.
+3. **Multi-Stage Margin Gating & Streaming Sliding Window:** In a streaming sliding window ($W=3, F=1$), our margin gate $G_3$ routes 75.6% of syndrome windows with zero logical errors ($P_{L, \text{accept}} = 0.0000$; exact 95% Clopper-Pearson bound $7.92 \times 10^{-5}$), delivering an end-to-end pipeline error rate of $P_{\text{pipe}} = 1.90 \times 10^{-3}$ at $p=0.003$ ($7.00 \times 10^{-6}$ at $p=0.001$) at 102.4 ns mean latency (240 ns max), keeping queue buffer overflow below $6.0 \times 10^{-5}$ under $1\,\mu\text{s}$ quantum cycles.
 4. **100-Round Continuous Streaming Memory Survival:** We validate continuous multi-round streaming over $R=100$ measurement rounds ($100\,\mu\text{s}$). Active temporal boundary residual propagation preserves $98.1\%$ logical survival at 100 rounds ($F_{\text{log}} = 0.9981$ at 10 μs, $0.9812$ at 100 μs), whereas boundary-agnostic decoding collapses to $22.1\%$ ($4.4\times$ degradation).
 5. **Real-World IBM Quantum Heron Calibration Benchmark:** Benchmarked against the empirical calibration snapshot of IBM's flagship 133-qubit Heron r2 processor ($p_{\text{2Q}} = 2.1 \times 10^{-3}, \eta = 50.0$), Orbit-Tied QNBP converges in only 3.85 mean iterations—the fastest among all 6 models tested (vs. 9.16 for Classical Min-Sum, 11.86 for Normalized Min-Sum, and 8.86 for BP+OSD-CS-10) with $\text{DSP}=0$.
 6. **Synthesizeable Hardware & Co-Simulation Parity:** We synthesize our design in SystemVerilog for AMD Kintex UltraScale+ XCKU040 ($f_{\text{clk}} = 250\text{ MHz}$, 28,204 LUTs, 0 DSPs) and verify 10,000-shot bit-exact hardware-software co-simulation parity.
 
 ### Editorial Certifications
 - **Originality:** This manuscript is original, has not been published previously, and is not currently under review elsewhere.
-- **Reproducibility:** The complete software library (`orbit-tied-qnbp` v1.0.0) is published on PyPI and GitHub (`github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb`) with pinned seeds, automated test suites, and SystemVerilog RTL.
+- **Reproducibility:** The complete software library (`orbit-tied-qnbp`), automated test suite, benchmark datasets, and SystemVerilog RTL are publicly available at GitHub (`https://github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb`) with pinned seeds.
 - **Conflict of Interest:** The authors declare no competing financial or personal interests.
 
 Thank you very much for your time and editorial guidance.

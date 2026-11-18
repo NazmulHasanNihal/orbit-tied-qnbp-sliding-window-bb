@@ -27,30 +27,53 @@ python -m pip install pytest>=8.0.0
 
 ## 2. One-Command Full Verification Suite
 
-To verify the complete mathematical, algorithmic, and hardware co-simulation suite in under 60 seconds:
+To verify the complete mathematical, algorithmic, and hardware co-simulation suite (46 passed unit and integration tests):
 ```bash
-python -m pytest tests/ -v
+# Using Makefile
+make test
+
+# Or directly with pytest
+python -m pytest tests/ -k "not cosim_10k" -v
 ```
 This executes:
 1. `tests/test_orbits.py`: 36/36 torus automorphism verification and window boundary classification.
-2. `tests/test_bivariate_bicycle.py`: Bivariate bicycle CSS commutativity, polynomial algebra, and circuit construction.
-3. `tests/test_dem_graph.py`: Stim DEM graph parser and incidence matrices.
-4. `tests/test_qnbp.py`: Dyadic quantization, CSD projection, and gradient backpropagation.
-5. `tests/test_hardware_cosim.py`: VNU, CNU, and Gate G3 bit-exact hardware-software parity.
-6. `tests/test_sliding_window.py`: Sliding-window commit schedule and queue simulator.
-7. `tests/test_streaming_window.py`: Multi-round continuous streaming with boundary residual feedback.
-8. `tests/test_competitor_baselines.py`: Mem-BP, BP-LSD, BP+OSD, AutDEC, and GDG sliding-window.
+2. `tests/test_automorphism_closure.py`: Algebraic closure of all 203 orbits under 36 group translations (263,088 checks).
+3. `tests/test_bivariate_bicycle.py`: Bivariate bicycle CSS commutativity, polynomial algebra, and circuit construction.
+4. `tests/test_dem_graph.py`: Stim DEM graph parser and incidence matrices.
+5. `tests/test_gf2.py`: GF(2) nullspace, rank, and CSS Steane code checks.
+6. `tests/test_qnbp.py`: Dyadic quantization, CSD projection, and gradient backpropagation.
+7. `tests/test_quant_clipping.py`: Lemma 1 dynamic range containment and zero clipping verification.
+8. `tests/test_hardware_cosim.py`: VNU, CNU, and Gate G3 bit-exact hardware-software parity.
+9. `tests/test_metrics.py`: Wilson score intervals and exact/asymptotic McNemar significance tests.
+10. `tests/test_sliding_window.py`: Sliding-window commit schedule and queue simulator.
+11. `tests/test_streaming_window.py`: Multi-round continuous streaming with boundary residual feedback.
+12. `tests/test_competitor_baselines.py`: Mem-BP, BP-LSD, BP+OSD, AutDEC, and GDG sliding-window.
+13. `tests/test_realworld_benchmarks.py`: IBM Heron r2 calibration and continuous streaming smoke tests.
+
+### 2.1 Automated Claims Ledger Audit
+To independently verify all 76 quantitative claims in `CLAIMS_LEDGER.md`:
+```bash
+python scripts/verify_claims.py
+# Or: make verify
+```
 
 ---
 
 ## 3. Step-by-Step Reproduction of Manuscript Tables
+
+All LaTeX tables (`manuscript/tables/tab[1-5]*.tex`) and Markdown tables in `README.md` are auto-generated from machine-readable `results/*.json`:
+```bash
+python scripts/make_tables.py
+# CI verification diff check:
+python scripts/make_tables.py --check
+```
 
 ### 3.1 Table I: Asymmetric Biased Pauli Noise & Crosstalk
 ```bash
 python src/experiments/run_novelty_benchmarks.py
 ```
 - **Output:** `results/novelty_benchmarks.json`
-- **Generates:** LER for Classical BP and Orbit-Tied QNBP across $\eta \in \{1, 10, 50, 100\}$ and $ZZ$ crosstalk $\epsilon = 0.10$.
+- **Generates:** LER for Classical BP, Tuned Min-Sum, and Orbit-Tied QNBP across $\eta \in \{1, 10, 50, 100\}$ and $ZZ$ crosstalk $\epsilon = 0.10$.
 - **Seed:** 42 + $\text{int}(\eta)$.
 
 ### 3.2 Table II & Table III: FPGA Synthesis & Subgroup Folding
@@ -59,7 +82,7 @@ python scripts/evaluate_folding_tradeoffs.py
 python scripts/estimate_hardware_resources.py
 ```
 - **Outputs:** `results/hardware_folding_results.json` and `rtl/synth_results.json`
-- **Generates:** Resource breakdown (28,204 LUTs, 19,512 FFs, 0 DSP, 0 BRAM), achieved timing ($F_{\max} = 262\text{ MHz}$, $16\text{ ns/iter}$), dynamic power ($184\text{ mW}$), and folding Pareto frontier ($F \in \{1, 2, 3, 6, 12, 36\}$).
+- **Generates:** Resource breakdown (28,204 LUTs, 19,512 FFs, 0 DSP, 0 BRAM), analytical timing ($250\text{ MHz}$, $16\text{ ns/iter}$), dynamic power ($\sim 184\text{ mW}$), and folding Pareto frontier ($F \in \{1, 2, 3, 6, 12, 36\}$).
 
 ### 3.3 Table IV: Master 10-Decoder Benchmark Comparison
 ```bash
@@ -101,11 +124,13 @@ python src/experiments/plot_fig1_architecture.py
 To compile the IEEE Transactions publication deliverable:
 ```bash
 python scripts/compile_manuscript_pdf.py
+# Or: make pdf
 ```
 - **Output:** Strictly one canonical deliverable: `manuscript/main.pdf`.
 - **Forensic Verification:**
 ```bash
 python tests/verify_main_pdf.py
+# Or: make audit-pdf
 ```
 Ensures exact 12-page budget, zero forbidden strings, all 59 references sequentially cited, and complete statistical synchronization.
 

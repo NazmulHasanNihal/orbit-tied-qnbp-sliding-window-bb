@@ -11,13 +11,16 @@ This directory contains the complete technical documentation, mathematical proof
 
 | Document | Description | Focus Areas |
 | :--- | :--- | :--- |
-| **[`REPRODUCIBILITY_GUIDE.md`](./REPRODUCIBILITY_GUIDE.md)** | Step-by-step reproduction instructions | Environment setup, automated test suites, simulation seeds, figure generation, and table verification. |
-| **[`MATHEMATICAL_VALIDATION.md`](./MATHEMATICAL_VALIDATION.md)** | Rigorous mathematical derivations & proofs | Group actions ($G = \mathbb{Z}_\ell \times \mathbb{Z}_m$), permutation equivariance (Theorem 2), dyadic quantization bounds (Theorem 3), CSS decoupling (Proposition 1). |
-| **[`HARDWARE_VALIDATION.md`](./HARDWARE_VALIDATION.md)** | Hardware synthesis & microarchitecture | Multiplier-free CSD arithmetic ($DSP=0$), 6-bit integer datapath, energy scaling ($18.84\text{ nJ}$), AXI4-Stream ingress, Vivado synthesis results. |
+| **[`REPRODUCIBILITY_GUIDE.md`](./REPRODUCIBILITY_GUIDE.md)** | Step-by-step reproduction instructions | Environment setup, automated test suites (46 tests), simulation seeds, figure generation, and table verification. |
+| **[`MATHEMATICAL_VALIDATION.md`](./MATHEMATICAL_VALIDATION.md)** | Rigorous mathematical derivations & proofs | Group actions ($G = \mathbb{Z}_\ell \times \mathbb{Z}_m$), permutation equivariance (Proposition 2), dyadic quantization bounds (Lemma 1), CSS decoupling (Proposition 3). |
+| **[`HARDWARE_VALIDATION.md`](./HARDWARE_VALIDATION.md)** | Hardware synthesis & microarchitecture | Multiplier-free CSD arithmetic ($DSP=0$), 6-bit integer datapath, energy scaling ($18.84\text{ nJ}$), AXI4-Stream ingress, 216-VNU core. |
 | **[`EXPERIMENTAL_VALIDATION.md`](./EXPERIMENTAL_VALIDATION.md)** | Benchmark empirical analysis | Master benchmark comparison across 10 decoders, McNemar $\chi^2$ statistical significance tests, Gate $G_3$ calibration, and 100-round continuous streaming tests. |
-| **[`FINAL_PUBLICATION_AUDIT.md`](./FINAL_PUBLICATION_AUDIT.md)** | 10-point publication readiness audit | Comprehensive forensic audit covering IEEE layout compliance, zero visual clipping, vector graphics DPI, citation integrity, and software quality. |
-| **[`TECHNICAL_CORRECTIONS.md`](./TECHNICAL_CORRECTIONS.md)** | Technical corrections and audit log | Granular mapping of all mathematical, physical, and architectural refinements implemented across development phases. |
-| **[`AUDIT_REPORT.md`](./AUDIT_REPORT.md)** | Pre-submission peer-review audit | Comprehensive verification report against IEEE Transactions on Information Theory and Quantum Engineering author standards. |
+| **[`../FINAL_VERIFICATION.md`](../FINAL_VERIFICATION.md)** | 12-phase technical audit & verification scorecard | Verification matrix of all 76 claims with 39 automated assertions passing (100.0%). |
+| **[`../CLAIMS_LEDGER.md`](../CLAIMS_LEDGER.md)** | Quantitative claim traceability ledger | Every number in paper, README, and docs mapped to source JSON artifact. |
+| **[`../REVIEWER_RISKS.md`](../REVIEWER_RISKS.md)** | Peer-review defense dossier | Detailed mathematical, architectural, and baseline answers to 15 hardest referee questions. |
+| **[`../TODO_HUMAN.md`](../TODO_HUMAN.md)** | External hardware & cluster instructions | Exact CLI commands for Vivado implementation, Verilator co-sim, and $N \ge 10^6$ Monte Carlo scaling. |
+| **[`../CHANGELOG.md`](../CHANGELOG.md)** | Technical development & audit changelog | Detailed audit history across all development and audit phases. |
+| **[`AUDIT_REPORT.md`](./AUDIT_REPORT.md)** | Baseline peer-review audit | Comprehensive verification report against IEEE Transactions author standards. |
 | **[`RESEARCH_PLAN.md`](./RESEARCH_PLAN.md)** | Initial unified research roadmap | Original monolithic research plan, milestone breakdown, and architectural targets for the project. |
 
 ---
