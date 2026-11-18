@@ -1,0 +1,54 @@
+{
+  "lemma": "Lemma 1: 6-Bit Dyadic Dynamic Range Bound",
+  "parameters": {
+    "code": "[[72, 12, 6]]",
+    "rounds": 3,
+    "physical_p": 0.003,
+    "shots_sampled": 10000,
+    "bit_width": 6,
+    "quantization_step_delta": 0.25,
+    "max_integer": 31,
+    "dynamic_range": [
+      -7.75,
+      7.75
+    ],
+    "dyadic_scale_factor_kappa": 0.75,
+    "kappa_csd_representation": "1 - 2^(-2)"
+  },
+  "raw_priors_unscaled": {
+    "num_faults": 7308,
+    "min_raw_llr": 4.643542289733887,
+    "max_raw_llr": 8.51559066772461,
+    "clipped_faults_count": 4932,
+    "coverage_pct": 32.512315270935964,
+    "clipping_pct": 67.48768472906403,
+    "delta_required_for_zero_clipping": 0.27469647315240675
+  },
+  "dyadic_scaled_priors_lemma1": {
+    "num_faults": 7308,
+    "min_scaled_llr": 3.482656717300415,
+    "max_scaled_llr": 6.386693000793457,
+    "clipped_faults_count": 0,
+    "coverage_pct": 100.0,
+    "clipping_pct": 0.0,
+    "saturation_headroom_margin": 1.363306999206543,
+    "headroom_pct": 17.591058054277976,
+    "percentiles": {
+      "p1": 3.5650763511657715,
+      "p5": 4.659755706787109,
+      "p50": 5.866832733154297,
+      "p95": 6.386693000793457,
+      "p99": 6.386693000793457
+    }
+  },
+  "monte_carlo_10k_evaluation": {
+    "total_shots": 10000,
+    "total_prior_evaluations": 73080000,
+    "total_clipped_evaluations": 0,
+    "empirical_clipping_frequency_pct": 0.0,
+    "mean_detector_weight": 17.4022,
+    "max_detector_weight": 56,
+    "sampling_time_seconds": 0.057155609130859375
+  },
+  "verification_status": "PASS"
+}

@@ -81,6 +81,7 @@ def run_all_competitor_benchmarks(
     physical_p: float = 0.003,
     rounds: int = 2,
     seed: int = 2026,
+    out_file: str | None = None,
 ) -> Dict[str, Any]:
     """Executes master head-to-head benchmark across 9 decoder variants."""
     print("=" * 78)
@@ -147,14 +148,37 @@ def run_all_competitor_benchmarks(
         "mcnemar_tests_vs_proposed": mcnemar_stats,
     }
 
-    out_file = "results/competitor_benchmarks.json"
-    os.makedirs(os.path.dirname(out_file), exist_ok=True)
-    with open(out_file, "w") as fp:
-        json.dump(output, fp, indent=2)
-
-    print(f"\n✅ All competitor benchmarks saved to {out_file}!")
+    if out_file:
+        os.makedirs(os.path.dirname(out_file), exist_ok=True)
+        with open(out_file, "w") as fp:
+            json.dump(output, fp, indent=2)
+        print(f"\n✅ All competitor benchmarks saved to {out_file}!")
+    else:
+        print("\nℹ️ Dry run completed (no output file saved).")
     return output
 
 
 if __name__ == "__main__":
-    run_all_competitor_benchmarks(shots=500, physical_p=0.003, rounds=2, seed=2026)
+    import argparse
+    parser = argparse.ArgumentParser(description="Run Competitor Benchmarks")
+    parser.add_argument("--shots", type=int, default=500, help="Number of Monte Carlo shots")
+    parser.add_argument("--smoke", action="store_true", help="Smoke test mode (runs 20 shots)")
+    parser.add_argument("--p", type=float, default=0.003, help="Physical noise rate")
+    parser.add_argument("--rounds", type=int, default=2, help="Syndrome extraction rounds")
+    parser.add_argument("--seed", type=int, default=2026, help="Random seed")
+    parser.add_argument("--out", type=str, default=None, help="Output JSON path (optional)")
+    parser.add_argument("--save-master", action="store_true", help="Explicitly overwrite results/competitor_benchmarks.json")
+    args = parser.parse_args()
+
+    num_shots = 20 if args.smoke else args.shots
+    target_out = args.out
+    if args.save_master:
+        target_out = "results/competitor_benchmarks.json"
+
+    res = run_all_competitor_benchmarks(
+        shots=num_shots,
+        physical_p=args.p,
+        rounds=args.rounds,
+        seed=args.seed,
+        out_file=target_out,
+    )

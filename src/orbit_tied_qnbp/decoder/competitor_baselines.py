@@ -284,3 +284,76 @@ class GdgSlidingWindowBaseline:
         """Decodes sliding window syndrome via Normalized Min-Sum."""
         return self.decoder.decode(syndrome)
 
+
+class FastRelayBpDecoder:
+    """Fast C++ Relay-BP Decoder utilizing ldpc library."""
+
+    def __init__(
+        self,
+        graph: DemGraph,
+        num_relays: int = 5,
+        iters_per_relay: int = 10,
+        alpha: float = 0.75,
+        relay_gamma: float = 0.125,
+    ) -> None:
+        self.graph = graph
+        self.num_relays = num_relays
+        self.iters_per_relay = iters_per_relay
+        self.alpha = alpha
+        self.relay_gamma = relay_gamma
+        self.obs_matrix = graph.obs_matrix.cpu().numpy().copy()
+
+        c_nodes = graph.check_nodes_per_edge.cpu().numpy()
+        f_nodes = graph.fault_nodes_per_edge.cpu().numpy()
+        pcm = sp.csr_matrix(
+            (np.ones(len(c_nodes), dtype=np.uint8), (c_nodes, f_nodes)),
+            shape=(graph.num_detectors, graph.num_faults),
+        )
+        self.orig_probs = np.clip(graph.prior_probs.cpu().numpy().copy(), 1e-12, 1.0 - 1e-12)
+        self.orig_llrs = np.log((1.0 - self.orig_probs) / self.orig_probs)
+
+        if HAS_LDPC_CPP:
+            self._cpp_decoder = BpDecoder(
+                pcm=pcm,
+                error_channel=list(self.orig_probs),
+                max_iter=iters_per_relay,
+                bp_method="minimum_sum",
+                ms_scaling_factor=alpha,
+            )
+        else:
+            self._cpp_decoder = None
+
+    def decode(self, syndrome: NDArray[np.uint8]) -> DecodeResult:
+        """Decodes syndrome via multi-stage Relay-BP."""
+        if self._cpp_decoder is None:
+            raise RuntimeError("FastRelayBpDecoder requires ldpc C++ library")
+
+        current_llrs = self.orig_llrs.copy()
+        total_iters = 0
+        last_corr = np.zeros(self.graph.num_faults, dtype=np.uint8)
+        converged = False
+
+        for relay in range(self.num_relays):
+            p = 1.0 / (1.0 + np.exp(np.clip(current_llrs, -30.0, 30.0)))
+            self._cpp_decoder.update_channel_probs(list(np.clip(p, 1e-12, 1.0 - 1e-12)))
+            last_corr = self._cpp_decoder.decode(syndrome).astype(np.uint8)
+            total_iters += int(self._cpp_decoder.iter)
+            converged = bool(self._cpp_decoder.converge)
+
+            if converged:
+                break
+
+            posteriors = np.array(self._cpp_decoder.log_prob_ratios, dtype=np.float32)
+            current_llrs = (1.0 - self.relay_gamma) * self.orig_llrs + self.relay_gamma * posteriors
+
+        # Restore original priors
+        self._cpp_decoder.update_channel_probs(list(self.orig_probs))
+        pred_obs = ((self.obs_matrix @ last_corr) % 2).astype(np.uint8)
+        return DecodeResult(
+            converged=converged,
+            iterations=total_iters,
+            corrections=last_corr,
+            predicted_observables=pred_obs,
+            final_llrs=current_llrs,
+        )
+

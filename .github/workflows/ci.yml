@@ -47,6 +47,10 @@ jobs:
         run: |
           python -m pytest tests/ -k "not cosim_10k" -v
 
+      - name: Verify Single-Source-of-Truth Tables
+        run: |
+          python scripts/make_tables.py --check
+
       - name: Run Forensic PDF Integrity Audit
         run: |
           python tests/verify_main_pdf.py

@@ -1,0 +1,28 @@
+\begin{table*}[t]
+\caption{Comprehensive Head-to-Head Benchmark Across 11 Decoders on $[[72,12,6]]$ Bivariate-Bicycle Code ($p = 0.003$, $N \ge 10,000$ Paired Stim Circuit Shots). GDG sliding window ($W=3, F=1$, without inter-window residual propagation) degenerates to standard Min-Sum on single-window benchmarks. Decoders are partitioned by adherence to the real-time decoding deadline ($t_{\text{dec}} \le 1.0\,\mu\text{s}$).}
+\label{tab:competitors}
+\centering
+\begin{tabular}{llcccccc}
+\toprule
+\textbf{Decoder Variant} & \textbf{Backend / Algorithm} & \textbf{DSP Multipliers} & \textbf{LER ($P_L$)} & \textbf{95\% Wilson CI} & \textbf{Mean Iters} & \textbf{Paired $\chi^2$} & \textbf{McNemar $p$-value} \\
+\midrule
+\multicolumn{8}{l}{\textit{\textbf{Panel A: Real-Time Compatible Decoders ($t_{\text{dec}} \le 1.0\,\mu\text{s}$ Deadline)}}} \\
+\midrule
+\textbf{Proposed Orbit-Tied QNBP} & \textbf{6-bit CSD Hardware ($\gamma \in [-0.5, 1.0]$)} & \textbf{0} & \textbf{0.0068} & \textbf{[0.0053, 0.0086]} & \textbf{6.4} & --- & \textbf{Baseline Ref.} \\
+IBM Relay-BP (5-Leg Hardware-Capped)~\cite{muller2025relay} & 5 Relays $\times$ 10 iters ($\gamma_0=0.125$) & \textbf{0} & 0.0090 & [0.0073, 0.0111] & 28.4 & 12.1 & $\mathbf{5.1500\times 10^{-4}}$ \\
+Mem-BP~\cite{chytas2025enhanced} & Scalar Memory-Damped Min-Sum ($\gamma=0.35$) & \textbf{0} & 0.0102 & [0.0084, 0.0123] & 7.5 & 14.7 & $\mathbf{1.2500\times 10^{-4}}$ \\
+IBM DMem-BP (Single-Leg)~\cite{muller2025relay} & Disordered $\gamma_v \sim \mathcal{U}[-0.24, 0.66]$ ($T=15$) & \textbf{0} & 0.0160 & [0.0136, 0.0187] & 9.2 & 42.2 & $\mathbf{8.3200\times 10^{-11}}$ \\
+A0 Classical Min-Sum & C++ `ldpc.BpDecoder` ($\alpha=1.0$) & \textbf{0} & 0.2940 & [0.2851, 0.3030] & 17.3 & 1,940.2 & $\mathbf{< 10^{-40}}$ \\
+QNBP (Un-damped) & Orbit-Tied CSD Hardware ($\gamma=0.0$) & \textbf{0} & 0.3100 & [0.3009, 0.3192] & 10.2 & 2,050.8 & $\mathbf{< 10^{-40}}$ \\
+A1 Normalized Min-Sum & C++ `ldpc.BpDecoder` ($\alpha=0.75$) & \textbf{0} & 0.4160 & [0.4063, 0.4257] & 19.3 & 2,642.1 & $\mathbf{< 10^{-40}}$ \\
+GDG Sliding Window~\cite{gong2024sliding} & Normalized Min-Sum ($W=3, F=1$) & \textbf{0} & 0.4160 & [0.4063, 0.4257] & 19.3 & 2,642.1 & $\mathbf{< 10^{-40}}$ \\
+\midrule
+\multicolumn{8}{l}{\textit{\textbf{Panel B: Budget-Exceeding Decoders ($t_{\text{dec}} > 1.0\,\mu\text{s}$, High Latency)}}} \\
+\midrule
+IBM Relay-BP-5 (Full 300-Leg, S=5)~\cite{muller2025relay} & Up to 300 Legs ($\gamma_v \sim \mathcal{U}[-0.24, 0.66]$) & \textbf{0} & 0.0060 & [0.0046, 0.0077] & 148.5 & 1.1 & 0.286 \\
+BP+OSD-CS-10~\cite{roffe2020decoding} & C++ Ordered Statistics (Order 10) & O(V^3) & 0.0120 & [0.0099, 0.0144] & 19.3 & 28.1 & $\mathbf{1.1300\times 10^{-7}}$ \\
+BP-LSD~\cite{higgott2024lsd} & C++ Localised Statistics (Order 5) & \textbf{0} & 0.0340 & [0.0305, 0.0378] & 19.0 & 186.4 & $\mathbf{1.0000e-40}$ \\
+AutDEC~\cite{moradi2025autdec} & 4 Torus Shift Permutations & \textbf{0} & 0.4320 & [0.4223, 0.4418] & 48.4 & 2,750.5 & $\mathbf{< 10^{-40}}$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

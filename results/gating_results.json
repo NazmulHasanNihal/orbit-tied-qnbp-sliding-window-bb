@@ -3,321 +3,353 @@
     "G1": {
       "tau_0.5": {
         "tau": 0.5,
-        "p_fast": 0.792,
-        "p_fb": 0.208,
-        "fast_errors": 35,
-        "slow_errors": 7,
-        "err_given_acc": 0.00088,
-        "err_given_fb": 0.00067,
-        "p_pipe": 0.00084
+        "p_fast": 0.978,
+        "p_fb": 0.022,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
       },
       "tau_1.0": {
         "tau": 1.0,
-        "p_fast": 0.792,
-        "p_fb": 0.208,
-        "fast_errors": 35,
-        "slow_errors": 7,
-        "err_given_acc": 0.00088,
-        "err_given_fb": 0.00067,
-        "p_pipe": 0.00084
+        "p_fast": 0.978,
+        "p_fb": 0.022,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
       },
       "tau_1.5": {
         "tau": 1.5,
-        "p_fast": 0.792,
-        "p_fb": 0.208,
-        "fast_errors": 35,
-        "slow_errors": 7,
-        "err_given_acc": 0.00088,
-        "err_given_fb": 0.00067,
-        "p_pipe": 0.00084
+        "p_fast": 0.978,
+        "p_fb": 0.022,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
       },
       "tau_2.0": {
         "tau": 2.0,
-        "p_fast": 0.792,
-        "p_fb": 0.208,
-        "fast_errors": 35,
-        "slow_errors": 7,
-        "err_given_acc": 0.00088,
-        "err_given_fb": 0.00067,
-        "p_pipe": 0.00084
+        "p_fast": 0.978,
+        "p_fb": 0.022,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
       },
       "tau_2.5": {
         "tau": 2.5,
-        "p_fast": 0.792,
-        "p_fb": 0.208,
-        "fast_errors": 35,
-        "slow_errors": 7,
-        "err_given_acc": 0.00088,
-        "err_given_fb": 0.00067,
-        "p_pipe": 0.00084
+        "p_fast": 0.978,
+        "p_fb": 0.022,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
       },
       "tau_3.0": {
         "tau": 3.0,
-        "p_fast": 0.792,
-        "p_fb": 0.208,
-        "fast_errors": 35,
-        "slow_errors": 7,
-        "err_given_acc": 0.00088,
-        "err_given_fb": 0.00067,
-        "p_pipe": 0.00084
+        "p_fast": 0.978,
+        "p_fb": 0.022,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
       }
     },
     "G2": {
       "tau_0.5": {
         "tau": 0.5,
-        "p_fast": 0.748,
-        "p_fb": 0.252,
-        "fast_errors": 16,
-        "slow_errors": 5,
-        "err_given_acc": 0.00043,
-        "err_given_fb": 0.00040,
-        "p_pipe": 0.00042
+        "p_fast": 0.936,
+        "p_fb": 0.064,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
       },
       "tau_1.0": {
         "tau": 1.0,
-        "p_fast": 0.62,
-        "p_fb": 0.38,
-        "fast_errors": 10,
-        "slow_errors": 4,
-        "err_given_acc": 0.00032,
-        "err_given_fb": 0.00021,
-        "p_pipe": 0.00028
+        "p_fast": 0.794,
+        "p_fb": 0.206,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
       },
       "tau_1.5": {
         "tau": 1.5,
-        "p_fast": 0.574,
-        "p_fb": 0.426,
-        "fast_errors": 6,
-        "slow_errors": 3,
-        "err_given_acc": 0.00021,
-        "err_given_fb": 0.00014,
-        "p_pipe": 0.00018
+        "p_fast": 0.678,
+        "p_fb": 0.322,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
       },
       "tau_2.0": {
         "tau": 2.0,
-        "p_fast": 0.56,
-        "p_fb": 0.44,
-        "fast_errors": 5,
-        "slow_errors": 3,
-        "err_given_acc": 0.00018,
-        "err_given_fb": 0.00014,
-        "p_pipe": 0.00016
+        "p_fast": 0.57,
+        "p_fb": 0.43,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
       },
       "tau_2.5": {
         "tau": 2.5,
-        "p_fast": 0.548,
-        "p_fb": 0.452,
-        "fast_errors": 4,
-        "slow_errors": 3,
-        "err_given_acc": 0.00015,
-        "err_given_fb": 0.00013,
-        "p_pipe": 0.00014
+        "p_fast": 0.542,
+        "p_fb": 0.458,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
       },
       "tau_3.0": {
         "tau": 3.0,
-        "p_fast": 0.538,
-        "p_fb": 0.462,
-        "fast_errors": 3,
-        "slow_errors": 3,
-        "err_given_acc": 0.00011,
-        "err_given_fb": 0.00013,
-        "p_pipe": 0.00012
+        "p_fast": 0.516,
+        "p_fb": 0.484,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
       }
     },
     "G3": {
       "tau_0.5": {
         "tau": 0.5,
-        "p_fast": 0.824,
-        "p_fb": 0.176,
-        "fast_errors": 3,
-        "slow_errors": 1,
-        "err_given_acc": 0.00007,
-        "err_given_fb": 0.00011,
-        "p_pipe": 0.00008
+        "p_fast": 0.958,
+        "p_fb": 0.042,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
       },
       "tau_1.0": {
         "tau": 1.0,
-        "p_fast": 0.785,
-        "p_fb": 0.215,
-        "fast_errors": 1,
-        "slow_errors": 1,
-        "err_given_acc": 0.00003,
-        "err_given_fb": 0.00009,
-        "p_pipe": 0.00004
+        "p_fast": 0.94,
+        "p_fb": 0.06,
+        "fast_errors": 0,
+        "slow_errors": 0,
+        "err_given_acc": 0.0,
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
       },
       "tau_1.5": {
         "tau": 1.5,
-        "p_fast": 0.756,
-        "p_fb": 0.244,
+        "p_fast": 0.93,
+        "p_fb": 0.07,
         "fast_errors": 0,
-        "slow_errors": 1,
+        "slow_errors": 0,
         "err_given_acc": 0.0,
-        "err_given_fb": 0.00008,
-        "p_pipe": 0.00002
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
       },
       "tau_2.0": {
         "tau": 2.0,
-        "p_fast": 0.701,
-        "p_fb": 0.299,
+        "p_fast": 0.914,
+        "p_fb": 0.086,
         "fast_errors": 0,
-        "slow_errors": 1,
+        "slow_errors": 0,
         "err_given_acc": 0.0,
-        "err_given_fb": 0.00007,
-        "p_pipe": 0.00002
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
       },
       "tau_2.5": {
         "tau": 2.5,
-        "p_fast": 0.634,
-        "p_fb": 0.366,
+        "p_fast": 0.898,
+        "p_fb": 0.102,
         "fast_errors": 0,
-        "slow_errors": 1,
+        "slow_errors": 0,
         "err_given_acc": 0.0,
-        "err_given_fb": 0.00005,
-        "p_pipe": 0.00002
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
       },
       "tau_3.0": {
         "tau": 3.0,
-        "p_fast": 0.542,
-        "p_fb": 0.458,
+        "p_fast": 0.876,
+        "p_fb": 0.124,
         "fast_errors": 0,
-        "slow_errors": 1,
+        "slow_errors": 0,
         "err_given_acc": 0.0,
-        "err_given_fb": 0.00004,
-        "p_pipe": 0.00002
+        "err_given_fb": 0.0,
+        "p_pipe": 0.0
       }
     }
   },
   "parameters": {
-    "shots": 50000,
+    "shots": 500,
     "physical_p": 0.001,
     "rounds": 2,
     "seed": 4040
   },
-  "queue_stability": {
-    "servers_1": {
+  "queue_discrete_event": {
+    "metadata": {
+      "arrival_period_ns": 1000.0,
+      "t_fast_ns": 102.4,
+      "t_slow_mean_us": 320.0,
+      "p_fast_high_noise_p003": 0.756,
+      "p_fast_sub_threshold_p001": 0.991
+    },
+    "policy_A_speculative": {
       "buf_4": {
-        "c_servers": 1,
+        "policy": "speculative",
+        "n_windows": 20000,
+        "c_servers": 4,
         "buffer_capacity": 4,
-        "p_fast": 0.88,
-        "mean_service_ns": 230.23503999999997,
-        "utilization": 0.23023503999999997,
+        "p_fast": 0.756,
+        "overflows": 0,
         "overflow_rate": 0.0,
-        "max_backlog": 0.0,
-        "avg_backlog": 0.0
+        "rollbacks": 41,
+        "mean_backlog": 0.0,
+        "max_backlog": 0,
+        "p_crit_stall": 0.011234380006408203
       },
       "buf_8": {
-        "c_servers": 1,
+        "policy": "speculative",
+        "n_windows": 20000,
+        "c_servers": 4,
         "buffer_capacity": 8,
-        "p_fast": 0.88,
-        "mean_service_ns": 230.23503999999997,
-        "utilization": 0.23023503999999997,
+        "p_fast": 0.756,
+        "overflows": 0,
         "overflow_rate": 0.0,
-        "max_backlog": 0.0,
-        "avg_backlog": 0.0
+        "rollbacks": 41,
+        "mean_backlog": 0.0,
+        "max_backlog": 0,
+        "p_crit_stall": 0.011234380006408203
       },
       "buf_16": {
-        "c_servers": 1,
+        "policy": "speculative",
+        "n_windows": 20000,
+        "c_servers": 4,
         "buffer_capacity": 16,
-        "p_fast": 0.88,
-        "mean_service_ns": 230.23503999999997,
-        "utilization": 0.23023503999999997,
+        "p_fast": 0.756,
+        "overflows": 0,
         "overflow_rate": 0.0,
-        "max_backlog": 0.0,
-        "avg_backlog": 0.0
+        "rollbacks": 41,
+        "mean_backlog": 0.0,
+        "max_backlog": 0,
+        "p_crit_stall": 0.011234380006408203
       },
       "buf_32": {
-        "c_servers": 1,
+        "policy": "speculative",
+        "n_windows": 20000,
+        "c_servers": 4,
         "buffer_capacity": 32,
-        "p_fast": 0.88,
-        "mean_service_ns": 230.23503999999997,
-        "utilization": 0.23023503999999997,
+        "p_fast": 0.756,
+        "overflows": 0,
         "overflow_rate": 0.0,
-        "max_backlog": 0.0,
-        "avg_backlog": 0.0
+        "rollbacks": 41,
+        "mean_backlog": 0.0,
+        "max_backlog": 0,
+        "p_crit_stall": 0.011234380006408203
+      },
+      "buf_64": {
+        "policy": "speculative",
+        "n_windows": 20000,
+        "c_servers": 4,
+        "buffer_capacity": 64,
+        "p_fast": 0.756,
+        "overflows": 0,
+        "overflow_rate": 0.0,
+        "rollbacks": 41,
+        "mean_backlog": 0.0,
+        "max_backlog": 0,
+        "p_crit_stall": 0.011234380006408203
       }
     },
-    "servers_2": {
-      "buf_4": {
-        "c_servers": 2,
-        "buffer_capacity": 4,
-        "p_fast": 0.88,
-        "mean_service_ns": 230.23503999999997,
-        "utilization": 0.11511751999999999,
-        "overflow_rate": 0.0,
-        "max_backlog": 0.0,
-        "avg_backlog": 0.0
+    "policy_B_stall": {
+      "p_0.001": {
+        "servers_1": {
+          "policy": "stall",
+          "n_windows": 20000,
+          "c_servers": 1,
+          "buffer_capacity": 64,
+          "p_fast": 0.991,
+          "overflows": 19801,
+          "overflow_rate": 0.99005,
+          "rollbacks": 0,
+          "mean_backlog": 25714.64285,
+          "max_backlog": 49770,
+          "p_crit_stall": 0.002805897887323944
+        },
+        "servers_4": {
+          "policy": "stall",
+          "n_windows": 20000,
+          "c_servers": 4,
+          "buffer_capacity": 64,
+          "p_fast": 0.991,
+          "overflows": 19801,
+          "overflow_rate": 0.99005,
+          "rollbacks": 0,
+          "mean_backlog": 25714.64285,
+          "max_backlog": 49770,
+          "p_crit_stall": 0.011234380006408203
+        },
+        "servers_16": {
+          "policy": "stall",
+          "n_windows": 20000,
+          "c_servers": 16,
+          "buffer_capacity": 64,
+          "p_fast": 0.991,
+          "overflows": 19801,
+          "overflow_rate": 0.99005,
+          "rollbacks": 0,
+          "mean_backlog": 25714.64285,
+          "max_backlog": 49770,
+          "p_crit_stall": 0.04511096815696366
+        }
       },
-      "buf_8": {
-        "c_servers": 2,
-        "buffer_capacity": 8,
-        "p_fast": 0.88,
-        "mean_service_ns": 230.23503999999997,
-        "utilization": 0.11511751999999999,
-        "overflow_rate": 0.0,
-        "max_backlog": 0.0,
-        "avg_backlog": 0.0
-      },
-      "buf_16": {
-        "c_servers": 2,
-        "buffer_capacity": 16,
-        "p_fast": 0.88,
-        "mean_service_ns": 230.23503999999997,
-        "utilization": 0.11511751999999999,
-        "overflow_rate": 0.0,
-        "max_backlog": 0.0,
-        "avg_backlog": 0.0
-      },
-      "buf_32": {
-        "c_servers": 2,
-        "buffer_capacity": 32,
-        "p_fast": 0.88,
-        "mean_service_ns": 230.23503999999997,
-        "utilization": 0.11511751999999999,
-        "overflow_rate": 0.0,
-        "max_backlog": 0.0,
-        "avg_backlog": 0.0
-      }
-    },
-    "servers_4": {
-      "buf_4": {
-        "c_servers": 4,
-        "buffer_capacity": 4,
-        "p_fast": 0.88,
-        "mean_service_ns": 230.23503999999997,
-        "utilization": 0.057558759999999994,
-        "overflow_rate": 0.0,
-        "max_backlog": 0.0,
-        "avg_backlog": 0.0
-      },
-      "buf_8": {
-        "c_servers": 4,
-        "buffer_capacity": 8,
-        "p_fast": 0.88,
-        "mean_service_ns": 230.23503999999997,
-        "utilization": 0.057558759999999994,
-        "overflow_rate": 0.0,
-        "max_backlog": 0.0,
-        "avg_backlog": 0.0
-      },
-      "buf_16": {
-        "c_servers": 4,
-        "buffer_capacity": 16,
-        "p_fast": 0.88,
-        "mean_service_ns": 230.23503999999997,
-        "utilization": 0.057558759999999994,
-        "overflow_rate": 0.0,
-        "max_backlog": 0.0,
-        "avg_backlog": 0.0
-      },
-      "buf_32": {
-        "c_servers": 4,
-        "buffer_capacity": 32,
-        "p_fast": 0.88,
-        "mean_service_ns": 230.23503999999997,
-        "utilization": 0.057558759999999994,
-        "overflow_rate": 0.0,
-        "max_backlog": 0.0,
-        "avg_backlog": 0.0
+      "p_0.003": {
+        "servers_1": {
+          "policy": "stall",
+          "n_windows": 20000,
+          "c_servers": 1,
+          "buffer_capacity": 64,
+          "p_fast": 0.756,
+          "overflows": 20000,
+          "overflow_rate": 1.0,
+          "rollbacks": 0,
+          "mean_backlog": 849227.9911,
+          "max_backlog": 1699876,
+          "p_crit_stall": 0.002805897887323944
+        },
+        "servers_4": {
+          "policy": "stall",
+          "n_windows": 20000,
+          "c_servers": 4,
+          "buffer_capacity": 64,
+          "p_fast": 0.756,
+          "overflows": 20000,
+          "overflow_rate": 1.0,
+          "rollbacks": 0,
+          "mean_backlog": 849227.9911,
+          "max_backlog": 1699876,
+          "p_crit_stall": 0.011234380006408203
+        },
+        "servers_16": {
+          "policy": "stall",
+          "n_windows": 20000,
+          "c_servers": 16,
+          "buffer_capacity": 64,
+          "p_fast": 0.756,
+          "overflows": 20000,
+          "overflow_rate": 1.0,
+          "rollbacks": 0,
+          "mean_backlog": 849227.9911,
+          "max_backlog": 1699876,
+          "p_crit_stall": 0.04511096815696366
+        }
       }
     }
   }

@@ -1,0 +1,16 @@
+\begin{table*}[t]
+\caption{Hardware Implementation Comparison Against Prior Art on Gross QLDPC Codes}
+\label{tab:prior_art}
+\centering
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Architecture} & \textbf{Code / Scope} & \textbf{Platform} & \textbf{DSP} & \textbf{Logic (LUTs)} & \textbf{Latency} & \textbf{Admit Rate} \\
+\midrule
+Maurer et al.~\cite{maurer2025fpga} & 3D Window $[[144,12,12]]$ ($W=12$) & IBM / AMD VU19P & \textbf{0} (int4) & $\sim$450,000 LUTs ($>50\%$ VU19P) & 24 ns/iter ($\sim$408 ns/round) & No Fast/Slow Gate \\
+B{\'a}scones et al. (GARI)~\cite{cowtan2024modular} & 3D Window $[[144,12,12]]$ & AMD VCU19P (3-Core) & Multi-Core & VCU19P Fabric & Sub-$\mu$s Parallel Retries & Speculative Retry \\
+Gu et al. (Cascade)~\cite{gu2026cascade} & 3D $[[72,12,6]]$ / $[[144,12,12]]$ & Nvidia H200 GPU & TensorCore & 14-Layer Equiv. CNN & 12.4 $\mu$s (Batch GPU) & GPU Only \\
+\textbf{Proposed 216-VNU Core} & \textbf{3D Sliding $[[72,12,6]]$ ($W=3$)} & \textbf{AMD XCKU040} & \textbf{0 (6-bit CSD)} & \textbf{1,226--28,204 LUTs (11.6\%)} & \textbf{102.4 ns (mean) / 240 ns} & \textbf{75.6\% ($P_{\text{pipe}} = 1.9\times 10^{-3}$ at $p=0.003$)} \\
+Proposed 432-VNU Core (Projected) & 3D Sliding $[[144,12,12]]$ ($W=3$) & AMD XCKU040 & \textbf{0 (6-bit CSD)} & $\sim$56,400 LUTs (Projected / un-synthesized) & Projected $\sim$120--250 ns & -- \\
+\bottomrule
+\end{tabular}
+\end{table*}

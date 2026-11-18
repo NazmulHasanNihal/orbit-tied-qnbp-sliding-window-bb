@@ -40,6 +40,61 @@ def wilson_score_interval(
     return lower, float(p_hat), upper
 
 
+def mcnemar_test_detailed(
+    outcomes_a: np.ndarray, outcomes_b: np.ndarray
+) -> Dict[str, Any]:
+    """Computes McNemar's paired test with exact binomial distribution for b+c < 25.
+
+    Args:
+        outcomes_a: Binary array (1 if error, 0 if correct) for decoder A.
+        outcomes_b: Binary array (1 if error, 0 if correct) for decoder B.
+
+    Returns:
+        Dict with keys:
+            - statistic: float, McNemar chi2 statistic (with Edwards continuity correction).
+            - p_value: float, two-sided p-value.
+            - b: int, discordant count where A=0 (correct) and B=1 (error).
+            - c: int, discordant count where A=1 (error) and B=0 (correct).
+            - method: str, 'exact_binomial' if b+c < 25 else 'asymptotic_chi2'.
+    """
+    assert len(outcomes_a) == len(outcomes_b), "Outcomes must have equal length."
+
+    # b: A correct (0), B incorrect (1)
+    b = int(np.sum((outcomes_a == 0) & (outcomes_b == 1)))
+    # c: A incorrect (1), B correct (0)
+    c = int(np.sum((outcomes_a == 1) & (outcomes_b == 0)))
+
+    if b + c == 0:
+        return {
+            "statistic": 0.0,
+            "p_value": 1.0,
+            "b": 0,
+            "c": 0,
+            "method": "concordant_identical",
+        }
+
+    # Edwards continuity-corrected chi2 statistic
+    statistic = ((abs(b - c) - 1.0) ** 2) / (b + c)
+
+    if b + c < 25:
+        # Exact two-tailed binomial test under H0: p = 0.5
+        p_value = 2.0 * float(stats.binom.cdf(min(b, c), b + c, 0.5))
+        p_value = min(1.0, p_value)
+        method = "exact_binomial"
+    else:
+        # Asymptotic chi-squared distribution with 1 degree of freedom
+        p_value = float(stats.chi2.sf(statistic, df=1))
+        method = "asymptotic_chi2"
+
+    return {
+        "statistic": float(statistic),
+        "p_value": p_value,
+        "b": b,
+        "c": c,
+        "method": method,
+    }
+
+
 def mcnemar_paired_test(
     outcomes_a: np.ndarray, outcomes_b: np.ndarray
 ) -> Tuple[float, float]:
@@ -51,23 +106,8 @@ def mcnemar_paired_test(
     Returns:
         Tuple of (test_statistic, p_value).
     """
-    assert len(outcomes_a) == len(outcomes_b), "Outcomes must have equal length."
-
-    # b: A correct (0), B incorrect (1)
-    b = int(np.sum((outcomes_a == 0) & (outcomes_b == 1)))
-    # c: A incorrect (1), B correct (0)
-    c = int(np.sum((outcomes_a == 1) & (outcomes_b == 0)))
-
-    if b + c == 0:
-        return 0.0, 1.0
-
-    # With continuity correction
-    statistic = ((abs(b - c) - 1.0) ** 2) / (b + c)
-    # Exact binomial p-value for small sample discordant pairs
-    p_value = 2.0 * stats.binom.cdf(min(b, c), b + c, 0.5)
-    p_value = min(1.0, float(p_value))
-
-    return float(statistic), p_value
+    res = mcnemar_test_detailed(outcomes_a, outcomes_b)
+    return res["statistic"], res["p_value"]
 
 
 def format_ci_metric(errors: int, total: int) -> Dict[str, Any]:

@@ -1,0 +1,29 @@
+{
+  "verification": "Proposition 1 & 2: Automorphism Orbits and Group Closure",
+  "parameters": {
+    "code": "[[72, 12, 6]]",
+    "group": "Z_6 x Z_6",
+    "group_order": 36,
+    "rounds": 3,
+    "physical_p": 0.003,
+    "total_fault_mechanisms": 7308,
+    "total_orbits": 203,
+    "compression_ratio": 36.0
+  },
+  "orbit_statistics": {
+    "all_orbits_size_36": true,
+    "min_orbit_size": 36,
+    "max_orbit_size": 36
+  },
+  "group_action_verification": {
+    "total_shifts_tested": 36,
+    "shifts_fully_verified": 36,
+    "total_group_action_checks": 263088,
+    "closure_violations": 0,
+    "probability_invariance_violations": 0,
+    "missing_target_faults": 0,
+    "closure_rate_pct": 100.0
+  },
+  "verification_status": "PASS",
+  "elapsed_seconds": 2.8068768978118896
+}

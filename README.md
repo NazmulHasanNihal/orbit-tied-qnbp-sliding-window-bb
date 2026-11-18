@@ -1,16 +1,14 @@
 # Orbit-Tied Quantized Neural Belief Propagation (QNBP) for Real-Time Sliding-Window Decoding of Bivariate-Bicycle Quantum Codes
 
 [![CI](https://github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb/actions/workflows/ci.yml/badge.svg)](https://github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb/actions)
-[![PyPI Version](https://img.shields.io/badge/pypi-v1.0.0-blue.svg)](https://pypi.org/project/orbit-tied-qnbp/)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-brightgreen.svg)](https://www.python.org/)
-[![CI Test Suite](https://img.shields.io/badge/pytest-35%20passed%20(100%25)-brightgreen.svg)](tests/)
+[![CI Test Suite](https://img.shields.io/badge/pytest-46%20passed%20(100%25)-brightgreen.svg)](tests/)
 [![Paper](https://img.shields.io/badge/IEEE_TQE-12--Page_Vector_PDF-blue.svg)](manuscript/main.pdf)
 [![Hardware](https://img.shields.io/badge/SystemVerilog-DSP%3D0_Multiplier--Free-orange.svg)](rtl/)
 [![AMD FPGA](https://img.shields.io/badge/AMD_UltraScale%2B-28%2C204_LUTs_(11.6%25)-red.svg)](rtl/)
 [![Throughput](https://img.shields.io/badge/Latency-102.4_ns_(240_ns_max)-yellowgreen.svg)](results/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Cite](https://img.shields.io/badge/Cite-CITATION.cff-orange.svg)](CITATION.cff)
-[![DOI](https://img.shields.io/badge/DOI-10.1109%2FTQE.2026.XXXXXXX-lightgrey.svg)](manuscript/references.bib)
 
 Official Python library (`orbit-tied-qnbp`), synthesizeable SystemVerilog hardware RTL, automated verification testbench, and 12-page IEEE Transactions publication manuscript for:  
 **"Orbit-Tied Quantized Neural Belief Propagation for Real-Time Sliding-Window Decoding of Bivariate-Bicycle Quantum Codes"**  
@@ -93,12 +91,12 @@ Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes—such as 
    - Implements Canonical Signed-Digit (CSD) shift-and-add arithmetic ($\alpha \cdot M = M - (M \gg 2)$ for $\alpha=0.75$), executing all variable and check node updates with **zero DSP blocks ($\text{DSP} = 0$)** and **zero Block RAM ($\text{BRAM} = 0$)**.
 
 3. **Dual-Path Streaming Confidence Gating (Gate $G_3$) & Queue Stability:**
-   - Evaluates three candidate gating mechanisms; proves that the proposed Variable Fault Belief Margin (Gate $G_3$, $\min_{v \in \mathcal{V}_{\text{commit}}} |L_v| \ge \tau$) admits **$75.6\%$ of sliding windows directly to a 240~ns FPGA fast path with zero logical errors** ($P_{L,\text{accept}} = 0.0000$ across $50,000$ test shots; 95% Wilson bound $7.68 \times 10^{-5}$).
-   - Dispatches rejected windows to an asynchronous $D/G/c$ fallback pool running calibrated BP+OSD-CS-10, reducing server utilization to $\rho = 0.23$ ($c=1$) and $\rho=0.12$ ($c=2$). Buffer overflow is strictly **$0.00\%$** across buffer capacities $B \ge 4$ under a $1.0\,\mu\text{s}$ quantum cycle budget.
-   - End-to-end sliding-window pipeline achieves $P_{\text{pipe}} = 1.90 \times 10^{-4}$ at $102.4\text{ ns}$ mean latency.
+   - Evaluates three candidate gating mechanisms; proves that the proposed Variable Fault Belief Margin (Gate $G_3$, $\min_{v \in \mathcal{V}_{\text{commit}}} |L_v| \ge \tau$) admits **$75.6\%$ of sliding windows directly to a 240~ns FPGA fast path with zero logical errors** ($P_{L,\text{accept}} = 0.0000$ across $N_{\text{acc}} = 37,800$ admitted test shots at $p=0.003$; exact 95% Clopper-Pearson bound $7.92 \times 10^{-5}$, two-sided Wilson bound $1.02 \times 10^{-4}$).
+   - Dispatches rejected windows to an asynchronous $D/G/c$ fallback pool running calibrated BP+OSD-CS-10, reducing server utilization to $\rho = 0.23$ ($c=1$) and $\rho=0.12$ ($c=2$). Buffer overflow is **$0.00\%$** across buffer capacities $B \ge 4$ under a $1.0\,\mu\text{s}$ quantum cycle budget.
+   - End-to-end sliding-window pipeline achieves $P_{\text{pipe}} = 1.90 \times 10^{-3}$ at $p=0.003$ ($7.00 \times 10^{-6}$ at sub-threshold $p=0.001$) at $102.4\text{ ns}$ mean latency.
 
 4. **100-Round Continuous Streaming Memory Survival:**
-   - Validates continuous multi-round streaming over $R=100$ measurement rounds ($100\,\mu\text{s}$). Active temporal boundary residual propagation ($s_{\text{res}}^{(k+1)} = s_{\text{raw}}^{(k+1)} \oplus H_{\text{boundary}} \hat{e}_{\text{commit}}^{(k)}$) preserves **$98.1\%$ logical survival at 100 rounds**, whereas boundary-agnostic decoding collapses to **$22.1\%$** ($4.4\times$ degradation).
+   - Evaluates continuous multi-round streaming over $R=100$ measurement rounds ($100\,\mu\text{s}$). Active temporal boundary residual propagation ($s_{\text{res}}^{(k+1)} = s_{\text{raw}}^{(k+1)} \oplus H_{\text{boundary}} \hat{e}_{\text{commit}}^{(k)}$) preserves **$98.1\%$ logical survival at 100 rounds** at $p=0.001$ ($93.9\%$ at $p=0.003$), whereas boundary-agnostic decoding collapses to **$22.1\%$** ($4.4\times$ degradation).
 
 5. **Empirical IBM Quantum Heron r2 Calibration Benchmark:**
    - Evaluated under the exact calibration snapshot of IBM's 133-qubit Heron r2 processor ($p_{\text{2Q}} = 2.1 \times 10^{-3}, \eta = 50.0$), Orbit-Tied QNBP converges in only **3.85 mean iterations**—fastest among all 6 models tested with strictly $\text{DSP}=0$.
@@ -313,20 +311,24 @@ print(f"Converged: {result.converged}, Iterations: {result.iterations}")
 
 Evaluated under circuit-level Stim depolarizing noise ($p = 0.003$, $R=3$, $[[72, 12, 6]]$ code) across $N = 10,000$ test shots per decoder:
 
+<!-- BEGIN_TABLE_COMPETITORS -->
 | Decoder | Logical Error Rate ($P_L$) [95% CI] | Convergence Iterations | Multipliers (DSP) | Decoding Latency | Parameter Redundancy | Stat. Significance vs. Proposed ($\chi^2, p$) |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|
-| **Classical Min-Sum (Baseline)** | 0.2940 [0.2851, 0.3030] | 17.3 | 0 | 276.8 ns | Untied | $\chi^2 = 1,940.2, p < 10^{-40}$ |
-| **Normalized Min-Sum ($\alpha=0.75$)** | 0.4160 [0.4063, 0.4257] | 19.3 | 0 | 308.8 ns | Untied | $\chi^2 = 2,642.1, p < 10^{-40}$ |
-| **IBM DMem-BP (Single-Leg) [11]** | 0.0160 [0.0136, 0.0187] | 9.2 | 0 | 147.2 ns | Untied | $\chi^2 = 42.2, p = 8.32 \times 10^{-11}$ |
-| **IBM Relay-BP (5-Leg Hardware-Capped, 50 iters) [11]** | 0.0090 [0.0073, 0.0111] | 28.4 | 0 | 454.4 ns | Untied | $\chi^2 = 12.1, p = 5.15 \times 10^{-4}$ |
-| **IBM Relay-BP-5 (Full 300-Leg, S=5) [11]** | 0.0060 [0.0046, 0.0077] | 148.5 | 0 | 2,376.0 ns | Untied | $\chi^2 = 1.1, p = 0.286$ |
-| **Mem-BP (Scalar Memory $\gamma=0.35$) [20]** | 0.0102 [0.0084, 0.0123] | 7.5 | 0 | 120.0 ns | Untied | $\chi^2 = 14.7, p = 1.25 \times 10^{-4}$ |
-| **BP-LSD (Local Small-Set) [14]** | 0.0340 [0.0305, 0.0378] | 19.0 | 0 | 25.0 µs | Untied | $\chi^2 = 186.4, p = 1.00 \times 10^{-40}$ |
-| **BP+OSD-CS-10 (Roffe et al. 2020) [5]** | 0.0120 [0.0099, 0.0144] | 19.3 | O(V^3) | 320.0 µs | Untied | $\chi^2 = 28.1, p = 1.13 \times 10^{-7}$ |
-| **AutDEC (Automorphism Ensemble) [15]** | 0.4320 [0.4223, 0.4418] | 48.4 | 0 | 4.8 µs | Untied | $\chi^2 = 2,750.5, p < 10^{-40}$ |
-| **GDG Sliding Window (Gong et al. 2024) [13]** | 0.4160 [0.4063, 0.4257] | 19.3 | 0 | 308.8 ns | Untied | $\chi^2 = 2,642.1, p < 10^{-40}$ |
-| **QNBP (Undamped $\gamma=0.0$)** | 0.3100 [0.3009, 0.3192] | 10.2 | 0 | 163.2 ns | Untied | $\chi^2 = 2,050.8, p < 10^{-40}$ |
-| **Proposed 6-Bit Orbit-Tied QNBP** | **0.0068 [0.0053, 0.0086]** | **6.4** | **0 (CSD)** | **102.4 ns** | **36.0× reduction** | **Baseline Ref.** |
+| **Panel A: Real-Time Compatible ($t_{\text{dec}} \le 1.0\,\mu\text{s}$)** | | | | | | |
+| **Proposed 6-Bit Orbit-Tied QNBP** | **0.0068 [0.0053, 0.0086]** | **6.4** | 0 (CSD) | **102.4 ns** | **36.0× reduction** | **Baseline Ref.** |
+| **IBM Relay-BP (5-Leg Hardware-Capped, 50 iters) [11]** | 0.0090 [0.0073, 0.0111] | 28.4 | 0 | 454.4 ns | Untied | $\chi^2 = 12.1, p = 5.15e-04$ |
+| **Mem-BP (Scalar Memory $\gamma=0.35$) [20]** | 0.0102 [0.0084, 0.0123] | 7.5 | 0 | 120.0 ns | Untied | $\chi^2 = 14.7, p = 1.25e-04$ |
+| **IBM DMem-BP (Single-Leg) [11]** | 0.0160 [0.0136, 0.0187] | 9.2 | 0 | 147.2 ns | Untied | $\chi^2 = 42.2, p = 8.32e-11$ |
+| **Classical Min-Sum (Baseline)** | 0.2940 [0.2851, 0.3030] | 17.3 | 0 | 276.8 ns | Untied | $\chi^2 = 1,940.2, p = < 10^{-40}$ |
+| **QNBP (Undamped $\gamma=0.0$)** | 0.3100 [0.3009, 0.3192] | 10.2 | 0 | 163.2 ns | Untied | $\chi^2 = 2,050.8, p = < 10^{-40}$ |
+| **Normalized Min-Sum ($\alpha=0.75$)** | 0.4160 [0.4063, 0.4257] | 19.3 | 0 | 308.8 ns | Untied | $\chi^2 = 2,642.1, p = < 10^{-40}$ |
+| **GDG Sliding Window (Gong et al. 2024) [13]** | 0.4160 [0.4063, 0.4257] | 19.3 | 0 | 308.8 ns | Untied | $\chi^2 = 2,642.1, p = < 10^{-40}$ |
+| **Panel B: Budget-Exceeding ($t_{\text{dec}} > 1.0\,\mu\text{s}$)** | | | | | | |
+| **IBM Relay-BP-5 (Full 300-Leg, S=5) [11]** | 0.0060 [0.0046, 0.0077] | 148.5 | 0 | 2,376.0 ns | Untied | $\chi^2 = 1.1, p = 0.2860$ |
+| **BP+OSD-CS-10 (Roffe et al. 2020) [5]** | 0.0120 [0.0099, 0.0144] | 19.3 | O(V^3) | 320.0 µs | Untied | $\chi^2 = 28.1, p = 1.13e-07$ |
+| **BP-LSD (Local Small-Set) [14]** | 0.0340 [0.0305, 0.0378] | 19.0 | 0 | 25.0 µs | Untied | $\chi^2 = 186.4, p = 1.00e-40$ |
+| **AutDEC (Automorphism Ensemble) [15]** | 0.4320 [0.4223, 0.4418] | 48.4 | 0 | 4.8 µs | Untied | $\chi^2 = 2,750.5, p = < 10^{-40}$ |
+<!-- END_TABLE_COMPETITORS -->
 
 ---
 
@@ -363,20 +365,23 @@ Testing multi-round sliding-window decoding across $R=100$ continuous measuremen
 
 Under superconducting transmon dephasing noise ($\eta = p_Z / p_X \in [1, 100]$):
 
-| Noise Model / Channel Bias ($\eta = p_Z/p_X$) | Proposed 6-bit QNBP ($P_L$) [95% CI] | Classical Min-Sum ($P_L$) [95% CI] | Improvement Factor ($\times$) |
+<!-- BEGIN_TABLE_BIASED_NOISE -->
+| Noise Model / Channel Bias ($\eta = p_Z/p_X$) | Proposed 6-bit QNBP ($P_L$) [95% CI] | Tuned Min-Sum ($P_L$) [95% CI] | Improvement Factor ($\times$) |
 |---|:---:|:---:|:---:|
-| $\eta = 1.0$ (Depolarizing) | 0.0080 [0.0064, 0.0099] | 0.2940 [0.2851, 0.3030] | $36.8\times$ |
-| $\eta = 10.0$ (Moderate Bias) | 0.0042 [0.0031, 0.0057] | 0.1400 [0.1332, 0.1470] | $33.3\times$ |
-| $\eta = 50.0$ (High Bias / Heron r2) | 0.0018 [0.0011, 0.0029] | 0.0400 [0.0363, 0.0440] | $22.2\times$ |
-| $\eta = 100.0$ (Extreme Bias) | **0.0010 [0.0005, 0.0019]** | 0.0200 [0.0173, 0.0230] | **$20.0\times$** |
-| ZZ Crosstalk ($\epsilon_{ZZ} = 0.10$) | 0.0014 [0.0008, 0.0024] | 0.0310 [0.0277, 0.0346] | $22.1\times$ |
+| $\eta = 1.0$ (Depolarizing) | 8.0000e-03 [6.4000e-03, 9.9000e-03] | 2.1000e-01 [1.7640e-01, 2.4780e-01] | $26.3\times$ |
+| $\eta = 10.0$ (Moderate Bias) | 4.2000e-03 [3.1000e-03, 5.7000e-03] | 4.0000e-02 [2.5500e-02, 6.1700e-02] | $9.5\times$ |
+| $\eta = 50.0$ (High Bias / Heron r2) | 1.8000e-03 [1.1000e-03, 2.9000e-03] | 8.0000e-03 [2.8000e-03, 1.9500e-02] | $4.4\times$ |
+| $\eta = 100.0$ (Extreme Bias) | 1.0000e-03 [5.0000e-04, 1.9000e-03] | 6.0000e-03 [1.7000e-03, 1.6700e-02] | $6.0\times$ |
+| ZZ Crosstalk ($\epsilon_{ZZ} = 0.10$) | 1.4000e-03 [8.0000e-04, 2.4000e-03] | 1.8000e-02 [1.1000e-02, 2.8000e-02] | $12.9\times$ |
+<!-- END_TABLE_BIASED_NOISE -->
 
 ---
 
 ## 🛠️ Hardware Synthesis & Folding Pareto Frontier
 
-Synthesized on **AMD UltraScale+ XCKU040** ($f_{\text{clk}} = 250\text{ MHz}$, $t_{\text{clk}} = 4.0\text{ ns}$, $\text{WNS} = +0.18\text{ ns}$):
+Hardware Sizing Estimates on **AMD UltraScale+ XCKU040** ($f_{\text{clk}} = 250\text{ MHz}$, $t_{\text{clk}} = 4.0\text{ ns}$, module-level synthesis estimates):
 
+<!-- BEGIN_TABLE_FOLDING -->
 | Fold Factor ($F$) | Physical VNUs/CNUs | LUTs (Utilization) | Flip-Flops | DSPs | Iteration Latency | Total Latency ($T=15$) | Throughput |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | **$F = 1$** | 216 / 216 | 28,204 (11.64%) | 19,512 (4.02%) | **0** | 16.0 ns | **240.0 ns** | 4.167 Mfps |
@@ -385,19 +390,21 @@ Synthesized on **AMD UltraScale+ XCKU040** ($f_{\text{clk}} = 250\text{ MHz}$, $
 | **$F = 6$** | 36 / 36 | 5,771 (2.38%) | 3,730 (0.77%) | **0** | 96.0 ns | **1440.0 ns** | 0.694 Mfps |
 | **$F = 12$** | 18 / 18 | 3,135 (1.29%) | 1,982 (0.41%) | **0** | 192.0 ns | **2880.0 ns** | 0.347 Mfps |
 | **$F = 36$** | 6 / 6 | 1,226 (0.51%) | 751 (0.15%) | **0** | 576.0 ns | **8640.0 ns** | 0.116 Mfps |
+<!-- END_TABLE_FOLDING -->
 
 ---
 
 ## 📊 Prior Art Hardware Comparison
 
+<!-- BEGIN_TABLE_PRIOR_ART -->
 | Architecture | Code / Scope | Platform | Multipliers (DSP) | Logic Utilization (LUTs) | Latency Profile | Gate G3 Fast-Path Admit |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|
 | **Maurer et al. [12]** | 3D Window $[[144,12,12]]$ ($W=12$) | IBM / AMD VU19P | **0** (int4) | $\sim$450,000 LUTs ($>50\%$ VU19P) | 24 ns/iter ($\sim$408 ns/round) | No Fast/Slow Gate |
 | **Báscones et al. (GARI) [48]** | 3D Window $[[144,12,12]]$ | AMD VCU19P (3-Core) | Multi-Core | VCU19P Fabric | Sub-$\mu$s Parallel Retries | Speculative Retry |
 | **Gu et al. (Cascade) [49]** | 3D $[[72,12,6]]$ / $[[144,12,12]]$ | Nvidia H200 GPU | TensorCore | 14-Layer Equiv. CNN | 12.4 $\mu$s (Batch GPU) | GPU Only |
-| **Proposed 216-VNU Architecture** | **3D Sliding-Window $[[72,12,6]]$ ($W=3$)** | **AMD XCKU040** | **0 (6-bit CSD)** | **1,226--28,204 LUTs (11.6%)** | **102.4 ns (mean) / 240 ns (max)** | **75.6% ($P_{\mathrm{pipe}} = 1.9\times 10^{-4}$)** |
-| **Proposed 203-Orbit Full-DEM** | **3D Sliding-Window $[[72,12,6]]$ ($W=3$)** | **AMD XCKU040** | **0 (6-bit CSD)** | **31,800 LUTs (13.1%)** | **144.0 ns (mean) / 360 ns (max)** | **75.6% ($P_{\mathrm{pipe}} = 1.9\times 10^{-4}$)** |
-| **Projected Gross Code $[[144,12,12]]$** | **3D Sliding-Window $[[144,12,12]]$ ($W=12$)** | **AMD XCKU040** | **0 (6-bit CSD)** | **58,400 LUTs (24.1%)** | **192.0 ns (mean) / 480 ns (max)** | **91.2% ($P_{\mathrm{pipe}} = 2.4\times 10^{-5}$)** |
+| **Proposed 216-VNU Architecture** | **3D Sliding-Window $[[72,12,6]]$ ($W=3$)** | **AMD XCKU040** | **0 (6-bit CSD)** | **1,226--28,204 LUTs (11.6%)** | **102.4 ns (mean) / 240 ns (max)** | **75.6% ($P_{\mathrm{pipe}} = 1.9\times 10^{-3}$)** |
+| Proposed 432-VNU Core (Projected) | 3D Sliding-Window $[[144,12,12]]$ ($W=3$) | AMD XCKU040 | **0 (6-bit CSD)** | $\sim$56,400 LUTs (Projected / un-synthesized) | Projected $\sim$120--250 ns | -- |
+<!-- END_TABLE_PRIOR_ART -->
 
 ---
 

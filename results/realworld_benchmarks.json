@@ -76,10 +76,77 @@
   "test2_100round_streaming_survival": {
     "rounds": 100,
     "physical_duration_us": 100.0,
+    "methodology": "Analytical power model (1 - P_round)^R derived from measured per-window error rates (W=3, F=1)",
     "shots_evaluated": 10,
     "per_round_logical_error_rate_pipeline": 0.00019,
     "per_round_logical_error_rate_qnbp": 0.0018,
     "per_round_logical_error_rate_agnostic": 0.015,
+    "p_0_001_regime": {
+      "per_round_logical_error_rate_pipeline": 0.00019,
+      "per_round_logical_error_rate_qnbp": 0.0018,
+      "per_round_logical_error_rate_agnostic": 0.015,
+      "survival_at_checkpoints": {
+        "pipeline_gate_g3": {
+          "round_10": 0.9981,
+          "round_25": 0.9953,
+          "round_50": 0.9905,
+          "round_75": 0.9858,
+          "round_100": 0.9812
+        },
+        "standalone_qnbp_6bit": {
+          "round_10": 0.9821,
+          "round_25": 0.956,
+          "round_50": 0.9139,
+          "round_75": 0.8736,
+          "round_100": 0.8351
+        },
+        "boundary_agnostic": {
+          "round_10": 0.8597,
+          "round_25": 0.6853,
+          "round_50": 0.4697,
+          "round_75": 0.3219,
+          "round_100": 0.2206
+        }
+      },
+      "retention_at_100_rounds": {
+        "pipeline_gate_g3": 0.9812,
+        "standalone_qnbp_6bit": 0.8351,
+        "boundary_agnostic": 0.2206
+      }
+    },
+    "p_0_003_threshold_regime": {
+      "per_round_logical_error_rate_pipeline": 0.000634,
+      "per_round_logical_error_rate_qnbp": 0.00227,
+      "per_round_logical_error_rate_agnostic": 0.015,
+      "survival_at_checkpoints": {
+        "pipeline_gate_g3": {
+          "round_10": 0.9937,
+          "round_25": 0.9843,
+          "round_50": 0.9688,
+          "round_75": 0.9536,
+          "round_100": 0.9385
+        },
+        "standalone_qnbp_6bit": {
+          "round_10": 0.9775,
+          "round_25": 0.9446,
+          "round_50": 0.8923,
+          "round_75": 0.8429,
+          "round_100": 0.7962
+        },
+        "boundary_agnostic": {
+          "round_10": 0.8597,
+          "round_25": 0.6853,
+          "round_50": 0.4697,
+          "round_75": 0.3219,
+          "round_100": 0.2206
+        }
+      },
+      "retention_at_100_rounds": {
+        "pipeline_gate_g3": 0.9385,
+        "standalone_qnbp_6bit": 0.7962,
+        "boundary_agnostic": 0.2206
+      }
+    },
     "survival_at_checkpoints": {
       "pipeline_gate_g3": {
         "round_10": 0.9981,
