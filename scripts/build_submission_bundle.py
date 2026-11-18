@@ -15,10 +15,20 @@ import pymupdf
 
 
 def create_submission_zip(zip_path: str) -> None:
-    """Creates a clean zip archive of LaTeX sources and figures for ScholarOne."""
+    """Creates a clean zip archive of LaTeX sources, tables, and figures for ScholarOne."""
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
         z.write("manuscript/main_ieeetran.tex", arcname="main.tex")
         z.write("manuscript/references.bib", arcname="references.bib")
+        
+        # Include synchronized tables
+        tab_dir = "manuscript/tables"
+        if os.path.isdir(tab_dir):
+            for fname in sorted(os.listdir(tab_dir)):
+                fpath = os.path.join(tab_dir, fname)
+                if os.path.isfile(fpath):
+                    z.write(fpath, arcname=f"tables/{fname}")
+                    
+        # Include figures
         fig_dir = "manuscript/figures"
         for fname in sorted(os.listdir(fig_dir)):
             fpath = os.path.join(fig_dir, fname)
