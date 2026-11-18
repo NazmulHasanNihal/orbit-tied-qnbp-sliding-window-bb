@@ -51,12 +51,13 @@ Department of Computer Science and Engineering, College of Technology, National 
 - [Visual Architecture & System Workflows (Mermaid.js)](#-visual-architecture--system-workflows)
 - [Python Library Quickstart (`orbit-tied-qnbp`)](#-python-library-quickstart-orbit-tied-qnbp)
 - [Master Head-to-Head Competitor Benchmark](#-master-head-to-head-competitor-benchmark)
+- [Ablation Study & Component Contributions](#-ablation-study--component-contributions)
 - [Empirical IBM Quantum Heron r2 Hardware Calibration](#-empirical-ibm-quantum-heron-r2-hardware-calibration)
 - [100-Round Continuous Streaming Memory Survival](#-100-round-continuous-streaming-memory-survival)
 - [Biased Pauli Noise Performance](#-biased-pauli-noise-performance)
 - [Hardware Synthesis & Folding Pareto Frontier](#-hardware-synthesis--folding-pareto-frontier)
 - [Prior Art Hardware Comparison](#-prior-art-hardware-comparison)
-- [Mathematical Theorems & Proofs](#-mathematical-theorems--proofs)
+- [Mathematical Propositions & Proofs](#-mathematical-propositions--proofs)
 - [Documentation & Technical Whitepapers](#-documentation--technical-whitepapers)
 - [Repository Structure & Submission Package](#-repository-structure--submission-package)
 - [Automated Verification & Reproduction](#-automated-verification--reproduction)
@@ -81,13 +82,13 @@ Quantum Low-Density Parity-Check (QLDPC) bivariate-bicycle (BB) codes—such as 
 
 ## 🌟 Key Scientific & Architectural Contributions
 
-1. **Torus Automorphism Group Collapse (Theorem 1 & Corollary 1):**
+1. **Torus Automorphism Group Collapse (Proposition 1 & Corollary 1):**
    - Proves that the 2D spatial translation group $G = \mathbb{Z}_\ell \times \mathbb{Z}_m$ forms an exact automorphism group of the space-time Stim Detector Error Model (DEM).
    - Collapses **$7,308$ fault mechanisms into $203$ symmetry orbits ($36.0\times$)** on $[[72,12,6]]$ for $R=3$ ($10,260 \to 285$ for $R=4$), and **$14,616$ mechanisms into $203$ orbits ($72.0\times$)** on $[[144,12,12]]$.
-   - Enforces geometric equivariance (Theorem 2), collapsing trainable parameters from $109,620$ untied weights down to **$3,090$ weights ($35.5\times$ parameter reduction)** across $T=15$ layers, completely eliminating neural overfitting.
+   - Enforces geometric equivariance (Proposition 2), collapsing trainable parameters from $109,620$ untied weights down to **$3,090$ weights ($35.5\times$ parameter reduction)** across $T=15$ layers, completely eliminating neural overfitting.
 
-2. **Multiplier-Free 6-Bit Dyadic Integer Architecture ($\text{DSP} = 0$, Theorem 3):**
-   - Proves that 6-bit signed integers with dyadic step size $\Delta = 2^{-2} = 0.25$ span $[-31\Delta, +31\Delta] = [-7.75, +7.75]$, strictly enclosing single-fault channel priors ($\ln((1-p)/p) \approx 6.906$ at $p=10^{-3}$) with a positive safety margin $\delta = 0.844$.
+2. **Multiplier-Free 6-Bit Dyadic Integer Architecture ($\text{DSP} = 0$, Lemma 1):**
+   - Proves that 6-bit signed integers with dyadic step size $\Delta = 2^{-2} = 0.25$ span $[-31\Delta, +31\Delta] = [-7.75, +7.75]$. Coupled with dyadic pre-scaling $\kappa = 0.75 = 1 - 2^{-2}$, all fault priors under Stim depth-7 depolarizing noise are strictly enclosed ($\max L_{\text{in}}^{(0)} = 6.3867$) with positive safety headroom $\delta = 1.3633$ ($+17.59\%$), completely preventing dynamic range clipping.
    - Implements Canonical Signed-Digit (CSD) shift-and-add arithmetic ($\alpha \cdot M = M - (M \gg 2)$ for $\alpha=0.75$), executing all variable and check node updates with **zero DSP blocks ($\text{DSP} = 0$)** and **zero Block RAM ($\text{BRAM} = 0$)**.
 
 3. **Dual-Path Streaming Confidence Gating (Gate $G_3$) & Queue Stability:**
@@ -144,7 +145,7 @@ flowchart LR
 
 ```mermaid
 graph TD
-    A["Circuit DEM Fault Mechanisms<br>7,308 Faults (R=3) / 10,260 (R=4)"] -->|"2D Torus Shift: T(x, y) = (x+δx mod l, y+δy mod m)"| B["Torus Automorphism Equivariance<br>Theorem 2: P(T(v)) = P(v)"]
+    A["Circuit DEM Fault Mechanisms<br>7,308 Faults (R=3) / 10,260 (R=4)"] -->|"2D Torus Shift: T(x, y) = (x+δx mod l, y+δy mod m)"| B["Torus Automorphism Equivariance<br>Proposition 2: Permutation Equivariant Weights"]
     B --> C["Symmetry Orbit Collapse<br>36.0x Parameter Reduction"]
     C --> D1["203 Unique Orbits<br>[[72, 12, 6]] BB Code"]
     C --> D2["203 Unique Orbits<br>[[144, 12, 12]] Gross Code"]
@@ -243,10 +244,12 @@ flowchart TD
 
 ## 🚀 Python Library Quickstart (`orbit-tied-qnbp`)
 
-The Python library `orbit-tied-qnbp` is available on PyPI and can be installed via `pip`:
+Install the production package in editable development mode directly from source:
 
 ```bash
-pip install orbit-tied-qnbp
+git clone https://github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb.git
+cd orbit-tied-qnbp-sliding-window-bb
+pip install -e .
 ```
 
 ### Self-Diagnostic & System Verification
@@ -332,6 +335,28 @@ Evaluated under circuit-level Stim depolarizing noise ($p = 0.003$, $R=3$, $[[72
 
 ---
 
+## 🔬 Ablation Study & Component Contributions
+
+To isolate the individual contribution of each architectural innovation, we evaluate the 10-tier ablation ladder on $[[72,12,6]]$ at physical noise $p = 0.003$ ($N = 10,000$ paired shots), matching Section VIII-B of the manuscript:
+
+| Tier | Configuration | Trainable Parameters | Logical Error Rate ($P_L$) [95% CI] | Mean Iterations | Critical Finding |
+|:---:|:---|:---:|:---:|:---:|:---|
+| **A0** | Classical Unweighted Min-Sum | 0 | 0.2940 [0.2851, 0.3030] | 17.3 | Trapped in 4-cycle limit-cycle oscillations. |
+| **A1** | Normalized Min-Sum ($\alpha=0.75$) | 0 | 0.4160 [0.4063, 0.4257] | 19.3 | Global heuristic scaling degrades on dense DEM graphs. |
+| **A2** | Untied Neural BP (No Orbit Tying) | 109,620 | 0.0118 [0.0098, 0.0141] | 6.4 | Overfitting on training syndromes degrades generalization. |
+| **A3** | Orbit-Tied, Boundary-Agnostic | 4,275 | 0.0142 [0.0121, 0.0166] | 7.8 | Window-edge boundary truncation excites false syndromes. |
+| **A4** | **Proposed Orbit-Tied + Boundary Classes** | **3,090** | **0.0068 [0.0053, 0.0086]** | **6.4** | **Boundary-aware weights eliminate window-edge degradation.** |
+| **A5** | Random-Tying Control (5 Seeds) | 3,090 | 0.0260 ± 0.0032 [0.0220, 0.0300] | 9.8 | Statistically proves gains stem from torus symmetry, not parameter count. |
+| **A6** | Loss: Parity-Only Loss ($\beta = 0$) | 3,090 | 0.0210 [0.0183, 0.0240] | 11.2 | Degenerate stabilizer ambiguities require observable guidance. |
+| **A7a** | Quantization: 3-Bit Integer ($\Delta = 0.5$) | 3,090 | 0.8480 [0.8409, 0.8549] | 15.0 | Extreme saturation clipping destroys channel LLR dynamic range. |
+| **A7b** | Quantization: 4-Bit Integer ($\Delta = 0.25$) | 3,090 | 0.0540 [0.0497, 0.0586] | 14.1 | $45.7\%$ channel prior truncation degrades LER. |
+| **A7c** | **Quantization: 6-Bit Dyadic ($\Delta = 0.25$)** | **3,090** | **0.0068 [0.0053, 0.0086]** | **6.4** | **Matches 32-bit floating-point accuracy ($0.0068$) with $\text{DSP}=0$.** |
+| **A8** | Memory: Positive Damping ($\gamma \in [0, 1]$) | 3,090 | 0.0094 [0.0077, 0.0114] | 7.2 | Lacks ability to subtract stagnant beliefs. |
+| **A9** | Confidence Gate $G_3$ Fast-Path Filter ($\tau = 1.5$) | 3,090 | **$1.90 \times 10^{-3}$** [0.0014, 0.0026] | 102.4 ns (mean) | 75.6% routed to 0-error fast path ($P_{\text{pipe}} = 1.90\times 10^{-3}$ at $p=0.003$). |
+| **A10** | Full Pipeline (QNBP + $G_3$ + Fallback Pool) | 3,090 | **$1.90 \times 10^{-3}$** [0.0014, 0.0026] | 102.4 ns (mean) | Resolves queue overflow strictly to 0.00% for buffer $B \ge 4$. |
+
+---
+
 ## ⚡ Empirical IBM Quantum Heron r2 Hardware Calibration
 
 We evaluated our decoder under the physical noise parameters extracted from the calibration snapshot of IBM's flagship 133-qubit Heron r2 processor ($p_{\text{2Q}} = 2.1 \times 10^{-3}, \eta = 50.0, p_{\text{RO}} = 8.0 \times 10^{-3}, p_{\text{1Q}} = 1.5 \times 10^{-4}$):
@@ -408,12 +433,13 @@ Hardware Sizing Estimates on **AMD UltraScale+ XCKU040** ($f_{\text{clk}} = 250\
 
 ---
 
-## 📐 Mathematical Theorems & Proofs
+## 📐 Mathematical Propositions & Proofs
 
-* **Proposition 1 (Torus Translation Invariance of Space-Time DEM):** For any bivariate-bicycle code defined by polynomials $A(x,y), B(x,y)$ over ring $R = \mathbb{F}_2[x,y]/(x^\ell-1, y^m-1)$, the 2D shift operator $T_{(\delta_x, \delta_y)}$ defines an automorphism of the Tanner graph and Stim space-time detector error model.
-* **Proposition 2 (Equivariance of Orbit-Tied Neural Message Passing):** Orbit-tied message passing satisfies exact permutation equivariance under the group action of $G = \mathbb{Z}_\ell \times \mathbb{Z}_m$, guaranteeing identical error correction capability across all shifted fault patterns.
-* **Lemma 1 (6-Bit Dyadic Dynamic Range Bound):** A 6-bit signed integer representation with dyadic step size $\Delta = 2^{-2} = 0.25$ spans $[-31\Delta, +31\Delta] = [-7.75, +7.75]$, strictly enclosing physical fault priors $\ln((1-p)/p) \approx 6.906$ at $p = 10^{-3}$ with a positive safety margin $\delta = 0.844$.
-* **Proposition 3 (Effective Dephasing Channel Concentration):** Under Pauli $Z$-biased noise ($\eta = p_Z / p_X$), the $X$- and $Z$-sector parity check matrices decouple into non-interacting factor graphs, eliminating the need for inter-sector message passing.
+* **Proposition 1 (Torus Translation Invariance of Space-Time DEM):** For any bivariate-bicycle code defined by polynomials $A(x,y), B(x,y)$ over ring $\mathcal{R} = \mathbb{F}_2[x,y] / \langle x^\ell-1, y^m-1 \rangle$, the 2D shift operator $T_{(\delta_x, \delta_y)}$ defines an exact automorphism of the Tanner graph and Stim space-time detector error model.
+* **Corollary 1 (Automorphism Parameter Collapse):** The parameter space of unrolled neural belief propagation on $\mathcal{G}_{\text{DEM}}$ collapses by an exact factor of $|G| = \ell m$ ($36.0\times$ on $[[72,12,6]]$ and $72.0\times$ on $[[144,12,12]]$), mapping $7,308$ fault mechanisms to $203$ symmetry orbits ($R=3$).
+* **Proposition 2 (Equivariance of Orbit-Tied Neural Message Passing):** Orbit-tied message passing satisfies exact permutation equivariance under the group action of $G = \mathbb{Z}_\ell \times \mathbb{Z}_m$, guaranteeing identical error correction capability across all shifted fault patterns and preserving fixed-point attractors.
+* **Lemma 1 (6-Bit Dyadic Dynamic Range Bound):** A 6-bit signed integer representation with dyadic step size $\Delta = 2^{-2} = 0.25$ spans $[-31\Delta, +31\Delta] = [-7.75, +7.75]$. Combined with dyadic pre-scaling $\kappa = 0.75 = 1 - 2^{-2}$, all fault priors under Stim depth-7 depolarizing noise are strictly bounded ($\max L_{\text{in}}^{(0)} = 6.3867$) with positive safety headroom $\delta = 1.3633$ ($+17.59\%$), completely preventing saturation clipping across 10,000 shots ($73,080,000$ evaluations).
+* **Proposition 3 (Effective Dephasing Channel Concentration):** Under Pauli $Z$-biased noise ($\eta = p_Z / p_X \gg 1$), the $X$- and $Z$-sector parity check matrices decouple into non-interacting factor graphs, concentrating syndrome excitations on the $X$-check sector and eliminating the need for inter-sector message passing.
 
 ---
 
