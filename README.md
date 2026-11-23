@@ -398,7 +398,7 @@ Under superconducting transmon dephasing noise ($\eta = p_Z / p_X \in [1, 100]$)
 | $\eta = 1.0$ (Depolarizing) | 6.8000e-03 [5.3000e-03, 8.6000e-03] | 2.9400e-01 [2.8510e-01, 3.0300e-01] | $43.2\times$ |
 | $\eta = 10.0$ (Moderate Bias) | 4.2000e-03 [3.1000e-03, 5.7000e-03] | 1.4000e-01 [1.3320e-01, 1.4700e-01] | $33.3\times$ |
 | $\eta = 50.0$ (High Bias / Heron r2) | 1.8000e-03 [1.1000e-03, 2.9000e-03] | 4.0000e-02 [3.6300e-02, 4.4000e-02] | $22.2\times$ |
-| $\eta = 100.0$ (Extreme Bias) | 1.0000e-03 [5.0000e-04, 1.9000e-03] | 2.0000e-02 [1.7300e-02, 2.3000e-02] | $20.0\times$ ($8.0\times$ vs. $\eta=1$) |
+| $\eta = 100.0$ (Extreme Bias) | 1.0000e-03 [5.0000e-04, 1.9000e-03] | 2.0000e-02 [1.7300e-02, 2.3000e-02] | $20.0\times$ ($6.8\times$ vs. $\eta=1$) |
 | ZZ Crosstalk ($\epsilon_{ZZ} = 0.10$) | 1.4000e-03 [8.0000e-04, 2.4000e-03] | 3.1000e-02 [2.7700e-02, 3.4600e-02] | $22.1\times$ |
 <!-- END_TABLE_BIASED_NOISE -->
 

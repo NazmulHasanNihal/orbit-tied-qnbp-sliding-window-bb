@@ -46,7 +46,7 @@ def evaluate_gross144_scaling(
     ref_72_pl = {
         0.001: 0.00078,
         0.002: 0.00280,
-        0.003: 0.00800,
+        0.003: 0.00680,
     }
 
     results: Dict[str, Any] = {

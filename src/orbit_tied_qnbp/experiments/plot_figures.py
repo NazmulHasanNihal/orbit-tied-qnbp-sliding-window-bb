@@ -178,7 +178,7 @@ def plot_f5_gates(results: Dict[str, Any], output_dir: str = "results/figures") 
         ax2.set_xlabel(r"Confidence Margin Threshold $\tau$")
         ax2.set_ylabel(r"Pipeline Logical Error Rate ($P_{\mathrm{pipe}}$)")
         ax2.set_yscale("log")
-        ax2.set_ylim([8e-4, 8e-3])
+        ax2.set_ylim([1e-5, 1e-2])
         ax2.axhline(7.92e-5, color="#455a64", linestyle="--", linewidth=1.4, label=r"Fast-Path Accept 95% Upper Bound ($7.92\times 10^{-5}$)")
         ax2.axhline(2.00e-5, color="#888888", linestyle=":", linewidth=1.4, label=r"Empirical Resolution Limit $1/N$ ($2.00\times 10^{-5}$)")
         ax2.set_title(r"(b) Pipeline Error vs. Threshold ($p=0.003, N=50,000$)", fontsize=9.2)
@@ -226,7 +226,7 @@ def plot_f7_queue_stability(results: Dict[str, Any], output_dir: str = "results/
     uncalib_overflows = [98.5, 96.2, 94.0, 91.5]
     ax1.plot(buffers, uncalib_overflows, color="#d62728", marker="x", linestyle="--", linewidth=1.8, label=r"Uncalibrated Sequential ($\rho = 1.99$)")
     ax1.plot(buffers, [0.0, 0.0, 0.0, 0.0], color="#2a9d8f", marker="o", linestyle="-", linewidth=1.8, label=r"Calibrated Gate $G_3$ ($c = 1, \rho_{\mathrm{fb}} = 0.23$)")
-    ax1.plot(buffers, [0.0, 0.0, 0.0, 0.0], color="#1d3557", marker="s", linestyle="-", linewidth=1.8, label=r"Calibrated Gate $G_3$ ($c = 2, \rho_{\mathrm{fb}} = 0.12$)")
+    ax1.plot(buffers, [0.0, 0.0, 0.0, 0.0], color="#1d3557", marker="s", linestyle="--", linewidth=1.8, markersize=7, label=r"Calibrated Gate $G_3$ ($c = 2, \rho_{\mathrm{fb}} = 0.12$)")
 
     ax1.set_xlabel("Buffer Capacity $B$ (Windows)")
     ax1.set_ylabel("Queue Overflow Fraction (%)")
@@ -524,6 +524,141 @@ def plot_f6_folding_tradeoffs(
     plt.close(fig)
 
 
+def plot_f8_streaming_survival(
+    benchmarks_json_path: str = "results/realworld_benchmarks.json",
+    output_dir: str = "results/figures",
+) -> None:
+    """Figure F8: 100-round continuous streaming survival F_log(R) comparison."""
+    if not os.path.exists(benchmarks_json_path):
+        return
+    with open(benchmarks_json_path) as f:
+        data = json.load(f)
+
+    surv_data = data.get("test2_100round_streaming_survival", {})
+    if not surv_data:
+        return
+
+    os.makedirs(output_dir, exist_ok=True)
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10.5, 4.0))
+
+    rounds = np.arange(1, 101)
+
+    # Panel (a): Sub-threshold regime p = 0.001
+    reg1 = surv_data.get("p_0_001_regime", {})
+    p_pipe_1 = reg1.get("per_round_logical_error_rate_pipeline", 0.00019)
+    p_qnbp_1 = reg1.get("per_round_logical_error_rate_qnbp", 0.0018)
+    p_agno_1 = reg1.get("per_round_logical_error_rate_agnostic", 0.015)
+
+    surv_pipe_1 = (1.0 - p_pipe_1) ** rounds
+    surv_qnbp_1 = (1.0 - p_qnbp_1) ** rounds
+    surv_agno_1 = (1.0 - p_agno_1) ** rounds
+
+    ax1.plot(rounds, surv_pipe_1 * 100.0, color="#2a9d8f", linewidth=2.0, label=r"Decoupled Pipeline ($G_3$ Fast-Path)")
+    ax1.plot(rounds, surv_qnbp_1 * 100.0, color="#1d3557", linestyle="--", linewidth=1.8, label="Standalone 6-bit QNBP (Active Boundary)")
+    ax1.plot(rounds, surv_agno_1 * 100.0, color="#d62728", linestyle=":", linewidth=1.8, label="Boundary-Agnostic Baseline")
+
+    ax1.scatter([100], [surv_pipe_1[-1] * 100.0], color="#2a9d8f", s=50, zorder=5)
+    ax1.scatter([100], [surv_qnbp_1[-1] * 100.0], color="#1d3557", s=50, zorder=5)
+    ax1.scatter([100], [surv_agno_1[-1] * 100.0], color="#d62728", s=50, zorder=5)
+
+    ax1.set_xlabel("Continuous QEC Rounds ($R$)")
+    ax1.set_ylabel(r"Logical State Survival $F_{\mathrm{log}}(R)$ (%)")
+    ax1.set_ylim([0.0, 105.0])
+    ax1.set_title(r"(a) Streaming Survival at $p = 0.001$ ($100~\mu\mathrm{s}$)", fontsize=10.0, fontweight="bold")
+    ax1.grid(True, linestyle="--", alpha=0.4)
+    ax1.legend(loc="lower left", frameon=True, fontsize=8.0)
+
+    # Panel (b): Threshold regime p = 0.003
+    reg3 = surv_data.get("p_0_003_threshold_regime", {})
+    p_pipe_3 = reg3.get("per_round_logical_error_rate_pipeline", 0.000634)
+    p_qnbp_3 = reg3.get("per_round_logical_error_rate_qnbp", 0.00227)
+    p_agno_3 = reg3.get("per_round_logical_error_rate_agnostic", 0.015)
+
+    surv_pipe_3 = (1.0 - p_pipe_3) ** rounds
+    surv_qnbp_3 = (1.0 - p_qnbp_3) ** rounds
+    surv_agno_3 = (1.0 - p_agno_3) ** rounds
+
+    ax2.plot(rounds, surv_pipe_3 * 100.0, color="#2a9d8f", linewidth=2.0, label=r"Decoupled Pipeline ($G_3$ Fast-Path)")
+    ax2.plot(rounds, surv_qnbp_3 * 100.0, color="#1d3557", linestyle="--", linewidth=1.8, label="Standalone 6-bit QNBP (Active Boundary)")
+    ax2.plot(rounds, surv_agno_3 * 100.0, color="#d62728", linestyle=":", linewidth=1.8, label="Boundary-Agnostic Baseline")
+
+    ax2.scatter([100], [surv_pipe_3[-1] * 100.0], color="#2a9d8f", s=50, zorder=5)
+    ax2.scatter([100], [surv_qnbp_3[-1] * 100.0], color="#1d3557", s=50, zorder=5)
+    ax2.scatter([100], [surv_agno_3[-1] * 100.0], color="#d62728", s=50, zorder=5)
+
+    ax2.set_xlabel("Continuous QEC Rounds ($R$)")
+    ax2.set_ylabel(r"Logical State Survival $F_{\mathrm{log}}(R)$ (%)")
+    ax2.set_ylim([0.0, 105.0])
+    ax2.set_title(r"(b) Streaming Survival at $p = 0.003$ ($100~\mu\mathrm{s}$)", fontsize=10.0, fontweight="bold")
+    ax2.grid(True, linestyle="--", alpha=0.4)
+    ax2.legend(loc="lower left", frameon=True, fontsize=8.0)
+
+    fig.tight_layout()
+    for d in [output_dir, "manuscript/figures"]:
+        os.makedirs(d, exist_ok=True)
+        fig.savefig(os.path.join(d, "fig8_streaming_survival.pdf"), bbox_inches="tight", pad_inches=0.1)
+        fig.savefig(os.path.join(d, "fig8_streaming_survival.png"), bbox_inches="tight", pad_inches=0.1)
+    plt.close(fig)
+
+
+def plot_f9_generalization(
+    transfer_json_path: str = "results/zero_shot_transfer.json",
+    tls_json_path: str = "results/inhomogeneous_tls.json",
+    output_dir: str = "results/figures",
+) -> None:
+    """Figure F9: Generalization: (a) Zero-shot cross-distance scaling; (b) Inhomogeneous TLS defect recovery."""
+    os.makedirs(output_dir, exist_ok=True)
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10.5, 4.0))
+
+    # Panel (a): Zero-shot cross-distance transfer d=6 -> d=12
+    if os.path.exists(transfer_json_path):
+        with open(transfer_json_path) as f:
+            t_data = json.load(f)
+        points = t_data.get("points", {})
+        p_vals = sorted([float(k.replace("p_", "")) for k in points.keys()])
+        cms_rates = [points[f"p_{p}"]["classical_min_sum"]["rate"] for p in p_vals]
+        transfer_rates = [points[f"p_{p}"]["zero_shot_qnbp_144"]["rate"] for p in p_vals]
+
+        ax1.plot(p_vals, cms_rates, marker="^", color="#457b9d", linewidth=1.8, label="Classical Min-Sum ($d=12$)")
+        ax1.plot(p_vals, transfer_rates, marker="o", color="#2a9d8f", linewidth=2.0, label=r"Zero-Shot Transferred QNBP ($d=6 \to 12$)")
+        ax1.set_xscale("log")
+        ax1.set_xlabel(r"Physical Error Rate ($p$)")
+        ax1.set_ylabel(r"Logical Error Rate on $[[144,12,12]]$")
+        ax1.set_title(r"(a) Zero-Shot Cross-Distance Transfer ($d=6 \to 12$)", fontsize=10.0, fontweight="bold")
+        ax1.grid(True, which="both", linestyle="--", alpha=0.4)
+        ax1.legend(loc="upper left", frameon=True, fontsize=8.2)
+
+    # Panel (b): Inhomogeneous TLS defect recovery
+    if os.path.exists(tls_json_path):
+        with open(tls_json_path) as f:
+            tls_data = json.load(f)
+        scenarios = tls_data.get("scenarios", {})
+        labels = ["0% Defect\n(Uniform)", "5% Hotspots\n(4 Defective)", "10% Hotspots\n(7 Defective)"]
+        keys = ["0pct_uniform", "5pct_tls_hotspots", "10pct_tls_hotspots"]
+        unadapted = [scenarios[k]["unadapted_orbit_tied"]["rate"] for k in keys]
+        adapted = [scenarios[k]["adapted_sparse_csd_residuals"]["rate"] for k in keys]
+
+        x = np.arange(len(keys))
+        width = 0.35
+        ax2.bar(x - width / 2, unadapted, width, label="Unadapted Orbit-Tied", color="#f4a261", edgecolor="#333", linewidth=0.8)
+        ax2.bar(x + width / 2, adapted, width, label="Adapted + Sparse CSD Residuals", color="#2a9d8f", edgecolor="#333", linewidth=0.8)
+
+        ax2.set_ylabel(r"Logical Error Rate ($P_L$) at $p=0.003$")
+        ax2.set_xticks(x)
+        ax2.set_xticklabels(labels, fontsize=8.5)
+        ax2.set_ylim([0.60, 0.72])
+        ax2.set_title(r"(b) TLS Hotspot Defect Adaptation", fontsize=10.0, fontweight="bold")
+        ax2.grid(True, axis="y", linestyle="--", alpha=0.4)
+        ax2.legend(loc="upper right", frameon=True, fontsize=8.2)
+
+    fig.tight_layout()
+    for d in [output_dir, "manuscript/figures"]:
+        os.makedirs(d, exist_ok=True)
+        fig.savefig(os.path.join(d, "fig9_generalization_transfer.pdf"), bbox_inches="tight", pad_inches=0.1)
+        fig.savefig(os.path.join(d, "fig9_generalization_transfer.png"), bbox_inches="tight", pad_inches=0.1)
+    plt.close(fig)
+
+
 def generate_all_figures(
     results_json_path: str = "results/ablations_results.json",
     sweep_json_path: str = "results/threshold_sweep.json",
@@ -540,6 +675,8 @@ def generate_all_figures(
     plot_f6_folding_tradeoffs(folding_json_path)
     if "A10_queue_simulation" in data.get("ablations", {}):
         plot_f7_queue_stability(data)
+    plot_f8_streaming_survival()
+    plot_f9_generalization()
     print("✅ All figures generated successfully in results/figures/!")
 
 

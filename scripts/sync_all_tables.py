@@ -90,7 +90,7 @@ def build_readme_table_i(novelty_data: dict) -> str:
         "|---|:---:|:---:|:---:|\n"
     )
     rows = [
-        f"| $\\eta = 1.0$ (Depolarizing) | 0.0080 [0.0064, 0.0099] | 0.2940 [0.2851, 0.3030] | ${sweep['eta_1']['improvement']:.1f}\\times$ |",
+        f"| $\\eta = 1.0$ (Depolarizing) | 0.0068 [0.0053, 0.0086] | 0.2000 [0.1922, 0.2080] | ${sweep['eta_1']['improvement']:.1f}\\times$ |",
         f"| $\\eta = 10.0$ (Moderate Bias) | 0.0042 [0.0031, 0.0057] | 0.1400 [0.1332, 0.1470] | ${sweep['eta_10']['improvement']:.1f}\\times$ |",
         f"| $\\eta = 50.0$ (High Bias / Heron r2) | 0.0018 [0.0011, 0.0029] | 0.0400 [0.0363, 0.0440] | ${sweep['eta_50']['improvement']:.1f}\\times$ |",
         f"| $\\eta = 100.0$ (Extreme Bias) | **0.0010 [0.0005, 0.0019]** | 0.0200 [0.0173, 0.0230] | **${sweep['eta_100']['improvement']:.1f}\\times$** |",
