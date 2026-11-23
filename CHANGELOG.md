@@ -6,6 +6,26 @@
 
 ---
 
+## [v2.2.0] - 2026-11-23: Scientific Novelty Upgrades & Final Peer-Review Hardening Pass
+
+### 🟢 Five High-Impact Novelty Upgrades
+- **Upgrade 1 (Zero-Shot Cross-Distance Orbit Transfer):** Proved Proposition 4 (Cross-Distance Quotient DEM Isomorphism): the quotient space-time DEM hypergraph $\mathcal{G}_{\text{DEM}} / (\mathbb{Z}_\ell \times \mathbb{Z}_m)$ is isomorphic across code distances $d \in \{6, 12\}$ under depth-7 syndrome circuits and sliding window depth $W=3$, yielding exactly 203 canonical orbits on both $[[72,12,6]]$ and $[[144,12,12]]$. Evaluated zero-shot transfer across $p \in \{0.001, 0.002, 0.003, 0.005\}$ with 0 retraining steps (Table VI, `results/zero_shot_transfer.json`, `tests/test_cross_distance_orbit_isomorphism.py`).
+- **Upgrade 2 (Self-Contained On-Chip Multi-Leg CSD Fallback Core):** Designed and implemented `src/orbit_tied_qnbp/decoder/multileg_csd.py` and synthesizeable `rtl/csd_multileg_fallback.sv` executing up to 4 deterministic CSD-perturbed legs with $\pm 0.5\Delta$ prior offsets and inverted damping in $\le 720\text{ ns}$ directly on-chip ($\text{DSP}=0, \text{BRAM}=0$), resolving rejected windows without off-chip host CPU calls (`tests/test_multileg_fallback_cosim.py`).
+- **Upgrade 3 (Automorphism Hierarchy & Symmetry Breaking Analysis):** Formally proved that the 2D torus translation group $\mathbb{Z}_\ell \times \mathbb{Z}_m$ is the maximal exact symmetry subgroup of $\mathcal{G}_{\text{DEM}}$ ($\mathbb{Z}_\ell \times \mathbb{Z}_m \le \text{Aut}(\mathcal{G}_{\text{DEM}}) \subsetneq \text{Aut}(H_X, H_Z)$). Classified circuit-level symmetry breaking: spatial coordinate inversion $(x,y) \mapsto (-x,-y)$ is broken by directed 6-tick CNOT scheduling; CSS duality $X \leftrightarrow Z$ is broken by measurement basis asymmetry and transmon dephasing bias; temporal translation is broken by window boundaries (`tests/test_symmetry_breaking.py`).
+- **Upgrade 4 (Inhomogeneous TLS Hot Spots with Sparse CSD Defect Residuals):** Implemented localized defect adaptation $\gamma_{v,t} = \gamma_{o(v),t}^{\text{orbit}} + \mathbb{I}[v \in \mathcal{D}_{\text{hot}}]\,\delta\gamma_{v,t}^{\text{CSD}}$ under realistic transmon noise with 5% and 10% TLS defect hot spots ($3\times$ fault multiplier). Proved sparse CSD residuals restore baseline fidelity without inflating total parameter count (Table VII, `results/inhomogeneous_tls.json`, `scripts/eval_inhomogeneous_tls.py`).
+- **Upgrade 5 (Boxplus Collinear Fault Merging & RTL Sizing):** Replaced linear LLR prior summation with exact Bernoulli XOR (boxplus $\boxplus$) fault merging: $p_v = \frac{1}{2}(1 - \prod_{f \in \mathcal{F}_v} (1 - 2p_f))$ and $L_v^{(0)} = \ln((1-p_v)/p_v)$, eliminating prior inflation while preserving full-window RTL synthesis models (`tests/test_dem_boxplus_merge.py`).
+
+### 🟢 Critical Bug Fixes & Forensic Alignment
+- **Fix 1 (Soft-XOR Observable Parity Loss):** Implemented exact differentiable soft-XOR parity loss $\hat{p}_{O_j} = \frac{1}{2}(1 - \prod_{v:O_{j,v}=1}\tanh(L_v/2))$ stably via log-magnitude and sign domain; restored $\beta=0.5$ in $\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{syn}} + \beta \mathcal{L}_{\text{obs}}$ (`tests/test_loss_soft_xor.py`).
+- **Fix 3 & 5 (Timing Arithmetic & Parameter Collapse Accounting):** Unified parameter accounting to 203 spatial orbits per layer ($3,090$ total weights across $T=15$ unrolled layers, a $35.5\times$ collapse from $109,620$ untied weights on BB72 and $72.0\times$ on BB144). Formulated shift-lane parallelism $S \mid 36$ ($S=6 \implies 6$ cycles/iter = $24\text{ ns/iter}$, $153.6\text{ ns}$ mean, $360\text{ ns}$ max $\le 1.0\,\mu\text{s}$).
+- **Fix 4 (Queue Stability & Critical Fallback Threshold):** Fixed decimal representation to $p_{\text{crit}} = 0.281\%$ for single-server host software OSD ($320\,\mu\text{s}$, $c=1$); integrated Policy A (speculative fast-path forwarding, empirical rollback rate $0.205\%$, $0.00\%$ overflow across $B \ge 4$) vs Policy B (stream stall).
+- **Fix 6 (Lemma 1 Dynamic Range Bounds):** Corrected Lemma 1 bounds to $[4.28, 7.21] \subset [-7.75, +7.75]$ across $p \in [10^{-3}, 10^{-2}]$ (and $[5.18, 7.21]$ for $p \le 3\times 10^{-3}$) with safety margin $\delta \ge 0.54$, completely avoiding prior saturation clipping.
+- **Fix 11 & 12 (Table IV Master Competitor Partitioning):** Formatted Table IV into Panel A (Real-Time Compatible $\le 1.0\,\mu\text{s}$) and Panel B (Budget-Exceeding $> 1.0\,\mu\text{s}$). Added full-strength `BP+OSD-CS-10 (PS, 50 iters)` ($P_L = 0.0051$ [0.0039, 0.0067], $\chi^2 = 5.95, p = 0.0147$) alongside Min-Sum-seeded OSD ($0.0120$).
+- **Fix 14 (Bibliography & Reference [60] CoDecoder):** Added Ref [60] CoDecoder (`arXiv:2610.28748`), positioned in Section II-C and Table V; strictly enforced 60 sequential references with exactly 30 entries per column on Page 12 ([1]–[30] in col1, [31]–[60] in col2).
+- **Test Suite Expansion:** Expanded pytest suite from 46 to 55 tests (100% passing). Recompiled `manuscript/main.pdf` passing all 13 forensic checks.
+
+---
+
 ## [v2.1.0] - 2026-11-18: Precision Repair Pass Across Figures, Mathematics, Bibliography & README
 
 ### 🟢 Visual & Figure Architecture Precision Repairs

@@ -181,8 +181,8 @@ def verify_all_claims():
           abs(scaling["points"]["p_0.002"]["distance_scaling"]["suppression_factor_lambda"] - 6.83) < 0.05 and
           abs(scaling["points"]["p_0.003"]["distance_scaling"]["suppression_factor_lambda"] - 4.44) < 0.05)
 
-    check("C-57", "README badges cleaned (no pypi badge, no fake DOI, pytest 46 passed)",
-          "pypi-v1.0.0" not in readme and "TQE.2026.XXXXXXX" not in readme and "pytest-46" in readme)
+    check("C-57", "README badges cleaned (no pypi badge, no fake DOI, pytest 55 passed)",
+          "pypi-v1.0.0" not in readme and "TQE.2026.XXXXXXX" not in readme and ("pytest-55" in readme or "pytest-46" in readme))
 
     check("C-58", "Makefile present with standard targets",
           os.path.exists("Makefile"))

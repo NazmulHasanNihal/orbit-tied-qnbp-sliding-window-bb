@@ -1,0 +1,56 @@
+{
+  "parameters": {
+    "num_shots": 500,
+    "physical_p": 0.003,
+    "hotspot_error_multiplier": 3.0,
+    "seed": 42,
+    "architecture": "Orbit Base + Sparse CSD Defect Residuals"
+  },
+  "scenarios": {
+    "0pct_uniform": {
+      "defect_fraction": 0.0,
+      "num_defective_qubits": 0,
+      "unadapted_orbit_tied": {
+        "errors": 336,
+        "total": 500,
+        "rate": 0.672
+      },
+      "adapted_sparse_csd_residuals": {
+        "errors": 336,
+        "total": 500,
+        "rate": 0.672,
+        "relative_restoration_pct": 0.0
+      }
+    },
+    "5pct_tls_hotspots": {
+      "defect_fraction": 0.05,
+      "num_defective_qubits": 4,
+      "unadapted_orbit_tied": {
+        "errors": 336,
+        "total": 500,
+        "rate": 0.672
+      },
+      "adapted_sparse_csd_residuals": {
+        "errors": 328,
+        "total": 500,
+        "rate": 0.656,
+        "relative_restoration_pct": 2.38
+      }
+    },
+    "10pct_tls_hotspots": {
+      "defect_fraction": 0.1,
+      "num_defective_qubits": 7,
+      "unadapted_orbit_tied": {
+        "errors": 328,
+        "total": 500,
+        "rate": 0.656
+      },
+      "adapted_sparse_csd_residuals": {
+        "errors": 333,
+        "total": 500,
+        "rate": 0.666,
+        "relative_restoration_pct": 0.0
+      }
+    }
+  }
+}

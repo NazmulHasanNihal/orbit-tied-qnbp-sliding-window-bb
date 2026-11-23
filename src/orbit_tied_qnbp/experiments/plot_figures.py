@@ -159,7 +159,7 @@ def plot_f5_gates(results: Dict[str, Any], output_dir: str = "results/figures") 
         ax1.set_title("(a) Fast-Path Acceptance Rate vs. Threshold")
         ax1.set_ylim([45.0, 102.0])
         ax1.grid(True, linestyle="--", alpha=0.4)
-        ax1.legend(loc="lower left", frameon=True, fontsize=8.5)
+        ax1.legend(loc="upper right", frameon=True, fontsize=8.5)
 
         # Panel (b): End-to-end Pipeline Error Rate at p=0.001 (N=50,000)
         # G3: fast-path empirical errors = 0; P_pipe = (1 - p_fast) * P(err|fallback)
@@ -398,8 +398,8 @@ def plot_f6_folding_tradeoffs(
             ax_diag.text(x + w / 2, ly, l, ha="center", va="center", fontsize=6.2, color="#212121")
             ly -= 4.0
 
-    # 1. Inputs Block (widened to 26 so Dynamic Range fits cleanly)
-    draw_d_box(2, 60, 26, 34, "#e3f2fd", "#1565c0", "Inputs & Scaling", [
+    # 1. Inputs Block (widened to 28 so Dynamic Range fits cleanly without touching borders)
+    draw_d_box(1, 60, 28, 35, "#e3f2fd", "#1565c0", "Inputs & Scaling", [
         r"Channel Priors $L_v^{(0)}$",
         r"$\kappa = 0.75 = 1 - 2^{-2}$",
         r"Dynamic Range: $[-7.75, +7.75]$",
@@ -408,21 +408,21 @@ def plot_f6_folding_tradeoffs(
     ])
 
     # 2. VNU Block with CSD Shift-Add
-    draw_d_box(33, 60, 31, 34, "#fff3e0", "#e65100", "Variable Node Unit (VNU)", [
+    draw_d_box(32, 60, 33, 35, "#fff3e0", "#e65100", "Variable Node Unit (VNU)", [
         r"Accumulator: $L_v = L_{\mathrm{in}}^{(0)} + \sum M_{c \to v}$",
         r"Signed Memory: $\gamma_{o(v)} \in [-0.5, 1.0]$",
         r"CSD Damping: $M - (M \gg 2)$",
-        r"Zero Multipliers ($\mathrm{DSP} = 0$)",
+        r"1-Cycle Accumulator ($4.0\text{ ns}$)",
         r"Saturation Logic: $[-31, +31]$",
     ])
 
     # 3. CNU Block
-    draw_d_box(71, 60, 27, 34, "#e8f5e9", "#2e7d32", "Check Node Unit (CNU)", [
+    draw_d_box(67, 60, 32, 35, "#e8f5e9", "#2e7d32", "Check Node Unit (CNU)", [
         r"Parity XOR: $\prod \mathrm{sgn}(M_{v \to c})$",
         r"Min-1 / Min-2 Comparator Tree",
         r"CSD Scaling: $\alpha_{o(v)} \cdot \min |L|$",
         r"Syndrome Inversion if $s_c = 1$",
-        r"Single-Cycle Latency ($4.0\text{ ns}$)",
+        r"2-Cycle Pipelined Tree ($8.0\text{ ns}$)",
     ])
 
     # 4. Gate G3 Block
@@ -430,7 +430,7 @@ def plot_f6_folding_tradeoffs(
         r"1. Parity Check: $H\hat{e} \equiv s \ (\mathrm{mod}\ 2)$",
         r"2. Margin Check: $\min_{v \in \mathcal{V}_{\mathrm{commit}}} |L_v| \geq \tau$",
         r"Log-Depth Parallel Tree Evaluator",
-        r"Deterministic Latency: 2 Clock Cycles ($8\text{ ns}$)",
+        r"Deterministic Latency: 1 Clock Cycle ($4\text{ ns}$)",
         r"Fast-Path Acceptance: $75.6\%$ at $\tau = 1.5$",
     ])
 

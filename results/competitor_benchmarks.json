@@ -95,6 +95,17 @@
       "convergence_rate": 0.43,
       "dsp_multipliers": "O(V^3)"
     },
+    "BP_OSD_CS_10_PS50": {
+      "shots": 10000,
+      "errors": 51,
+      "rate": 0.0051,
+      "ci_lower": 0.0039,
+      "ci_upper": 0.0067,
+      "display": "0.0051 [0.0039, 0.0067]",
+      "mean_iterations": 48.2,
+      "convergence_rate": 0.985,
+      "dsp_multipliers": "O(V^3)"
+    },
     "AutDEC": {
       "shots": 10000,
       "errors": 4320,
@@ -172,6 +183,10 @@
     "BP_OSD_CS_10": {
       "statistic": 28.14,
       "p_value": 1.13e-07
+    },
+    "BP_OSD_CS_10_PS50": {
+      "statistic": 5.95,
+      "p_value": 0.0147
     },
     "AutDEC": {
       "statistic": 2750.5,

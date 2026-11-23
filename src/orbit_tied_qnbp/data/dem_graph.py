@@ -75,13 +75,16 @@ class DemGraph:
         dem: stim.DetectorErrorModel,
         window_start_round: int = 0,
         window_end_round: Optional[int] = None,
+        merge_collinear: bool = False,
     ) -> "DemGraph":
         """Builds a DemGraph from a Stim DetectorErrorModel and Code instance."""
         if window_end_round is None:
             window_end_round = num_rounds - 1
 
         from orbit_tied_qnbp.decoder.orbits import DemOrbitManager
-        orbit_mgr = DemOrbitManager(code=code, num_rounds=num_rounds, dem=dem)
+        orbit_mgr = DemOrbitManager(
+            code=code, num_rounds=num_rounds, dem=dem, merge_collinear=merge_collinear
+        )
         num_detectors = dem.num_detectors
         num_faults = len(orbit_mgr.parsed_errors)
         num_observables = dem.num_observables

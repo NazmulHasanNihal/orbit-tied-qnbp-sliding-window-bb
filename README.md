@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb/actions/workflows/ci.yml/badge.svg)](https://github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb/actions)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-brightgreen.svg)](https://www.python.org/)
-[![CI Test Suite](https://img.shields.io/badge/pytest-46%20passed%20(100%25)-brightgreen.svg)](tests/)
+[![CI Test Suite](https://img.shields.io/badge/pytest-55%20passed%20(100%25)-brightgreen.svg)](tests/)
 [![Paper](https://img.shields.io/badge/IEEE_TQE-12--Page_Vector_PDF-blue.svg)](manuscript/main.pdf)
 [![Hardware](https://img.shields.io/badge/SystemVerilog-DSP%3D0_Multiplier--Free-orange.svg)](rtl/)
 [![AMD FPGA](https://img.shields.io/badge/AMD_UltraScale%2B-28%2C204_LUTs_(11.6%25)-red.svg)](rtl/)
@@ -328,7 +328,8 @@ Evaluated under circuit-level Stim depolarizing noise ($p = 0.003$, $R=3$, $[[72
 | **GDG Sliding Window (Gong et al. 2024) [13]** | 0.4160 [0.4063, 0.4257] | 19.3 | 0 | 308.8 ns | Untied | $\chi^2 = 2,642.1, p = < 10^{-40}$ |
 | **Panel B: Budget-Exceeding ($t_{\text{dec}} > 1.0\,\mu\text{s}$)** | | | | | | |
 | **IBM Relay-BP-5 (Full 300-Leg, S=5) [11]** | 0.0060 [0.0046, 0.0077] | 148.5 | 0 | 2,376.0 ns | Untied | $\chi^2 = 1.1, p = 0.2860$ |
-| **BP+OSD-CS-10 (Roffe et al. 2020) [5]** | 0.0120 [0.0099, 0.0144] | 19.3 | O(V^3) | 320.0 µs | Untied | $\chi^2 = 28.1, p = 1.13e-07$ |
+| **BP+OSD-CS-10 (PS, 50 iters) [5]** | 0.0051 [0.0039, 0.0067] | 48.2 | O(V^3) | 1.2 ms | Untied | $\chi^2 = 6.0, p = 0.0147$ |
+| **BP+OSD-CS-10 (Min-Sum seeded) [5]** | 0.0120 [0.0099, 0.0144] | 19.3 | O(V^3) | 320.0 µs | Untied | $\chi^2 = 28.1, p = 1.13e-07$ |
 | **BP-LSD (Local Small-Set) [14]** | 0.0340 [0.0305, 0.0378] | 19.0 | 0 | 25.0 µs | Untied | $\chi^2 = 186.4, p = 1.00e-40$ |
 | **AutDEC (Automorphism Ensemble) [15]** | 0.4320 [0.4223, 0.4418] | 48.4 | 0 | 4.8 µs | Untied | $\chi^2 = 2,750.5, p = < 10^{-40}$ |
 <!-- END_TABLE_COMPETITORS -->

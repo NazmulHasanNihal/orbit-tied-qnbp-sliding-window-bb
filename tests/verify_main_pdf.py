@@ -169,10 +169,10 @@ def audit_pdf(pdf_path: str):
         entry = " ".join(lines_p12[idx:idx+3])
         assert "et al." in entry and "and et al." not in entry, f"P12: Ref {num} formatting incorrect"
 
-    for r_num in range(1, 60):
+    for r_num in range(1, 61):
         assert f"[{r_num}]" in p12, f"P12: Missing reference [{r_num}]"
 
-    print("✅ Check 13: Page 12 (All 59 Sequential References [1] through [59], Two-Column Layout) verified.")
+    print("✅ Check 13: Page 12 (All 60 Sequential References [1] through [60], Two-Column Layout) verified.")
     print(f"\n🎯 FINAL VERDICT: {pdf_path} IS 100% VALIDATED, ZERO-DEFECT, AND PUBLICATION-READY!")
 
 if __name__ == "__main__":

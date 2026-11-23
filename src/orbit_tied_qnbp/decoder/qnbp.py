@@ -260,10 +260,36 @@ class OrbitTiedQNBP(nn.Module):
             if loss_type == "soft_syndrome":
                 total_loss = total_loss + omega_t * loss_syn
             else:
-                # Composite loss: L_par + beta * L_obs
-                # Soft observable projection: logits = - posteriors @ obs_matrix.T
-                obs_logits = -torch.matmul(posteriors, self.obs_matrix.T)
-                loss_obs = F.binary_cross_entropy_with_logits(obs_logits, true_observables.float())
+                # Composite loss: L_syn + beta * L_obs
+                # Exact differentiable soft-XOR parity loss for logical observables:
+                # In F_2, logical observable parities are XOR sums: O_j = \bigoplus_{v: O_{j,v}=1} e_v.
+                # A linear sum of LLRs fails the parity cancellation property of F_2 observables.
+                # The exact soft-XOR observable flip probability is:
+                #     \hat{p}_{O_j} = 0.5 * (1 - \prod_{v : O_{j,v} = 1} \tanh(L_v / 2))
+                # Computed stably in log-magnitude + sign form to prevent underflow.
+                x = posteriors / 2.0
+                t = torch.tanh(x)
+                eps = 1e-7
+
+                log_abs_t = torch.log(torch.clamp(torch.abs(t), min=eps, max=1.0 - eps))
+                signs = torch.sign(torch.where(t == 0, torch.ones_like(t), t))
+
+                log_mag_sum = torch.matmul(log_abs_t, self.obs_matrix.T)
+                mag_prod = torch.exp(log_mag_sum)
+
+                neg_count = torch.matmul((signs < 0).float(), self.obs_matrix.T)
+                sign_prod = torch.where(
+                    torch.fmod(neg_count, 2.0) == 1.0,
+                    -torch.ones_like(neg_count),
+                    torch.ones_like(neg_count),
+                )
+
+                prod_val = sign_prod.detach() * mag_prod
+                prod_clamped = torch.clamp(prod_val, -1.0 + eps, 1.0 - eps)
+                hat_p = 0.5 * (1.0 - prod_clamped)
+                hat_p_clamped = torch.clamp(hat_p, eps, 1.0 - eps)
+
+                loss_obs = F.binary_cross_entropy(hat_p_clamped, true_observables.float())
                 total_loss = total_loss + omega_t * (loss_syn + beta_obs * loss_obs)
 
         return total_loss

@@ -20,7 +20,8 @@ GDG Sliding Window~\cite{gong2024sliding} & Normalized Min-Sum ($W=3, F=1$) & \t
 \multicolumn{8}{l}{\textit{\textbf{Panel B: Budget-Exceeding Decoders ($t_{\text{dec}} > 1.0\,\mu\text{s}$, High Latency)}}} \\
 \midrule
 IBM Relay-BP-5 (Full 300-Leg, S=5)~\cite{muller2025relay} & Up to 300 Legs ($\gamma_v \sim \mathcal{U}[-0.24, 0.66]$) & \textbf{0} & 0.0060 & [0.0046, 0.0077] & 148.5 & 1.1 & 0.286 \\
-BP+OSD-CS-10~\cite{roffe2020decoding} & C++ Ordered Statistics (Order 10) & O(V^3) & 0.0120 & [0.0099, 0.0144] & 19.3 & 28.1 & $\mathbf{1.1300\times 10^{-7}}$ \\
+BP+OSD-CS-10 (PS, 50 iters)~\cite{roffe2020decoding} & C++ Full Floating-Point Product-Sum & O(V^3) & 0.0051 & [0.0039, 0.0067] & 48.2 & 6.0 & $\mathbf{0.014700}$ \\
+BP+OSD-CS-10 (Min-Sum seeded)~\cite{roffe2020decoding} & C++ Normalized Min-Sum Seeded & O(V^3) & 0.0120 & [0.0099, 0.0144] & 19.3 & 28.1 & $\mathbf{1.1300\times 10^{-7}}$ \\
 BP-LSD~\cite{higgott2024lsd} & C++ Localised Statistics (Order 5) & \textbf{0} & 0.0340 & [0.0305, 0.0378] & 19.0 & 186.4 & $\mathbf{1.0000e-40}$ \\
 AutDEC~\cite{moradi2025autdec} & 4 Torus Shift Permutations & \textbf{0} & 0.4320 & [0.4223, 0.4418] & 48.4 & 2,750.5 & $\mathbf{< 10^{-40}}$ \\
 \bottomrule

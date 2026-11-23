@@ -1,0 +1,74 @@
+{
+  "parameters": {
+    "source_code": "[[72,12,6]] (d=6, group_order=36)",
+    "target_code": "[[144,12,12]] (d=12, group_order=72)",
+    "num_orbits": 203,
+    "physical_p_points": [
+      0.001,
+      0.002,
+      0.003,
+      0.005
+    ],
+    "shots_per_point": 250,
+    "seed": 42,
+    "transfer_mode": "Zero-shot direct orbit weight deployment (no retraining)"
+  },
+  "points": {
+    "p_0.001": {
+      "physical_p": 0.001,
+      "classical_min_sum": {
+        "errors": 122,
+        "total": 250,
+        "rate": 0.488
+      },
+      "zero_shot_qnbp_144": {
+        "errors": 122,
+        "total": 250,
+        "rate": 0.488
+      },
+      "error_suppression_factor": 1.0
+    },
+    "p_0.002": {
+      "physical_p": 0.002,
+      "classical_min_sum": {
+        "errors": 181,
+        "total": 250,
+        "rate": 0.724
+      },
+      "zero_shot_qnbp_144": {
+        "errors": 181,
+        "total": 250,
+        "rate": 0.724
+      },
+      "error_suppression_factor": 1.0
+    },
+    "p_0.003": {
+      "physical_p": 0.003,
+      "classical_min_sum": {
+        "errors": 220,
+        "total": 250,
+        "rate": 0.88
+      },
+      "zero_shot_qnbp_144": {
+        "errors": 220,
+        "total": 250,
+        "rate": 0.88
+      },
+      "error_suppression_factor": 1.0
+    },
+    "p_0.005": {
+      "physical_p": 0.005,
+      "classical_min_sum": {
+        "errors": 247,
+        "total": 250,
+        "rate": 0.988
+      },
+      "zero_shot_qnbp_144": {
+        "errors": 247,
+        "total": 250,
+        "rate": 0.988
+      },
+      "error_suppression_factor": 1.0
+    }
+  }
+}
