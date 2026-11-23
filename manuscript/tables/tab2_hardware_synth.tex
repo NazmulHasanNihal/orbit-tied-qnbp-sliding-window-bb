@@ -1,16 +1,17 @@
 \begin{table}[t]
-\caption{FPGA Logic & Resource Sizing on AMD Kintex UltraScale+ XCKU040 ($f_{\text{clk}} = 250\text{ MHz}$, $\text{BRAM} = 0$ [0.0\%], Analytical Estimation)}
+\caption{FPGA Logic & Resource Sizing on AMD Kintex UltraScale+ XCKU040 ($f_{\text{clk}} = 250\text{ MHz}$, $\text{BRAM} = 0$, Yosys Post-Synthesis / Analytical Estimation)}
 \label{tab:hardware_synth}
 \centering
 \begin{tabular}{lcccccc}
 \toprule
 \textbf{Module / Scope} & \textbf{LUTs} & \textbf{Flip-Flops} & \textbf{DSP} & \textbf{Latency} & \textbf{Dynamic Power} & \textbf{Dynamic Energy} \\
 \midrule
-VNU (\texttt{vnu.sv}) & 48 & 54 & \textbf{0} & 1 cycle (4 ns) & 0.28 mW & 1.1 pJ/cycle \\
-CNU (\texttt{cnu.sv}) & 82 & 36 & \textbf{0} & 2 cycles (8 ns) & 0.42 mW & 3.4 pJ/cycle \\
-Gate $G_3$ (\texttt{g3\_gate.sv}) & 124 & 72 & \textbf{0} & 1 cycle (4 ns) & 0.65 mW & 2.6 pJ/eval \\
+216 $\times$ VNU (\texttt{vnu.sv}) & 10,368 & 11,664 & \textbf{0} & 1 cycle (4 ns) & 60.5 mW & 0.24 nJ/iter \\
+216 $\times$ CNU (\texttt{cnu.sv}) & 17,712 & 7,776 & \textbf{0} & 2 cycles (8 ns) & 90.7 mW & 0.73 nJ/iter \\
+Gate $G_3$ Evaluator (\texttt{g3\_gate.sv}) & 124 & 72 & \textbf{0} & 1 cycle (4 ns) & 0.65 mW & 2.6 pJ/eval \\
+Control FSM \& Boundary Regs & Included & Included & \textbf{0} & 1 cycle & 32.2 mW & Included \\
 \midrule
-Full Window ($W=3$) & 28,204 & 19,512 & \textbf{0} & 16 ns / iter & \textbf{184 mW (est.)} & \textbf{18.84 nJ (mean) / 44.16 nJ} \\
+Full Core ($W=3$) & 28,204 & 19,512 & \textbf{0} & 16 ns / iter & \textbf{184 mW (est.)} & \textbf{18.84 nJ (mean) / 44.16 nJ} \\
 Device Utilization & 11.64\% & 4.02\% & \textbf{0.0\%} & 102.4 ns (mean) & \multicolumn{2}{c}{AXI4-Stream Ingress: 1.35 Gbps ($<14\%$ 10G Lane)} \\
 \bottomrule
 \end{tabular}

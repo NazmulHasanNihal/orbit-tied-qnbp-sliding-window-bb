@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb/actions/workflows/ci.yml/badge.svg)](https://github.com/NazmulHasanNihal/orbit-tied-qnbp-sliding-window-bb/actions)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-brightgreen.svg)](https://www.python.org/)
-[![CI Test Suite](https://img.shields.io/badge/pytest-55%20passed%20(100%25)-brightgreen.svg)](tests/)
+[![CI Test Suite](https://img.shields.io/badge/pytest-58%20passed%20(100%25)-brightgreen.svg)](tests/)
 [![Paper](https://img.shields.io/badge/IEEE_TQE-12--Page_Vector_PDF-blue.svg)](manuscript/main.pdf)
 [![Hardware](https://img.shields.io/badge/SystemVerilog-DSP%3D0_Multiplier--Free-orange.svg)](rtl/)
 [![AMD FPGA](https://img.shields.io/badge/AMD_UltraScale%2B-28%2C204_LUTs_(11.6%25)-red.svg)](rtl/)
@@ -395,7 +395,7 @@ Under superconducting transmon dephasing noise ($\eta = p_Z / p_X \in [1, 100]$)
 <!-- BEGIN_TABLE_BIASED_NOISE -->
 | Noise Model / Channel Bias ($\eta = p_Z/p_X$) | Proposed 6-bit QNBP ($P_L$) [95% CI] | Classical BP ($P_L$) [95% CI] | Relative Gain ($\times$) |
 |---|:---:|:---:|:---:|
-| $\eta = 1.0$ (Depolarizing) | 8.0000e-03 [6.4000e-03, 9.9000e-03] | 2.9400e-01 [2.8510e-01, 3.0300e-01] | $36.8\times$ |
+| $\eta = 1.0$ (Depolarizing) | 6.8000e-03 [5.3000e-03, 8.6000e-03] | 2.9400e-01 [2.8510e-01, 3.0300e-01] | $43.2\times$ |
 | $\eta = 10.0$ (Moderate Bias) | 4.2000e-03 [3.1000e-03, 5.7000e-03] | 1.4000e-01 [1.3320e-01, 1.4700e-01] | $33.3\times$ |
 | $\eta = 50.0$ (High Bias / Heron r2) | 1.8000e-03 [1.1000e-03, 2.9000e-03] | 4.0000e-02 [3.6300e-02, 4.4000e-02] | $22.2\times$ |
 | $\eta = 100.0$ (Extreme Bias) | 1.0000e-03 [5.0000e-04, 1.9000e-03] | 2.0000e-02 [1.7300e-02, 2.3000e-02] | $20.0\times$ ($8.0\times$ vs. $\eta=1$) |
@@ -429,8 +429,9 @@ Hardware Sizing Estimates on **AMD UltraScale+ XCKU040** ($f_{\text{clk}} = 250\
 | **Maurer et al. [12]** | 3D Window $[[144,12,12]]$ ($W=12$) | IBM / AMD VU19P | **0** (int4) | $\sim$450,000 LUTs ($>50\%$ VU19P) | 24 ns/iter ($\sim$408 ns/round) | No Fast/Slow Gate |
 | **Báscones et al. (GARI) [48]** | 3D Window $[[144,12,12]]$ | AMD VCU19P (3-Core) | Multi-Core | VCU19P Fabric | Sub-$\mu$s Parallel Retries | Speculative Retry |
 | **Gu et al. (Cascade) [49]** | 3D $[[72,12,6]]$ / $[[144,12,12]]$ | Nvidia H200 GPU | TensorCore | 14-Layer Equiv. CNN | 12.4 $\mu$s (Batch GPU) | GPU Only |
+| **Guang et al. (CoDecoder) [60]** | $[[72,12,6]]$ / Gross | GPU + Host CPU | TensorCore | Neural Soft Actor | $\sim$4.2 $\mu$s (GPU batch) | 82.4% (Routed to Cascade/Relay) |
 | **Proposed 216-VNU Architecture** | **3D Sliding-Window $[[72,12,6]]$ ($W=3$)** | **AMD XCKU040** | **0 (6-bit CSD)** | **1,226--28,204 LUTs (11.6%)** | **102.4 ns (mean) / 240 ns (max)** | **75.6% ($P_{\mathrm{pipe}} = 1.9\times 10^{-3}$)** |
-| Proposed 432-VNU Core (Projected) | 3D Sliding-Window $[[144,12,12]]$ ($W=3$) | AMD XCKU040 | **0 (6-bit CSD)** | $\sim$56,400 LUTs (Projected / un-synthesized) | Projected $\sim$120--250 ns | -- |
+| Proposed 432-VNU Core (Projected) | 3D Sliding-Window $[[144,12,12]]$ ($W=3$) | AMD XCKU040 | **0 (6-bit CSD)** | $\sim$56,400 LUTs (Projected / un-synthesized) | Projected $\sim$120--250 ns | 72.4% (Est.) |
 <!-- END_TABLE_PRIOR_ART -->
 
 ---
@@ -440,8 +441,9 @@ Hardware Sizing Estimates on **AMD UltraScale+ XCKU040** ($f_{\text{clk}} = 250\
 * **Proposition 1 (Torus Translation Invariance of Space-Time DEM):** For any bivariate-bicycle code defined by polynomials $A(x,y), B(x,y)$ over ring $\mathcal{R} = \mathbb{F}_2[x,y] / \langle x^\ell-1, y^m-1 \rangle$, the 2D shift operator $T_{(\delta_x, \delta_y)}$ defines an exact automorphism of the Tanner graph and Stim space-time detector error model.
 * **Corollary 1 (Automorphism Parameter Collapse):** The parameter space of unrolled neural belief propagation on $\mathcal{G}_{\text{DEM}}$ collapses by an exact factor of $|G| = \ell m$ ($36.0\times$ on $[[72,12,6]]$ and $72.0\times$ on $[[144,12,12]]$), mapping $7,308$ fault mechanisms to $203$ symmetry orbits ($R=3$).
 * **Proposition 2 (Equivariance of Orbit-Tied Neural Message Passing):** Orbit-tied message passing satisfies exact permutation equivariance under the group action of $G = \mathbb{Z}_\ell \times \mathbb{Z}_m$, guaranteeing identical error correction capability across all shifted fault patterns and preserving fixed-point attractors.
+* **Proposition 3 (Cross-Distance Quotient DEM Isomorphism):** Under identical depth-7 syndrome circuits and sliding-window depth $W=3$, the quotient space-time DEM hypergraph $\mathcal{G}_{\text{DEM}} / (\mathbb{Z}_\ell \times \mathbb{Z}_m)$ is strictly isomorphic across code distances $d \in \{6, 12\}$, yielding identically 203 canonical orbits and enabling zero-shot cross-distance weight transfer without retraining ($2r_{\text{prop}} \le 4 < \min(\ell, m) = 6$).
 * **Lemma 1 (6-Bit Dyadic Dynamic Range Bound):** A 6-bit signed integer representation with dyadic step size $\Delta = 2^{-2} = 0.25$ spans $[-31\Delta, +31\Delta] = [-7.75, +7.75]$. Combined with dyadic pre-scaling $\kappa = 0.75 = 1 - 2^{-2}$, all fault priors under Stim depth-7 depolarizing noise across $p \in [0.001, 0.003]$ map strictly into $[5.18, 7.21] \subset [-7.75, +7.75]$ ($L_{\text{in}}^{(0)} = 6.39$ at $p=0.003$ and $7.21$ at $p=0.001$) with positive safety headroom $\delta \ge 0.54$, completely preventing saturation clipping across 10,000 shots ($73,080,000$ evaluations).
-* **Proposition 3 (Effective Dephasing Channel Concentration):** Under Pauli $Z$-biased noise ($\eta = p_Z / p_X \gg 1$), the $X$- and $Z$-sector parity check matrices decouple into non-interacting factor graphs, concentrating syndrome excitations on the $X$-check sector and eliminating the need for inter-sector message passing.
+* **Proposition 4 (Effective Dephasing Channel Concentration):** Under Pauli $Z$-biased noise ($\eta = p_Z / p_X \gg 1$), the $X$- and $Z$-sector parity check matrices decouple into non-interacting factor graphs, concentrating syndrome excitations on the $X$-check sector and eliminating the need for inter-sector message passing.
 
 ---
 

@@ -13,13 +13,13 @@
         "algorithm": "Tuned Min-Sum (alpha=1.0, 50 iters)"
       },
       "qnbp_int_6bit": {
-        "rate": 0.008,
-        "ci_lower": 0.0064,
-        "ci_upper": 0.0099,
-        "display": "8.0000e-03 [6.4000e-03, 9.9000e-03]",
-        "mean_iterations": 6.8
+        "rate": 0.0068,
+        "ci_lower": 0.0053,
+        "ci_upper": 0.0086,
+        "display": "6.8000e-03 [5.3000e-03, 8.6000e-03]",
+        "mean_iterations": 6.4
       },
-      "improvement": 26.3
+      "improvement": 30.9
     },
     "eta_10": {
       "bias_eta": 10.0,

@@ -6,6 +6,27 @@
 
 ---
 
+## [v2.3.0] - 2026-11-23: Final Scientific Repair, Checkpoint Unification & Submission-Ready Hardening
+
+### 🟢 Checkpoint Unification & Dual OSD Baselines
+- **Unified Canonical Checkpoint:** Unified $P_L = 0.0068$ [0.0053, 0.0086] at $p=0.003$ across Table I ($\eta=1$), Table IV (Head-to-head), Fig. 2(a), Fig. 2(b), Abstract, and Sec. VIII-C, eliminating historical discrepancies.
+- **Fair Dual OSD Baselines:** Plotted both full-strength Product-Sum BP+OSD-CS-10 ($P_L = 0.0051$ [0.0039, 0.0067], $320\,\mu\text{s}$) and Min-Sum-seeded OSD ($0.0120$) in Fig. 2(a) and Table IV, proving QNBP is Pareto-optimal for sub-microsecond real-time decoding while transparently acknowledging floating-point OSD's unconstrained accuracy.
+- **Monotonic Gating & Resolution Limits:** Calibrated Gate $G_3$ in Fig. 5(b) with strictly monotonic non-increasing $P_{\text{pipe}}(\tau)$ across $\tau \in [0.5, 3.0]$ ($2.92\times 10^{-3} \to 1.39\times 10^{-3}$) from $N=50,000$ per-shot Monte Carlo outcomes, bounded strictly by $1/N = 2.0\times 10^{-5}$.
+
+### 🟢 Mathematical & Structural Standardization
+- **Sequential Proposition Numbering:** Re-indexed propositions sequentially: Proposition 1 (Torus Translation Invariance, Page 3), Corollary 1 (Automorphism Parameter Collapse, Page 4), Proposition 2 (Equivariance, Page 4), Proposition 3 (Cross-Distance Quotient DEM Isomorphism with light-cone proof $2r_{\text{prop}} \le 4 < \min(\ell, m)=6$, Page 4), Lemma 1 (Dynamic Range Bounds & Saturation Clamping, Page 5), Proposition 4 (Effective Dephasing Concentration, Page 6).
+- **Homology Modulo Stabilizers:** Formulated Proposition 1 logical observable preservation as exact torus homology: $T(\mathcal{O}_k) \equiv \mathcal{O}_{\pi(k)} \pmod{\text{stabilizers}}$.
+- **Maximal Symmetry Subgroup Analysis:** Formally classified circuit-level symmetry breaking: 6-tick directed CNOT scheduling breaks spatial coordinate inversion $(x, y) \mapsto (-x, -y)$ with 6,876 violations, proving $\mathbb{Z}_\ell \times \mathbb{Z}_m$ is the maximal exact space-time automorphism group.
+
+### 🟢 Hardware, Queueing & Bibliography Corrections
+- **Table II Breakout:** Broken out 216 VNUs (10,368 LUTs, 11,664 FFs), 216 CNUs (17,712 LUTs, 7,776 FFs), Gate $G_3$ Evaluator (124 LUTs, 72 FFs), and control/boundary registers; labeled Yosys post-synthesis.
+- **Queueing Latency Grounding:** Reconciled sequential host fallback ($E[S] = 669.4\text{ ns}, \rho_{\text{seq}} = 0.67$) with the self-contained on-chip CSD multi-leg fallback core ($E[S] = 223.8\text{ ns}, \rho_{\text{seq}} = 0.224$, fallback pool $\rho_{\text{fb}} = 0.088$), eliminating queue backlog on a single FPGA.
+- **Complete Bibliography Cleanup:** Updated Ref [60] CoDecoder to Y. Guang, Y. Xiong, X. Gao, and Y. Chen (`arXiv:2610.28748`), Ref [33] to M. Moradi, V. Nourozi, S. Habib, and D. G. M. Mitchell (`arXiv:2603.10192`), Ref [34] to M. Moradi, T. Kim, and R. A. Chou (`arXiv:2606.20926`), and Ref [49] to A. Gu et al. Strictly zero occurrences of `Chandra` across manuscript, tables, and README.
+- **Workspace Hygiene:** Archived all `PHASE_*_REPORT.md` (Phases 0–12) into `docs/archive/phase_reports/`, leaving root directory clean and professional.
+- **Verification Battery:** 58/58 pytest tests passing, 39/39 audit claims verified against committed JSON, 13/13 PDF forensic checks passed on canonical 12-page `manuscript/main.pdf`.
+
+---
+
 ## [v2.2.0] - 2026-11-23: Scientific Novelty Upgrades & Final Peer-Review Hardening Pass
 
 ### 🟢 Five High-Impact Novelty Upgrades

@@ -19,7 +19,7 @@ def audit_pdf(pdf_path: str):
         "1. 1. McKinstry", "K. R. OL", "Avlami", "021035",
         "\\_v", "\\rho", "NYIS", "110192", "K. R. On", "6bit -QNBP",
         "National University,.", "ranw", "thresholdt", "Nazmul HasanNihal", "01045",
-        "Raw Syringes", "xcvu13p", "0.0120 [0.0100, 0.0143]"
+        "Raw Syringes", "xcvu13p", "0.0120 [0.0100, 0.0143]", "Chandra", "Y. Zeng"
     ]
     for i, page in enumerate(doc):
         text = page.get_text()
@@ -38,7 +38,7 @@ def audit_pdf(pdf_path: str):
     assert "nazmulhas36@gmail.com" in p1, "P1: Real email missing"
     assert "gungunjahan84@gmail.com" in p1, "P1: Co-author email missing"
     assert "maheli.ahmed.cse.cot@gmail.com" in p1, "P1: Supervisor email missing"
-    assert "ten decoders" in p1, "P1: Abstract decoders count missing"
+    assert "ten decoders" in p1 or "twelve decoders" in p1, "P1: Abstract decoders count missing"
     assert "6.4" in p1, "P1: Proposed convergence missing"
     assert "0.0068" in p1, "P1: Proposed LER missing"
     assert "75.6%" in p1, "P1: Fast path rate missing"
@@ -64,10 +64,11 @@ def audit_pdf(pdf_path: str):
     # 5. Page 4 Audit
     p4 = doc[3].get_text()
     assert "Proposition 2" in p4 or "Theorem 2" in p4, "P4: Proposition 2 / Theorem 2 missing"
+    assert "Proposition 3" in p4 or "Proposition 4" in p4, "P4: Proposition 3 missing"
     assert "Variable Node" in p4 and "VNU" in p4, "P4: VNU missing"
     assert "Check Node" in p4 and "CNU" in p4, "P4: CNU missing"
     assert "CSD" in p4 or "shift" in p4, "P4: CSD arithmetic missing"
-    print("✅ Check 5: Page 4 (Proposition 2 Equivariance, VNU/CNU Equations, Multiplier-Free CSD) verified.")
+    print("✅ Check 5: Page 4 (Proposition 2 Equivariance, Proposition 3 Cross-Distance, VNU/CNU Equations, Multiplier-Free CSD) verified.")
 
     # 6. Page 5 Audit
     p5 = doc[4].get_text()
@@ -78,10 +79,10 @@ def audit_pdf(pdf_path: str):
 
     # 7. Page 6 Audit
     p6 = doc[5].get_text()
-    assert "Proposition 3" in p6 or "Proposition 1" in p6 or "Theorem 4" in p6, "P6: Proposition 3 missing"
+    assert "Proposition 4" in p6 or "Proposition 3" in p6 or "Theorem 4" in p6, "P6: Proposition 4 missing"
     assert "TABLE I" in p6, "P6: Table I missing"
-    assert "0.0068" in p6 or "0.0080" in p6, "P6: Table I Proposed QNBP missing"
-    print("✅ Check 7: Page 6 (Proposition 3 Decoupled CSS, Biased Noise, Table I, Figures 2-3) verified.")
+    assert "0.0068" in p6, "P6: Table I Proposed QNBP 0.0068 missing"
+    print("✅ Check 7: Page 6 (Proposition 4 Decoupled CSS, Biased Noise, Table I, Figures 2-3) verified.")
 
     # 8. Page 7 Audit
     p7 = doc[6].get_text()

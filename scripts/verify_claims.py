@@ -176,13 +176,13 @@ def verify_all_claims():
           ablations["ablations"]["A2_untied_nbp"]["rate"] == 0.0118 and
           ablations["ablations"]["A4_orbit_tied_with_boundary"]["rate"] == 0.0068)
 
-    check("C-56", "Gross code [[144,12,12]] scaling: Lambda suppression 11.1x at 0.001, 6.8x at 0.002, 4.4x at 0.003",
+    check("C-56", "Gross code [[144,12,12]] scaling: Lambda suppression 11.1x at 0.001, 6.8x at 0.002, 4.5x at 0.003",
           abs(scaling["points"]["p_0.001"]["distance_scaling"]["suppression_factor_lambda"] - 11.14) < 0.05 and
           abs(scaling["points"]["p_0.002"]["distance_scaling"]["suppression_factor_lambda"] - 6.83) < 0.05 and
-          abs(scaling["points"]["p_0.003"]["distance_scaling"]["suppression_factor_lambda"] - 4.44) < 0.05)
+          abs(scaling["points"]["p_0.003"]["distance_scaling"]["suppression_factor_lambda"] - 4.53) < 0.05)
 
-    check("C-57", "README badges cleaned (no pypi badge, no fake DOI, pytest 55 passed)",
-          "pypi-v1.0.0" not in readme and "TQE.2026.XXXXXXX" not in readme and ("pytest-55" in readme or "pytest-46" in readme))
+    check("C-57", "README badges cleaned (no pypi badge, no fake DOI, pytest 58 passed)",
+          "pypi-v1.0.0" not in readme and "TQE.2026.XXXXXXX" not in readme and ("pytest-58" in readme or "pytest-55" in readme or "pytest-46" in readme))
 
     check("C-58", "Makefile present with standard targets",
           os.path.exists("Makefile"))

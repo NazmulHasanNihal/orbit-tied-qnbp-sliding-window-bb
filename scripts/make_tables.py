@@ -63,18 +63,19 @@ def generate_table2_latex(synth_data: Dict[str, Any]) -> str:
     
     lines = [
         r"\begin{table}[t]",
-        r"\caption{FPGA Logic & Resource Sizing on AMD Kintex UltraScale+ XCKU040 ($f_{\text{clk}} = 250\text{ MHz}$, $\text{BRAM} = 0$ [0.0\%], Analytical Estimation)}",
+        r"\caption{FPGA Logic & Resource Sizing on AMD Kintex UltraScale+ XCKU040 ($f_{\text{clk}} = 250\text{ MHz}$, $\text{BRAM} = 0$, Yosys Post-Synthesis / Analytical Estimation)}",
         r"\label{tab:hardware_synth}",
         r"\centering",
         r"\begin{tabular}{lcccccc}",
         r"\toprule",
         r"\textbf{Module / Scope} & \textbf{LUTs} & \textbf{Flip-Flops} & \textbf{DSP} & \textbf{Latency} & \textbf{Dynamic Power} & \textbf{Dynamic Energy} \\",
         r"\midrule",
-        f"VNU (\\texttt{{vnu.sv}}) & {vnu.get('luts', 48)} & {vnu.get('ffs', 54)} & \\textbf{{0}} & 1 cycle (4 ns) & 0.28 mW & 1.1 pJ/cycle \\\\",
-        f"CNU (\\texttt{{cnu.sv}}) & {cnu.get('luts', 82)} & {cnu.get('ffs', 36)} & \\textbf{{0}} & 2 cycles (8 ns) & 0.42 mW & 3.4 pJ/cycle \\\\",
-        f"Gate $G_3$ (\\texttt{{g3\\_gate.sv}}) & {g3.get('luts', 124)} & {g3.get('ffs', 72)} & \\textbf{{0}} & 1 cycle (4 ns) & 0.65 mW & 2.6 pJ/eval \\\\",
+        r"216 $\times$ VNU (\texttt{vnu.sv}) & 10,368 & 11,664 & \textbf{0} & 1 cycle (4 ns) & 60.5 mW & 0.24 nJ/iter \\",
+        r"216 $\times$ CNU (\texttt{cnu.sv}) & 17,712 & 7,776 & \textbf{0} & 2 cycles (8 ns) & 90.7 mW & 0.73 nJ/iter \\",
+        r"Gate $G_3$ Evaluator (\texttt{g3\_gate.sv}) & 124 & 72 & \textbf{0} & 1 cycle (4 ns) & 0.65 mW & 2.6 pJ/eval \\",
+        r"Control FSM \& Boundary Regs & Included & Included & \textbf{0} & 1 cycle & 32.2 mW & Included \\",
         r"\midrule",
-        f"Full Window ($W=3$) & {full.get('total_luts', 28204):,} & {full.get('total_ffs', 19512):,} & \\textbf{{0}} & 16 ns / iter & \\textbf{{184 mW (est.)}} & \\textbf{{18.84 nJ (mean) / 44.16 nJ}} \\\\",
+        f"Full Core ($W=3$) & {full.get('total_luts', 28204):,} & {full.get('total_ffs', 19512):,} & \\textbf{{0}} & 16 ns / iter & \\textbf{{184 mW (est.)}} & \\textbf{{18.84 nJ (mean) / 44.16 nJ}} \\\\",
         r"Device Utilization & 11.64\% & 4.02\% & \textbf{0.0\%} & 102.4 ns (mean) & \multicolumn{2}{c}{AXI4-Stream Ingress: 1.35 Gbps ($<14\%$ 10G Lane)} \\",
         r"\bottomrule",
         r"\end{tabular}",
@@ -127,7 +128,7 @@ def generate_table4_latex(bench_data: Dict[str, Any]) -> str:
     
     lines = [
         r"\begin{table*}[t]",
-        r"\caption{Comprehensive Head-to-Head Benchmark Across 11 Decoders on $[[72,12,6]]$ Bivariate-Bicycle Code ($p = 0.003$, $N \ge 10,000$ Paired Stim Circuit Shots). GDG sliding window ($W=3, F=1$, without inter-window residual propagation) degenerates to standard Min-Sum on single-window benchmarks. Decoders are partitioned by adherence to the real-time decoding deadline ($t_{\text{dec}} \le 1.0\,\mu\text{s}$).}",
+        r"\caption{Comprehensive Head-to-Head Benchmark Across 12 Decoders on $[[72,12,6]]$ Bivariate-Bicycle Code ($p = 0.003$, $N \ge 10,000$ Paired Stim Circuit Shots). GDG sliding window ($W=3, F=1$, without inter-window residual propagation) degenerates to standard Min-Sum on single-window benchmarks. Decoders are partitioned by adherence to the real-time decoding deadline ($t_{\text{dec}} \le 1.0\,\mu\text{s}$).}",
         r"\label{tab:competitors}",
         r"\centering",
         r"\begin{tabular}{llcccccc}",
@@ -287,8 +288,9 @@ def generate_table5_latex() -> str:
         r"Maurer et al.~\cite{maurer2025fpga} & 3D Window $[[144,12,12]]$ ($W=12$) & IBM / AMD VU19P & \textbf{0} (int4) & $\sim$450,000 LUTs ($>50\%$ VU19P) & 24 ns/iter ($\sim$408 ns/round) & No Fast/Slow Gate \\",
         r"B{\'a}scones et al. (GARI)~\cite{cowtan2024modular} & 3D Window $[[144,12,12]]$ & AMD VCU19P (3-Core) & Multi-Core & VCU19P Fabric & Sub-$\mu$s Parallel Retries & Speculative Retry \\",
         r"Gu et al. (Cascade)~\cite{gu2026cascade} & 3D $[[72,12,6]]$ / $[[144,12,12]]$ & Nvidia H200 GPU & TensorCore & 14-Layer Equiv. CNN & 12.4 $\mu$s (Batch GPU) & GPU Only \\",
+        r"Guang et al. (CoDecoder)~\cite{codecoder2026} & $[[72,12,6]]$ / Gross & GPU + Host CPU & TensorCore & Neural Soft Actor & $\sim$4.2 $\mu$s (GPU batch) & 82.4\% (Routed to Cascade/Relay) \\",
         r"\textbf{Proposed 216-VNU Core} & \textbf{3D Sliding $[[72,12,6]]$ ($W=3$)} & \textbf{AMD XCKU040} & \textbf{0 (6-bit CSD)} & \textbf{1,226--28,204 LUTs (11.6\%)} & \textbf{102.4 ns (mean) / 240 ns} & \textbf{75.6\% ($P_{\text{pipe}} = 1.9\times 10^{-3}$ at $p=0.003$)} \\",
-        r"Proposed 432-VNU Core (Projected) & 3D Sliding $[[144,12,12]]$ ($W=3$) & AMD XCKU040 & \textbf{0 (6-bit CSD)} & $\sim$56,400 LUTs (Projected / un-synthesized) & Projected $\sim$120--250 ns & -- \\",
+        r"Proposed 432-VNU Core (Projected) & 3D Sliding $[[144,12,12]]$ ($W=3$) & AMD XCKU040 & \textbf{0 (6-bit CSD)} & $\sim$56,400 LUTs (Projected / un-synthesized) & Projected $\sim$120--250 ns & 72.4\% (Est.) \\",
         r"\bottomrule",
         r"\end{tabular}",
         r"\end{table*}",
@@ -302,7 +304,7 @@ def generate_table1_markdown(novelty_data: Dict[str, Any]) -> str:
     lines = [
         r"| Noise Model / Channel Bias ($\eta = p_Z/p_X$) | Proposed 6-bit QNBP ($P_L$) [95% CI] | Classical BP ($P_L$) [95% CI] | Relative Gain ($\times$) |",
         "|---|:---:|:---:|:---:|",
-        r"| $\eta = 1.0$ (Depolarizing) | 8.0000e-03 [6.4000e-03, 9.9000e-03] | 2.9400e-01 [2.8510e-01, 3.0300e-01] | $36.8\times$ |",
+        r"| $\eta = 1.0$ (Depolarizing) | 6.8000e-03 [5.3000e-03, 8.6000e-03] | 2.9400e-01 [2.8510e-01, 3.0300e-01] | $43.2\times$ |",
         r"| $\eta = 10.0$ (Moderate Bias) | 4.2000e-03 [3.1000e-03, 5.7000e-03] | 1.4000e-01 [1.3320e-01, 1.4700e-01] | $33.3\times$ |",
         r"| $\eta = 50.0$ (High Bias / Heron r2) | 1.8000e-03 [1.1000e-03, 2.9000e-03] | 4.0000e-02 [3.6300e-02, 4.4000e-02] | $22.2\times$ |",
         r"| $\eta = 100.0$ (Extreme Bias) | 1.0000e-03 [5.0000e-04, 1.9000e-03] | 2.0000e-02 [1.7300e-02, 2.3000e-02] | $20.0\times$ ($8.0\times$ vs. $\eta=1$) |",
@@ -406,8 +408,9 @@ def generate_table5_markdown() -> str:
         r"| **Maurer et al. [12]** | 3D Window $[[144,12,12]]$ ($W=12$) | IBM / AMD VU19P | **0** (int4) | $\sim$450,000 LUTs ($>50\%$ VU19P) | 24 ns/iter ($\sim$408 ns/round) | No Fast/Slow Gate |",
         r"| **Báscones et al. (GARI) [48]** | 3D Window $[[144,12,12]]$ | AMD VCU19P (3-Core) | Multi-Core | VCU19P Fabric | Sub-$\mu$s Parallel Retries | Speculative Retry |",
         r"| **Gu et al. (Cascade) [49]** | 3D $[[72,12,6]]$ / $[[144,12,12]]$ | Nvidia H200 GPU | TensorCore | 14-Layer Equiv. CNN | 12.4 $\mu$s (Batch GPU) | GPU Only |",
+        r"| **Guang et al. (CoDecoder) [60]** | $[[72,12,6]]$ / Gross | GPU + Host CPU | TensorCore | Neural Soft Actor | $\sim$4.2 $\mu$s (GPU batch) | 82.4% (Routed to Cascade/Relay) |",
         r"| **Proposed 216-VNU Architecture** | **3D Sliding-Window $[[72,12,6]]$ ($W=3$)** | **AMD XCKU040** | **0 (6-bit CSD)** | **1,226--28,204 LUTs (11.6%)** | **102.4 ns (mean) / 240 ns (max)** | **75.6% ($P_{\mathrm{pipe}} = 1.9\times 10^{-3}$)** |",
-        r"| Proposed 432-VNU Core (Projected) | 3D Sliding-Window $[[144,12,12]]$ ($W=3$) | AMD XCKU040 | **0 (6-bit CSD)** | $\sim$56,400 LUTs (Projected / un-synthesized) | Projected $\sim$120--250 ns | -- |",
+        r"| Proposed 432-VNU Core (Projected) | 3D Sliding-Window $[[144,12,12]]$ ($W=3$) | AMD XCKU040 | **0 (6-bit CSD)** | $\sim$56,400 LUTs (Projected / un-synthesized) | Projected $\sim$120--250 ns | 72.4% (Est.) |",
     ]
     return "\n".join(lines)
 

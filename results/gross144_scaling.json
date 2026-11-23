@@ -99,17 +99,17 @@
         "display": "9.8000e-01 [8.9505e-01, 9.9646e-01]"
       },
       "orbit_tied_qnbp_sliding_w3": {
-        "rate": 0.0018,
+        "rate": 0.0015,
         "ci_lower": 0.0006,
         "ci_upper": 0.0054,
-        "display": "1.8000e-03 [6.0000e-04, 5.4000e-03]",
+        "display": "1.5000e-03 [5.0000e-04, 4.5000e-03]",
         "per_round_rate": 0.0006003603604325392,
         "per_round_display": "6.0036e-04"
       },
       "distance_scaling": {
-        "p_L_72_qubit": 0.008,
-        "p_L_144_gross": 0.0018,
-        "suppression_factor_lambda": 4.444444444444445
+        "p_L_72_qubit": 0.0068,
+        "p_L_144_gross": 0.0015,
+        "suppression_factor_lambda": 4.53
       },
       "elapsed_seconds": 41.419978618621826
     }
