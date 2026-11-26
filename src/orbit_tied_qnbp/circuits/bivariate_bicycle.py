@@ -114,6 +114,26 @@ class BivariateBicycleCode:
             b_terms=[(0, 3), (1, 0), (2, 0)],  # y^3 + x + x^2
         )
 
+    @classmethod
+    def code_108_8_10(cls) -> "BivariateBicycleCode":
+        """Instantiates the [[108, 8, 10]] BB code (Bravyi et al. Nature 2024)."""
+        return cls(
+            l=9,
+            m=6,
+            a_terms=[(3, 0), (0, 1), (0, 2)],  # x^3 + y + y^2
+            b_terms=[(0, 3), (1, 0), (2, 0)],  # y^3 + x + x^2
+        )
+
+    @classmethod
+    def code_90_8_10(cls) -> "BivariateBicycleCode":
+        """Instantiates the [[90, 8, 10]] BB code (Bravyi et al. Nature 2024)."""
+        return cls(
+            l=15,
+            m=3,
+            a_terms=[(9, 0), (0, 1), (0, 2)],  # x^9 + y + y^2
+            b_terms=[(0, 0), (2, 0), (7, 0)],  # 1 + x^2 + x^7
+        )
+
     def _get_cyclic_matrix(self, poly_terms: List[Tuple[int, int]]) -> NDArray[np.uint8]:
         """Constructs a |G| x |G| binary permutation representation matrix."""
         mat = np.zeros((self.group_order, self.group_order), dtype=np.uint8)
@@ -160,55 +180,68 @@ class BivariateBicycleCode:
         rounds: int,
         error_rate: float = 0.0,
         bias: Optional[float] = None,
+        basis: str = "Z",
     ) -> stim.Circuit:
-        """Constructs the depth-7 syndrome measurement Stim circuit.
+        """Constructs the depth-7 syndrome measurement Stim circuit for Z or X memory.
 
         Qubit register allocations:
-            q(X): indices 0 .. |G|-1 (ancillas for Z error syndrome)
+            q(X): indices 0 .. |G|-1 (ancillas for X stabilizers detecting Z errors)
             q(L): indices |G| .. 2|G|-1 (left data qubits)
             q(R): indices 2|G| .. 3|G|-1 (right data qubits)
-            q(Z): indices 3|G| .. 4|G|-1 (ancillas for X error syndrome)
+            q(Z): indices 3|G| .. 4|G|-1 (ancillas for Z stabilizers detecting X errors)
 
         Args:
-            rounds: Number of syndrome extraction rounds Nc.
+            rounds: Number of syndrome extraction rounds R.
             error_rate: Physical noise rate p.
-            bias: Pauli Z noise bias eta = p_z / (p_x + p_y). If None or <= 0.5,
-                standard symmetric depolarizing noise is applied. If > 0.5,
-                asymmetric Pauli channel noise is applied.
+            bias: Pauli Z noise bias eta = p_Z / (p_X + p_Y) or p_Z / p_X convention
+                (if None or <= 0.5, standard symmetric depolarizing noise is applied).
+            basis: Memory basis, either 'Z' or 'X'.
 
         Returns:
             A complete, annotated stim.Circuit ready for DEM extraction.
         """
+        basis = basis.upper()
+        if basis not in ("Z", "X"):
+            raise ValueError(f"basis must be 'Z' or 'X', got {basis!r}")
+
         c = stim.Circuit()
         g = self.group_order
 
-        # Initialize data qubits to |0> and Z ancillas to |0>
-        c.append("R", list(range(g, 3 * g)))
-        if error_rate > 0:
-            self._apply_single_qubit_noise(c, list(range(g, 3 * g)), error_rate, bias, "X_ERROR")
+        # Initialize data qubits in |0> (Z) or |+> (X), and Z ancillas in |0>
+        if basis == "Z":
+            c.append("R", list(range(g, 3 * g)))
+            if error_rate > 0:
+                self._apply_single_qubit_noise(c, list(range(g, 3 * g)), error_rate, bias, "X_ERROR")
+        else:
+            c.append("RX", list(range(g, 3 * g)))
+            if error_rate > 0:
+                self._apply_single_qubit_noise(c, list(range(g, 3 * g)), error_rate, bias, "Z_ERROR")
+
         c.append("R", list(range(3 * g, 4 * g)))
         if error_rate > 0:
             self._apply_single_qubit_noise(c, list(range(3 * g, 4 * g)), error_rate, bias, "X_ERROR")
         c.append("TICK")
 
         for r in range(rounds):
-            self._append_syndrome_round(c, r, error_rate, bias)
+            self._append_syndrome_round(c, r, error_rate, bias, basis=basis)
 
-        # Terminal measurement on data qubits in Z-basis
-        if error_rate > 0:
-            self._apply_single_qubit_noise(c, list(range(g, 3 * g)), error_rate, bias, "X_ERROR")
-        c.append("M", list(range(g, 3 * g)))
+        # Terminal measurement on data qubits in selected basis
+        if basis == "Z":
+            if error_rate > 0:
+                self._apply_single_qubit_noise(c, list(range(g, 3 * g)), error_rate, bias, "X_ERROR")
+            c.append("M", list(range(g, 3 * g)))
+        else:
+            if error_rate > 0:
+                self._apply_single_qubit_noise(c, list(range(g, 3 * g)), error_rate, bias, "Z_ERROR")
+            c.append("MX", list(range(g, 3 * g)))
 
-        # Append terminal detectors comparing final data parities to last Z-ancilla
-        self._append_terminal_detectors(c)
-
-        # Append logical Z observables
-        self._append_logical_observables(c)
+        self._append_terminal_detectors(c, basis=basis)
+        self._append_logical_observables(c, basis=basis)
 
         return c
 
     def _append_syndrome_round(
-        self, c: stim.Circuit, r: int, p: float, bias: Optional[float] = None
+        self, c: stim.Circuit, r: int, p: float, bias: Optional[float] = None, basis: str = "Z"
     ) -> None:
         """Appends one round of the depth-7 CNOT syndrome extraction schedule."""
         g = self.group_order
@@ -261,8 +294,11 @@ class BivariateBicycleCode:
         c.append("M", list(range(3 * g, 4 * g)))
         for i in range(g):
             rec = -(g - i)
-            targets = [stim.target_rec(rec)] if r == 0 else [stim.target_rec(rec), stim.target_rec(rec - 2 * g)]
-            c.append("DETECTOR", targets)
+            if basis == "Z":
+                targets = [stim.target_rec(rec)] if r == 0 else [stim.target_rec(rec), stim.target_rec(rec - 2 * g)]
+                c.append("DETECTOR", targets)
+            elif r > 0:
+                c.append("DETECTOR", [stim.target_rec(rec), stim.target_rec(rec - 2 * g)])
         c.append("TICK")
 
         # Round 8: Measure X ancillas & Reset Z ancillas
@@ -274,7 +310,10 @@ class BivariateBicycleCode:
             self._apply_single_qubit_noise(c, list(range(3 * g, 4 * g)), p, bias, "X_ERROR")
         for i in range(g):
             rec = -(g - i)
-            if r > 0:
+            if basis == "X":
+                targets = [stim.target_rec(rec)] if r == 0 else [stim.target_rec(rec), stim.target_rec(rec - 2 * g)]
+                c.append("DETECTOR", targets)
+            elif r > 0:
                 c.append("DETECTOR", [stim.target_rec(rec), stim.target_rec(rec - 2 * g)])
         c.append("TICK")
 
@@ -326,30 +365,31 @@ class BivariateBicycleCode:
                 c.append("DEPOLARIZE2", targets, p)
         c.append("TICK")
 
-    def _append_terminal_detectors(self, c: stim.Circuit) -> None:
-        """Connects the final data measurements to the last round's Z ancilla checks."""
+    def _append_terminal_detectors(self, c: stim.Circuit, basis: str = "Z") -> None:
+        """Connects the final data measurements to the last round's corresponding ancilla checks."""
         g = self.group_order
-        p_tab = self.perms
-        for i in range(g):
-            targets = [
-                stim.target_rec(-(2 * g - int(p_tab["B1_T"][i]))),
-                stim.target_rec(-(2 * g - int(p_tab["B2_T"][i]))),
-                stim.target_rec(-(2 * g - int(p_tab["B3_T"][i]))),
-                stim.target_rec(-(2 * g - (g + int(p_tab["A1_T"][i])))),
-                stim.target_rec(-(2 * g - (g + int(p_tab["A2_T"][i])))),
-                stim.target_rec(-(2 * g - (g + int(p_tab["A3_T"][i])))),
-                stim.target_rec(-(4 * g - i)),
-            ]
-            c.append("DETECTOR", targets)
+        if basis == "Z":
+            for i in range(g):
+                cols = np.where(self.hz[i] == 1)[0]
+                targets = [stim.target_rec(-(2 * g - int(j))) for j in cols]
+                targets.append(stim.target_rec(-(4 * g - i)))
+                c.append("DETECTOR", targets)
+        else:
+            for i in range(g):
+                cols = np.where(self.hx[i] == 1)[0]
+                targets = [stim.target_rec(-(2 * g - int(j))) for j in cols]
+                targets.append(stim.target_rec(-(3 * g - i)))
+                c.append("DETECTOR", targets)
 
-    def _append_logical_observables(self, c: stim.Circuit) -> None:
-        """Adds OBSERVABLE_INCLUDE instructions for the canonical logical Z basis."""
+    def _append_logical_observables(self, c: stim.Circuit, basis: str = "Z") -> None:
+        """Adds OBSERVABLE_INCLUDE instructions for canonical logical Z or X operators."""
         g = self.group_order
+        l_mat = self.lz if basis == "Z" else self.lx
         for k in range(self.num_logicals):
             obs_targets = [
                 stim.target_rec(-(2 * g - j))
                 for j in range(2 * g)
-                if self.lz[k, j] == 1
+                if l_mat[k, j] == 1
             ]
             c.append("OBSERVABLE_INCLUDE", obs_targets, k)
 

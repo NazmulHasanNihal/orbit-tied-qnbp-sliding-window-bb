@@ -141,3 +141,30 @@ class CanonicalSignedDigit:
 
         return float(best_val), terms
 
+
+class SteCsdProject(Function):
+    """Straight-Through Estimator projecting continuous weight tensor onto discrete CSD table."""
+
+    @staticmethod
+    def forward(ctx, w: torch.Tensor, csd_table: torch.Tensor) -> torch.Tensor:
+        # csd_table is 1D sorted float tensor of admissible 2-term CSD values
+        diffs = torch.abs(w.unsqueeze(-1) - csd_table)
+        idx = torch.argmin(diffs, dim=-1)
+        return csd_table[idx]
+
+    @staticmethod
+    def backward(ctx, grad_output: torch.Tensor) -> Tuple[torch.Tensor, None]:
+        return grad_output, None
+
+
+class CsdWeightQuantizer(nn.Module):
+    """PyTorch module quantizing continuous parameters onto 2-term CSD shift-and-add levels."""
+
+    def __init__(self, max_shift: int = 5, num_terms: int = 2) -> None:
+        super().__init__()
+        csd = CanonicalSignedDigit(max_shift=max_shift, num_terms=num_terms)
+        self.register_buffer("csd_table", torch.from_numpy(csd.candidates.copy()))
+
+    def forward(self, w: torch.Tensor) -> torch.Tensor:
+        return SteCsdProject.apply(w, self.csd_table)
+
